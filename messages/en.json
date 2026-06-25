@@ -1,0 +1,192 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "manifesto": "Manifesto",
+    "consultoria": "Advisory",
+    "contato": "Contact",
+    "subscribe": "Subscribe"
+  },
+  "hero": {
+    "headline": "Global Real Estate Intelligence, translated into local action.",
+    "subheadline": "Every week, we decode what the world's best real estate firms are doing — and show you exactly how to apply it in your market.",
+    "cta": "Subscribe for free",
+    "cta_placeholder": "Your best email address",
+    "badge": "Available in Portuguese, English & Italian",
+    "scroll": "Learn more"
+  },
+  "approach": {
+    "label": "Our Approach",
+    "headline": "The market is global. So should you be.",
+    "col1_title": "How We Think",
+    "col1_body": "We go deep into the practices of the world's top real estate firms — from the US to the UK, from Italy to the Middle East — and translate that intelligence into actionable content for professionals in Portuguese-speaking markets. No filters, no empty jargon.",
+    "col2_title": "What Sets Us Apart",
+    "col2_body": "We're not a news digest. We're a strategic intelligence platform: every issue brings a real case study, a proven technique, and one concrete step you can implement this week.",
+    "quote": "Globalle: a platform connecting the real estate market to the world through content that matters to every professional in the industry."
+  },
+  "manifesto": {
+    "label": "Manifesto",
+    "headline": "Why the world needs real estate professionals with a global mindset",
+    "p1": "We live in a world where capital moves in real time — where buyers in Lisbon purchase in Miami and investors in São Paulo choose properties in Portugal before ever setting foot there. Yet the professionals who should be guiding those decisions are still learning almost exclusively within their own borders.",
+    "p2": "That's not their fault. It's a matter of access.",
+    "p3": "The knowledge that defines excellence in global real estate — the conversion scripts used by New York's top brokers, the onboarding model that London's largest agencies use for new consultants, the way Italian developers build local brands with international reach — rarely makes it, in Portuguese, to the people who need it most.",
+    "p4": "Globalle was built to change that.",
+    "p5": "We're not a market news aggregator. We're a strategic intelligence clearinghouse: we do the research, interview the right people, distill what's essential, and deliver it in a language any ambitious professional can pick up and apply.",
+    "p6": "We believe the next generation of great real estate names in Portugal and Brazil won't only be shaped by access to the best schools or the best local mentors. They'll be shaped by the curiosity to look outward — and the discipline to translate that perspective into action.",
+    "p7": "That's what Globalle delivers, week after week.",
+    "closing": "The borders are open. Come build with us."
+  },
+  "mvv": {
+    "label": "Identity",
+    "headline": "Mission, Vision & Values",
+    "mission_title": "Mission",
+    "mission_body": "To be the strategic partner of real estate professionals who want to grow beyond their borders, delivering global market intelligence in a way that is accessible, actionable, and continuous.",
+    "vision_title": "Vision",
+    "vision_body": "To become, within 3 years, the largest multilingual real estate newsletter (PT/EN/IT/ES) — the essential reference for industry professionals across Portuguese-speaking and Iberian-language markets.",
+    "values_title": "Values",
+    "values": [
+      { "icon": "⚖️", "title": "Responsibility & Ethics", "body": "We are committed to rigorous information, verified sources, and full transparency." },
+      { "icon": "🔄", "title": "Constant Transformation", "body": "We evolve with the market. We never stop learning or adapting what we deliver." },
+      { "icon": "💡", "title": "Innovation with Purpose", "body": "We innovate to solve real problems — not to chase trends." },
+      { "icon": "👂", "title": "Respect & Active Listening", "body": "We listen to our readers and partners. Your experience shapes our content." },
+      { "icon": "📚", "title": "Continuous Learning", "body": "We are the first students of what we teach. Intellectual humility is non-negotiable." },
+      { "icon": "🤝", "title": "Trust & Honesty", "body": "We build long-term relationships. Trust is our most valuable asset." }
+    ]
+  },
+  "value_props": {
+    "label": "Value Proposition",
+    "headline": "Why Globalle is different",
+    "cards": [
+      { "color": "yellow", "title": "Intelligent Interview Curation", "body": "We access top professionals from markets like the US, UK, Italy, and UAE. Every issue brings perspectives you won't find in Portuguese anywhere else." },
+      { "color": "pink", "title": "Cultural + Technical Insight", "body": "It's not just the 'what' — it's the 'cultural why'. We understand that American market practices can't be copied. They have to be translated. That's exactly what we do." },
+      { "color": "orange", "title": "Deep Real Estate Experience", "body": "Our founding team has direct experience in transactions, team management, and real estate development across Portugal, Brazil, and international markets." },
+      { "color": "blue", "title": "A Community Built to Grow", "body": "Our readers aren't passive. They're professionals who apply what they read, share results, and build together. The community is part of the product." }
+    ]
+  },
+  "products": {
+    "label": "Products",
+    "headline": "What Globalle offers",
+    "newsletter_title": "Weekly Newsletter",
+    "newsletter_body": "The heart of Globalle. Every week, an in-depth analysis of a global real estate practice, case study, or trend — in Portuguese, English, and Italian. Free. No spam. Cancel anytime.",
+    "newsletter_cta": "Subscribe for free",
+    "podcast_title": "Podcast",
+    "podcast_body": "Long-form, unfiltered interviews with real estate professionals from around the world. The perfect complement to the newsletter — for your commute, the gym, or between client visits.",
+    "podcast_cta": "Listen to episodes",
+    "consultoria_title": "Strategic Advisory",
+    "consultoria_body": "For teams and agencies ready to go beyond content and turn intelligence into concrete processes. From adopting new techniques to full operational restructuring.",
+    "consultoria_cta": "See plans"
+  },
+  "final_cta": {
+    "headline": "Start thinking globally today",
+    "subheadline": "Join hundreds of professionals already receiving global real estate intelligence every week.",
+    "cta": "Subscribe for free",
+    "placeholder": "Your best email address"
+  },
+  "newsletter_form": {
+    "success": "Thank you! Check your inbox to confirm your subscription.",
+    "error": "Something went wrong. Please try again.",
+    "invalid": "Please enter a valid email address."
+  },
+  "consultoria": {
+    "label": "Advisory",
+    "headline": "Turn intelligence into results",
+    "subheadline": "Choose the plan that fits your team or agency's current stage.",
+    "popular": "Most popular",
+    "plans": [
+      {
+        "id": "aplicacao",
+        "name": "Group Application",
+        "price": "€500",
+        "period": "/month",
+        "description": "For teams that want to implement new practices in a structured, supported way.",
+        "features": [
+          "Access to all playbooks and SOP/training library",
+          "1 monthly group session to apply the week's playbook",
+          "Monthly async check-in",
+          "Ready-to-use templates (sales scripts, agent onboarding, etc.)",
+          "Support via private group (WhatsApp/Slack)"
+        ],
+        "cta": "Apply with my team",
+        "popular": false
+      },
+      {
+        "id": "estrategico",
+        "name": "Strategic",
+        "price": "€1,500",
+        "period": "/month",
+        "description": "For leaders and agencies who want a strategic partner with personalized support.",
+        "features": [
+          "Initial operational diagnosis",
+          "Customized quarterly action plan",
+          "1 individual call per month",
+          "KPI monitoring",
+          "Priority access to exclusive content"
+        ],
+        "cta": "Talk to a specialist",
+        "popular": true
+      },
+      {
+        "id": "medida",
+        "name": "Custom Project",
+        "price": "On request",
+        "period": "",
+        "description": "For large operations requiring full restructuring or high-complexity projects.",
+        "features": [
+          "Full operational restructuring",
+          "In-person team training",
+          "Technology/process implementation",
+          "Ongoing post-implementation support",
+          "Monthly executive reports"
+        ],
+        "cta": "Request a proposal",
+        "popular": false
+      }
+    ],
+    "faq_label": "FAQ",
+    "faq_headline": "Frequently asked questions",
+    "faqs": [
+      {
+        "q": "Is the advisory in-person or remote?",
+        "a": "The Group Application and Strategic plans are 100% remote (video calls and private group). Custom Projects may include in-person components depending on location and scope."
+      },
+      {
+        "q": "Can I start on one plan and upgrade later?",
+        "a": "Yes. Most of our clients start with Group Application and upgrade to Strategic after their first results. The process is straightforward with no additional transition costs."
+      },
+      {
+        "q": "Do the plans include newsletter access?",
+        "a": "Yes. All advisory plans include access to the premium newsletter with exclusive analyses not published in the free version."
+      },
+      {
+        "q": "Do you work with agencies in Portugal and Brazil?",
+        "a": "Yes. We have clients in Portugal, Brazil, and in international Portuguese-speaking markets. Content and sessions are adapted to each client's local market."
+      }
+    ]
+  },
+  "contato": {
+    "label": "Contact",
+    "headline": "Get in touch",
+    "subheadline": "Have a question, want to learn more about our advisory, or interested in collaborating with Globalle? Drop us a message.",
+    "name_label": "Name",
+    "name_placeholder": "Your name",
+    "email_label": "Email",
+    "email_placeholder": "Your email address",
+    "subject_label": "Subject",
+    "subject_placeholder": "How can we help?",
+    "message_label": "Message",
+    "message_placeholder": "Your message...",
+    "submit": "Send message",
+    "success": "Message sent! We'll get back to you within 48 hours.",
+    "info_title": "Contact Info",
+    "info_email": "hello@globalle.co",
+    "info_social": "Social Media",
+    "info_response": "Average response time: 48h"
+  },
+  "footer": {
+    "tagline": "Global real estate intelligence, every week.",
+    "links_title": "Links",
+    "social_title": "Social",
+    "copyright": "© 2024 Globalle. All rights reserved.",
+    "powered": "Powered by Globalle"
+  }
+}

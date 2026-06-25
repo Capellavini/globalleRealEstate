@@ -1,0 +1,192 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Sobre",
+    "manifesto": "Manifesto",
+    "consultoria": "Consultoria",
+    "contato": "Contato",
+    "subscribe": "Assinar Newsletter"
+  },
+  "hero": {
+    "headline": "Inteligência Imobiliária Global, traduzida em ação local.",
+    "subheadline": "Toda semana, mostramos o que as melhores imobiliárias do mundo estão fazendo — e como aplicar isso no seu mercado.",
+    "cta": "Assinar gratuitamente",
+    "cta_placeholder": "O seu melhor e-mail",
+    "badge": "Disponível em Português, Inglês e Italiano",
+    "scroll": "Saiba mais"
+  },
+  "approach": {
+    "label": "Nossa Abordagem",
+    "headline": "O mercado é Global, você também deve ser",
+    "col1_title": "Nossa Abordagem",
+    "col1_body": "Analisamos em profundidade as práticas das melhores imobiliárias do mundo — dos EUA ao Reino Unido, de Itália ao Médio Oriente — e traduzimos esse conhecimento em conteúdo aplicável para o mercado lusófono. Sem filtros, sem jargão vazio.",
+    "col2_title": "Nosso Diferencial",
+    "col2_body": "Não somos uma newsletter de notícias. Somos uma plataforma de inteligência estratégica: cada edição traz um caso real, uma técnica comprovada e um passo concreto que você pode implementar ainda esta semana.",
+    "quote": "Globalle: uma plataforma que conecta o mercado imobiliário ao mundo através de conteúdos relevantes a todos os profissionais deste mercado."
+  },
+  "manifesto": {
+    "label": "Manifesto",
+    "headline": "Por que o mundo precisa de profissionais imobiliários com visão global?",
+    "p1": "Vivemos num mundo onde os capitais se movem em tempo real, onde compradores de Lisboa compram em Miami e investidores de São Paulo escolhem imóveis em Lisboa antes de visitar o país. Mas os profissionais que deveriam guiar essas decisões continuam a aprender, quase exclusivamente, dentro das suas próprias fronteiras.",
+    "p2": "Isso não é culpa deles. É uma questão de acesso.",
+    "p3": "O conhecimento que define a excelência no real estate global — os scripts de conversão que os melhores brokers de Nova Iorque usam, o modelo de onboarding que as maiores agências de Londres aplicam aos novos consultores, a forma como os promotores italianos constroem marca local com alcance internacional — raramente chega, em português, de forma estruturada, a quem mais precisa.",
+    "p4": "A Globalle nasceu para mudar isso.",
+    "p5": "Não somos um agregador de notícias do mercado. Somos uma câmara de compensação de inteligência estratégica: fazemos o trabalho de pesquisa, entrevistamos os profissionais certos, destilamos o que é essencial e entregamos numa linguagem que qualquer profissional ambicioso consegue pegar e aplicar.",
+    "p6": "Acreditamos que a próxima geração de grandes nomes do imobiliário em Portugal e no Brasil não vai ser formada apenas por quem teve acesso às melhores escolas ou aos melhores mentores locais. Vai ser formada por quem teve a curiosidade de olhar para fora — e a disciplina de traduzir esse olhar em ação.",
+    "p7": "É isso que a Globalle oferece, semana após semana.",
+    "closing": "As fronteiras estão abertas. Embarque nessa jornada connosco."
+  },
+  "mvv": {
+    "label": "Identidade",
+    "headline": "Missão, Visão & Valores",
+    "mission_title": "Missão",
+    "mission_body": "Ser o aliado estratégico dos profissionais imobiliários que querem crescer além das suas fronteiras, fornecendo inteligência de mercado global de forma acessível, aplicável e contínua.",
+    "vision_title": "Visão",
+    "vision_body": "Tornarmo-nos, em até 3 anos, a maior newsletter multilíngue de real estate (PT/EN/IT/ES), referência obrigatória para profissionais do sector em países lusófonos e mercados de língua ibérica.",
+    "values_title": "Valores",
+    "values": [
+      { "icon": "⚖️", "title": "Responsabilidade e Ética", "body": "Comprometemo-nos com informação rigorosa, fontes verificadas e transparência total." },
+      { "icon": "🔄", "title": "Transformação Constante", "body": "Evoluímos com o mercado. Nunca paramos de aprender e de adaptar o que entregamos." },
+      { "icon": "💡", "title": "Inovação com Propósito", "body": "Inovamos para resolver problemas reais, não para seguir tendências." },
+      { "icon": "👂", "title": "Respeito e Escuta", "body": "Ouvimos os nossos leitores e parceiros. A vossa experiência molda o nosso conteúdo." },
+      { "icon": "📚", "title": "Aprendizado Contínuo", "body": "Somos os primeiros alunos do que ensinamos. A humildade intelectual é inegociável." },
+      { "icon": "🤝", "title": "Confiança e Honestidade", "body": "Construímos relações de longo prazo. A confiança é o nosso ativo mais valioso." }
+    ]
+  },
+  "value_props": {
+    "label": "Proposta de Valor",
+    "headline": "Por que a Globalle é diferente",
+    "cards": [
+      { "color": "yellow", "title": "Curadoria Inteligente de Entrevistas", "body": "Acedemos a profissionais de topo de mercados como EUA, UK, Itália e Emirados. Cada edição traz perspetivas que não encontra em português em mais lado nenhum." },
+      { "color": "pink", "title": "Visão Cultural + Técnica", "body": "Não é só o «o quê», é o «porquê cultural». Entendemos que as práticas do mercado americano não se copiam — traduzem-se. E é exatamente isso que fazemos." },
+      { "color": "orange", "title": "Experiência Vasta em Mercado Imobiliário", "body": "A equipa fundadora tem experiência direta em transações, gestão de equipas e promoção imobiliária em Portugal, Brasil e mercados internacionais." },
+      { "color": "blue", "title": "Comunidade Focada em Crescer", "body": "Os nossos leitores não são passivos. São profissionais que aplicam o que lêem, partilham resultados e constroem juntos. A comunidade é parte do produto." }
+    ]
+  },
+  "products": {
+    "label": "Produtos",
+    "headline": "O que a Globalle oferece",
+    "newsletter_title": "Newsletter Semanal",
+    "newsletter_body": "O coração da Globalle. Toda semana, uma análise aprofundada de uma prática, caso ou tendência do mercado imobiliário global — em Português, Inglês e Italiano. Gratuita. Sem spam. Cancelamento a qualquer momento.",
+    "newsletter_cta": "Assinar gratuitamente",
+    "podcast_title": "Podcast",
+    "podcast_body": "Entrevistas longas e sem filtros com profissionais do imobiliário de todo o mundo. O complemento perfeito para a newsletter — para ouvir no carro, no ginásio, entre visitas.",
+    "podcast_cta": "Ouvir episódios",
+    "consultoria_title": "Consultoria Estratégica",
+    "consultoria_body": "Para equipas e imobiliárias que querem ir além do conteúdo e transformar inteligência em processos concretos. Da adoção de novas técnicas à reestruturação completa da operação.",
+    "consultoria_cta": "Ver planos"
+  },
+  "final_cta": {
+    "headline": "Comece a pensar global hoje",
+    "subheadline": "Junte-se a centenas de profissionais que já recebem inteligência imobiliária global todas as semanas.",
+    "cta": "Assinar gratuitamente",
+    "placeholder": "O seu melhor e-mail"
+  },
+  "newsletter_form": {
+    "success": "Obrigado! Confirme o seu e-mail para começar a receber.",
+    "error": "Ocorreu um erro. Tente novamente.",
+    "invalid": "Por favor insira um e-mail válido."
+  },
+  "consultoria": {
+    "label": "Consultoria",
+    "headline": "Transforme inteligência em resultado",
+    "subheadline": "Escolha o plano que se adapta à fase da sua equipa ou imobiliária.",
+    "popular": "Mais popular",
+    "plans": [
+      {
+        "id": "aplicacao",
+        "name": "Aplicação em Grupo",
+        "price": "€500",
+        "period": "/mês",
+        "description": "Para equipas que querem implementar novas práticas de forma estruturada e acompanhada.",
+        "features": [
+          "Acesso a todos os playbooks e biblioteca de SOPs/treinamentos",
+          "1 sessão mensal em grupo para aplicar o playbook da semana",
+          "Check-in mensal assíncrono",
+          "Templates prontos (scripts de venda, onboarding de corretor, etc.)",
+          "Suporte via grupo fechado (WhatsApp/Slack)"
+        ],
+        "cta": "Quero aplicar com a equipa",
+        "popular": false
+      },
+      {
+        "id": "estrategico",
+        "name": "Estratégico",
+        "price": "€1.500",
+        "period": "/mês",
+        "description": "Para líderes e imobiliárias que querem um parceiro estratégico com acompanhamento personalizado.",
+        "features": [
+          "Diagnóstico inicial da operação",
+          "Plano de ação trimestral personalizado",
+          "1 call individual por mês",
+          "Acompanhamento de KPIs",
+          "Acesso prioritário a conteúdo exclusivo"
+        ],
+        "cta": "Falar com um especialista",
+        "popular": true
+      },
+      {
+        "id": "medida",
+        "name": "Projeto Sob Medida",
+        "price": "Sob consulta",
+        "period": "",
+        "description": "Para grandes operações que precisam de reestruturação completa ou projetos de alta complexidade.",
+        "features": [
+          "Reestruturação completa de operação",
+          "Treinamento presencial de equipa",
+          "Implementação de tecnologia/processos",
+          "Acompanhamento contínuo pós-implementação",
+          "Relatórios executivos mensais"
+        ],
+        "cta": "Solicitar proposta",
+        "popular": false
+      }
+    ],
+    "faq_label": "FAQ",
+    "faq_headline": "Perguntas frequentes",
+    "faqs": [
+      {
+        "q": "A consultoria é presencial ou remota?",
+        "a": "Os planos Aplicação e Estratégico funcionam 100% de forma remota (videochamadas e grupo fechado). O Projeto Sob Medida pode incluir componentes presenciais dependendo da localização e necessidade."
+      },
+      {
+        "q": "É possível começar com um plano e depois fazer upgrade?",
+        "a": "Sim. A maioria dos nossos clientes começa no Aplicação e faz upgrade para Estratégico após os primeiros resultados. O processo é simples e sem custos adicionais de transição."
+      },
+      {
+        "q": "Os planos incluem acesso à newsletter?",
+        "a": "Sim. Todos os planos de consultoria incluem acesso à newsletter premium com análises exclusivas não publicadas na versão gratuita."
+      },
+      {
+        "q": "Trabalham com imobiliárias de Portugal e do Brasil?",
+        "a": "Sim. Temos clientes em Portugal, Brasil e em mercados lusófonos internacionais. O conteúdo e as sessões adaptam-se ao mercado local de cada cliente."
+      }
+    ]
+  },
+  "contato": {
+    "label": "Contato",
+    "headline": "Fale connosco",
+    "subheadline": "Tem uma dúvida, quer saber mais sobre a consultoria, ou quer colaborar com a Globalle? Deixe-nos uma mensagem.",
+    "name_label": "Nome",
+    "name_placeholder": "O seu nome",
+    "email_label": "E-mail",
+    "email_placeholder": "O seu e-mail",
+    "subject_label": "Assunto",
+    "subject_placeholder": "Como podemos ajudar?",
+    "message_label": "Mensagem",
+    "message_placeholder": "A sua mensagem...",
+    "submit": "Enviar mensagem",
+    "success": "Mensagem enviada! Respondemos em até 48h.",
+    "info_title": "Informações",
+    "info_email": "hello@globalle.co",
+    "info_social": "Redes Sociais",
+    "info_response": "Tempo de resposta médio: 48h"
+  },
+  "footer": {
+    "tagline": "Inteligência imobiliária global, toda semana.",
+    "links_title": "Links",
+    "social_title": "Redes Sociais",
+    "copyright": "© 2024 Globalle. Todos os direitos reservados.",
+    "powered": "Powered by Globalle"
+  }
+}
