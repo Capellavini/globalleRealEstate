@@ -7,8 +7,6 @@ import NewsletterForm from '@/components/NewsletterForm'
 import Reveal from '@/components/Reveal'
 import Icon, { IconName } from '@/components/Icon'
 
-const MARKETS = ['Nova Iorque', 'Londres', 'Milão', 'Dubai', 'Lisboa', 'São Paulo', 'Miami', 'Paris', 'Madrid', 'Singapura']
-
 function Kicker({ num, label, dark }: { num: string; label: string; dark: boolean }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 22 }}>
@@ -68,18 +66,6 @@ export default function HomePage() {
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, var(--color-navy) 0%, transparent 22%, transparent 80%, var(--color-navy) 100%)' }} />
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, var(--color-navy) 0%, transparent 30%)' }} />
             </div>
-          </div>
-        </div>
-
-        {/* market ticker */}
-        <div style={{ position: 'relative', zIndex: 1, borderTop: '1px solid var(--color-line)', borderBottom: '1px solid var(--color-line)', padding: '16px 0', overflow: 'hidden', background: 'rgba(7,11,36,0.6)' }}>
-          <div className="ticker-track">
-            {[...MARKETS, ...MARKETS].map((m, i) => (
-              <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 28, padding: '0 28px', fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: '0.1em', color: 'var(--color-ink-dim)', textTransform: 'uppercase' }}>
-                {m}
-                <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--color-blue)' }} />
-              </span>
-            ))}
           </div>
         </div>
       </section>
@@ -156,11 +142,11 @@ export default function HomePage() {
       </section>
 
       {/* ═══ 03 · VALUE PROPS ═══ */}
-      <section style={{ background: 'var(--color-navy)', padding: '110px 28px' }}>
+      <section style={{ background: 'linear-gradient(180deg, var(--color-paper-2) 0%, var(--color-paper) 100%)', padding: '110px 28px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <Reveal>
-            <Kicker num="03" label={t('value_props.label')} dark />
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.02em', marginBottom: 8 }}>
+            <Kicker num="03" label={t('value_props.label')} dark={false} />
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink-dark)', letterSpacing: '-0.02em', marginBottom: 8 }}>
               {t('value_props.headline')}
             </h2>
           </Reveal>
@@ -168,17 +154,17 @@ export default function HomePage() {
           <div className="props-grid" style={{ marginTop: 48 }}>
             {valueCards.map((card, i) => (
               <Reveal key={i} delay={(i % 2) * 90}>
-                <div style={{ borderTop: '1px solid var(--color-line)', paddingTop: 28, height: '100%' }}>
+                <div style={{ borderTop: '1px solid var(--color-line-dark)', paddingTop: 28, height: '100%' }}>
                   <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
-                    <span style={{ width: 52, height: 52, borderRadius: 14, background: 'rgba(30,167,232,0.1)', border: '1px solid rgba(30,167,232,0.2)', color: 'var(--color-blue-bright)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ width: 52, height: 52, borderRadius: 14, background: 'rgba(30,167,232,0.1)', border: '1px solid rgba(30,167,232,0.2)', color: 'var(--color-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <Icon name={card.icon} size={26} />
                     </span>
-                    <span className="serif-i" style={{ fontSize: 28, color: 'rgba(255,255,255,0.14)', fontWeight: 600 }}>0{i + 1}</span>
+                    <span className="serif-i" style={{ fontSize: 28, color: 'rgba(11,18,48,0.12)', fontWeight: 600 }}>0{i + 1}</span>
                   </div>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18.5, fontWeight: 700, color: 'var(--color-ink)', marginBottom: 12, lineHeight: 1.25 }}>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18.5, fontWeight: 700, color: 'var(--color-ink-dark)', marginBottom: 12, lineHeight: 1.25 }}>
                     {card.title}
                   </h3>
-                  <p style={{ color: 'var(--color-ink-dim)', fontSize: 14.5, lineHeight: 1.7 }}>{card.body}</p>
+                  <p style={{ color: 'var(--color-ink-dark-dim)', fontSize: 14.5, lineHeight: 1.7 }}>{card.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -187,11 +173,11 @@ export default function HomePage() {
       </section>
 
       {/* ═══ 04 · PRODUCTS ═══ */}
-      <section style={{ background: 'linear-gradient(180deg, var(--color-paper) 0%, var(--color-paper-2) 100%)', padding: '110px 28px' }}>
+      <section style={{ background: 'var(--color-navy)', padding: '110px 28px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <Reveal>
-            <Kicker num="04" label={t('products.label')} dark={false} />
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink-dark)', letterSpacing: '-0.02em', marginBottom: 16 }}>
+            <Kicker num="04" label={t('products.label')} dark />
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.02em', marginBottom: 16 }}>
               {t('products.headline')}
             </h2>
           </Reveal>
@@ -201,10 +187,10 @@ export default function HomePage() {
             { key: 'consultoria', icon: 'advisory', tag: '02', visual: 'advisory', href: '/consultoria' },
           ].map((p, i) => (
             <Reveal key={p.key}>
-              <div className="product-row" style={{ borderTop: '1px solid var(--color-line-dark)', padding: '48px 0' }}>
+              <div className="product-row" style={{ borderTop: '1px solid var(--color-line)', padding: '48px 0' }}>
                 <div className="product-visual" style={{ order: i % 2 === 0 ? 0 : 2 }}>
                   {p.visual === 'newsletter' && (
-                    <div style={{ position: 'relative', width: '100%', height: 260, borderRadius: 18, overflow: 'hidden', background: 'var(--color-navy)', border: '1px solid var(--color-line-dark)', padding: 24 }}>
+                    <div style={{ position: 'relative', width: '100%', height: 260, borderRadius: 18, overflow: 'hidden', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--color-line)', padding: 24 }}>
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
                         <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, color: 'var(--color-blue-bright)', fontSize: 16 }}>Globalle</span>
                         <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10.5, color: 'var(--color-ink-faint)', letterSpacing: '0.1em' }}>{locale === 'pt' ? 'EDIÇÃO #47' : 'ISSUE #47'}</span>
@@ -219,7 +205,7 @@ export default function HomePage() {
                     </div>
                   )}
                   {p.visual === 'advisory' && (
-                    <div style={{ position: 'relative', width: '100%', height: 260, borderRadius: 18, overflow: 'hidden', background: 'linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-3) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ position: 'relative', width: '100%', height: 260, borderRadius: 18, overflow: 'hidden', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--color-line)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <svg viewBox="0 0 320 220" style={{ width: '78%' }} fill="none">
                         {/* connected network / strategy graph */}
                         {[[60, 60], [160, 40], [260, 80], [110, 130], [220, 160], [60, 170]].map(([x, y], n) => (
@@ -239,11 +225,11 @@ export default function HomePage() {
                 <div className="product-text" style={{ order: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
                     <span style={{ color: 'var(--color-blue)', display: 'flex' }}><Icon name={p.icon as IconName} size={24} /></span>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-ink-dark-dim)' }}>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-ink-dim)' }}>
                       {t(`products.${p.key}_title`)}
                     </span>
                   </div>
-                  <p style={{ color: 'var(--color-ink-dark-dim)', lineHeight: 1.75, fontSize: 16, marginBottom: 26, maxWidth: 460 }}>
+                  <p style={{ color: 'var(--color-ink-dim)', lineHeight: 1.75, fontSize: 16, marginBottom: 26, maxWidth: 460 }}>
                     {t(`products.${p.key}_body`)}
                   </p>
                   <Link href={p.href.startsWith('/') ? `/${locale}${p.href}` : `/${locale}/${p.href}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'var(--color-blue)', textDecoration: 'none', fontSize: 15, fontWeight: 700, fontFamily: 'var(--font-display)' }}>
