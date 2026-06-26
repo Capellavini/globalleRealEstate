@@ -250,17 +250,11 @@ export default function HomePage() {
 
           {[
             { key: 'newsletter', icon: 'newsletter', tag: '01', visual: 'newsletter', href: '#newsletter' },
-            { key: 'podcast', icon: 'podcast', tag: '02', visual: 'podcast', href: '#' },
-            { key: 'consultoria', icon: 'advisory', tag: '03', visual: 'advisory', href: '/consultoria' },
+            { key: 'consultoria', icon: 'advisory', tag: '02', visual: 'advisory', href: '/consultoria' },
           ].map((p, i) => (
             <Reveal key={p.key}>
               <div className="product-row" style={{ borderTop: '1px solid var(--color-line-dark)', padding: '48px 0' }}>
                 <div className="product-visual" style={{ order: i % 2 === 0 ? 0 : 2 }}>
-                  {p.visual === 'podcast' && (
-                    <div style={{ position: 'relative', width: '100%', height: 260, borderRadius: 18, overflow: 'hidden', background: '#fff' }}>
-                      <Image src="/podcast.jpg" alt="" fill style={{ objectFit: 'contain' }} />
-                    </div>
-                  )}
                   {p.visual === 'newsletter' && (
                     <div style={{ position: 'relative', width: '100%', height: 260, borderRadius: 18, overflow: 'hidden', background: 'var(--color-navy)', border: '1px solid var(--color-line-dark)', padding: 24 }}>
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>

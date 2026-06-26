@@ -19,7 +19,6 @@ const PATHS: Record<string, React.ReactNode> = {
   community: <><circle cx="6" cy="7" r="2.2" /><circle cx="18" cy="7" r="2.2" /><circle cx="12" cy="17.5" r="2.2" /><path d="M7.6 8.7 11 15.5M16.4 8.7 13 15.5M8.2 7h7.6" /></>,
   // products
   newsletter: <><rect x="3" y="4.5" width="18" height="15" rx="2" /><path d="M7 9h10M7 12.5h10M7 16h6" /></>,
-  podcast: <><rect x="9" y="2.5" width="6" height="10.5" rx="3" /><path d="M5.5 10.5a6.5 6.5 0 0 0 13 0" /><path d="M12 17v4M8.5 21h7" /></>,
   advisory: <><circle cx="12" cy="12" r="9" /><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8 4.8-2.2z" /></>,
   // contact
   mail: <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></>,
