@@ -13,6 +13,11 @@ out/
 # dev server logs
 .dev-out.txt
 .dev-err.txt
+.start-out.txt
+.start-err.txt
+
+# local editor / tooling
+.claude/
 
 # misc
 .DS_Store

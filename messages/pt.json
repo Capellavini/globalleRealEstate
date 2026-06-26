@@ -45,22 +45,22 @@
     "vision_body": "Tornarmo-nos, em até 3 anos, a maior newsletter multilíngue de real estate (PT/EN/IT/ES), referência obrigatória para profissionais do sector em países lusófonos e mercados de língua ibérica.",
     "values_title": "Valores",
     "values": [
-      { "icon": "⚖️", "title": "Responsabilidade e Ética", "body": "Comprometemo-nos com informação rigorosa, fontes verificadas e transparência total." },
-      { "icon": "🔄", "title": "Transformação Constante", "body": "Evoluímos com o mercado. Nunca paramos de aprender e de adaptar o que entregamos." },
-      { "icon": "💡", "title": "Inovação com Propósito", "body": "Inovamos para resolver problemas reais, não para seguir tendências." },
-      { "icon": "👂", "title": "Respeito e Escuta", "body": "Ouvimos os nossos leitores e parceiros. A vossa experiência molda o nosso conteúdo." },
-      { "icon": "📚", "title": "Aprendizado Contínuo", "body": "Somos os primeiros alunos do que ensinamos. A humildade intelectual é inegociável." },
-      { "icon": "🤝", "title": "Confiança e Honestidade", "body": "Construímos relações de longo prazo. A confiança é o nosso ativo mais valioso." }
+      { "icon": "ethics", "title": "Responsabilidade e Ética", "body": "Comprometemo-nos com informação rigorosa, fontes verificadas e transparência total." },
+      { "icon": "transform", "title": "Transformação Constante", "body": "Evoluímos com o mercado. Nunca paramos de aprender e de adaptar o que entregamos." },
+      { "icon": "innovation", "title": "Inovação com Propósito", "body": "Inovamos para resolver problemas reais, não para seguir tendências." },
+      { "icon": "listen", "title": "Respeito e Escuta", "body": "Ouvimos os nossos leitores e parceiros. A vossa experiência molda o nosso conteúdo." },
+      { "icon": "learn", "title": "Aprendizado Contínuo", "body": "Somos os primeiros alunos do que ensinamos. A humildade intelectual é inegociável." },
+      { "icon": "trust", "title": "Confiança e Honestidade", "body": "Construímos relações de longo prazo. A confiança é o nosso ativo mais valioso." }
     ]
   },
   "value_props": {
     "label": "Proposta de Valor",
     "headline": "Por que a Globalle é diferente",
     "cards": [
-      { "color": "yellow", "title": "Curadoria Inteligente de Entrevistas", "body": "Acedemos a profissionais de topo de mercados como EUA, UK, Itália e Emirados. Cada edição traz perspetivas que não encontra em português em mais lado nenhum." },
-      { "color": "pink", "title": "Visão Cultural + Técnica", "body": "Não é só o «o quê», é o «porquê cultural». Entendemos que as práticas do mercado americano não se copiam — traduzem-se. E é exatamente isso que fazemos." },
-      { "color": "orange", "title": "Experiência Vasta em Mercado Imobiliário", "body": "A equipa fundadora tem experiência direta em transações, gestão de equipas e promoção imobiliária em Portugal, Brasil e mercados internacionais." },
-      { "color": "blue", "title": "Comunidade Focada em Crescer", "body": "Os nossos leitores não são passivos. São profissionais que aplicam o que lêem, partilham resultados e constroem juntos. A comunidade é parte do produto." }
+      { "icon": "curation", "title": "Curadoria Inteligente de Entrevistas", "body": "Acedemos a profissionais de topo de mercados como EUA, UK, Itália e Emirados. Cada edição traz perspetivas que não encontra em português em mais lado nenhum." },
+      { "icon": "cultural", "title": "Visão Cultural + Técnica", "body": "Não é só o «o quê», é o «porquê cultural». Entendemos que as práticas do mercado americano não se copiam — traduzem-se. E é exatamente isso que fazemos." },
+      { "icon": "experience", "title": "Experiência Vasta em Mercado Imobiliário", "body": "A equipa fundadora tem experiência direta em transações, gestão de equipas e promoção imobiliária em Portugal, Brasil e mercados internacionais." },
+      { "icon": "community", "title": "Comunidade Focada em Crescer", "body": "Os nossos leitores não são passivos. São profissionais que aplicam o que lêem, partilham resultados e constroem juntos. A comunidade é parte do produto." }
     ]
   },
   "products": {

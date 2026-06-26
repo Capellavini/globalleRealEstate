@@ -1,574 +1,362 @@
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
+import Image from 'next/image'
+import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import NewsletterForm from '@/components/NewsletterForm'
-import Image from 'next/image'
+import Reveal from '@/components/Reveal'
+import Icon, { IconName } from '@/components/Icon'
 
-const CARD_COLORS: Record<string, string> = {
-  yellow: '#F5C518',
-  pink: '#E8387A',
-  orange: '#F97316',
-  blue: '#1EA7E8',
-}
+const MARKETS = ['Nova Iorque', 'Londres', 'Milão', 'Dubai', 'Lisboa', 'São Paulo', 'Miami', 'Paris', 'Madrid', 'Singapura']
 
-function SectionLabel({ text, dark = true }: { text: string; dark?: boolean }) {
+function Kicker({ num, label, dark }: { num: string; label: string; dark: boolean }) {
   return (
-    <span style={{
-      display: 'inline-block',
-      fontSize: 11,
-      fontWeight: 700,
-      letterSpacing: '2px',
-      textTransform: 'uppercase',
-      color: dark ? 'var(--color-blue)' : 'var(--color-blue)',
-      background: dark ? 'rgba(30,167,232,0.12)' : 'rgba(30,167,232,0.1)',
-      border: '1px solid rgba(30,167,232,0.25)',
-      padding: '5px 12px',
-      borderRadius: 20,
-      marginBottom: 20,
-    }}>
-      {text}
-    </span>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 22 }}>
+      <span className="serif" style={{ fontSize: 17, fontWeight: 600, color: 'var(--color-gold)', fontStyle: 'italic' }}>{num}</span>
+      <span className="kicker" style={{ color: dark ? 'var(--color-ink-faint)' : 'var(--color-ink-dark-dim)' }}>{label}</span>
+    </div>
   )
 }
 
 export default function HomePage() {
   const t = useTranslations()
+  const locale = useLocale()
 
-  const values = t.raw('mvv.values') as Array<{ icon: string; title: string; body: string }>
-  const valueCards = t.raw('value_props.cards') as Array<{ color: string; title: string; body: string }>
+  const values = t.raw('mvv.values') as Array<{ icon: IconName; title: string; body: string }>
+  const valueCards = t.raw('value_props.cards') as Array<{ icon: IconName; title: string; body: string }>
 
   return (
     <>
       <Header />
 
-      {/* ─── HERO ─────────────────────────────────────── */}
-      <section style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-        padding: '120px 24px 80px',
-      }}>
-        {/* Background gradient + city photo overlay */}
-        <div style={{
-          position: 'absolute', inset: 0, zIndex: 0,
-          background: 'linear-gradient(135deg, #070B24 0%, #0d1535 60%, #111b3a 100%)',
-        }} />
-        <div style={{
-          position: 'absolute', inset: 0, zIndex: 0,
-          backgroundImage: 'url(https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.08,
-        }} />
-        {/* Radial glow */}
-        <div style={{
-          position: 'absolute', top: -200, left: '50%', transform: 'translateX(-50%)',
-          width: 800, height: 800, borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(30,167,232,0.15) 0%, transparent 70%)',
-          zIndex: 0,
-        }} />
-
-        <div style={{ maxWidth: 760, margin: '0 auto', position: 'relative', zIndex: 1, textAlign: 'center' }}>
-          {/* Badge */}
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 8,
-            background: 'rgba(255,255,255,0.05)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            borderRadius: 20,
-            padding: '6px 16px',
-            marginBottom: 32,
-            fontSize: 13,
-            color: 'rgba(245,247,250,0.7)',
-          }}>
-            <span>🌍</span>
-            <span>{t('hero.badge')}</span>
-          </div>
-
-          <h1 style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(36px, 6vw, 68px)',
-            fontWeight: 800,
-            lineHeight: 1.1,
-            letterSpacing: '-1.5px',
-            color: '#F5F7FA',
-            marginBottom: 24,
-          }}>
-            {t('hero.headline')}
-          </h1>
-
-          <p style={{
-            fontSize: 'clamp(16px, 2.5vw, 20px)',
-            color: 'rgba(245,247,250,0.65)',
-            lineHeight: 1.65,
-            marginBottom: 48,
-            maxWidth: 580,
-            margin: '0 auto 48px',
-          }}>
-            {t('hero.subheadline')}
-          </p>
-
-          <div id="newsletter" style={{ maxWidth: 520, margin: '0 auto' }}>
-            <NewsletterForm placeholder={t('hero.cta_placeholder')} cta={t('hero.cta')} />
-          </div>
-
-          {/* Scroll indicator */}
-          <div style={{ marginTop: 64, opacity: 0.4, fontSize: 13, color: '#F5F7FA' }}>
-            ↓ {t('hero.scroll')}
-          </div>
+      {/* ═══ HERO ═══ */}
+      <section className="grain" style={{ position: 'relative', overflow: 'hidden', background: 'var(--color-navy)' }}>
+        {/* bokeh texture */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+          <Image src="/bg-bokeh.jpg" alt="" fill priority style={{ objectFit: 'cover', opacity: 0.5 }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(7,11,36,0.55) 0%, rgba(7,11,36,0.75) 55%, var(--color-navy) 100%)' }} />
         </div>
-      </section>
 
-      {/* ─── APPROACH ─────────────────────────────────── */}
-      <section id="sobre" style={{
-        background: 'linear-gradient(180deg, #EAF7FF 0%, #FFFFFF 100%)',
-        padding: '96px 24px',
-      }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <SectionLabel text={t('approach.label')} dark={false} />
-            <h2 style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(28px, 4vw, 48px)',
-              fontWeight: 800,
-              color: '#0B1230',
-              letterSpacing: '-1px',
-              lineHeight: 1.15,
-            }}>
-              {t('approach.headline')}
-            </h2>
-          </div>
+        <div className="hero-grid" style={{ position: 'relative', zIndex: 1, maxWidth: 1240, margin: '0 auto', padding: '0 28px' }}>
+          {/* Left: copy */}
+          <div className="hero-copy">
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 9, background: 'rgba(255,255,255,0.05)', border: '1px solid var(--color-line)', borderRadius: 100, padding: '7px 14px', marginBottom: 32 }}>
+              <span style={{ display: 'flex', color: 'var(--color-blue-bright)' }}><Icon name="globe" size={15} /></span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, letterSpacing: '0.08em', color: 'var(--color-ink-dim)' }}>{t('hero.badge')}</span>
+            </div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 48,
-            marginBottom: 64,
-          }}>
-            {/* City image */}
-            <div style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', minHeight: 300 }}>
-              <Image
-                src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80"
-                alt="Global city skyline"
-                fill
-                style={{ objectFit: 'cover' }}
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(38px, 5.4vw, 66px)', fontWeight: 800, lineHeight: 1.04, letterSpacing: '-0.025em', color: 'var(--color-ink)', marginBottom: 26 }}>
+              {t('hero.headline')}
+            </h1>
+
+            <p style={{ fontSize: 'clamp(16px, 2vw, 19px)', color: 'var(--color-ink-dim)', lineHeight: 1.65, maxWidth: 520, marginBottom: 38 }}>
+              {t('hero.subheadline')}
+            </p>
+
+            <div id="newsletter" style={{ maxWidth: 540, scrollMarginTop: 100 }}>
+              <NewsletterForm
+                placeholder={t('hero.cta_placeholder')}
+                cta={t('hero.cta')}
+                note={locale === 'pt' ? 'Grátis. Sem spam. Cancele quando quiser.' : 'Free. No spam. Unsubscribe anytime.'}
               />
             </div>
+          </div>
 
-            {/* Two text cols */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-              <div>
-                <h3 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: 20,
-                  fontWeight: 700,
-                  color: '#0B1230',
-                  marginBottom: 12,
-                }}>
-                  {t('approach.col1_title')}
-                </h3>
-                <p style={{ color: 'rgba(11,18,48,0.65)', lineHeight: 1.7, fontSize: 15 }}>
-                  {t('approach.col1_body')}
-                </p>
-              </div>
-              <div>
-                <h3 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: 20,
-                  fontWeight: 700,
-                  color: '#0B1230',
-                  marginBottom: 12,
-                }}>
-                  {t('approach.col2_title')}
-                </h3>
-                <p style={{ color: 'rgba(11,18,48,0.65)', lineHeight: 1.7, fontSize: 15 }}>
-                  {t('approach.col2_body')}
-                </p>
-              </div>
+          {/* Right: skyline illustration */}
+          <div className="hero-art">
+            <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: 520 }}>
+              <Image src="/skyline.jpg" alt="" fill style={{ objectFit: 'cover', objectPosition: 'bottom' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, var(--color-navy) 0%, transparent 22%, transparent 80%, var(--color-navy) 100%)' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, var(--color-navy) 0%, transparent 30%)' }} />
             </div>
           </div>
+        </div>
 
-          {/* Quote block */}
-          <blockquote style={{
-            background: 'linear-gradient(135deg, rgba(30,167,232,0.08), rgba(30,167,232,0.03))',
-            border: '1px solid rgba(30,167,232,0.2)',
-            borderLeft: '4px solid var(--color-blue)',
-            borderRadius: 16,
-            padding: '32px 40px',
-            maxWidth: 760,
-            margin: '0 auto',
-          }}>
-            <p style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(16px, 2vw, 20px)',
-              fontWeight: 600,
-              color: '#0B1230',
-              lineHeight: 1.6,
-              fontStyle: 'italic',
-            }}>
-              &ldquo;{t('approach.quote')}&rdquo;
-            </p>
-          </blockquote>
+        {/* market ticker */}
+        <div style={{ position: 'relative', zIndex: 1, borderTop: '1px solid var(--color-line)', borderBottom: '1px solid var(--color-line)', padding: '16px 0', overflow: 'hidden', background: 'rgba(7,11,36,0.6)' }}>
+          <div className="ticker-track">
+            {[...MARKETS, ...MARKETS].map((m, i) => (
+              <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 28, padding: '0 28px', fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: '0.1em', color: 'var(--color-ink-dim)', textTransform: 'uppercase' }}>
+                {m}
+                <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--color-blue)' }} />
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ─── MANIFESTO ────────────────────────────────── */}
-      <section id="manifesto" style={{
-        background: 'var(--color-navy)',
-        padding: '100px 24px',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        <div style={{
-          position: 'absolute', bottom: -300, right: -200,
-          width: 700, height: 700, borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(30,167,232,0.08) 0%, transparent 70%)',
-        }} />
-
-        <div style={{ maxWidth: 740, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <SectionLabel text={t('manifesto.label')} />
-          <h2 style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(24px, 3.5vw, 40px)',
-            fontWeight: 800,
-            color: '#F5F7FA',
-            lineHeight: 1.2,
-            marginBottom: 48,
-            letterSpacing: '-0.5px',
-          }}>
-            {t('manifesto.headline')}
-          </h2>
-
-          {(['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7'] as const).map((key, i) => (
-            <p key={key} style={{
-              fontSize: 16,
-              lineHeight: 1.8,
-              color: i === 1 ? 'rgba(245,247,250,0.5)' : 'rgba(245,247,250,0.72)',
-              marginBottom: 24,
-              fontStyle: i === 1 ? 'italic' : 'normal',
-            }}>
-              {t(`manifesto.${key}`)}
-            </p>
-          ))}
-
-          <p style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 20,
-            fontWeight: 700,
-            color: 'var(--color-blue)',
-            marginTop: 40,
-            paddingTop: 32,
-            borderTop: '1px solid rgba(255,255,255,0.08)',
-          }}>
-            {t('manifesto.closing')}
-          </p>
-        </div>
-      </section>
-
-      {/* ─── MISSION / VISION / VALUES ────────────────── */}
-      <section style={{
-        background: 'linear-gradient(180deg, #FFFFFF 0%, #EAF7FF 100%)',
-        padding: '96px 24px',
-      }}>
+      {/* ═══ 01 · APPROACH ═══ */}
+      <section id="sobre" style={{ background: 'linear-gradient(180deg, var(--color-paper) 0%, var(--color-paper-2) 100%)', padding: '110px 28px', scrollMarginTop: 76 }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <SectionLabel text={t('mvv.label')} dark={false} />
-            <h2 style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(28px, 4vw, 44px)',
-              fontWeight: 800,
-              color: '#0B1230',
-              letterSpacing: '-1px',
-            }}>
-              {t('mvv.headline')}
+          <Reveal>
+            <Kicker num="01" label={t('approach.label')} dark={false} />
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink-dark)', letterSpacing: '-0.02em', lineHeight: 1.1, maxWidth: 760, marginBottom: 64 }}>
+              {t('approach.headline')}
             </h2>
+          </Reveal>
+
+          <div className="two-col" style={{ marginBottom: 72 }}>
+            {(['col1', 'col2'] as const).map((col, i) => (
+              <Reveal key={col} delay={i * 90}>
+                <div style={{ borderTop: '2px solid var(--color-ink-dark)', paddingTop: 24 }}>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 21, fontWeight: 700, color: 'var(--color-ink-dark)', marginBottom: 14 }}>
+                    {t(`approach.${col}_title`)}
+                  </h3>
+                  <p style={{ color: 'var(--color-ink-dark-dim)', lineHeight: 1.75, fontSize: 16 }}>
+                    {t(`approach.${col}_body`)}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
           </div>
 
+          <Reveal>
+            <blockquote style={{ margin: 0, maxWidth: 880 }}>
+              <p className="serif" style={{ fontSize: 'clamp(22px, 3vw, 33px)', fontWeight: 500, color: 'var(--color-ink-dark)', lineHeight: 1.4, letterSpacing: '-0.01em' }}>
+                <span style={{ color: 'var(--color-blue)' }}>“</span>{t('approach.quote')}<span style={{ color: 'var(--color-blue)' }}>”</span>
+              </p>
+            </blockquote>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 02 · MANIFESTO ═══ */}
+      <section id="manifesto" className="grain" style={{ position: 'relative', background: 'var(--color-navy)', padding: '120px 28px', overflow: 'hidden', scrollMarginTop: 76 }}>
+        <div style={{ position: 'absolute', top: 80, right: -40, fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 'clamp(160px, 28vw, 360px)', fontWeight: 600, color: 'rgba(255,255,255,0.018)', lineHeight: 1, pointerEvents: 'none', userSelect: 'none' }}>02</div>
+
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 760, margin: '0 auto' }}>
+          <Reveal>
+            <Kicker num="02" label={t('manifesto.label')} dark />
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px, 3.6vw, 42px)', fontWeight: 800, color: 'var(--color-ink)', lineHeight: 1.16, letterSpacing: '-0.02em', marginBottom: 52 }}>
+              {t('manifesto.headline')}
+            </h2>
+          </Reveal>
+
+          <Reveal>
+            <p style={{ fontSize: 20, lineHeight: 1.7, color: 'var(--color-ink)', marginBottom: 26, fontWeight: 400 }}>
+              {t('manifesto.p1')}
+            </p>
+            <p className="serif-i" style={{ fontSize: 21, lineHeight: 1.6, color: 'var(--color-gold)', marginBottom: 26 }}>
+              {t('manifesto.p2')}
+            </p>
+            {(['p3', 'p4', 'p5', 'p6', 'p7'] as const).map(key => (
+              <p key={key} style={{ fontSize: 16.5, lineHeight: 1.8, color: 'var(--color-ink-dim)', marginBottom: 22 }}>
+                {t(`manifesto.${key}`)}
+              </p>
+            ))}
+          </Reveal>
+
+          <Reveal>
+            <div style={{ marginTop: 48, paddingTop: 40, borderTop: '1px solid var(--color-line)' }}>
+              <p className="serif-i" style={{ fontSize: 'clamp(24px, 3.2vw, 36px)', fontWeight: 500, color: 'var(--color-ink)', lineHeight: 1.3, letterSpacing: '-0.01em' }}>
+                {t('manifesto.closing')}
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 03 · MISSION / VISION / VALUES ═══ */}
+      <section style={{ background: 'linear-gradient(180deg, var(--color-paper-2) 0%, var(--color-paper) 100%)', padding: '110px 28px' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <Reveal>
+            <Kicker num="03" label={t('mvv.label')} dark={false} />
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink-dark)', letterSpacing: '-0.02em', marginBottom: 56 }}>
+              {t('mvv.headline')}
+            </h2>
+          </Reveal>
+
           {/* Mission + Vision */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: 24,
-            marginBottom: 64,
-          }}>
-            {(['mission', 'vision'] as const).map(key => (
-              <div key={key} style={{
-                background: '#fff',
-                border: '1px solid rgba(11,18,48,0.08)',
-                borderRadius: 20,
-                padding: '36px',
-                boxShadow: '0 2px 20px rgba(11,18,48,0.05)',
-              }}>
-                <div style={{
-                  width: 44, height: 44, borderRadius: 12,
-                  background: 'rgba(30,167,232,0.1)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 20, marginBottom: 20,
-                }}>
-                  {key === 'mission' ? '🎯' : '🔭'}
+          <div className="two-col" style={{ marginBottom: 80, gap: 28 }}>
+            {([['mission', 'mission'], ['vision', 'vision']] as const).map(([key, icon], i) => (
+              <Reveal key={key} delay={i * 90}>
+                <div style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-line-dark)', borderRadius: 18, padding: 36, height: '100%', boxShadow: '0 1px 24px rgba(11,18,48,0.05)' }}>
+                  <div style={{ width: 50, height: 50, borderRadius: 13, background: 'rgba(30,167,232,0.1)', color: 'var(--color-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
+                    <Icon name={icon as IconName} size={26} />
+                  </div>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 700, color: 'var(--color-ink-dark)', marginBottom: 14 }}>
+                    {t(`mvv.${key}_title`)}
+                  </h3>
+                  <p style={{ color: 'var(--color-ink-dark-dim)', lineHeight: 1.75, fontSize: 15.5 }}>
+                    {t(`mvv.${key}_body`)}
+                  </p>
                 </div>
-                <h3 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: 20, fontWeight: 700,
-                  color: '#0B1230', marginBottom: 12,
-                }}>
-                  {t(`mvv.${key}_title`)}
-                </h3>
-                <p style={{ color: 'rgba(11,18,48,0.65)', lineHeight: 1.7, fontSize: 15 }}>
-                  {t(`mvv.${key}_body`)}
-                </p>
-              </div>
+              </Reveal>
             ))}
           </div>
 
           {/* Values */}
-          <h3 style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 22, fontWeight: 800, color: '#0B1230',
-            textAlign: 'center', marginBottom: 32,
-          }}>
-            {t('mvv.values_title')}
-          </h3>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: 20,
-          }}>
+          <Reveal>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--color-ink-dark-dim)', marginBottom: 8 }}>
+              {t('mvv.values_title')}
+            </p>
+          </Reveal>
+          <div className="values-grid">
             {values.map((v, i) => (
-              <div key={i} style={{
-                background: '#fff',
-                border: '1px solid rgba(11,18,48,0.07)',
-                borderRadius: 16,
-                padding: '28px',
-                boxShadow: '0 1px 12px rgba(11,18,48,0.04)',
-              }}>
-                <div style={{ fontSize: 28, marginBottom: 14 }}>{v.icon}</div>
-                <h4 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: 15, fontWeight: 700,
-                  color: '#0B1230', marginBottom: 8,
-                }}>
-                  {v.title}
-                </h4>
-                <p style={{ color: 'rgba(11,18,48,0.6)', fontSize: 13, lineHeight: 1.65 }}>
-                  {v.body}
-                </p>
-              </div>
+              <Reveal key={i} delay={(i % 3) * 70}>
+                <div style={{ borderTop: '1px solid var(--color-line-dark)', paddingTop: 24, height: '100%' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                    <span style={{ color: 'var(--color-blue)', display: 'flex' }}><Icon name={v.icon} size={22} /></span>
+                    <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 16, fontWeight: 700, color: 'var(--color-ink-dark)' }}>{v.title}</h4>
+                  </div>
+                  <p style={{ color: 'var(--color-ink-dark-dim)', fontSize: 14, lineHeight: 1.65 }}>{v.body}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ─── VALUE PROPS ──────────────────────────────── */}
-      <section style={{
-        background: 'var(--color-navy)',
-        padding: '96px 24px',
-      }}>
+      {/* ═══ 04 · VALUE PROPS ═══ */}
+      <section style={{ background: 'var(--color-navy)', padding: '110px 28px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <SectionLabel text={t('value_props.label')} />
-            <h2 style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(28px, 4vw, 44px)',
-              fontWeight: 800,
-              color: '#F5F7FA',
-              letterSpacing: '-1px',
-            }}>
+          <Reveal>
+            <Kicker num="04" label={t('value_props.label')} dark />
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.02em', marginBottom: 8 }}>
               {t('value_props.headline')}
             </h2>
-          </div>
+          </Reveal>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: 24,
-          }}>
-            {valueCards.map((card, i) => {
-              const color = CARD_COLORS[card.color] || 'var(--color-blue)'
-              return (
-                <div key={i} style={{
-                  background: 'var(--color-navy-card)',
-                  border: `1px solid ${color}30`,
-                  borderTop: `3px solid ${color}`,
-                  borderRadius: 20,
-                  padding: '36px 28px',
-                }}>
-                  <div style={{
-                    width: 48, height: 48, borderRadius: '50%',
-                    background: `${color}20`,
-                    border: `1px solid ${color}40`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 22, marginBottom: 20,
-                  }}>
-                    {['🌍', '🎭', '🏆', '🤝'][i]}
+          <div className="props-grid" style={{ marginTop: 48 }}>
+            {valueCards.map((card, i) => (
+              <Reveal key={i} delay={(i % 2) * 90}>
+                <div style={{ borderTop: '1px solid var(--color-line)', paddingTop: 28, height: '100%' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
+                    <span style={{ width: 52, height: 52, borderRadius: 14, background: 'rgba(30,167,232,0.1)', border: '1px solid rgba(30,167,232,0.2)', color: 'var(--color-blue-bright)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Icon name={card.icon} size={26} />
+                    </span>
+                    <span className="serif-i" style={{ fontSize: 28, color: 'rgba(255,255,255,0.14)', fontWeight: 600 }}>0{i + 1}</span>
                   </div>
-                  <h3 style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: 17, fontWeight: 700,
-                    color: '#F5F7FA', marginBottom: 12,
-                  }}>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18.5, fontWeight: 700, color: 'var(--color-ink)', marginBottom: 12, lineHeight: 1.25 }}>
                     {card.title}
                   </h3>
-                  <p style={{ color: 'rgba(245,247,250,0.6)', fontSize: 14, lineHeight: 1.7 }}>
-                    {card.body}
-                  </p>
+                  <p style={{ color: 'var(--color-ink-dim)', fontSize: 14.5, lineHeight: 1.7 }}>{card.body}</p>
                 </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── PRODUCTS ─────────────────────────────────── */}
-      <section style={{
-        background: 'linear-gradient(180deg, #EAF7FF 0%, #FFFFFF 100%)',
-        padding: '96px 24px',
-      }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: 72 }}>
-            <SectionLabel text={t('products.label')} dark={false} />
-            <h2 style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(28px, 4vw, 44px)',
-              fontWeight: 800,
-              color: '#0B1230',
-              letterSpacing: '-1px',
-            }}>
-              {t('products.headline')}
-            </h2>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
-            {[
-              {
-                side: 'left',
-                icon: '📰',
-                title: t('products.newsletter_title'),
-                body: t('products.newsletter_body'),
-                cta: t('products.newsletter_cta'),
-                href: '#newsletter',
-                img: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=700&q=80',
-                accent: '#1EA7E8',
-              },
-              {
-                side: 'right',
-                icon: '🎙️',
-                title: t('products.podcast_title'),
-                body: t('products.podcast_body'),
-                cta: t('products.podcast_cta'),
-                href: '#',
-                img: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=700&q=80',
-                accent: '#E8387A',
-              },
-              {
-                side: 'left',
-                icon: '🧭',
-                title: t('products.consultoria_title'),
-                body: t('products.consultoria_body'),
-                cta: t('products.consultoria_cta'),
-                href: '/consultoria',
-                img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80',
-                accent: '#F97316',
-              },
-            ].map((product, i) => (
-              <div key={i} style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                gap: 48,
-                alignItems: 'center',
-                direction: product.side === 'right' ? 'rtl' : 'ltr',
-              }}>
-                <div style={{
-                  position: 'relative', borderRadius: 20, overflow: 'hidden', height: 280,
-                  direction: 'ltr',
-                }}>
-                  <Image src={product.img} alt={product.title} fill style={{ objectFit: 'cover' }} />
-                  <div style={{
-                    position: 'absolute', inset: 0,
-                    background: `linear-gradient(135deg, ${product.accent}30, transparent)`,
-                  }} />
-                </div>
-
-                <div style={{ direction: 'ltr' }}>
-                  <div style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 10,
-                    background: `${product.accent}12`,
-                    border: `1px solid ${product.accent}30`,
-                    borderRadius: 12, padding: '8px 16px',
-                    marginBottom: 20,
-                  }}>
-                    <span style={{ fontSize: 20 }}>{product.icon}</span>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: product.accent, letterSpacing: '1px', textTransform: 'uppercase' }}>
-                      {product.title}
-                    </span>
-                  </div>
-
-                  <p style={{ color: 'rgba(11,18,48,0.65)', lineHeight: 1.75, fontSize: 15, marginBottom: 28 }}>
-                    {product.body}
-                  </p>
-
-                  <a href={product.href} style={{
-                    display: 'inline-block',
-                    background: product.accent,
-                    color: '#fff',
-                    textDecoration: 'none',
-                    padding: '12px 24px',
-                    borderRadius: 10,
-                    fontSize: 14,
-                    fontWeight: 600,
-                  }}>
-                    {product.cta} →
-                  </a>
-                </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ─── FINAL CTA ────────────────────────────────── */}
-      <section style={{
-        background: 'var(--color-navy)',
-        padding: '100px 24px',
-        textAlign: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        <div style={{
-          position: 'absolute', top: '50%', left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 900, height: 500, borderRadius: '50%',
-          background: 'radial-gradient(ellipse, rgba(30,167,232,0.12) 0%, transparent 70%)',
-        }} />
-        <div style={{ maxWidth: 640, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <h2 style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(28px, 4vw, 50px)',
-            fontWeight: 800,
-            color: '#F5F7FA',
-            letterSpacing: '-1px',
-            marginBottom: 20,
-          }}>
-            {t('final_cta.headline')}
-          </h2>
-          <p style={{
-            color: 'rgba(245,247,250,0.6)',
-            fontSize: 17,
-            lineHeight: 1.65,
-            marginBottom: 40,
-          }}>
-            {t('final_cta.subheadline')}
-          </p>
-          <div style={{ maxWidth: 480, margin: '0 auto' }}>
-            <NewsletterForm placeholder={t('final_cta.placeholder')} cta={t('final_cta.cta')} />
-          </div>
+      {/* ═══ 05 · PRODUCTS ═══ */}
+      <section style={{ background: 'linear-gradient(180deg, var(--color-paper) 0%, var(--color-paper-2) 100%)', padding: '110px 28px' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <Reveal>
+            <Kicker num="05" label={t('products.label')} dark={false} />
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink-dark)', letterSpacing: '-0.02em', marginBottom: 16 }}>
+              {t('products.headline')}
+            </h2>
+          </Reveal>
+
+          {[
+            { key: 'newsletter', icon: 'newsletter', tag: '01', visual: 'newsletter', href: '#newsletter' },
+            { key: 'podcast', icon: 'podcast', tag: '02', visual: 'podcast', href: '#' },
+            { key: 'consultoria', icon: 'advisory', tag: '03', visual: 'advisory', href: '/consultoria' },
+          ].map((p, i) => (
+            <Reveal key={p.key}>
+              <div className="product-row" style={{ borderTop: '1px solid var(--color-line-dark)', padding: '48px 0' }}>
+                <div className="product-visual" style={{ order: i % 2 === 0 ? 0 : 2 }}>
+                  {p.visual === 'podcast' && (
+                    <div style={{ position: 'relative', width: '100%', height: 260, borderRadius: 18, overflow: 'hidden', background: '#fff' }}>
+                      <Image src="/podcast.jpg" alt="" fill style={{ objectFit: 'contain' }} />
+                    </div>
+                  )}
+                  {p.visual === 'newsletter' && (
+                    <div style={{ position: 'relative', width: '100%', height: 260, borderRadius: 18, overflow: 'hidden', background: 'var(--color-navy)', border: '1px solid var(--color-line-dark)', padding: 24 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
+                        <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, color: 'var(--color-blue-bright)', fontSize: 16 }}>Globalle</span>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10.5, color: 'var(--color-ink-faint)', letterSpacing: '0.1em' }}>{locale === 'pt' ? 'EDIÇÃO #47' : 'ISSUE #47'}</span>
+                      </div>
+                      <div style={{ height: 12, width: '70%', background: 'rgba(255,255,255,0.14)', borderRadius: 4, marginBottom: 12 }} />
+                      <div style={{ height: 8, width: '100%', background: 'rgba(255,255,255,0.07)', borderRadius: 4, marginBottom: 8 }} />
+                      <div style={{ height: 8, width: '92%', background: 'rgba(255,255,255,0.07)', borderRadius: 4, marginBottom: 8 }} />
+                      <div style={{ height: 8, width: '96%', background: 'rgba(255,255,255,0.07)', borderRadius: 4, marginBottom: 18 }} />
+                      <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '8px 14px', borderRadius: 8, background: 'var(--color-blue)', color: '#04121f', fontSize: 12, fontWeight: 700, fontFamily: 'var(--font-display)' }}>
+                        {locale === 'pt' ? 'Ler análise' : 'Read analysis'} <Icon name="arrow" size={13} strokeWidth={2.2} />
+                      </div>
+                    </div>
+                  )}
+                  {p.visual === 'advisory' && (
+                    <div style={{ position: 'relative', width: '100%', height: 260, borderRadius: 18, overflow: 'hidden', background: 'linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-3) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <svg viewBox="0 0 320 220" style={{ width: '78%' }} fill="none">
+                        {/* connected network / strategy graph */}
+                        {[[60, 60], [160, 40], [260, 80], [110, 130], [220, 160], [60, 170]].map(([x, y], n) => (
+                          <g key={n}>
+                            {n > 0 && <line x1={[60, 160, 260, 110, 220, 60][n - 1]} y1={[60, 40, 80, 130, 160, 170][n - 1]} x2={x} y2={y} stroke="rgba(30,167,232,0.3)" strokeWidth="1.2" />}
+                            <circle cx={x} cy={y} r={n === 1 ? 7 : 5} fill={n === 1 ? '#46BCF6' : 'rgba(30,167,232,0.5)'} />
+                            <circle cx={x} cy={y} r={n === 1 ? 14 : 10} stroke="rgba(30,167,232,0.25)" strokeWidth="1" />
+                          </g>
+                        ))}
+                        <line x1="220" y1="160" x2="60" y2="170" stroke="rgba(232,184,109,0.35)" strokeWidth="1.2" />
+                        <line x1="160" y1="40" x2="110" y2="130" stroke="rgba(30,167,232,0.3)" strokeWidth="1.2" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+
+                <div className="product-text" style={{ order: 1 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
+                    <span style={{ color: 'var(--color-blue)', display: 'flex' }}><Icon name={p.icon as IconName} size={24} /></span>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-ink-dark-dim)' }}>
+                      {t(`products.${p.key}_title`)}
+                    </span>
+                  </div>
+                  <p style={{ color: 'var(--color-ink-dark-dim)', lineHeight: 1.75, fontSize: 16, marginBottom: 26, maxWidth: 460 }}>
+                    {t(`products.${p.key}_body`)}
+                  </p>
+                  <Link href={p.href.startsWith('/') ? `/${locale}${p.href}` : `/${locale}/${p.href}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'var(--color-blue)', textDecoration: 'none', fontSize: 15, fontWeight: 700, fontFamily: 'var(--font-display)' }}>
+                    {t(`products.${p.key}_cta`)} <Icon name="arrowUpRight" size={16} strokeWidth={2} />
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
+      </section>
+
+      {/* ═══ FINAL CTA ═══ */}
+      <section className="grain" style={{ position: 'relative', background: 'var(--color-navy)', padding: '120px 28px', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+          <Image src="/bg-bokeh.jpg" alt="" fill style={{ objectFit: 'cover', opacity: 0.35 }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at center, rgba(7,11,36,0.6) 0%, var(--color-navy) 75%)' }} />
+        </div>
+        <Reveal>
+          <div style={{ position: 'relative', zIndex: 1, maxWidth: 640, margin: '0 auto', textAlign: 'center' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.6vw, 52px)', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.025em', lineHeight: 1.08, marginBottom: 20 }}>
+              {t('final_cta.headline')}
+            </h2>
+            <p style={{ color: 'var(--color-ink-dim)', fontSize: 17.5, lineHeight: 1.6, marginBottom: 40, maxWidth: 500, marginLeft: 'auto', marginRight: 'auto' }}>
+              {t('final_cta.subheadline')}
+            </p>
+            <div style={{ maxWidth: 500, margin: '0 auto' }}>
+              <NewsletterForm placeholder={t('final_cta.placeholder')} cta={t('final_cta.cta')} />
+            </div>
+          </div>
+        </Reveal>
       </section>
 
       <Footer />
+
+      <style>{`
+        .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center; min-height: 92vh; padding-top: 120px; padding-bottom: 40px; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px 40px; margin-top: 20px; }
+        .props-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px 56px; }
+        .product-row { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+        .product-visual { min-width: 0; }
+        @media (max-width: 900px) {
+          .hero-grid { grid-template-columns: 1fr; min-height: auto; padding-top: 130px; padding-bottom: 24px; }
+          .hero-art { display: none; }
+          .values-grid { grid-template-columns: 1fr 1fr; }
+          .product-row { grid-template-columns: 1fr; gap: 28px; }
+          .product-visual { order: 2 !important; }
+        }
+        @media (max-width: 600px) {
+          .two-col { grid-template-columns: 1fr; gap: 32px; }
+          .values-grid { grid-template-columns: 1fr; gap: 24px; }
+          .props-grid { grid-template-columns: 1fr; gap: 32px; }
+        }
+      `}</style>
     </>
   )
 }

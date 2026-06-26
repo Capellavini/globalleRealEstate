@@ -45,22 +45,22 @@
     "vision_body": "To become, within 3 years, the largest multilingual real estate newsletter (PT/EN/IT/ES) — the essential reference for industry professionals across Portuguese-speaking and Iberian-language markets.",
     "values_title": "Values",
     "values": [
-      { "icon": "⚖️", "title": "Responsibility & Ethics", "body": "We are committed to rigorous information, verified sources, and full transparency." },
-      { "icon": "🔄", "title": "Constant Transformation", "body": "We evolve with the market. We never stop learning or adapting what we deliver." },
-      { "icon": "💡", "title": "Innovation with Purpose", "body": "We innovate to solve real problems — not to chase trends." },
-      { "icon": "👂", "title": "Respect & Active Listening", "body": "We listen to our readers and partners. Your experience shapes our content." },
-      { "icon": "📚", "title": "Continuous Learning", "body": "We are the first students of what we teach. Intellectual humility is non-negotiable." },
-      { "icon": "🤝", "title": "Trust & Honesty", "body": "We build long-term relationships. Trust is our most valuable asset." }
+      { "icon": "ethics", "title": "Responsibility & Ethics", "body": "We are committed to rigorous information, verified sources, and full transparency." },
+      { "icon": "transform", "title": "Constant Transformation", "body": "We evolve with the market. We never stop learning or adapting what we deliver." },
+      { "icon": "innovation", "title": "Innovation with Purpose", "body": "We innovate to solve real problems — not to chase trends." },
+      { "icon": "listen", "title": "Respect & Active Listening", "body": "We listen to our readers and partners. Your experience shapes our content." },
+      { "icon": "learn", "title": "Continuous Learning", "body": "We are the first students of what we teach. Intellectual humility is non-negotiable." },
+      { "icon": "trust", "title": "Trust & Honesty", "body": "We build long-term relationships. Trust is our most valuable asset." }
     ]
   },
   "value_props": {
     "label": "Value Proposition",
     "headline": "Why Globalle is different",
     "cards": [
-      { "color": "yellow", "title": "Intelligent Interview Curation", "body": "We access top professionals from markets like the US, UK, Italy, and UAE. Every issue brings perspectives you won't find in Portuguese anywhere else." },
-      { "color": "pink", "title": "Cultural + Technical Insight", "body": "It's not just the 'what' — it's the 'cultural why'. We understand that American market practices can't be copied. They have to be translated. That's exactly what we do." },
-      { "color": "orange", "title": "Deep Real Estate Experience", "body": "Our founding team has direct experience in transactions, team management, and real estate development across Portugal, Brazil, and international markets." },
-      { "color": "blue", "title": "A Community Built to Grow", "body": "Our readers aren't passive. They're professionals who apply what they read, share results, and build together. The community is part of the product." }
+      { "icon": "curation", "title": "Intelligent Interview Curation", "body": "We access top professionals from markets like the US, UK, Italy, and UAE. Every issue brings perspectives you won't find in Portuguese anywhere else." },
+      { "icon": "cultural", "title": "Cultural + Technical Insight", "body": "It's not just the 'what' — it's the 'cultural why'. We understand that American market practices can't be copied. They have to be translated. That's exactly what we do." },
+      { "icon": "experience", "title": "Deep Real Estate Experience", "body": "Our founding team has direct experience in transactions, team management, and real estate development across Portugal, Brazil, and international markets." },
+      { "icon": "community", "title": "A Community Built to Grow", "body": "Our readers aren't passive. They're professionals who apply what they read, share results, and build together. The community is part of the product." }
     ]
   },
   "products": {

@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Logo from './Logo'
+import Icon from './Icon'
 
 export default function Header() {
   const t = useTranslations('nav')
@@ -14,19 +16,16 @@ export default function Header() {
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20)
+    handler()
     window.addEventListener('scroll', handler)
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
-  // Strip current locale from path to get the raw path
   const rawPath = pathname.replace(`/${locale}`, '') || '/'
-
-  // Build alternate locale URL
   const altLocale = locale === 'pt' ? 'en' : 'pt'
   const altPath = `/${altLocale}${rawPath === '/' ? '' : rawPath}`
 
   const navLinks = [
-    { href: '/', label: t('home') },
     { href: '/#sobre', label: t('about') },
     { href: '/#manifesto', label: t('manifesto') },
     { href: '/consultoria', label: t('consultoria') },
@@ -37,174 +36,145 @@ export default function Header() {
     <header
       style={{
         position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
+        top: 0, left: 0, right: 0,
         zIndex: 50,
-        transition: 'all 0.3s ease',
-        background: scrolled
-          ? 'rgba(7,11,36,0.95)'
-          : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : 'none',
+        transition: 'background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease',
+        background: scrolled ? 'rgba(7,11,36,0.82)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(16px) saturate(1.2)' : 'none',
+        borderBottom: `1px solid ${scrolled ? 'var(--color-line)' : 'transparent'}`,
       }}
     >
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', height: 72, gap: 32 }}>
+      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 28px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', height: 76, gap: 28 }}>
 
-          {/* Logo */}
-          <Link href={`/${locale}`} style={{ textDecoration: 'none', flexShrink: 0 }}>
-            <span style={{
-              fontFamily: 'var(--font-heading)',
-              fontWeight: 800,
-              fontSize: 22,
-              color: '#F5F7FA',
-              letterSpacing: '-0.5px',
-            }}>
-              Globe<span style={{ color: 'var(--color-blue)' }}>alle</span>
-            </span>
-          </Link>
+          <Logo href={`/${locale}`} height={30} priority />
 
           {/* Desktop nav */}
-          <nav style={{ display: 'flex', gap: 4, flex: 1, justifyContent: 'center' }}
-            className="hidden md:flex">
+          <nav className="hidden md:flex" style={{ gap: 2, flex: 1, justifyContent: 'center' }}>
             {navLinks.map(link => (
               <Link
                 key={link.href}
-                href={`/${locale}${link.href === '/' ? '' : link.href}`}
+                href={`/${locale}${link.href}`}
                 style={{
-                  color: 'rgba(245,247,250,0.7)',
+                  color: 'var(--color-ink-dim)',
                   textDecoration: 'none',
-                  padding: '8px 14px',
-                  borderRadius: 8,
-                  fontSize: 14,
+                  padding: '8px 16px',
+                  fontSize: 14.5,
                   fontWeight: 500,
+                  fontFamily: 'var(--font-display)',
                   transition: 'color 0.2s',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#F5F7FA')}
-                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(245,247,250,0.7)')}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-ink)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-ink-dim)')}
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          {/* Right: lang switcher + CTA */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginLeft: 'auto' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginLeft: 'auto' }}>
+            {/* Language switch */}
             <Link
               href={altPath}
               style={{
-                fontSize: 13,
-                fontWeight: 600,
-                color: 'rgba(245,247,250,0.5)',
+                fontFamily: 'var(--font-mono)',
+                fontSize: 12.5,
+                fontWeight: 700,
+                letterSpacing: '0.08em',
+                color: 'var(--color-ink-faint)',
                 textDecoration: 'none',
-                padding: '6px 10px',
-                border: '1px solid rgba(255,255,255,0.12)',
-                borderRadius: 8,
-                transition: 'all 0.2s',
-                letterSpacing: '0.5px',
+                transition: 'color 0.2s',
               }}
-              onMouseEnter={e => {
-                e.currentTarget.style.color = '#F5F7FA'
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.color = 'rgba(245,247,250,0.5)'
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'
-              }}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-blue-bright)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-ink-faint)')}
             >
-              {locale === 'pt' ? 'EN' : 'PT'}
+              {locale.toUpperCase()} <span style={{ opacity: 0.4 }}>/</span> {altLocale.toUpperCase()}
             </Link>
 
             <Link
               href={`/${locale}/#newsletter`}
-              className="hidden sm:block"
+              className="hidden sm:inline-flex"
               style={{
+                alignItems: 'center', gap: 8,
                 background: 'var(--color-blue)',
-                color: '#fff',
+                color: '#04121f',
                 textDecoration: 'none',
-                padding: '9px 20px',
+                padding: '10px 18px',
                 borderRadius: 10,
                 fontSize: 14,
-                fontWeight: 600,
-                transition: 'background 0.2s',
+                fontWeight: 700,
+                fontFamily: 'var(--font-display)',
+                transition: 'transform 0.2s, box-shadow 0.2s',
+                boxShadow: '0 6px 20px -8px rgba(30,167,232,0.6)',
                 whiteSpace: 'nowrap',
               }}
-              onMouseEnter={e => (e.currentTarget.style.background = 'var(--color-blue-dark)')}
-              onMouseLeave={e => (e.currentTarget.style.background = 'var(--color-blue)')}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 10px 26px -8px rgba(30,167,232,0.8)' }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 6px 20px -8px rgba(30,167,232,0.6)' }}
             >
               {t('subscribe')}
+              <Icon name="arrow" size={16} strokeWidth={2} />
             </Link>
 
             {/* Mobile hamburger */}
             <button
-              className="flex md:hidden"
+              className="inline-flex md:hidden"
               onClick={() => setMenuOpen(!menuOpen)}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, color: 'var(--color-ink)' }}
               aria-label="Menu"
             >
               <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
                 {[0, 1, 2].map(i => (
                   <span key={i} style={{
-                    width: 22, height: 2,
-                    background: '#F5F7FA',
-                    borderRadius: 2,
-                    display: 'block',
-                    transition: 'all 0.2s',
+                    width: 22, height: 2, background: 'currentColor', borderRadius: 2, display: 'block',
+                    transition: 'transform 0.25s, opacity 0.25s',
+                    transform: menuOpen ? (i === 0 ? 'translateY(7px) rotate(45deg)' : i === 2 ? 'translateY(-7px) rotate(-45deg)' : 'none') : 'none',
+                    opacity: menuOpen && i === 1 ? 0 : 1,
                   }} />
                 ))}
               </div>
             </button>
           </div>
         </div>
-
-        {/* Mobile menu */}
-        {menuOpen && (
-          <div style={{
-            background: 'rgba(7,11,36,0.98)',
-            backdropFilter: 'blur(20px)',
-            borderTop: '1px solid rgba(255,255,255,0.06)',
-            padding: '16px 0 24px',
-          }}>
-            {navLinks.map(link => (
-              <Link
-                key={link.href}
-                href={`/${locale}${link.href === '/' ? '' : link.href}`}
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  display: 'block',
-                  color: 'rgba(245,247,250,0.8)',
-                  textDecoration: 'none',
-                  padding: '12px 16px',
-                  fontSize: 15,
-                  fontWeight: 500,
-                }}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div style={{ padding: '12px 16px 0' }}>
-              <Link
-                href={`/${locale}/#newsletter`}
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  display: 'block',
-                  background: 'var(--color-blue)',
-                  color: '#fff',
-                  textDecoration: 'none',
-                  padding: '12px 20px',
-                  borderRadius: 10,
-                  fontSize: 15,
-                  fontWeight: 600,
-                  textAlign: 'center',
-                }}
-              >
-                {t('subscribe')}
-              </Link>
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div style={{
+          background: 'rgba(7,11,36,0.97)',
+          backdropFilter: 'blur(20px)',
+          borderTop: '1px solid var(--color-line)',
+          borderBottom: '1px solid var(--color-line)',
+          padding: '12px 28px 28px',
+        }}>
+          {navLinks.map(link => (
+            <Link
+              key={link.href}
+              href={`/${locale}${link.href}`}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                display: 'block', color: 'var(--color-ink)', textDecoration: 'none',
+                padding: '14px 0', fontSize: 17, fontWeight: 600, fontFamily: 'var(--font-display)',
+                borderBottom: '1px solid var(--color-line)',
+              }}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href={`/${locale}/#newsletter`}
+            onClick={() => setMenuOpen(false)}
+            style={{
+              display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8,
+              marginTop: 20, background: 'var(--color-blue)', color: '#04121f',
+              textDecoration: 'none', padding: '14px 20px', borderRadius: 12,
+              fontSize: 15, fontWeight: 700, fontFamily: 'var(--font-display)',
+            }}
+          >
+            {t('subscribe')}
+            <Icon name="arrow" size={16} strokeWidth={2} />
+          </Link>
+        </div>
+      )}
     </header>
   )
 }

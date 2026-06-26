@@ -2,6 +2,8 @@
 
 import { useTranslations, useLocale } from 'next-intl'
 import Link from 'next/link'
+import Logo from './Logo'
+import Icon from './Icon'
 
 export default function Footer() {
   const t = useTranslations('footer')
@@ -9,55 +11,43 @@ export default function Footer() {
   const locale = useLocale()
 
   const links = [
-    { href: '/', label: nav('home') },
     { href: '/#sobre', label: nav('about') },
     { href: '/#manifesto', label: nav('manifesto') },
     { href: '/consultoria', label: nav('consultoria') },
     { href: '/contato', label: nav('contato') },
   ]
+  const socials = ['LinkedIn', 'Instagram', 'YouTube']
 
   return (
-    <footer style={{
-      background: '#040818',
-      borderTop: '1px solid rgba(255,255,255,0.06)',
-      padding: '64px 24px 32px',
-    }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+    <footer style={{ background: '#04081A', borderTop: '1px solid var(--color-line)' }}>
+      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '72px 28px 36px' }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gridTemplateColumns: 'minmax(240px, 1.4fr) repeat(3, minmax(140px, 1fr))',
           gap: 48,
-          marginBottom: 48,
-        }}>
+          marginBottom: 56,
+        }} className="footer-grid">
           {/* Brand */}
           <div>
-            <div style={{
-              fontFamily: 'var(--font-heading)',
-              fontWeight: 800,
-              fontSize: 24,
-              color: '#F5F7FA',
-              marginBottom: 12,
-            }}>
-              Globe<span style={{ color: 'var(--color-blue)' }}>alle</span>
-            </div>
-            <p style={{ color: 'rgba(245,247,250,0.5)', fontSize: 14, lineHeight: 1.6, maxWidth: 240 }}>
+            <Logo height={32} />
+            <p style={{ color: 'var(--color-ink-dim)', fontSize: 14.5, lineHeight: 1.7, maxWidth: 280, marginTop: 22 }}>
               {t('tagline')}
             </p>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 22, padding: '6px 12px', border: '1px solid var(--color-line)', borderRadius: 20 }}>
+              <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--color-blue)', boxShadow: '0 0 8px var(--color-blue)' }} />
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', color: 'var(--color-ink-dim)' }}>PT · EN · IT</span>
+            </div>
           </div>
 
           {/* Links */}
           <div>
-            <p style={{ color: 'rgba(245,247,250,0.3)', fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 16 }}>
-              {t('links_title')}
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <p className="footer-label">{t('links_title')}</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {links.map(link => (
-                <Link
-                  key={link.href}
-                  href={`/${locale}${link.href === '/' ? '' : link.href}`}
-                  style={{ color: 'rgba(245,247,250,0.55)', fontSize: 14, textDecoration: 'none', transition: 'color 0.2s' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#F5F7FA')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(245,247,250,0.55)')}
+                <Link key={link.href} href={`/${locale}${link.href}`}
+                  style={{ color: 'var(--color-ink-dim)', fontSize: 14.5, textDecoration: 'none', transition: 'color 0.2s', width: 'fit-content' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-ink)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-ink-dim)')}
                 >
                   {link.label}
                 </Link>
@@ -67,57 +57,54 @@ export default function Footer() {
 
           {/* Social */}
           <div>
-            <p style={{ color: 'rgba(245,247,250,0.3)', fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 16 }}>
-              {t('social_title')}
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {['LinkedIn', 'Instagram', 'YouTube'].map(s => (
-                <span key={s} style={{ color: 'rgba(245,247,250,0.55)', fontSize: 14 }}>{s}</span>
+            <p className="footer-label">{t('social_title')}</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {socials.map(s => (
+                <span key={s} style={{ color: 'var(--color-ink-dim)', fontSize: 14.5, cursor: 'pointer', width: 'fit-content', transition: 'color 0.2s' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-ink)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-ink-dim)')}>
+                  {s}
+                </span>
               ))}
             </div>
           </div>
 
-          {/* Newsletter mini CTA */}
+          {/* Newsletter mini */}
           <div>
-            <p style={{ color: 'rgba(245,247,250,0.3)', fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 16 }}>
-              Newsletter
+            <p className="footer-label">Newsletter</p>
+            <p style={{ color: 'var(--color-ink-dim)', fontSize: 13.5, lineHeight: 1.65, marginBottom: 16 }}>
+              {locale === 'pt' ? 'Inteligência global, toda semana.' : 'Global intelligence, every week.'}
             </p>
-            <p style={{ color: 'rgba(245,247,250,0.5)', fontSize: 13, lineHeight: 1.6, marginBottom: 12 }}>
-              {locale === 'pt'
-                ? 'Inteligência imobiliária global, todas as semanas.'
-                : 'Global real estate intelligence, every week.'}
-            </p>
-            <Link
-              href={`/${locale}/#newsletter`}
-              style={{
-                display: 'inline-block',
-                background: 'var(--color-blue)',
-                color: '#fff',
-                textDecoration: 'none',
-                padding: '9px 18px',
-                borderRadius: 8,
-                fontSize: 13,
-                fontWeight: 600,
-              }}
-            >
+            <Link href={`/${locale}/#newsletter`}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 7, color: 'var(--color-blue-bright)', textDecoration: 'none', fontSize: 14, fontWeight: 600, fontFamily: 'var(--font-display)' }}>
               {locale === 'pt' ? 'Assinar' : 'Subscribe'}
+              <Icon name="arrowUpRight" size={15} strokeWidth={2} />
             </Link>
           </div>
         </div>
 
-        <div style={{
-          borderTop: '1px solid rgba(255,255,255,0.06)',
-          paddingTop: 24,
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: 12,
-        }}>
-          <p style={{ color: 'rgba(245,247,250,0.3)', fontSize: 13 }}>{t('copyright')}</p>
-          <p style={{ color: 'rgba(245,247,250,0.2)', fontSize: 12 }}>{t('powered')}</p>
+        <div style={{ height: 1, background: 'var(--color-line)', marginBottom: 24 }} />
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+          <p style={{ color: 'var(--color-ink-faint)', fontSize: 13 }}>{t('copyright')}</p>
+          <p style={{ fontFamily: 'var(--font-mono)', color: 'var(--color-ink-faint)', fontSize: 11.5, letterSpacing: '0.1em' }}>{t('powered')}</p>
         </div>
       </div>
+
+      <style>{`
+        .footer-label {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--color-ink-faint);
+          margin-bottom: 18px;
+        }
+        @media (max-width: 760px) {
+          .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 36px !important; }
+          .footer-grid > div:first-child { grid-column: 1 / -1; }
+        }
+      `}</style>
     </footer>
   )
 }
