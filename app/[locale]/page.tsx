@@ -22,7 +22,6 @@ export default function HomePage() {
   const t = useTranslations()
   const locale = useLocale()
 
-  const values = t.raw('mvv.values') as Array<{ icon: IconName; title: string; body: string }>
   const valueCards = t.raw('value_props.cards') as Array<{ icon: IconName; title: string; body: string }>
 
   return (
@@ -156,62 +155,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ 03 · MISSION / VISION / VALUES ═══ */}
-      <section style={{ background: 'linear-gradient(180deg, var(--color-paper-2) 0%, var(--color-paper) 100%)', padding: '110px 28px' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <Reveal>
-            <Kicker num="03" label={t('mvv.label')} dark={false} />
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink-dark)', letterSpacing: '-0.02em', marginBottom: 56 }}>
-              {t('mvv.headline')}
-            </h2>
-          </Reveal>
-
-          {/* Mission + Vision */}
-          <div className="two-col" style={{ marginBottom: 80, gap: 28 }}>
-            {([['mission', 'mission'], ['vision', 'vision']] as const).map(([key, icon], i) => (
-              <Reveal key={key} delay={i * 90}>
-                <div style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-line-dark)', borderRadius: 18, padding: 36, height: '100%', boxShadow: '0 1px 24px rgba(11,18,48,0.05)' }}>
-                  <div style={{ width: 50, height: 50, borderRadius: 13, background: 'rgba(30,167,232,0.1)', color: 'var(--color-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
-                    <Icon name={icon as IconName} size={26} />
-                  </div>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 700, color: 'var(--color-ink-dark)', marginBottom: 14 }}>
-                    {t(`mvv.${key}_title`)}
-                  </h3>
-                  <p style={{ color: 'var(--color-ink-dark-dim)', lineHeight: 1.75, fontSize: 15.5 }}>
-                    {t(`mvv.${key}_body`)}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          {/* Values */}
-          <Reveal>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--color-ink-dark-dim)', marginBottom: 8 }}>
-              {t('mvv.values_title')}
-            </p>
-          </Reveal>
-          <div className="values-grid">
-            {values.map((v, i) => (
-              <Reveal key={i} delay={(i % 3) * 70}>
-                <div style={{ borderTop: '1px solid var(--color-line-dark)', paddingTop: 24, height: '100%' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                    <span style={{ color: 'var(--color-blue)', display: 'flex' }}><Icon name={v.icon} size={22} /></span>
-                    <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 16, fontWeight: 700, color: 'var(--color-ink-dark)' }}>{v.title}</h4>
-                  </div>
-                  <p style={{ color: 'var(--color-ink-dark-dim)', fontSize: 14, lineHeight: 1.65 }}>{v.body}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ 04 · VALUE PROPS ═══ */}
+      {/* ═══ 03 · VALUE PROPS ═══ */}
       <section style={{ background: 'var(--color-navy)', padding: '110px 28px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <Reveal>
-            <Kicker num="04" label={t('value_props.label')} dark />
+            <Kicker num="03" label={t('value_props.label')} dark />
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.02em', marginBottom: 8 }}>
               {t('value_props.headline')}
             </h2>
@@ -238,11 +186,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ 05 · PRODUCTS ═══ */}
+      {/* ═══ 04 · PRODUCTS ═══ */}
       <section style={{ background: 'linear-gradient(180deg, var(--color-paper) 0%, var(--color-paper-2) 100%)', padding: '110px 28px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <Reveal>
-            <Kicker num="05" label={t('products.label')} dark={false} />
+            <Kicker num="04" label={t('products.label')} dark={false} />
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink-dark)', letterSpacing: '-0.02em', marginBottom: 16 }}>
               {t('products.headline')}
             </h2>

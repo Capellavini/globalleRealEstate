@@ -36,23 +36,6 @@
     "p7": "É isso que a Globalle oferece, semana após semana.",
     "closing": "As fronteiras estão abertas. Embarque nessa jornada connosco."
   },
-  "mvv": {
-    "label": "Identidade",
-    "headline": "Missão, Visão & Valores",
-    "mission_title": "Missão",
-    "mission_body": "Ser o aliado estratégico dos profissionais imobiliários que querem crescer além das suas fronteiras, fornecendo inteligência de mercado global de forma acessível, aplicável e contínua.",
-    "vision_title": "Visão",
-    "vision_body": "Tornarmo-nos, em até 3 anos, a maior newsletter multilíngue de real estate (PT/EN/IT/ES), referência obrigatória para profissionais do sector em países lusófonos e mercados de língua ibérica.",
-    "values_title": "Valores",
-    "values": [
-      { "icon": "ethics", "title": "Responsabilidade e Ética", "body": "Comprometemo-nos com informação rigorosa, fontes verificadas e transparência total." },
-      { "icon": "transform", "title": "Transformação Constante", "body": "Evoluímos com o mercado. Nunca paramos de aprender e de adaptar o que entregamos." },
-      { "icon": "innovation", "title": "Inovação com Propósito", "body": "Inovamos para resolver problemas reais, não para seguir tendências." },
-      { "icon": "listen", "title": "Respeito e Escuta", "body": "Ouvimos os nossos leitores e parceiros. A vossa experiência molda o nosso conteúdo." },
-      { "icon": "learn", "title": "Aprendizado Contínuo", "body": "Somos os primeiros alunos do que ensinamos. A humildade intelectual é inegociável." },
-      { "icon": "trust", "title": "Confiança e Honestidade", "body": "Construímos relações de longo prazo. A confiança é o nosso ativo mais valioso." }
-    ]
-  },
   "value_props": {
     "label": "Proposta de Valor",
     "headline": "Por que a Globalle é diferente",

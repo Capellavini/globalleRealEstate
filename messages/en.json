@@ -36,23 +36,6 @@
     "p7": "That's what Globalle delivers, week after week.",
     "closing": "The borders are open. Come build with us."
   },
-  "mvv": {
-    "label": "Identity",
-    "headline": "Mission, Vision & Values",
-    "mission_title": "Mission",
-    "mission_body": "To be the strategic partner of real estate professionals who want to grow beyond their borders, delivering global market intelligence in a way that is accessible, actionable, and continuous.",
-    "vision_title": "Vision",
-    "vision_body": "To become, within 3 years, the largest multilingual real estate newsletter (PT/EN/IT/ES) — the essential reference for industry professionals across Portuguese-speaking and Iberian-language markets.",
-    "values_title": "Values",
-    "values": [
-      { "icon": "ethics", "title": "Responsibility & Ethics", "body": "We are committed to rigorous information, verified sources, and full transparency." },
-      { "icon": "transform", "title": "Constant Transformation", "body": "We evolve with the market. We never stop learning or adapting what we deliver." },
-      { "icon": "innovation", "title": "Innovation with Purpose", "body": "We innovate to solve real problems — not to chase trends." },
-      { "icon": "listen", "title": "Respect & Active Listening", "body": "We listen to our readers and partners. Your experience shapes our content." },
-      { "icon": "learn", "title": "Continuous Learning", "body": "We are the first students of what we teach. Intellectual humility is non-negotiable." },
-      { "icon": "trust", "title": "Trust & Honesty", "body": "We build long-term relationships. Trust is our most valuable asset." }
-    ]
-  },
   "value_props": {
     "label": "Value Proposition",
     "headline": "Why Globalle is different",

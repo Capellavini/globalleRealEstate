@@ -2,16 +2,6 @@ import React from 'react'
 
 // Line-art icon set (24×24, currentColor stroke). Replaces emoji throughout.
 const PATHS: Record<string, React.ReactNode> = {
-  // values
-  ethics: <><path d="M12 4v16M8 20h8" /><path d="M6 7h12" /><path d="M6 7l-3 6a3 3 0 0 0 6 0l-3-6z" /><path d="M18 7l-3 6a3 3 0 0 0 6 0l-3-6z" /><path d="M12 4 6 7M12 4l6 3" /></>,
-  transform: <><path d="M21 12a9 9 0 1 1-2.6-6.3" /><path d="M21 4v5h-5" /></>,
-  innovation: <><path d="M9.5 18h5M10.5 21h3" /><path d="M12 3a6 6 0 0 0-3.8 10.6c.7.6 1.3 1.4 1.3 2.4h5c0-1 .6-1.8 1.3-2.4A6 6 0 0 0 12 3z" /></>,
-  listen: <><path d="M3 12h1.5M19.5 12H21" /><path d="M7 8.5v7M10.5 5v14M13.5 5v14M17 8.5v7" /></>,
-  learn: <><path d="M3 4.5h6.5a2.5 2.5 0 0 1 2.5 2.5v13a2 2 0 0 0-2-2H3V4.5z" /><path d="M21 4.5h-6.5A2.5 2.5 0 0 0 12 7v13a2 2 0 0 1 2-2h7V4.5z" /></>,
-  trust: <><path d="M12 3 5 5.8v5.2c0 4 2.9 7 7 8 4.1-1 7-4 7-8V5.8L12 3z" /><path d="m9 11.5 2 2 4-4" /></>,
-  // mission / vision
-  mission: <><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="4" /><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" /></>,
-  vision: <><circle cx="12" cy="12" r="6.5" /><circle cx="12" cy="12" r="2.3" /><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3" /></>,
   // value props
   curation: <><path d="M12 3.5l1.7 4.9 4.9 1.6-4.9 1.7L12 16.5l-1.7-4.8L5.4 10l4.9-1.6L12 3.5z" /><path d="M18.5 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7.7-2z" /></>,
   cultural: <><path d="m12 3 9 4.8-9 4.8L3 7.8 12 3z" /><path d="m3 12.5 9 4.8 9-4.8" /></>,
