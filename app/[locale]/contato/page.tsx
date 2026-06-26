@@ -116,11 +116,6 @@ export default function ContatoPage() {
                 ))}
               </div>
             </div>
-
-            <div style={{ marginTop: 8, padding: 36, borderRadius: 20, background: 'rgba(30,167,232,0.05)', border: '1px solid rgba(30,167,232,0.12)', textAlign: 'center' }}>
-              <div style={{ display: 'flex', justifyContent: 'center', color: 'var(--color-blue-bright)', marginBottom: 14 }}><Icon name="globe" size={42} strokeWidth={1.3} /></div>
-              <p style={{ fontFamily: 'var(--font-mono)', color: 'var(--color-ink-dim)', fontSize: 13, letterSpacing: '0.12em' }}>PT · EN · IT</p>
-            </div>
           </div>
         </div>
       </section>

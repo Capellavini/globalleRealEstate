@@ -3,14 +3,12 @@
 import { useState, useEffect } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import Logo from './Logo'
 import Icon from './Icon'
 
 export default function Header() {
   const t = useTranslations('nav')
   const locale = useLocale()
-  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -20,10 +18,6 @@ export default function Header() {
     window.addEventListener('scroll', handler)
     return () => window.removeEventListener('scroll', handler)
   }, [])
-
-  const rawPath = pathname.replace(`/${locale}`, '') || '/'
-  const altLocale = locale === 'pt' ? 'en' : 'pt'
-  const altPath = `/${altLocale}${rawPath === '/' ? '' : rawPath}`
 
   const navLinks = [
     { href: '/#sobre', label: t('about') },
@@ -73,24 +67,6 @@ export default function Header() {
           </nav>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginLeft: 'auto' }}>
-            {/* Language switch */}
-            <Link
-              href={altPath}
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: 12.5,
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                color: 'var(--color-ink-faint)',
-                textDecoration: 'none',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-blue-bright)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-ink-faint)')}
-            >
-              {locale.toUpperCase()} <span style={{ opacity: 0.4 }}>/</span> {altLocale.toUpperCase()}
-            </Link>
-
             <Link
               href={`/${locale}/#newsletter`}
               className="hidden sm:inline-flex"

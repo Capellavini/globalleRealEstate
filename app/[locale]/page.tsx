@@ -37,11 +37,6 @@ export default function HomePage() {
         <div className="hero-grid" style={{ position: 'relative', zIndex: 1, maxWidth: 1240, margin: '0 auto', padding: '0 28px' }}>
           {/* Left: copy */}
           <div className="hero-copy">
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 9, background: 'rgba(255,255,255,0.05)', border: '1px solid var(--color-line)', borderRadius: 100, padding: '7px 14px', marginBottom: 32 }}>
-              <span style={{ display: 'flex', color: 'var(--color-blue-bright)' }}><Icon name="globe" size={15} /></span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, letterSpacing: '0.08em', color: 'var(--color-ink-dim)' }}>{t('hero.badge')}</span>
-            </div>
-
             <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(38px, 5.4vw, 66px)', fontWeight: 800, lineHeight: 1.04, letterSpacing: '-0.025em', color: 'var(--color-ink)', marginBottom: 26 }}>
               {t('hero.headline')}
             </h1>
@@ -54,7 +49,6 @@ export default function HomePage() {
               <NewsletterForm
                 placeholder={t('hero.cta_placeholder')}
                 cta={t('hero.cta')}
-                note={locale === 'pt' ? 'Grátis. Sem spam. Cancele quando quiser.' : 'Free. No spam. Unsubscribe anytime.'}
               />
             </div>
           </div>

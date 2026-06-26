@@ -1,4 +1,4 @@
-import { useTranslations, useLocale } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -9,7 +9,6 @@ import Icon from '@/components/Icon'
 export default function ConsultoriaPage() {
   const t = useTranslations('consultoria')
   const finalCta = useTranslations('final_cta')
-  const locale = useLocale()
 
   const plans = t.raw('plans') as Array<{
     id: string; name: string; price: string; period: string;
@@ -136,7 +135,7 @@ export default function ConsultoriaPage() {
               {finalCta('headline')}
             </h2>
             <p style={{ color: 'var(--color-ink-dim)', fontSize: 16.5, lineHeight: 1.6, marginBottom: 36 }}>{finalCta('subheadline')}</p>
-            <NewsletterForm placeholder={finalCta('placeholder')} cta={finalCta('cta')} note={locale === 'pt' ? 'Grátis. Sem spam.' : 'Free. No spam.'} />
+            <NewsletterForm placeholder={finalCta('placeholder')} cta={finalCta('cta')} />
           </div>
         </Reveal>
       </section>

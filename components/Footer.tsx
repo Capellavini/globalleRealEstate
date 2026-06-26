@@ -33,10 +33,6 @@ export default function Footer() {
             <p style={{ color: 'var(--color-ink-dim)', fontSize: 14.5, lineHeight: 1.7, maxWidth: 280, marginTop: 22 }}>
               {t('tagline')}
             </p>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 22, padding: '6px 12px', border: '1px solid var(--color-line)', borderRadius: 20 }}>
-              <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--color-blue)', boxShadow: '0 0 8px var(--color-blue)' }} />
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', color: 'var(--color-ink-dim)' }}>PT · EN · IT</span>
-            </div>
           </div>
 
           {/* Links */}
