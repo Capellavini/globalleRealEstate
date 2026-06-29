@@ -37,58 +37,62 @@ export default function ConsultoriaPage() {
           <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(34px, 5.2vw, 58px)', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.025em', lineHeight: 1.05, margin: '20px 0' }}>
             {t('headline')}
           </h1>
-          <p style={{ color: 'var(--color-ink-dim)', fontSize: 18, lineHeight: 1.6, maxWidth: 540, margin: '0 auto' }}>
+          <p style={{ color: 'var(--color-ink-dim)', fontSize: 18, lineHeight: 1.6, maxWidth: 600, margin: '0 auto' }}>
             {t('subheadline')}
+          </p>
+          <p className="serif-i" style={{ color: 'var(--color-gold)', fontSize: 'clamp(17px, 2.2vw, 21px)', lineHeight: 1.5, maxWidth: 600, margin: '28px auto 0' }}>
+            {t('positioning')}
           </p>
         </div>
       </section>
 
       {/* Plans */}
       <section style={{ background: 'var(--color-navy)', padding: '40px 28px 100px' }}>
-        <div style={{ maxWidth: 1140, margin: '0 auto' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <div className="plans-grid">
             {plans.map((plan, i) => {
               const isCustom = plan.price === 'Sob consulta' || plan.price === 'On request'
               return (
                 <Reveal key={plan.id} delay={i * 80}>
                   <div style={{
-                    position: 'relative', height: '100%',
+                    position: 'relative', height: '100%', display: 'flex', flexDirection: 'column',
                     background: plan.popular ? 'linear-gradient(180deg, var(--color-navy-4) 0%, var(--color-navy-3) 100%)' : 'rgba(255,255,255,0.025)',
                     border: plan.popular ? '1px solid rgba(30,167,232,0.5)' : '1px solid var(--color-line)',
-                    borderRadius: 22, padding: '40px 32px',
+                    borderRadius: 18, padding: '30px 22px',
                     boxShadow: plan.popular ? '0 24px 60px -24px rgba(30,167,232,0.5)' : 'none',
                   }}>
                     {plan.popular && (
-                      <div style={{ position: 'absolute', top: -13, left: '50%', transform: 'translateX(-50%)', background: 'var(--color-blue)', color: '#04121f', fontSize: 11.5, fontWeight: 700, fontFamily: 'var(--font-display)', padding: '5px 16px', borderRadius: 100, whiteSpace: 'nowrap', letterSpacing: '0.02em', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                        <Icon name="curation" size={13} strokeWidth={2} /> {t('popular')}
+                      <div style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', background: 'var(--color-blue)', color: '#04121f', fontSize: 10.5, fontWeight: 700, fontFamily: 'var(--font-display)', padding: '5px 12px', borderRadius: 100, whiteSpace: 'nowrap', letterSpacing: '0.02em', display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                        <Icon name="curation" size={12} strokeWidth={2} /> {t('popular')}
                       </div>
                     )}
 
-                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 21, fontWeight: 700, color: 'var(--color-ink)', marginBottom: 10 }}>{plan.name}</h3>
-                    <p style={{ color: 'var(--color-ink-dim)', fontSize: 14, marginBottom: 26, lineHeight: 1.6, minHeight: 44 }}>{plan.description}</p>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 700, color: 'var(--color-ink)', marginBottom: 14, minHeight: 46 }}>{plan.name}</h3>
 
-                    <div style={{ marginBottom: 30, paddingBottom: 26, borderBottom: '1px solid var(--color-line)' }}>
-                      <span className="serif" style={{ fontSize: isCustom ? 28 : 46, fontWeight: 600, color: 'var(--color-ink)', letterSpacing: '-0.02em' }}>{plan.price}</span>
-                      {plan.period && <span style={{ color: 'var(--color-ink-faint)', fontSize: 15, fontFamily: 'var(--font-mono)' }}> {plan.period}</span>}
+                    <div style={{ marginBottom: 18, paddingBottom: 18, borderBottom: '1px solid var(--color-line)' }}>
+                      <span className="serif" style={{ fontSize: isCustom ? 22 : 34, fontWeight: 600, color: 'var(--color-ink)', letterSpacing: '-0.02em' }}>{plan.price}</span>
+                      {plan.period && <span style={{ color: 'var(--color-ink-faint)', fontSize: 14, fontFamily: 'var(--font-mono)' }}> {plan.period}</span>}
                     </div>
 
-                    <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 34px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+                    <p style={{ color: 'var(--color-ink-dim)', fontSize: 12.5, marginBottom: 20, lineHeight: 1.55 }}>{plan.description}</p>
+
+                    <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px', display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
                       {plan.features.map((f, j) => (
-                        <li key={j} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                          <span style={{ flexShrink: 0, color: 'var(--color-blue-bright)', display: 'flex', marginTop: 1 }}><Icon name="check" size={18} strokeWidth={2.2} /></span>
-                          <span style={{ color: 'var(--color-ink-dim)', fontSize: 14, lineHeight: 1.55 }}>{f}</span>
+                        <li key={j} style={{ display: 'flex', gap: 9, alignItems: 'flex-start' }}>
+                          <span style={{ flexShrink: 0, color: 'var(--color-blue-bright)', display: 'flex', marginTop: 1 }}><Icon name="check" size={15} strokeWidth={2.2} /></span>
+                          <span style={{ color: 'var(--color-ink-dim)', fontSize: 12.5, lineHeight: 1.5 }}>{f}</span>
                         </li>
                       ))}
                     </ul>
 
                     <a href="mailto:hello@globalle.co" style={{
-                      display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8,
-                      padding: '14px 24px', borderRadius: 12, fontSize: 15, fontWeight: 700, fontFamily: 'var(--font-display)', textDecoration: 'none',
+                      display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 7,
+                      padding: '12px 14px', borderRadius: 10, fontSize: 13.5, fontWeight: 700, fontFamily: 'var(--font-display)', textDecoration: 'none',
                       background: plan.popular ? 'var(--color-blue)' : 'transparent',
                       border: plan.popular ? 'none' : '1px solid var(--color-line-strong)',
                       color: plan.popular ? '#04121f' : 'var(--color-ink)',
                     }}>
-                      {plan.cta} <Icon name="arrow" size={16} strokeWidth={2} />
+                      {plan.cta} <Icon name="arrow" size={15} strokeWidth={2} />
                     </a>
                   </div>
                 </Reveal>
@@ -143,8 +147,10 @@ export default function ConsultoriaPage() {
       <Footer />
 
       <style>{`
-        .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
-        @media (max-width: 900px) { .plans-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; } }
+        .plans-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; align-items: stretch; }
+        @media (max-width: 1200px) { .plans-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 820px) { .plans-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px) { .plans-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
       `}</style>
     </>
   )

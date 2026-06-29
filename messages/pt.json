@@ -72,54 +72,94 @@
   },
   "consultoria": {
     "label": "Consultoria",
-    "headline": "Transforme inteligência em resultado",
-    "subheadline": "Escolha o plano que se adapta à fase da sua equipa ou imobiliária.",
+    "headline": "Escolha como quer aplicar a inteligência Globalle",
+    "subheadline": "Da comunidade aos projetos estratégicos, a Globalle ajuda profissionais e empresas do mercado imobiliário a transformar referências globais em ações práticas para crescimento, gestão, vendas e posicionamento.",
+    "positioning": "A newsletter mostra o que está acontecendo no mundo. A Comunidade e os planos Globalle ajudam você a aplicar isso na prática.",
     "popular": "Mais popular",
     "plans": [
       {
-        "id": "aplicacao",
-        "name": "Aplicação em Grupo",
-        "price": "€500",
+        "id": "comunidade",
+        "name": "Comunidade Globalle",
+        "price": "€32",
         "period": "/mês",
-        "description": "Para equipas que querem implementar novas práticas de forma estruturada e acompanhada.",
+        "description": "Para profissionais que querem ir além da newsletter e participar de uma rede qualificada de aprendizado, discussão e troca de negócios.",
         "features": [
-          "Acesso a todos os playbooks e biblioteca de SOPs/treinamentos",
-          "1 sessão mensal em grupo para aplicar o playbook da semana",
-          "Check-in mensal assíncrono",
-          "Templates prontos (scripts de venda, onboarding de corretor, etc.)",
-          "Suporte via grupo fechado (WhatsApp/Slack)"
+          "Encontro mensal de discussão com a comunidade",
+          "Acesso a conteúdos exclusivos",
+          "Radar mensal de práticas internacionais",
+          "Grupo fechado para networking e troca de oportunidades",
+          "Biblioteca inicial de materiais, referências e resumos",
+          "Participação em debates sobre vendas, gestão, marketing e mercado global"
         ],
-        "cta": "Quero aplicar com a equipa",
+        "cta": "Entrar na comunidade",
         "popular": false
       },
       {
-        "id": "estrategico",
-        "name": "Estratégico",
-        "price": "€1.500",
+        "id": "inicial",
+        "name": "Plano Inicial",
+        "price": "€300",
         "period": "/mês",
-        "description": "Para líderes e imobiliárias que querem um parceiro estratégico com acompanhamento personalizado.",
+        "description": "Para profissionais e pequenas equipes que querem começar a aplicar práticas globais de forma estruturada.",
         "features": [
+          "Acesso à Comunidade Globalle",
+          "1 sessão mensal em grupo para aplicação prática",
+          "Playbooks e templates selecionados",
+          "Plano de ação mensal simplificado",
+          "Check-in assíncrono para dúvidas e direcionamento",
+          "Curadoria de conteúdos conforme o perfil do profissional ou equipe"
+        ],
+        "cta": "Começar agora",
+        "popular": false
+      },
+      {
+        "id": "intermediario",
+        "name": "Plano Intermediário",
+        "price": "€550",
+        "period": "/mês",
+        "description": "Para profissionais, líderes e imobiliárias que querem acompanhamento mais próximo na aplicação das estratégias.",
+        "features": [
+          "Tudo do Plano Inicial",
           "Diagnóstico inicial da operação",
-          "Plano de ação trimestral personalizado",
           "1 call individual por mês",
-          "Acompanhamento de KPIs",
-          "Acesso prioritário a conteúdo exclusivo"
+          "Plano de ação mensal personalizado",
+          "Revisão de materiais comerciais, abordagem e posicionamento",
+          "Acompanhamento de evolução e próximos passos"
+        ],
+        "cta": "Falar com a Globalle",
+        "popular": true
+      },
+      {
+        "id": "estrategico",
+        "name": "Plano Estratégico",
+        "price": "€1.250",
+        "period": "/mês",
+        "description": "Para líderes, equipes e imobiliárias que querem transformar conhecimento global em evolução real da operação.",
+        "features": [
+          "Tudo do Plano Intermediário",
+          "Plano de ação trimestral personalizado",
+          "2 calls individuais por mês",
+          "Acompanhamento de KPIs comerciais e operacionais",
+          "Revisão de processos, scripts, onboarding e rotina comercial",
+          "Prioridade no acesso a conteúdos, benchmarks e materiais exclusivos",
+          "Sessão estratégica mensal com foco em crescimento, gestão ou posicionamento"
         ],
         "cta": "Falar com um especialista",
-        "popular": true
+        "popular": false
       },
       {
         "id": "medida",
         "name": "Projeto Sob Medida",
         "price": "Sob consulta",
         "period": "",
-        "description": "Para grandes operações que precisam de reestruturação completa ou projetos de alta complexidade.",
+        "description": "Para empresas, imobiliárias, incorporadoras ou operações que precisam de um projeto específico, profundo ou de maior complexidade.",
         "features": [
-          "Reestruturação completa de operação",
-          "Treinamento presencial de equipa",
-          "Implementação de tecnologia/processos",
-          "Acompanhamento contínuo pós-implementação",
-          "Relatórios executivos mensais"
+          "Diagnóstico completo da operação",
+          "Projeto personalizado por objetivo",
+          "Treinamentos para equipe",
+          "Estruturação de processos comerciais",
+          "Implementação de playbooks, rotinas e materiais",
+          "Workshops, palestras ou projetos especiais",
+          "Acompanhamento contínuo conforme escopo definido"
         ],
         "cta": "Solicitar proposta",
         "popular": false
@@ -130,19 +170,19 @@
     "faqs": [
       {
         "q": "A consultoria é presencial ou remota?",
-        "a": "Os planos Aplicação e Estratégico funcionam 100% de forma remota (videochamadas e grupo fechado). O Projeto Sob Medida pode incluir componentes presenciais dependendo da localização e necessidade."
+        "a": "A Comunidade e os planos de consultoria funcionam 100% de forma remota (videochamadas, encontros e grupo fechado). O Projeto Sob Medida pode incluir componentes presenciais conforme a localização e a necessidade."
       },
       {
-        "q": "É possível começar com um plano e depois fazer upgrade?",
-        "a": "Sim. A maioria dos nossos clientes começa no Aplicação e faz upgrade para Estratégico após os primeiros resultados. O processo é simples e sem custos adicionais de transição."
+        "q": "É possível começar em um plano e depois evoluir?",
+        "a": "Sim. A maioria dos clientes começa na Comunidade ou no Plano Inicial e evolui para planos mais completos conforme os resultados. O processo é simples e sem custos adicionais de transição."
       },
       {
-        "q": "Os planos incluem acesso à newsletter?",
-        "a": "Sim. Todos os planos de consultoria incluem acesso à newsletter premium com análises exclusivas não publicadas na versão gratuita."
+        "q": "Os planos incluem acesso à Comunidade Globalle?",
+        "a": "Sim. A partir do Plano Inicial, todos os planos incluem o acesso à Comunidade Globalle e a conteúdos exclusivos."
       },
       {
-        "q": "Trabalham com imobiliárias de Portugal e do Brasil?",
-        "a": "Sim. Temos clientes em Portugal, Brasil e em mercados lusófonos internacionais. O conteúdo e as sessões adaptam-se ao mercado local de cada cliente."
+        "q": "Vocês trabalham com imobiliárias do Brasil e de Portugal?",
+        "a": "Sim. Temos clientes no Brasil, em Portugal e em mercados internacionais. O conteúdo e as sessões se adaptam ao mercado local de cada cliente."
       }
     ]
   },
