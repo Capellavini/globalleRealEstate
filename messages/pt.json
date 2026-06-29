@@ -26,23 +26,23 @@
   "manifesto": {
     "label": "Manifesto",
     "headline": "Por que o mundo precisa de profissionais imobiliários com visão global?",
-    "p1": "Vivemos num mundo onde os capitais se movem em tempo real, onde compradores de Lisboa compram em Miami e investidores de São Paulo escolhem imóveis em Lisboa antes de visitar o país. Mas os profissionais que deveriam guiar essas decisões continuam a aprender, quase exclusivamente, dentro das suas próprias fronteiras.",
+    "p1": "O conhecimento tornou-se global, mas continua distribuído de forma desigual. Todos os dias, profissionais imobiliários em diferentes países desenvolvem novas estratégias de vendas, marketing, gestão, tecnologia e relacionamento com clientes. A maioria dessas ideias, porém, nunca ultrapassa as fronteiras onde nasceu. E, quando ultrapassa, raramente chega de forma estruturada e aplicável a quem poderia beneficiar delas.",
     "p2": "Isso não é culpa deles. É uma questão de acesso.",
     "p3": "O conhecimento que define a excelência no real estate global — os scripts de conversão que os melhores brokers de Nova Iorque usam, o modelo de onboarding que as maiores agências de Londres aplicam aos novos consultores, a forma como os promotores italianos constroem marca local com alcance internacional — raramente chega, em português, de forma estruturada, a quem mais precisa.",
     "p4": "A Globalle nasceu para mudar isso.",
     "p5": "Não somos um agregador de notícias do mercado. Somos uma câmara de compensação de inteligência estratégica: fazemos o trabalho de pesquisa, entrevistamos os profissionais certos, destilamos o que é essencial e entregamos numa linguagem que qualquer profissional ambicioso consegue pegar e aplicar.",
     "p6": "Acreditamos que a próxima geração de grandes nomes do imobiliário em Portugal e no Brasil não vai ser formada apenas por quem teve acesso às melhores escolas ou aos melhores mentores locais. Vai ser formada por quem teve a curiosidade de olhar para fora — e a disciplina de traduzir esse olhar em ação.",
     "p7": "É isso que a Globalle oferece, semana após semana.",
-    "closing": "As fronteiras estão abertas. Embarque nessa jornada connosco."
+    "closing": "As fronteiras estão abertas. Embarque nessa jornada conosco."
   },
   "value_props": {
     "label": "Proposta de Valor",
     "headline": "Por que a Globalle é diferente",
     "cards": [
-      { "icon": "curation", "title": "Curadoria Inteligente de Entrevistas", "body": "Acedemos a profissionais de topo de mercados como EUA, UK, Itália e Emirados. Cada edição traz perspetivas que não encontra em português em mais lado nenhum." },
-      { "icon": "cultural", "title": "Visão Cultural + Técnica", "body": "Não é só o «o quê», é o «porquê cultural». Entendemos que as práticas do mercado americano não se copiam — traduzem-se. E é exatamente isso que fazemos." },
-      { "icon": "experience", "title": "Experiência Vasta em Mercado Imobiliário", "body": "A equipa fundadora tem experiência direta em transações, gestão de equipas e promoção imobiliária em Portugal, Brasil e mercados internacionais." },
-      { "icon": "community", "title": "Comunidade Focada em Crescer", "body": "Os nossos leitores não são passivos. São profissionais que aplicam o que lêem, partilham resultados e constroem juntos. A comunidade é parte do produto." }
+      { "icon": "curation", "title": "Curadoria Inteligente de Entrevistas", "body": "Entrevistamos profissionais de topo de mercados ao redor do globo — dos mais óbvios àqueles que nunca imaginou. Cada edição traz perspectivas que não encontra em português em nenhum outro lugar." },
+      { "icon": "cultural", "title": "Visão Cultural + Técnica", "body": "Não é só **o quê**, é o **porquê cultural**. Entendemos que as práticas de outros mercados não se copiam — se traduzem. E é exatamente isso que fazemos." },
+      { "icon": "experience", "title": "Experiência Vasta em Mercado Imobiliário", "body": "Nós também respiramos e vivemos o mercado imobiliário! Com experiência imobiliária em diferentes mercados, nossa equipe é fluente em “mercado imobiliário”, traduzindo as táticas em ações realmente aplicáveis." },
+      { "icon": "community", "title": "Comunidade Focada em Crescer", "body": "Os nossos leitores são profissionais que aplicam o que lêem, partilham resultados e constroem juntos. A comunidade é parte do produto. Junte-se a um grupo de profissionais com vontade de vencer." }
     ]
   },
   "products": {

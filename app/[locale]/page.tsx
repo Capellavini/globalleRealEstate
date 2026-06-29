@@ -7,6 +7,15 @@ import NewsletterForm from '@/components/NewsletterForm'
 import Reveal from '@/components/Reveal'
 import Icon, { IconName } from '@/components/Icon'
 
+// renders **bold** segments inside a plain string
+function withBold(text: string) {
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+    part.startsWith('**') && part.endsWith('**')
+      ? <strong key={i} style={{ fontWeight: 700, color: 'var(--color-ink-dark)' }}>{part.slice(2, -2)}</strong>
+      : part
+  )
+}
+
 function Kicker({ num, label, dark }: { num: string; label: string; dark: boolean }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 22 }}>
@@ -158,7 +167,7 @@ export default function HomePage() {
                   <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18.5, fontWeight: 700, color: 'var(--color-ink-dark)', marginBottom: 12, lineHeight: 1.25 }}>
                     {card.title}
                   </h3>
-                  <p style={{ color: 'var(--color-ink-dark-dim)', fontSize: 14.5, lineHeight: 1.7 }}>{card.body}</p>
+                  <p style={{ color: 'var(--color-ink-dark-dim)', fontSize: 14.5, lineHeight: 1.7 }}>{withBold(card.body)}</p>
                 </div>
               </Reveal>
             ))}
