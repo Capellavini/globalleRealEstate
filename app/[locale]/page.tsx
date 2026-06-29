@@ -187,7 +187,8 @@ export default function HomePage() {
 
           {[
             { key: 'newsletter', icon: 'newsletter', tag: '01', visual: 'newsletter', href: '#newsletter' },
-            { key: 'consultoria', icon: 'advisory', tag: '02', visual: 'advisory', href: '/consultoria' },
+            { key: 'community', icon: 'community', tag: '02', visual: 'community', href: '/consultoria' },
+            { key: 'consultoria', icon: 'advisory', tag: '03', visual: 'advisory', href: '/consultoria' },
           ].map((p, i) => (
             <Reveal key={p.key}>
               <div className="product-row" style={{ borderTop: '1px solid var(--color-line)', padding: '48px 0' }}>
@@ -196,7 +197,7 @@ export default function HomePage() {
                     <div style={{ position: 'relative', width: '100%', height: 260, borderRadius: 18, overflow: 'hidden', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--color-line)', padding: 24 }}>
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
                         <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, color: 'var(--color-blue-bright)', fontSize: 16 }}>Globalle</span>
-                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10.5, color: 'var(--color-ink-faint)', letterSpacing: '0.1em' }}>{locale === 'pt' ? 'EDIÇÃO #47' : 'ISSUE #47'}</span>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10.5, color: 'var(--color-ink-faint)', letterSpacing: '0.1em' }}>#1</span>
                       </div>
                       <div style={{ height: 12, width: '70%', background: 'rgba(255,255,255,0.14)', borderRadius: 4, marginBottom: 12 }} />
                       <div style={{ height: 8, width: '100%', background: 'rgba(255,255,255,0.07)', borderRadius: 4, marginBottom: 8 }} />
@@ -223,6 +224,21 @@ export default function HomePage() {
                       </svg>
                     </div>
                   )}
+                  {p.visual === 'community' && (
+                    <div style={{ position: 'relative', width: '100%', height: 260, borderRadius: 18, overflow: 'hidden', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--color-line)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <svg viewBox="0 0 320 220" style={{ width: '82%' }} fill="none">
+                        <g stroke="rgba(30,167,232,0.28)" strokeWidth="1.2">
+                          <line x1="160" y1="110" x2="70" y2="55" /><line x1="160" y1="110" x2="250" y2="60" /><line x1="160" y1="110" x2="55" y2="150" /><line x1="160" y1="110" x2="255" y2="155" /><line x1="160" y1="110" x2="150" y2="40" /><line x1="160" y1="110" x2="160" y2="185" /><line x1="70" y1="55" x2="150" y2="40" /><line x1="250" y1="60" x2="255" y2="155" />
+                        </g>
+                        {[[160, 110, 16], [70, 55, 11], [250, 60, 11], [55, 150, 10], [255, 155, 10], [150, 40, 9], [160, 185, 10]].map(([x, y, r], n) => (
+                          <g key={n}>
+                            <circle cx={x} cy={y} r={r + 5} fill="#070B24" />
+                            <circle cx={x} cy={y} r={r} fill={n === 0 ? '#46BCF6' : n % 2 ? 'rgba(30,167,232,0.5)' : 'rgba(232,184,109,0.55)'} />
+                          </g>
+                        ))}
+                      </svg>
+                    </div>
+                  )}
                 </div>
 
                 <div className="product-text" style={{ order: 1 }}>
@@ -232,10 +248,17 @@ export default function HomePage() {
                       {t(`products.${p.key}_title`)}
                     </span>
                   </div>
-                  <p style={{ color: 'var(--color-ink-dim)', lineHeight: 1.75, fontSize: 16, marginBottom: 26, maxWidth: 460 }}>
-                    {t(`products.${p.key}_body`)}
-                  </p>
-                  <Link href={p.href.startsWith('/') ? `/${locale}${p.href}` : `/${locale}/${p.href}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'var(--color-blue)', textDecoration: 'none', fontSize: 15, fontWeight: 700, fontFamily: 'var(--font-display)' }}>
+                  {p.key === 'community' && (
+                    <p className="serif-i" style={{ color: 'var(--color-gold)', fontSize: 19, lineHeight: 1.4, marginBottom: 18, maxWidth: 520 }}>
+                      {t('products.community_lead')}
+                    </p>
+                  )}
+                  {t(`products.${p.key}_body`).split('\n\n').map((para, k) => (
+                    <p key={k} style={{ color: 'var(--color-ink-dim)', lineHeight: 1.75, fontSize: 16, marginBottom: 18, maxWidth: 480 }}>
+                      {para}
+                    </p>
+                  ))}
+                  <Link href={p.href.startsWith('/') ? `/${locale}${p.href}` : `/${locale}/${p.href}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 8, color: 'var(--color-blue)', textDecoration: 'none', fontSize: 15, fontWeight: 700, fontFamily: 'var(--font-display)' }}>
                     {t(`products.${p.key}_cta`)} <Icon name="arrowUpRight" size={16} strokeWidth={2} />
                   </Link>
                 </div>

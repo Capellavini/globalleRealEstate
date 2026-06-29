@@ -18,7 +18,7 @@
     "label": "Nossa Abordagem",
     "headline": "O mercado é Global, você também deve ser",
     "col1_title": "Nossa Abordagem",
-    "col1_body": "Analisamos em profundidade as práticas das melhores imobiliárias do mundo — dos EUA ao Reino Unido, de Itália ao Médio Oriente — e traduzimos esse conhecimento em conteúdo aplicável para o mercado lusófono. Sem filtros, sem jargão vazio.",
+    "col1_body": "Analisamos em profundidade as práticas das melhores imobiliárias do mundo e traduzimos esse conhecimento em conteúdo aplicável para o mercado brasileiro e português.",
     "col2_title": "Nosso Diferencial",
     "col2_body": "Não somos uma newsletter de notícias. Somos uma plataforma de inteligência estratégica: cada edição traz um caso real, uma técnica comprovada e um passo concreto que você pode implementar ainda esta semana.",
     "quote": "Globalle: uma plataforma que conecta o mercado imobiliário ao mundo através de conteúdos relevantes a todos os profissionais deste mercado."
@@ -49,15 +49,19 @@
     "label": "Produtos",
     "headline": "O que a Globalle oferece",
     "newsletter_title": "Newsletter Semanal",
-    "newsletter_body": "O coração da Globalle. Toda semana, uma análise aprofundada de uma prática, caso ou tendência do mercado imobiliário global — em Português, Inglês e Italiano. Gratuita. Sem spam. Cancelamento a qualquer momento.",
+    "newsletter_body": "O coração da Globalle. Toda semana, uma análise aprofundada de uma prática, caso ou tendência do mercado imobiliário global.",
     "newsletter_cta": "Assinar gratuitamente",
+    "community_title": "Comunidade Globalle",
+    "community_lead": "Para profissionais que querem ir além da newsletter.",
+    "community_body": "A Comunidade Globalle reúne corretores, gestores, donos de imobiliárias, incorporadores e profissionais do mercado imobiliário interessados em aprender com o mundo, trocar experiências e transformar conhecimento em ação.\n\nTodos os meses, promovemos encontros de discussão sobre mercados internacionais, estratégias comerciais, tecnologia, gestão, marketing e tendências aplicáveis ao mercado local. Além disso, os membros têm acesso a conteúdos exclusivos, materiais práticos e um ambiente qualificado para networking, troca de negócios e construção de novas parcerias.\n\nMais do que uma comunidade de conteúdo, a Globalle é uma rede para profissionais imobiliários que pensam maior.",
+    "community_cta": "Ver planos",
     "consultoria_title": "Consultoria Estratégica",
-    "consultoria_body": "Para equipas e imobiliárias que querem ir além do conteúdo e transformar inteligência em processos concretos. Da adoção de novas técnicas à reestruturação completa da operação.",
+    "consultoria_body": "Para corretores, equipes e imobiliárias que querem ir além do conteúdo e transformar inteligência em processos concretos. Da adoção de novas técnicas à reestruturação completa da operação.",
     "consultoria_cta": "Ver planos"
   },
   "final_cta": {
     "headline": "Comece a pensar global hoje",
-    "subheadline": "Junte-se a centenas de profissionais que já recebem inteligência imobiliária global todas as semanas.",
+    "subheadline": "Junte-se a profissionais de excelência que já recebem inteligência imobiliária global todas as semanas.",
     "cta": "Assinar gratuitamente",
     "placeholder": "O seu melhor e-mail"
   },
