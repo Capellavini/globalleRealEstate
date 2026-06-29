@@ -72,8 +72,8 @@
   },
   "consultoria": {
     "label": "Consultoria",
-    "headline": "Escolha como quer aplicar a inteligência Globalle",
-    "subheadline": "Da comunidade aos projetos estratégicos, a Globalle ajuda profissionais e empresas do mercado imobiliário a transformar referências globais em ações práticas para crescimento, gestão, vendas e posicionamento.",
+    "headline": "Escolha como quer evoluir com a Globalle",
+    "subheadline": "Da comunidade aos projetos estratégicos, ajudamos profissionais e empresas do mercado imobiliário a transformar referências globais em ações práticas para vendas, gestão, marketing e crescimento.",
     "positioning": "A newsletter mostra o que está acontecendo no mundo. A Comunidade e os planos Globalle ajudam você a aplicar isso na prática.",
     "popular": "Mais popular",
     "plans": [
@@ -82,84 +82,61 @@
         "name": "Comunidade Globalle",
         "price": "€32",
         "period": "/mês",
-        "description": "Para profissionais que querem ir além da newsletter e participar de uma rede qualificada de aprendizado, discussão e troca de negócios.",
+        "description": "Para profissionais que querem aprender, discutir e se conectar com o mercado imobiliário global.",
         "features": [
-          "Encontro mensal de discussão com a comunidade",
-          "Acesso a conteúdos exclusivos",
-          "Radar mensal de práticas internacionais",
-          "Grupo fechado para networking e troca de oportunidades",
-          "Biblioteca inicial de materiais, referências e resumos",
-          "Participação em debates sobre vendas, gestão, marketing e mercado global"
+          "Encontro mensal da comunidade",
+          "Conteúdos exclusivos",
+          "Radar de práticas internacionais",
+          "Grupo fechado de networking",
+          "Troca de oportunidades e referências"
         ],
         "cta": "Entrar na comunidade",
         "popular": false
       },
       {
         "id": "inicial",
-        "name": "Plano Inicial",
+        "name": "Consultoria Inicial",
         "price": "€300",
         "period": "/mês",
-        "description": "Para profissionais e pequenas equipes que querem começar a aplicar práticas globais de forma estruturada.",
+        "description": "Para profissionais e imobiliárias que querem começar a aplicar novas práticas com direção.",
         "features": [
           "Acesso à Comunidade Globalle",
-          "1 sessão mensal em grupo para aplicação prática",
-          "Playbooks e templates selecionados",
+          "Sessão mensal individual",
+          "Playbooks e templates práticos",
           "Plano de ação mensal simplificado",
-          "Check-in assíncrono para dúvidas e direcionamento",
-          "Curadoria de conteúdos conforme o perfil do profissional ou equipe"
+          "Diagnóstico e mapeamento de processos"
         ],
         "cta": "Começar agora",
         "popular": false
       },
       {
-        "id": "intermediario",
-        "name": "Plano Intermediário",
+        "id": "crescimento",
+        "name": "Consultoria de Crescimento",
         "price": "€550",
         "period": "/mês",
-        "description": "Para profissionais, líderes e imobiliárias que querem acompanhamento mais próximo na aplicação das estratégias.",
+        "description": "Para profissionais, líderes e imobiliárias que querem acompanhamento mais próximo.",
         "features": [
-          "Tudo do Plano Inicial",
+          "Tudo da Consultoria Inicial",
           "Diagnóstico inicial da operação",
-          "1 call individual por mês",
-          "Plano de ação mensal personalizado",
-          "Revisão de materiais comerciais, abordagem e posicionamento",
-          "Acompanhamento de evolução e próximos passos"
+          "2 calls individuais por mês",
+          "Plano de ação personalizado e treinamento comercial da equipe",
+          "Revisão de materiais e abordagem comercial"
         ],
         "cta": "Falar com a Globalle",
         "popular": true
-      },
-      {
-        "id": "estrategico",
-        "name": "Plano Estratégico",
-        "price": "€1.250",
-        "period": "/mês",
-        "description": "Para líderes, equipes e imobiliárias que querem transformar conhecimento global em evolução real da operação.",
-        "features": [
-          "Tudo do Plano Intermediário",
-          "Plano de ação trimestral personalizado",
-          "2 calls individuais por mês",
-          "Acompanhamento de KPIs comerciais e operacionais",
-          "Revisão de processos, scripts, onboarding e rotina comercial",
-          "Prioridade no acesso a conteúdos, benchmarks e materiais exclusivos",
-          "Sessão estratégica mensal com foco em crescimento, gestão ou posicionamento"
-        ],
-        "cta": "Falar com um especialista",
-        "popular": false
       },
       {
         "id": "medida",
         "name": "Projeto Sob Medida",
         "price": "Sob consulta",
         "period": "",
-        "description": "Para empresas, imobiliárias, incorporadoras ou operações que precisam de um projeto específico, profundo ou de maior complexidade.",
+        "description": "Para empresas que precisam de um projeto específico, profundo ou de maior complexidade.",
         "features": [
           "Diagnóstico completo da operação",
           "Projeto personalizado por objetivo",
           "Treinamentos para equipe",
           "Estruturação de processos comerciais",
-          "Implementação de playbooks, rotinas e materiais",
-          "Workshops, palestras ou projetos especiais",
-          "Acompanhamento contínuo conforme escopo definido"
+          "Workshops, palestras ou projetos especiais"
         ],
         "cta": "Solicitar proposta",
         "popular": false
@@ -174,11 +151,11 @@
       },
       {
         "q": "É possível começar em um plano e depois evoluir?",
-        "a": "Sim. A maioria dos clientes começa na Comunidade ou no Plano Inicial e evolui para planos mais completos conforme os resultados. O processo é simples e sem custos adicionais de transição."
+        "a": "Sim. A maioria dos clientes começa na Comunidade ou no Consultoria Inicial e evolui para planos mais completos conforme os resultados. O processo é simples e sem custos adicionais de transição."
       },
       {
         "q": "Os planos incluem acesso à Comunidade Globalle?",
-        "a": "Sim. A partir do Plano Inicial, todos os planos incluem o acesso à Comunidade Globalle e a conteúdos exclusivos."
+        "a": "Sim. A partir do Consultoria Inicial, todos os planos incluem o acesso à Comunidade Globalle e a conteúdos exclusivos."
       },
       {
         "q": "Vocês trabalham com imobiliárias do Brasil e de Portugal?",

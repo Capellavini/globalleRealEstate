@@ -67,20 +67,20 @@ export default function ConsultoriaPage() {
                       </div>
                     )}
 
-                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 700, color: 'var(--color-ink)', marginBottom: 14, minHeight: 46 }}>{plan.name}</h3>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18.5, fontWeight: 700, color: 'var(--color-ink)', marginBottom: 14, minHeight: 48 }}>{plan.name}</h3>
 
-                    <div style={{ marginBottom: 18, paddingBottom: 18, borderBottom: '1px solid var(--color-line)' }}>
-                      <span className="serif" style={{ fontSize: isCustom ? 22 : 34, fontWeight: 600, color: 'var(--color-ink)', letterSpacing: '-0.02em' }}>{plan.price}</span>
+                    <div style={{ marginBottom: 20, paddingBottom: 20, borderBottom: '1px solid var(--color-line)' }}>
+                      <span className="serif" style={{ fontSize: isCustom ? 24 : 38, fontWeight: 600, color: 'var(--color-ink)', letterSpacing: '-0.02em' }}>{plan.price}</span>
                       {plan.period && <span style={{ color: 'var(--color-ink-faint)', fontSize: 14, fontFamily: 'var(--font-mono)' }}> {plan.period}</span>}
                     </div>
 
-                    <p style={{ color: 'var(--color-ink-dim)', fontSize: 12.5, marginBottom: 20, lineHeight: 1.55 }}>{plan.description}</p>
+                    <p style={{ color: 'var(--color-ink-dim)', fontSize: 13.5, marginBottom: 22, lineHeight: 1.6 }}>{plan.description}</p>
 
-                    <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px', display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
+                    <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 26px', display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
                       {plan.features.map((f, j) => (
-                        <li key={j} style={{ display: 'flex', gap: 9, alignItems: 'flex-start' }}>
-                          <span style={{ flexShrink: 0, color: 'var(--color-blue-bright)', display: 'flex', marginTop: 1 }}><Icon name="check" size={15} strokeWidth={2.2} /></span>
-                          <span style={{ color: 'var(--color-ink-dim)', fontSize: 12.5, lineHeight: 1.5 }}>{f}</span>
+                        <li key={j} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                          <span style={{ flexShrink: 0, color: 'var(--color-blue-bright)', display: 'flex', marginTop: 1 }}><Icon name="check" size={16} strokeWidth={2.2} /></span>
+                          <span style={{ color: 'var(--color-ink-dim)', fontSize: 13.5, lineHeight: 1.55 }}>{f}</span>
                         </li>
                       ))}
                     </ul>
@@ -147,9 +147,8 @@ export default function ConsultoriaPage() {
       <Footer />
 
       <style>{`
-        .plans-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; align-items: stretch; }
-        @media (max-width: 1200px) { .plans-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 820px) { .plans-grid { grid-template-columns: repeat(2, 1fr); } }
+        .plans-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: stretch; }
+        @media (max-width: 1024px) { .plans-grid { grid-template-columns: repeat(2, 1fr); max-width: 720px; margin: 0 auto; } }
         @media (max-width: 560px) { .plans-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
       `}</style>
     </>
