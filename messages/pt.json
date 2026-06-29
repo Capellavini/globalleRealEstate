@@ -11,7 +11,7 @@
     "headline": "Inteligência Imobiliária Global, traduzida em ação local.",
     "subheadline": "Toda semana, mostramos o que as melhores imobiliárias do mundo estão fazendo — e como aplicar isso no seu mercado.",
     "cta": "Assinar gratuitamente",
-    "cta_placeholder": "O seu melhor e-mail",
+    "cta_placeholder": "Seu melhor e-mail",
     "scroll": "Saiba mais"
   },
   "approach": {
@@ -30,7 +30,7 @@
     "p2": "Isso não é culpa deles. É uma questão de acesso.",
     "p3": "O conhecimento que define a excelência no real estate global — os scripts de conversão que os melhores brokers de Nova Iorque usam, o modelo de onboarding que as maiores agências de Londres aplicam aos novos consultores, a forma como os promotores italianos constroem marca local com alcance internacional — raramente chega, em português, de forma estruturada, a quem mais precisa.",
     "p4": "A Globalle nasceu para mudar isso.",
-    "p5": "Não somos um agregador de notícias do mercado. Somos uma câmara de compensação de inteligência estratégica: fazemos o trabalho de pesquisa, entrevistamos os profissionais certos, destilamos o que é essencial e entregamos numa linguagem que qualquer profissional ambicioso consegue pegar e aplicar.",
+    "p5": "Não somos um agregador de notícias do mercado. Somos uma câmara de compensação de inteligência estratégica: fazemos o trabalho de pesquisa, entrevistamos os profissionais certos, destilamos o que é essencial e entregamos em uma linguagem que qualquer profissional ambicioso consegue pegar e aplicar.",
     "p6": "Acreditamos que a próxima geração de grandes nomes do imobiliário em Portugal e no Brasil não vai ser formada apenas por quem teve acesso às melhores escolas ou aos melhores mentores locais. Vai ser formada por quem teve a curiosidade de olhar para fora — e a disciplina de traduzir esse olhar em ação.",
     "p7": "É isso que a Globalle oferece, semana após semana.",
     "closing": "As fronteiras estão abertas. Embarque nessa jornada conosco."
@@ -42,7 +42,7 @@
       { "icon": "curation", "title": "Curadoria Inteligente de Entrevistas", "body": "Entrevistamos profissionais de topo de mercados ao redor do globo — dos mais óbvios àqueles que nunca imaginou. Cada edição traz perspectivas que não encontra em português em nenhum outro lugar." },
       { "icon": "cultural", "title": "Visão Cultural + Técnica", "body": "Não é só **o quê**, é o **porquê cultural**. Entendemos que as práticas de outros mercados não se copiam — se traduzem. E é exatamente isso que fazemos." },
       { "icon": "experience", "title": "Experiência Vasta em Mercado Imobiliário", "body": "Nós também respiramos e vivemos o mercado imobiliário! Com experiência imobiliária em diferentes mercados, nossa equipe é fluente em “mercado imobiliário”, traduzindo as táticas em ações realmente aplicáveis." },
-      { "icon": "community", "title": "Comunidade Focada em Crescer", "body": "Os nossos leitores são profissionais que aplicam o que lêem, partilham resultados e constroem juntos. A comunidade é parte do produto. Junte-se a um grupo de profissionais com vontade de vencer." }
+      { "icon": "community", "title": "Comunidade Focada em Crescer", "body": "Nossos leitores são profissionais que aplicam o que leem, compartilham resultados e constroem juntos. A comunidade é parte do produto. Junte-se a um grupo de profissionais com vontade de vencer." }
     ]
   },
   "products": {
@@ -63,10 +63,10 @@
     "headline": "Comece a pensar global hoje",
     "subheadline": "Junte-se a profissionais de excelência que já recebem inteligência imobiliária global todas as semanas.",
     "cta": "Assinar gratuitamente",
-    "placeholder": "O seu melhor e-mail"
+    "placeholder": "Seu melhor e-mail"
   },
   "newsletter_form": {
-    "success": "Obrigado! Confirme o seu e-mail para começar a receber.",
+    "success": "Obrigado! Confirme seu e-mail para começar a receber.",
     "error": "Ocorreu um erro. Tente novamente.",
     "invalid": "Por favor insira um e-mail válido."
   },
@@ -188,16 +188,16 @@
   },
   "contato": {
     "label": "Contato",
-    "headline": "Fale connosco",
-    "subheadline": "Tem uma dúvida, quer saber mais sobre a consultoria, ou quer colaborar com a Globalle? Deixe-nos uma mensagem.",
+    "headline": "Fale conosco",
+    "subheadline": "Tem uma dúvida, quer saber mais sobre a consultoria ou colaborar com a Globalle? Deixe sua mensagem.",
     "name_label": "Nome",
-    "name_placeholder": "O seu nome",
+    "name_placeholder": "Seu nome",
     "email_label": "E-mail",
-    "email_placeholder": "O seu e-mail",
+    "email_placeholder": "Seu e-mail",
     "subject_label": "Assunto",
     "subject_placeholder": "Como podemos ajudar?",
     "message_label": "Mensagem",
-    "message_placeholder": "A sua mensagem...",
+    "message_placeholder": "Sua mensagem...",
     "submit": "Enviar mensagem",
     "success": "Mensagem enviada! Respondemos em até 48h.",
     "info_title": "Informações",
@@ -209,7 +209,7 @@
     "tagline": "Inteligência imobiliária global, toda semana.",
     "links_title": "Links",
     "social_title": "Redes Sociais",
-    "copyright": "© 2024 Globalle. Todos os direitos reservados.",
+    "copyright": "© 2026 Globalle. Todos os direitos reservados.",
     "powered": "Powered by Globalle"
   }
 }
