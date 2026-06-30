@@ -80,7 +80,7 @@
       {
         "id": "comunidade",
         "name": "Comunidade Globalle",
-        "price": "€32",
+        "price": { "eur": "€32", "brl": "R$97", "usd": "US$29" },
         "period": "/mês",
         "description": "Para profissionais que querem aprender, discutir e se conectar com o mercado imobiliário global.",
         "features": [
@@ -96,7 +96,7 @@
       {
         "id": "inicial",
         "name": "Consultoria Inicial",
-        "price": "€300",
+        "price": { "eur": "€300", "brl": "R$1.500", "usd": "US$350" },
         "period": "/mês",
         "description": "Para profissionais e imobiliárias que querem começar a aplicar novas práticas com direção.",
         "features": [
@@ -112,7 +112,7 @@
       {
         "id": "crescimento",
         "name": "Consultoria de Crescimento",
-        "price": "€550",
+        "price": { "eur": "€550", "brl": "R$3.500", "usd": "US$650" },
         "period": "/mês",
         "description": "Para profissionais, líderes e imobiliárias que querem acompanhamento mais próximo.",
         "features": [
@@ -128,7 +128,7 @@
       {
         "id": "medida",
         "name": "Projeto Sob Medida",
-        "price": "Sob consulta",
+        "price": { "eur": "Sob consulta", "brl": "Sob consulta", "usd": "Sob consulta" },
         "period": "",
         "description": "Para empresas que precisam de um projeto específico, profundo ou de maior complexidade.",
         "features": [
@@ -151,11 +151,11 @@
       },
       {
         "q": "É possível começar em um plano e depois evoluir?",
-        "a": "Sim. A maioria dos clientes começa na Comunidade ou no Consultoria Inicial e evolui para planos mais completos conforme os resultados. O processo é simples e sem custos adicionais de transição."
+        "a": "Sim. A maioria dos clientes começa na Comunidade ou na Consultoria Inicial e evolui para planos mais completos conforme os resultados. O processo é simples e sem custos adicionais de transição."
       },
       {
         "q": "Os planos incluem acesso à Comunidade Globalle?",
-        "a": "Sim. A partir do Consultoria Inicial, todos os planos incluem o acesso à Comunidade Globalle e a conteúdos exclusivos."
+        "a": "Sim. A partir da Consultoria Inicial, todos os planos incluem o acesso à Comunidade Globalle e a conteúdos exclusivos."
       },
       {
         "q": "Vocês trabalham com imobiliárias do Brasil e de Portugal?",
