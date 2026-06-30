@@ -130,7 +130,7 @@ export default function HomePage() {
             <p className="serif-i" style={{ fontSize: 'clamp(22px, 2.6vw, 29px)', lineHeight: 1.4, color: 'var(--color-gold)', marginBottom: 30 }}>
               {t('manifesto.p3')}
             </p>
-            {(['p4', 'p5'] as const).map(key => (
+            {(['p4', 'p5', 'p6'] as const).map(key => (
               <p key={key} style={{ fontSize: 16.5, lineHeight: 1.8, color: 'var(--color-ink-dim)', marginBottom: 22 }}>
                 {t(`manifesto.${key}`)}
               </p>
