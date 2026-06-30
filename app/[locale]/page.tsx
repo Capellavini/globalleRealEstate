@@ -43,7 +43,7 @@ export default function HomePage() {
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(7,11,36,0.55) 0%, rgba(7,11,36,0.75) 55%, var(--color-navy) 100%)' }} />
         </div>
 
-        <div className="hero-grid" style={{ position: 'relative', zIndex: 1, maxWidth: 1240, margin: '0 auto', padding: '0 28px' }}>
+        <div className="hero-grid" style={{ position: 'relative', zIndex: 1, maxWidth: 1240, margin: '0 auto' }}>
           {/* Left: copy */}
           <div className="hero-copy">
             <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(38px, 5.4vw, 66px)', fontWeight: 800, lineHeight: 1.04, letterSpacing: '-0.025em', color: 'var(--color-ink)', marginBottom: 26 }}>
@@ -124,10 +124,13 @@ export default function HomePage() {
             <p style={{ fontSize: 20, lineHeight: 1.7, color: 'var(--color-ink)', marginBottom: 26, fontWeight: 400 }}>
               {t('manifesto.p1')}
             </p>
-            <p className="serif-i" style={{ fontSize: 21, lineHeight: 1.6, color: 'var(--color-gold)', marginBottom: 26 }}>
+            <p style={{ fontSize: 16.5, lineHeight: 1.8, color: 'var(--color-ink-dim)', marginBottom: 30 }}>
               {t('manifesto.p2')}
             </p>
-            {(['p3', 'p4', 'p5', 'p6', 'p7'] as const).map(key => (
+            <p className="serif-i" style={{ fontSize: 'clamp(22px, 2.6vw, 29px)', lineHeight: 1.4, color: 'var(--color-gold)', marginBottom: 30 }}>
+              {t('manifesto.p3')}
+            </p>
+            {(['p4', 'p5'] as const).map(key => (
               <p key={key} style={{ fontSize: 16.5, lineHeight: 1.8, color: 'var(--color-ink-dim)', marginBottom: 22 }}>
                 {t(`manifesto.${key}`)}
               </p>
@@ -292,14 +295,14 @@ export default function HomePage() {
       <Footer />
 
       <style>{`
-        .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center; min-height: 92vh; padding-top: 120px; padding-bottom: 40px; }
+        .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center; min-height: 92vh; padding: 120px 28px 40px; }
         .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
         .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px 40px; margin-top: 20px; }
         .props-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px 56px; }
         .product-row { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
         .product-visual { min-width: 0; }
         @media (max-width: 900px) {
-          .hero-grid { grid-template-columns: 1fr; min-height: auto; padding-top: 130px; padding-bottom: 24px; }
+          .hero-grid { grid-template-columns: 1fr; min-height: auto; padding: 150px 28px 36px; }
           .hero-art { display: none; }
           .values-grid { grid-template-columns: 1fr 1fr; }
           .product-row { grid-template-columns: 1fr; gap: 28px; }
