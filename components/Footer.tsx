@@ -13,6 +13,7 @@ export default function Footer() {
   const links = [
     { href: '/#sobre', label: nav('about') },
     { href: '/#manifesto', label: nav('manifesto') },
+    { href: '/comunidade', label: nav('comunidade') },
     { href: '/consultoria', label: nav('consultoria') },
     { href: '/contato', label: nav('contato') },
   ]

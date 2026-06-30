@@ -10,6 +10,9 @@ const PATHS: Record<string, React.ReactNode> = {
   // products
   newsletter: <><rect x="3" y="4.5" width="18" height="15" rx="2" /><path d="M7 9h10M7 12.5h10M7 16h6" /></>,
   advisory: <><circle cx="12" cy="12" r="9" /><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8 4.8-2.2z" /></>,
+  // community
+  calendar: <><rect x="3" y="4.5" width="18" height="16" rx="2" /><path d="M3 9.5h18M8 2.5v4M16 2.5v4" /><circle cx="12" cy="14.5" r="1.4" fill="currentColor" stroke="none" /></>,
+  share: <><circle cx="18" cy="5.5" r="2.6" /><circle cx="6" cy="12" r="2.6" /><circle cx="18" cy="18.5" r="2.6" /><path d="m8.3 10.7 7.4-3.9M8.3 13.3l7.4 3.9" /></>,
   // contact
   mail: <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></>,
   clock: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5.2l3.2 1.9" /></>,

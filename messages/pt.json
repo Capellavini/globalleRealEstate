@@ -3,6 +3,7 @@
     "home": "Home",
     "about": "Sobre",
     "manifesto": "Manifesto",
+    "comunidade": "Comunidade",
     "consultoria": "Consultoria",
     "contato": "Contato",
     "subscribe": "Assinar Newsletter"
@@ -53,7 +54,7 @@
     "community_title": "Comunidade Globalle",
     "community_lead": "Para profissionais que querem ir além da newsletter.",
     "community_body": "A Comunidade Globalle reúne corretores, gestores, donos de imobiliárias e profissionais do mercado imobiliário interessados em aprender com o mundo, trocar experiências e transformar conhecimento em ação. Mais do que uma comunidade de conteúdo, a Globalle é uma rede para profissionais imobiliários que pensam maior. Saiba mais na página de Planos.",
-    "community_cta": "Ver planos",
+    "community_cta": "Conheça a comunidade",
     "consultoria_title": "Consultoria Estratégica",
     "consultoria_body": "Para corretores, equipes e imobiliárias que querem ir além do conteúdo e transformar inteligência em processos concretos. Da adoção de novas técnicas à reestruturação completa da operação.",
     "consultoria_cta": "Ver planos"
@@ -77,25 +78,9 @@
     "popular": "Mais popular",
     "plans": [
       {
-        "id": "comunidade",
-        "name": "Comunidade Globalle",
-        "price": { "eur": "€32", "brl": "R$97", "usd": "US$29" },
-        "period": "/mês",
-        "description": "Para profissionais que querem aprender, discutir e se conectar com o mercado imobiliário global.",
-        "features": [
-          "Encontro mensal da comunidade",
-          "Conteúdos exclusivos",
-          "Radar de práticas internacionais",
-          "Grupo fechado de networking",
-          "Troca de oportunidades e referências"
-        ],
-        "cta": "Entrar na comunidade",
-        "popular": false
-      },
-      {
         "id": "inicial",
         "name": "Consultoria Inicial",
-        "price": { "eur": "€300", "brl": "R$1.500", "usd": "US$350" },
+        "price": { "eur": "€300", "brl": "R$1.500" },
         "period": "/mês",
         "description": "Para profissionais e imobiliárias que querem começar a aplicar novas práticas com direção.",
         "features": [
@@ -111,7 +96,7 @@
       {
         "id": "crescimento",
         "name": "Consultoria de Crescimento",
-        "price": { "eur": "€550", "brl": "R$3.500", "usd": "US$650" },
+        "price": { "eur": "€550", "brl": "R$3.500" },
         "period": "/mês",
         "description": "Para profissionais, líderes e imobiliárias que querem acompanhamento mais próximo.",
         "features": [
@@ -127,7 +112,7 @@
       {
         "id": "medida",
         "name": "Projeto Sob Medida",
-        "price": { "eur": "Sob consulta", "brl": "Sob consulta", "usd": "Sob consulta" },
+        "price": { "eur": "Sob consulta", "brl": "Sob consulta" },
         "period": "",
         "description": "Para empresas que precisam de um projeto específico, profundo ou de maior complexidade.",
         "features": [
@@ -161,6 +146,50 @@
         "a": "Sim. Temos clientes no Brasil, em Portugal e em mercados internacionais. O conteúdo e as sessões se adaptam ao mercado local de cada cliente."
       }
     ]
+  },
+  "comunidade": {
+    "label": "Comunidade",
+    "headline": "Comunidade Globalle",
+    "subheadline": "Para profissionais imobiliários que querem pensar além do próprio mercado",
+    "intro1": "A Comunidade Globalle é um espaço para profissionais do mercado imobiliário que querem ir além da newsletter e participar de uma rede qualificada de aprendizado, discussão e troca de oportunidades.",
+    "intro2": "Todos os meses, reunimos corretores, gestores, donos de imobiliárias, incorporadores e profissionais do setor para discutir práticas internacionais, tendências de mercado, estratégias comerciais, tecnologia, gestão e novas formas de crescer no imobiliário.",
+    "intro3": "A proposta é simples: transformar referências globais em ações práticas para o dia a dia.",
+    "features_title": "O que você encontra na comunidade",
+    "features": [
+      { "icon": "calendar", "title": "Encontros mensais de discussão", "body": "Reuniões ao vivo para debater temas relevantes do mercado imobiliário global e entender como essas ideias podem ser aplicadas no Brasil, em Portugal e em outros mercados locais." },
+      { "icon": "newsletter", "title": "Conteúdos exclusivos", "body": "Materiais, análises, resumos e referências que aprofundam os temas tratados na newsletter e ajudam você a transformar conhecimento em prática." },
+      { "icon": "globe", "title": "Radar de práticas internacionais", "body": "Uma curadoria recorrente com ideias, estratégias e movimentos que estão acontecendo em outros mercados imobiliários — e que podem inspirar novas ações na sua operação." },
+      { "icon": "community", "title": "Networking qualificado", "body": "Um grupo fechado com profissionais que querem trocar experiências, discutir desafios reais e construir relações com pessoas que pensam o mercado de forma mais ampla." },
+      { "icon": "share", "title": "Troca de oportunidades e referências", "body": "Espaço para apresentar demandas, oportunidades, parcerias, indicações e possíveis negócios entre membros da comunidade." }
+    ],
+    "audience_title": "Para quem é",
+    "audience_intro": "A Comunidade Globalle foi criada para profissionais que querem aprender com o mundo, melhorar sua atuação e se conectar com outros nomes do mercado imobiliário. É ideal para:",
+    "audience": [
+      "Corretores de imóveis",
+      "Gestores e líderes comerciais",
+      "Donos de imobiliárias",
+      "Incorporadores",
+      "Profissionais de marketing imobiliário",
+      "Consultores e profissionais ligados ao setor"
+    ],
+    "why_title": "Por que participar",
+    "why1": "O mercado imobiliário está cada vez mais global, mas a maior parte dos profissionais ainda aprende apenas com o que acontece ao seu redor.",
+    "why2": "A Comunidade Globalle existe para ampliar esse repertório.",
+    "why3": "Aqui, você acompanha o que profissionais e empresas de outros países estão fazendo em vendas, atendimento, marca, tecnologia, gestão e relacionamento com clientes — e entende como adaptar essas ideias para a sua realidade.",
+    "why4": "Não é apenas sobre consumir conteúdo. É sobre discutir, aplicar e evoluir junto com uma rede qualificada.",
+    "plan_name": "Comunidade Globalle",
+    "plan_price": { "eur": "€32", "brl": "R$97" },
+    "plan_period": "/mês",
+    "plan_includes": "Inclui:",
+    "plan_features": [
+      "Encontro mensal da comunidade",
+      "Conteúdos exclusivos",
+      "Radar de práticas internacionais",
+      "Grupo fechado de networking",
+      "Troca de oportunidades e referências"
+    ],
+    "plan_cta": "Entrar na comunidade",
+    "plan_tagline": "A newsletter entrega a ideia. A comunidade ajuda você a discutir, adaptar e aplicar."
   },
   "contato": {
     "label": "Contato",

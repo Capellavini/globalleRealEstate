@@ -190,7 +190,7 @@ export default function HomePage() {
 
           {[
             { key: 'newsletter', icon: 'newsletter', tag: '01', visual: 'newsletter', href: '#newsletter' },
-            { key: 'community', icon: 'community', tag: '02', visual: 'community', href: '/consultoria' },
+            { key: 'community', icon: 'community', tag: '02', visual: 'community', href: '/comunidade' },
             { key: 'consultoria', icon: 'advisory', tag: '03', visual: 'advisory', href: '/consultoria' },
           ].map((p, i) => (
             <Reveal key={p.key}>
