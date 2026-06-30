@@ -13,7 +13,6 @@ export default function ComunidadePage() {
   const currency = detectCurrency()
 
   const features = t.raw('features') as Array<{ icon: IconName; title: string; body: string }>
-  const audience = t.raw('audience') as string[]
   const planPrice = t.raw('plan_price') as Record<Currency, string>
   const planFeatures = t.raw('plan_features') as string[]
 
@@ -81,17 +80,9 @@ export default function ComunidadePage() {
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.02em', marginBottom: 20 }}>
               {t('audience_title')}
             </h2>
-            <p style={{ color: 'var(--color-ink-dim)', fontSize: 17, lineHeight: 1.65, marginBottom: 40, maxWidth: 620, marginLeft: 'auto', marginRight: 'auto' }}>
+            <p style={{ color: 'var(--color-ink-dim)', fontSize: 'clamp(18px, 2.4vw, 22px)', lineHeight: 1.6, maxWidth: 640, marginLeft: 'auto', marginRight: 'auto' }}>
               {t('audience_intro')}
             </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'center' }}>
-              {audience.map((a, i) => (
-                <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '11px 18px', borderRadius: 100, background: 'rgba(255,255,255,0.04)', border: '1px solid var(--color-line)', color: 'var(--color-ink)', fontSize: 14.5, fontFamily: 'var(--font-display)', fontWeight: 500 }}>
-                  <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-blue)', flexShrink: 0 }} />
-                  {a}
-                </span>
-              ))}
-            </div>
           </Reveal>
         </div>
       </section>
@@ -106,11 +97,9 @@ export default function ComunidadePage() {
             </div>
           </Reveal>
           <Reveal>
-            <p style={{ fontSize: 'clamp(20px, 2.6vw, 26px)', fontFamily: 'var(--font-display)', fontWeight: 700, color: 'var(--color-ink-dark)', lineHeight: 1.35, letterSpacing: '-0.01em', marginBottom: 28 }}>
-              {t('why1')} {t('why2')}
+            <p style={{ fontSize: 'clamp(22px, 3vw, 30px)', fontFamily: 'var(--font-display)', fontWeight: 700, color: 'var(--color-ink-dark)', lineHeight: 1.4, letterSpacing: '-0.01em' }}>
+              {t('why_body')}
             </p>
-            <p style={{ color: 'var(--color-ink-dark-dim)', fontSize: 16.5, lineHeight: 1.75, marginBottom: 22 }}>{t('why3')}</p>
-            <p className="serif-i" style={{ color: 'var(--color-ink-dark)', fontSize: 'clamp(18px, 2.2vw, 22px)', lineHeight: 1.5 }}>{t('why4')}</p>
           </Reveal>
         </div>
       </section>
