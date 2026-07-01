@@ -1,11 +1,21 @@
 import { NextResponse } from 'next/server'
 
 // Newsletter signup → Beehiiv. The API key lives only on the server (env), never in the browser.
+// Custom fields (Nome, Perfil, Idiomas) must already exist in the Beehiiv publication,
+// otherwise Beehiiv silently discards them.
 export async function POST(req: Request) {
   let email = ''
+  let name = ''
+  let profile = ''
+  let languages: string[] = []
   try {
     const body = await req.json()
     email = (body?.email ?? '').toString().trim()
+    name = (body?.name ?? '').toString().trim()
+    profile = (body?.profile ?? '').toString().trim()
+    languages = Array.isArray(body?.languages)
+      ? body.languages.filter((l: unknown): l is string => typeof l === 'string')
+      : []
   } catch {
     return NextResponse.json({ error: 'bad_request' }, { status: 400 })
   }
@@ -21,6 +31,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'not_configured' }, { status: 500 })
   }
 
+  const customFields: { name: string; value: string }[] = []
+  if (name) customFields.push({ name: 'Nome', value: name })
+  if (profile) customFields.push({ name: 'Perfil', value: profile })
+  if (languages.length) customFields.push({ name: 'Idiomas', value: languages.join(', ') })
+
   try {
     const res = await fetch(`https://api.beehiiv.com/v2/publications/${pubId}/subscriptions`, {
       method: 'POST',
@@ -34,6 +49,7 @@ export async function POST(req: Request) {
         send_welcome_email: true,
         utm_source: 'website',
         referring_site: 'globalle',
+        ...(customFields.length ? { custom_fields: customFields } : {}),
       }),
     })
 

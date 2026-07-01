@@ -68,7 +68,18 @@
   "newsletter_form": {
     "success": "Obrigado! Confirme seu e-mail para começar a receber.",
     "error": "Ocorreu um erro. Tente novamente.",
-    "invalid": "Por favor insira um e-mail válido."
+    "invalid": "Por favor insira um e-mail válido.",
+    "continue": "Continuar",
+    "step2_title": "Só mais um passo",
+    "step2_subtitle": "Conte-nos sobre você para personalizarmos o conteúdo.",
+    "name_label": "Nome",
+    "name_placeholder": "Como podemos te chamar?",
+    "profile_label": "Você é...",
+    "profile_options": ["Corretor de imóveis", "Gestor ou líder comercial", "Dono de imobiliária", "Incorporador", "Marketing imobiliário", "Consultor", "Outro"],
+    "languages_label": "Idiomas que você fala",
+    "languages_options": ["Português", "Inglês", "Espanhol", "Italiano"],
+    "submit": "Concluir inscrição",
+    "back": "Voltar"
   },
   "consultoria": {
     "label": "Consultoria",
