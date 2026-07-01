@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Space+Mono:wght@400&display=swap" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 640px; height: 160px; overflow: hidden; }
+  body {
+    position: relative;
+    background: #070B24 url('/public/bg-bokeh.jpg') center / cover no-repeat;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px;
+  }
+  body::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(7,11,36,0.55), rgba(7,11,36,0.82));
+  }
+  img { position: relative; height: 42px; width: auto; display: block; }
+  p {
+    position: relative;
+    font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(237,241,247,0.72);
+    display: flex; align-items: center; gap: 10px;
+  }
+  p::before, p::after { content: ""; width: 20px; height: 1px; background: rgba(237,241,247,0.4); }
+</style>
+</head>
+<body>
+  <img src="/public/globalle-logo.png" alt="Globalle" />
+  <p>Inteligência imobiliária global, toda semana</p>
+</body>
+</html>

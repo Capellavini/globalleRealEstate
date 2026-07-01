@@ -14,13 +14,13 @@ interface Props {
 export default function NewsletterForm({ placeholder, cta, dark = true, note }: Props) {
   const t = useTranslations('newsletter_form')
   const profileOptions = t.raw('profile_options') as string[]
-  const languageOptions = t.raw('languages_options') as string[]
 
   const [step, setStep] = useState<1 | 2>(1)
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
+  const [company, setCompany] = useState('')
   const [profile, setProfile] = useState('')
-  const [languages, setLanguages] = useState<string[]>([])
+  const [languages, setLanguages] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [msg, setMsg] = useState('')
   const [focused, setFocused] = useState(false)
@@ -42,10 +42,6 @@ export default function NewsletterForm({ placeholder, cta, dark = true, note }: 
     setStatus('idle'); setMsg(''); setStep(2)
   }
 
-  function toggleLanguage(lang: string) {
-    setLanguages(prev => prev.includes(lang) ? prev.filter(l => l !== lang) : [...prev, lang])
-  }
-
   async function handleFinalSubmit(e: React.FormEvent) {
     e.preventDefault()
     setStatus('loading')
@@ -53,7 +49,7 @@ export default function NewsletterForm({ placeholder, cta, dark = true, note }: 
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, name, profile, languages }),
+        body: JSON.stringify({ email, name, company, profile, languages }),
       })
       if (!res.ok) throw new Error()
       setStatus('success'); setMsg(t('success'))
@@ -156,6 +152,16 @@ export default function NewsletterForm({ placeholder, cta, dark = true, note }: 
         />
       </div>
 
+      {/* company (optional) */}
+      <div style={{ marginBottom: 18 }}>
+        <label htmlFor="nf-company" style={labelStyle}>{t('company_label')}</label>
+        <input
+          id="nf-company" type="text" value={company}
+          onChange={e => setCompany(e.target.value)} placeholder={t('company_placeholder')}
+          style={{ width: '100%', boxSizing: 'border-box', padding: '12px 16px', borderRadius: 11, border: `1px solid ${baseBorder}`, background: fieldBg, color: textColor, fontSize: 15, outline: 'none', fontFamily: 'var(--font-body)' }}
+        />
+      </div>
+
       {/* profile (single) */}
       <div style={{ marginBottom: 18 }}>
         <label style={labelStyle}>{t('profile_label')}</label>
@@ -168,16 +174,14 @@ export default function NewsletterForm({ placeholder, cta, dark = true, note }: 
         </div>
       </div>
 
-      {/* languages (multi) */}
+      {/* languages (free text) */}
       <div style={{ marginBottom: 24 }}>
-        <label style={labelStyle}>{t('languages_label')}</label>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-          {languageOptions.map(lang => (
-            <button key={lang} type="button" aria-pressed={languages.includes(lang)} onClick={() => toggleLanguage(lang)} style={chipStyle(languages.includes(lang))}>
-              {lang}
-            </button>
-          ))}
-        </div>
+        <label htmlFor="nf-languages" style={labelStyle}>{t('languages_label')}</label>
+        <input
+          id="nf-languages" type="text" value={languages}
+          onChange={e => setLanguages(e.target.value)} placeholder={t('languages_placeholder')}
+          style={{ width: '100%', boxSizing: 'border-box', padding: '12px 16px', borderRadius: 11, border: `1px solid ${baseBorder}`, background: fieldBg, color: textColor, fontSize: 15, outline: 'none', fontFamily: 'var(--font-body)' }}
+        />
       </div>
 
       <button type="submit" disabled={status === 'loading'} style={{

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&family=Fraunces:ital,opsz,wght@1,9..144,500&family=Space+Mono:wght@400;700&display=swap" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    background: #070B24 url('/public/skyline.jpg') center / cover no-repeat;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(7,11,36,0.35) 0%, rgba(7,11,36,0.55) 45%, rgba(7,11,36,0.96) 100%);
+  }
+  .content { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 56px 64px; }
+  .kicker {
+    font-family: 'Space Mono', monospace; font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #E8B86D; display: flex; align-items: center; gap: 14px;
+  }
+  .kicker::before { content: ""; width: 30px; height: 1px; background: #E8B86D; }
+  .headline {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
+    font-size: 52px; line-height: 1.18; color: #EDF1F7; max-width: 900px;
+  }
+  .foot { display: flex; align-items: center; justify-content: space-between; }
+  .foot img { height: 34px; }
+  .foot span {
+    font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(237,241,247,0.55);
+  }
+</style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="content">
+    <div class="kicker">Edição nº 01</div>
+    <div class="headline">O mercado que vem: para onde vai o real estate global</div>
+    <div class="foot">
+      <img src="/public/globalle-logo.png" alt="Globalle" />
+      <span>globalle.co</span>
+    </div>
+  </div>
+</body>
+</html>

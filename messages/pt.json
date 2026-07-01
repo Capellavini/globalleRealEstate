@@ -5,7 +5,6 @@
     "manifesto": "Manifesto",
     "comunidade": "Comunidade",
     "consultoria": "Consultoria",
-    "contato": "Contato",
     "subscribe": "Assinar Newsletter"
   },
   "hero": {
@@ -74,10 +73,12 @@
     "step2_subtitle": "Conte-nos sobre você para personalizarmos o conteúdo.",
     "name_label": "Nome",
     "name_placeholder": "Como podemos te chamar?",
+    "company_label": "Empresa",
+    "company_placeholder": "Nome da empresa (opcional)",
     "profile_label": "Você é...",
     "profile_options": ["Corretor de imóveis", "Gestor ou líder comercial", "Dono de imobiliária", "Incorporador", "Marketing imobiliário", "Consultor", "Outro"],
     "languages_label": "Idiomas que você fala",
-    "languages_options": ["Português", "Inglês", "Espanhol", "Italiano"],
+    "languages_placeholder": "Ex.: Português, inglês, espanhol",
     "submit": "Concluir inscrição",
     "back": "Voltar"
   },
@@ -136,26 +137,6 @@
         "cta": "Solicitar proposta",
         "popular": false
       }
-    ],
-    "faq_label": "FAQ",
-    "faq_headline": "Perguntas frequentes",
-    "faqs": [
-      {
-        "q": "A consultoria é presencial ou remota?",
-        "a": "A Comunidade e os planos de consultoria funcionam 100% de forma remota (videochamadas, encontros e grupo fechado). O Projeto Sob Medida pode incluir componentes presenciais conforme a localização e a necessidade."
-      },
-      {
-        "q": "É possível começar em um plano e depois avançar?",
-        "a": "Sim. A maioria dos clientes começa na Comunidade ou na Consultoria Inicial e avança para planos mais completos conforme os resultados. O processo é simples e sem custos adicionais de transição."
-      },
-      {
-        "q": "Os planos incluem acesso à Comunidade Globalle?",
-        "a": "Sim. A partir da Consultoria Inicial, todos os planos incluem o acesso à Comunidade Globalle e a conteúdos exclusivos."
-      },
-      {
-        "q": "Vocês trabalham com imobiliárias do Brasil e de Portugal?",
-        "a": "Sim. Temos clientes no Brasil, em Portugal e em mercados internacionais. O conteúdo e as sessões se adaptam ao mercado local de cada cliente."
-      }
     ]
   },
   "comunidade": {
@@ -191,25 +172,6 @@
     ],
     "plan_cta": "Entrar na comunidade",
     "plan_tagline": "A newsletter entrega a ideia. A comunidade ajuda você a discutir, adaptar e aplicar."
-  },
-  "contato": {
-    "label": "Contato",
-    "headline": "Fale conosco",
-    "subheadline": "Tem uma dúvida, quer saber mais sobre a consultoria ou colaborar com a Globalle? Deixe sua mensagem.",
-    "name_label": "Nome",
-    "name_placeholder": "Seu nome",
-    "email_label": "E-mail",
-    "email_placeholder": "Seu e-mail",
-    "subject_label": "Assunto",
-    "subject_placeholder": "Como podemos ajudar?",
-    "message_label": "Mensagem",
-    "message_placeholder": "Sua mensagem...",
-    "submit": "Enviar mensagem",
-    "success": "Mensagem enviada! Respondemos em até 48h.",
-    "info_title": "Informações",
-    "info_email": "hello@globalle.co",
-    "info_social": "Redes Sociais",
-    "info_response": "Tempo de resposta médio: 48h"
   },
   "footer": {
     "tagline": "Inteligência imobiliária global, toda semana.",

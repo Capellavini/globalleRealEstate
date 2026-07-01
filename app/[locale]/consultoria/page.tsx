@@ -16,7 +16,6 @@ export default function ConsultoriaPage() {
   const t = useTranslations('consultoria')
   const finalCta = useTranslations('final_cta')
   const plans = t.raw('plans') as Plan[]
-  const faqs = t.raw('faqs') as Array<{ q: string; a: string }>
   const currency = detectCurrency()
 
   return (
@@ -50,7 +49,7 @@ export default function ConsultoriaPage() {
       </section>
 
       {/* Plans (3 — currency auto by geo) */}
-      <section style={{ background: 'var(--color-navy)', padding: '40px 28px 100px' }}>
+      <section style={{ background: 'linear-gradient(180deg, var(--color-paper) 0%, var(--color-paper-2) 100%)', padding: '40px 28px 100px' }}>
         <div style={{ maxWidth: 1080, margin: '0 auto' }}>
           <div className="plans-grid">
             {plans.map((plan, i) => {
@@ -60,10 +59,10 @@ export default function ConsultoriaPage() {
                 <Reveal key={plan.id} delay={i * 80}>
                   <div style={{
                     position: 'relative', height: '100%', display: 'flex', flexDirection: 'column',
-                    background: plan.popular ? 'linear-gradient(180deg, var(--color-navy-4) 0%, var(--color-navy-3) 100%)' : 'rgba(255,255,255,0.025)',
-                    border: plan.popular ? '1px solid rgba(30,167,232,0.5)' : '1px solid var(--color-line)',
+                    background: plan.popular ? 'linear-gradient(180deg, #FFFFFF 0%, var(--color-paper) 100%)' : 'var(--color-paper-2)',
+                    border: plan.popular ? '1px solid rgba(30,167,232,0.5)' : '1px solid var(--color-line-dark)',
                     borderRadius: 18, padding: '34px 26px',
-                    boxShadow: plan.popular ? '0 24px 60px -24px rgba(30,167,232,0.5)' : 'none',
+                    boxShadow: plan.popular ? '0 24px 60px -24px rgba(30,167,232,0.35)' : 'none',
                   }}>
                     {plan.popular && (
                       <div style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', background: 'var(--color-blue)', color: '#04121f', fontSize: 11, fontWeight: 700, fontFamily: 'var(--font-display)', padding: '5px 14px', borderRadius: 100, whiteSpace: 'nowrap', letterSpacing: '0.02em', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
@@ -71,20 +70,20 @@ export default function ConsultoriaPage() {
                       </div>
                     )}
 
-                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 19, fontWeight: 700, color: 'var(--color-ink)', marginBottom: 14, minHeight: 48 }}>{plan.name}</h3>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 19, fontWeight: 700, color: 'var(--color-ink-dark)', marginBottom: 14, minHeight: 48 }}>{plan.name}</h3>
 
-                    <div style={{ marginBottom: 20, paddingBottom: 20, borderBottom: '1px solid var(--color-line)' }}>
-                      <span className="serif" style={{ fontSize: isCustom ? 26 : 40, fontWeight: 600, color: 'var(--color-ink)', letterSpacing: '-0.02em' }}>{priceStr}</span>
-                      {plan.period && !isCustom && <span style={{ color: 'var(--color-ink-faint)', fontSize: 15, fontFamily: 'var(--font-mono)' }}> {plan.period}</span>}
+                    <div style={{ marginBottom: 20, paddingBottom: 20, borderBottom: '1px solid var(--color-line-dark)' }}>
+                      <span className="serif" style={{ fontSize: isCustom ? 26 : 40, fontWeight: 600, color: 'var(--color-ink-dark)', letterSpacing: '-0.02em' }}>{priceStr}</span>
+                      {plan.period && !isCustom && <span style={{ color: 'var(--color-ink-dark-dim)', fontSize: 15, fontFamily: 'var(--font-mono)' }}> {plan.period}</span>}
                     </div>
 
-                    <p style={{ color: 'var(--color-ink-dim)', fontSize: 14, marginBottom: 24, lineHeight: 1.6 }}>{plan.description}</p>
+                    <p style={{ color: 'var(--color-ink-dark-dim)', fontSize: 14, marginBottom: 24, lineHeight: 1.6 }}>{plan.description}</p>
 
                     <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 28px', display: 'flex', flexDirection: 'column', gap: 13, flex: 1 }}>
                       {plan.features.map((f, j) => (
                         <li key={j} style={{ display: 'flex', gap: 11, alignItems: 'flex-start' }}>
-                          <span style={{ flexShrink: 0, color: 'var(--color-blue-bright)', display: 'flex', marginTop: 1 }}><Icon name="check" size={17} strokeWidth={2.2} /></span>
-                          <span style={{ color: 'var(--color-ink-dim)', fontSize: 14, lineHeight: 1.55 }}>{f}</span>
+                          <span style={{ flexShrink: 0, color: 'var(--color-blue)', display: 'flex', marginTop: 1 }}><Icon name="check" size={17} strokeWidth={2.2} /></span>
+                          <span style={{ color: 'var(--color-ink-dark-dim)', fontSize: 14, lineHeight: 1.55 }}>{f}</span>
                         </li>
                       ))}
                     </ul>
@@ -93,8 +92,8 @@ export default function ConsultoriaPage() {
                       display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8,
                       padding: '13px 18px', borderRadius: 11, fontSize: 14.5, fontWeight: 700, fontFamily: 'var(--font-display)', textDecoration: 'none',
                       background: plan.popular ? 'var(--color-blue)' : 'transparent',
-                      border: plan.popular ? 'none' : '1px solid var(--color-line-strong)',
-                      color: plan.popular ? '#04121f' : 'var(--color-ink)',
+                      border: plan.popular ? 'none' : '1px solid var(--color-line-dark)',
+                      color: plan.popular ? '#04121f' : 'var(--color-ink-dark)',
                     }}>
                       {plan.cta} <Icon name="arrow" size={16} strokeWidth={2} />
                     </a>
@@ -102,35 +101,6 @@ export default function ConsultoriaPage() {
                 </Reveal>
               )
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section style={{ background: 'linear-gradient(180deg, var(--color-paper) 0%, var(--color-paper-2) 100%)', padding: '100px 28px' }}>
-        <div style={{ maxWidth: 760, margin: '0 auto' }}>
-          <Reveal>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 22 }}>
-              <span className="serif" style={{ fontSize: 17, fontStyle: 'italic', color: 'var(--color-gold)' }}>—</span>
-              <span className="kicker" style={{ color: 'var(--color-ink-dark-dim)' }}>{t('faq_label')}</span>
-            </div>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px, 3.6vw, 40px)', fontWeight: 800, color: 'var(--color-ink-dark)', letterSpacing: '-0.02em', marginBottom: 48 }}>
-              {t('faq_headline')}
-            </h2>
-          </Reveal>
-
-          <div>
-            {faqs.map((faq, i) => (
-              <Reveal key={i}>
-                <div style={{ borderTop: '1px solid var(--color-line-dark)', padding: '28px 0' }}>
-                  <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 17.5, fontWeight: 700, color: 'var(--color-ink-dark)', marginBottom: 12, display: 'flex', gap: 14 }}>
-                    <span className="serif-i" style={{ color: 'var(--color-blue)', fontSize: 16 }}>0{i + 1}</span>
-                    {faq.q}
-                  </h4>
-                  <p style={{ color: 'var(--color-ink-dark-dim)', fontSize: 15, lineHeight: 1.7, paddingLeft: 30 }}>{faq.a}</p>
-                </div>
-              </Reveal>
-            ))}
           </div>
         </div>
       </section>

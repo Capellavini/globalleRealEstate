@@ -24,7 +24,6 @@ export default function Header() {
     { href: '/#manifesto', label: t('manifesto') },
     { href: '/comunidade', label: t('comunidade') },
     { href: '/consultoria', label: t('consultoria') },
-    { href: '/contato', label: t('contato') },
   ]
 
   return (

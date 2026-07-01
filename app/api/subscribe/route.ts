@@ -1,21 +1,21 @@
 import { NextResponse } from 'next/server'
 
 // Newsletter signup → Beehiiv. The API key lives only on the server (env), never in the browser.
-// Custom fields (Nome, Perfil, Idiomas) must already exist in the Beehiiv publication,
+// Custom fields (Nome, Empresa, Perfil, Idiomas) must already exist in the Beehiiv publication,
 // otherwise Beehiiv silently discards them.
 export async function POST(req: Request) {
   let email = ''
   let name = ''
+  let company = ''
   let profile = ''
-  let languages: string[] = []
+  let languages = ''
   try {
     const body = await req.json()
     email = (body?.email ?? '').toString().trim()
     name = (body?.name ?? '').toString().trim()
+    company = (body?.company ?? '').toString().trim()
     profile = (body?.profile ?? '').toString().trim()
-    languages = Array.isArray(body?.languages)
-      ? body.languages.filter((l: unknown): l is string => typeof l === 'string')
-      : []
+    languages = (body?.languages ?? '').toString().trim()
   } catch {
     return NextResponse.json({ error: 'bad_request' }, { status: 400 })
   }
@@ -33,8 +33,9 @@ export async function POST(req: Request) {
 
   const customFields: { name: string; value: string }[] = []
   if (name) customFields.push({ name: 'Nome', value: name })
+  if (company) customFields.push({ name: 'Empresa', value: company })
   if (profile) customFields.push({ name: 'Perfil', value: profile })
-  if (languages.length) customFields.push({ name: 'Idiomas', value: languages.join(', ') })
+  if (languages) customFields.push({ name: 'Idiomas', value: languages })
 
   try {
     const res = await fetch(`https://api.beehiiv.com/v2/publications/${pubId}/subscriptions`, {
