@@ -25,16 +25,17 @@ export default function NewsletterForm({ placeholder, cta, dark = true, note }: 
     }
     setStatus('loading')
 
-    // TODO: conectar a ESP — ex. Mailerlite, ConvertKit, Systeme.io
-    // const res = await fetch('/api/subscribe', {
-    //   method: 'POST',
-    //   body: JSON.stringify({ email }),
-    //   headers: { 'Content-Type': 'application/json' },
-    // })
-    // if (!res.ok) throw new Error()
-
-    await new Promise(r => setTimeout(r, 800)) // simulate
-    setStatus('success'); setMsg(t('success')); setEmail('')
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      if (!res.ok) throw new Error()
+      setStatus('success'); setMsg(t('success')); setEmail('')
+    } catch {
+      setStatus('error'); setMsg(t('error'))
+    }
   }
 
   const textColor = dark ? 'var(--color-ink)' : 'var(--color-ink-dark)'

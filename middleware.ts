@@ -4,5 +4,6 @@ import { routing } from './i18n/routing'
 export default createMiddleware(routing)
 
 export const config = {
-  matcher: ['/((?!_next|_vercel|.*\\..*).*)'],
+  // Exclude /api (and Next internals + files) so API routes aren't locale-prefixed.
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
 }
