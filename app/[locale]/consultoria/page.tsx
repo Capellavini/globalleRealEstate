@@ -88,7 +88,7 @@ export default function ConsultoriaPage() {
                       ))}
                     </ul>
 
-                    <a href="mailto:hello@globalle.co" style={{
+                    <a href="mailto:hello@globalleinsights.com" style={{
                       display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8,
                       padding: '13px 18px', borderRadius: 11, fontSize: 14.5, fontWeight: 700, fontFamily: 'var(--font-display)', textDecoration: 'none',
                       background: plan.popular ? 'var(--color-blue)' : 'transparent',

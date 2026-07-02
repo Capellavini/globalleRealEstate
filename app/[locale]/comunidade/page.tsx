@@ -124,7 +124,7 @@ export default function ComunidadePage() {
                   </li>
                 ))}
               </ul>
-              <a href="mailto:hello@globalle.co" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8, padding: '15px 24px', borderRadius: 12, background: 'var(--color-blue)', color: '#04121f', fontSize: 15, fontWeight: 700, fontFamily: 'var(--font-display)', textDecoration: 'none' }}>
+              <a href="mailto:hello@globalleinsights.com" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8, padding: '15px 24px', borderRadius: 12, background: 'var(--color-blue)', color: '#04121f', fontSize: 15, fontWeight: 700, fontFamily: 'var(--font-display)', textDecoration: 'none' }}>
                 {t('plan_cta')} <Icon name="arrow" size={16} strokeWidth={2} />
               </a>
             </div>
