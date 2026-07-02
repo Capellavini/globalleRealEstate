@@ -133,7 +133,7 @@ export default function ComunidadePage() {
             </p>
             <div style={{ textAlign: 'center', marginTop: 22 }}>
               <Link href={`/${locale}/#newsletter`} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, color: 'var(--color-blue-bright)', textDecoration: 'none', fontSize: 14.5, fontWeight: 600, fontFamily: 'var(--font-display)' }}>
-                {locale === 'pt' ? 'Ainda não conhece a newsletter? Comece por aqui' : 'New here? Start with the newsletter'} <Icon name="arrowUpRight" size={15} strokeWidth={2} />
+                {t('newsletter_link')} <Icon name="arrowUpRight" size={15} strokeWidth={2} />
               </Link>
             </div>
           </div>

@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl'
 import Link from 'next/link'
 import Logo from './Logo'
 import Icon from './Icon'
+import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Header() {
   const t = useTranslations('nav')
@@ -66,7 +67,9 @@ export default function Header() {
             ))}
           </nav>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginLeft: 'auto' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 18, marginLeft: 'auto' }}>
+            <LanguageSwitcher />
+
             <Link
               href={`/${locale}/#newsletter`}
               className="hidden sm:inline-flex"
@@ -122,6 +125,9 @@ export default function Header() {
           borderBottom: '1px solid var(--color-line)',
           padding: '12px 28px 28px',
         }}>
+          <div style={{ padding: '14px 0', borderBottom: '1px solid var(--color-line)' }}>
+            <LanguageSwitcher />
+          </div>
           {navLinks.map(link => (
             <Link
               key={link.href}

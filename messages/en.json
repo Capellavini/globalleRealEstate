@@ -1,172 +1,191 @@
 {
+  "meta": {
+    "title": "Globalle — Global Real Estate Intelligence",
+    "description": "A weekly global real estate intelligence newsletter. Practices from the world's best markets, translated into action for professionals everywhere."
+  },
   "nav": {
     "home": "Home",
     "about": "About",
     "manifesto": "Manifesto",
+    "comunidade": "Community",
     "consultoria": "Advisory",
-    "contato": "Contact",
-    "subscribe": "Subscribe"
+    "subscribe": "Subscribe to Newsletter"
   },
   "hero": {
     "headline": "Global Real Estate Intelligence, translated into local action.",
-    "subheadline": "Every week, we decode what the world's best real estate firms are doing — and show you exactly how to apply it in your market.",
+    "subheadline": "Every week, we show you what the world's best real estate firms are doing — and how to apply it in your market.",
     "cta": "Subscribe for free",
     "cta_placeholder": "Your best email address",
-    "badge": "Available in Portuguese, English & Italian",
     "scroll": "Learn more"
   },
   "approach": {
     "label": "Our Approach",
     "headline": "The market is global. So should you be.",
-    "col1_title": "How We Think",
-    "col1_body": "We go deep into the practices of the world's top real estate firms — from the US to the UK, from Italy to the Middle East — and translate that intelligence into actionable content for professionals in Portuguese-speaking markets. No filters, no empty jargon.",
+    "col1_title": "Our Approach",
+    "col1_body": "We dig deep into the practices of the world's best real estate firms and translate that knowledge into content you can actually apply in your own market.",
     "col2_title": "What Sets Us Apart",
-    "col2_body": "We're not a news digest. We're a strategic intelligence platform: every issue brings a real case study, a proven technique, and one concrete step you can implement this week.",
+    "col2_body": "We're not a news digest. We're a strategic intelligence platform: every issue brings a real case, a proven technique, and one concrete step you can implement this week.",
     "quote": "Globalle: a platform connecting the real estate market to the world through content that matters to every professional in the industry."
   },
   "manifesto": {
     "label": "Manifesto",
     "headline": "Why the world needs real estate professionals with a global mindset",
-    "p1": "We live in a world where capital moves in real time — where buyers in Lisbon purchase in Miami and investors in São Paulo choose properties in Portugal before ever setting foot there. Yet the professionals who should be guiding those decisions are still learning almost exclusively within their own borders.",
-    "p2": "That's not their fault. It's a matter of access.",
-    "p3": "The knowledge that defines excellence in global real estate — the conversion scripts used by New York's top brokers, the onboarding model that London's largest agencies use for new consultants, the way Italian developers build local brands with international reach — rarely makes it, in Portuguese, to the people who need it most.",
-    "p4": "Globalle was built to change that.",
-    "p5": "We're not a market news aggregator. We're a strategic intelligence clearinghouse: we do the research, interview the right people, distill what's essential, and deliver it in a language any ambitious professional can pick up and apply.",
-    "p6": "We believe the next generation of great real estate names in Portugal and Brazil won't only be shaped by access to the best schools or the best local mentors. They'll be shaped by the curiosity to look outward — and the discipline to translate that perspective into action.",
-    "p7": "That's what Globalle delivers, week after week.",
-    "closing": "The borders are open. Come build with us."
+    "p1": "Knowledge has gone global, but it remains scattered. Every day, real estate professionals in different countries develop new strategies for sales, marketing, management, technology and client relationships. Most of those ideas, though, never cross the border where they were born. And when they do, they rarely arrive in a structured, applicable form to the people who could benefit from them.",
+    "p2": "The knowledge that defines excellence in global real estate — from the conversion scripts top brokers use in markets like New York, to the onboarding model the biggest London agencies apply to new consultants, to how Italian developers build local brands with international reach — rarely reaches, in a clear and structured way, the people who'd want to replicate it.",
+    "p3": "Globalle was built to change that.",
+    "p4": "We're not a market news aggregator. We're your point of contact between your local market and the best of strategic intelligence out there. We do the research, interview the right people, translate what's essential, and deliver it in language any ambitious professional can put to use immediately.",
+    "p5": "We believe the next generation of great names in real estate won't be shaped only by access to the best courses or mentors. It will be shaped by those with the curiosity to look outward — and the discipline to turn what they learn into action.",
+    "p6": "That's what Globalle delivers, week after week.",
+    "closing": "The borders are open. Join us on this journey."
   },
   "value_props": {
     "label": "Value Proposition",
     "headline": "Why Globalle is different",
     "cards": [
-      { "icon": "curation", "title": "Intelligent Interview Curation", "body": "We access top professionals from markets like the US, UK, Italy, and UAE. Every issue brings perspectives you won't find in Portuguese anywhere else." },
-      { "icon": "cultural", "title": "Cultural + Technical Insight", "body": "It's not just the 'what' — it's the 'cultural why'. We understand that American market practices can't be copied. They have to be translated. That's exactly what we do." },
-      { "icon": "experience", "title": "Deep Real Estate Experience", "body": "Our founding team has direct experience in transactions, team management, and real estate development across Portugal, Brazil, and international markets." },
-      { "icon": "community", "title": "A Community Built to Grow", "body": "Our readers aren't passive. They're professionals who apply what they read, share results, and build together. The community is part of the product." }
+      { "icon": "curation", "title": "Smart Interview Curation", "body": "We interview top professionals from markets around the globe — from the obvious ones to those you'd never expect. Every issue brings perspectives you won't find anywhere else." },
+      { "icon": "cultural", "title": "Cultural + Technical Insight", "body": "We understand that practices from other markets can't just be copied — they need to be translated. With a cultural lens beyond the purely technical, we translate the nuances of each market for our readers." },
+      { "icon": "experience", "title": "Deep Real Estate Experience", "body": "We live and breathe real estate ourselves. With hands-on experience across different markets, our team is fluent in the business, turning tactics into actions you can really apply." },
+      { "icon": "community", "title": "A Community Built to Grow", "body": "Our readers are professionals who apply what they read, share results, and build together. The community is part of the product. Join a group of professionals who want to win." }
     ]
   },
   "products": {
     "label": "Products",
     "headline": "What Globalle offers",
     "newsletter_title": "Weekly Newsletter",
-    "newsletter_body": "The heart of Globalle. Every week, an in-depth analysis of a global real estate practice, case study, or trend — in Portuguese, English, and Italian. Free. No spam. Cancel anytime.",
+    "newsletter_body": "The heart of Globalle. Every week, an in-depth look at a practice, case or trend from the global real estate market.",
     "newsletter_cta": "Subscribe for free",
+    "community_title": "Globalle Community",
+    "community_lead": "For professionals who want to go beyond the newsletter.",
+    "community_body": "The Globalle Community brings together brokers, managers, agency owners and real estate professionals who want to learn from the world, exchange experience and turn knowledge into action. More than a content community, Globalle is a network for real estate professionals who think bigger. Learn more on the Plans page.",
+    "community_cta": "Discover the community",
     "consultoria_title": "Strategic Advisory",
-    "consultoria_body": "For teams and agencies ready to go beyond content and turn intelligence into concrete processes. From adopting new techniques to full operational restructuring.",
-    "consultoria_cta": "See plans"
+    "consultoria_body": "For brokers, teams and agencies who want to go beyond content and turn intelligence into concrete processes. From adopting new techniques to a full operational overhaul.",
+    "consultoria_cta": "See plans",
+    "mockup_cta": "Read the analysis"
   },
   "final_cta": {
-    "headline": "Start thinking globally today",
-    "subheadline": "Join hundreds of professionals already receiving global real estate intelligence every week.",
+    "headline": "Join a community of professionals like you.",
+    "subheadline": "Subscribe now and join the professionals who already get global real estate intelligence every week.",
     "cta": "Subscribe for free",
     "placeholder": "Your best email address"
   },
   "newsletter_form": {
     "success": "Thank you! Check your inbox to confirm your subscription.",
     "error": "Something went wrong. Please try again.",
-    "invalid": "Please enter a valid email address."
+    "invalid": "Please enter a valid email address.",
+    "continue": "Continue",
+    "step2_title": "Just one more step",
+    "step2_subtitle": "Tell us about yourself so we can personalize your content.",
+    "name_label": "Name",
+    "name_placeholder": "What should we call you?",
+    "company_label": "Company",
+    "company_placeholder": "Company name (optional)",
+    "profile_label": "You are...",
+    "profile_options": ["Real estate broker", "Manager or sales leader", "Agency owner", "Developer", "Real estate marketing", "Consultant", "Other"],
+    "languages_label": "Languages you speak",
+    "languages_placeholder": "E.g.: English, Portuguese, Spanish",
+    "submit": "Complete sign-up",
+    "back": "Back"
   },
   "consultoria": {
     "label": "Advisory",
-    "headline": "Turn intelligence into results",
-    "subheadline": "Choose the plan that fits your team or agency's current stage.",
+    "headline": "Choose how you want to grow with Globalle",
+    "subheadline": "From community to strategic projects, we help real estate professionals and companies turn global references into practical action for sales, management, marketing and growth.",
+    "positioning": "The newsletter shows you what's happening in the world. The Community and Globalle's plans help you put it into practice.",
     "popular": "Most popular",
     "plans": [
       {
-        "id": "aplicacao",
-        "name": "Group Application",
-        "price": "€500",
+        "id": "inicial",
+        "name": "Starter Advisory",
+        "price": { "eur": "€300", "brl": "R$1,500" },
         "period": "/month",
-        "description": "For teams that want to implement new practices in a structured, supported way.",
+        "description": "For professionals and agencies who want to start applying new practices with direction.",
         "features": [
-          "Access to all playbooks and SOP/training library",
-          "1 monthly group session to apply the week's playbook",
-          "Monthly async check-in",
-          "Ready-to-use templates (sales scripts, agent onboarding, etc.)",
-          "Support via private group (WhatsApp/Slack)"
+          "Access to the Globalle Community",
+          "1 monthly individual call",
+          "Practical playbooks and templates",
+          "Simplified monthly action plan",
+          "Diagnosis and process mapping"
         ],
-        "cta": "Apply with my team",
+        "cta": "Get started",
         "popular": false
       },
       {
-        "id": "estrategico",
-        "name": "Strategic",
-        "price": "€1,500",
+        "id": "crescimento",
+        "name": "Growth Advisory",
+        "price": { "eur": "€550", "brl": "R$3,500" },
         "period": "/month",
-        "description": "For leaders and agencies who want a strategic partner with personalized support.",
+        "description": "For professionals, leaders and agencies who want closer, hands-on support.",
         "features": [
+          "Everything in Starter Advisory",
           "Initial operational diagnosis",
-          "Customized quarterly action plan",
-          "1 individual call per month",
-          "KPI monitoring",
-          "Priority access to exclusive content"
+          "2 individual calls per month",
+          "Personalized action plan and team sales training",
+          "Review of materials and sales approach"
         ],
-        "cta": "Talk to a specialist",
+        "cta": "Talk to Globalle",
         "popular": true
       },
       {
         "id": "medida",
         "name": "Custom Project",
-        "price": "On request",
+        "price": { "eur": "By request", "brl": "By request" },
         "period": "",
-        "description": "For large operations requiring full restructuring or high-complexity projects.",
+        "description": "For companies that need a specific, in-depth or more complex project.",
         "features": [
-          "Full operational restructuring",
-          "In-person team training",
-          "Technology/process implementation",
-          "Ongoing post-implementation support",
-          "Monthly executive reports"
+          "Full operational diagnosis",
+          "Project tailored to your goal",
+          "Team training",
+          "Sales process design",
+          "Workshops, talks or special projects"
         ],
         "cta": "Request a proposal",
         "popular": false
       }
-    ],
-    "faq_label": "FAQ",
-    "faq_headline": "Frequently asked questions",
-    "faqs": [
-      {
-        "q": "Is the advisory in-person or remote?",
-        "a": "The Group Application and Strategic plans are 100% remote (video calls and private group). Custom Projects may include in-person components depending on location and scope."
-      },
-      {
-        "q": "Can I start on one plan and upgrade later?",
-        "a": "Yes. Most of our clients start with Group Application and upgrade to Strategic after their first results. The process is straightforward with no additional transition costs."
-      },
-      {
-        "q": "Do the plans include newsletter access?",
-        "a": "Yes. All advisory plans include access to the premium newsletter with exclusive analyses not published in the free version."
-      },
-      {
-        "q": "Do you work with agencies in Portugal and Brazil?",
-        "a": "Yes. We have clients in Portugal, Brazil, and in international Portuguese-speaking markets. Content and sessions are adapted to each client's local market."
-      }
     ]
   },
-  "contato": {
-    "label": "Contact",
-    "headline": "Get in touch",
-    "subheadline": "Have a question, want to learn more about our advisory, or interested in collaborating with Globalle? Drop us a message.",
-    "name_label": "Name",
-    "name_placeholder": "Your name",
-    "email_label": "Email",
-    "email_placeholder": "Your email address",
-    "subject_label": "Subject",
-    "subject_placeholder": "How can we help?",
-    "message_label": "Message",
-    "message_placeholder": "Your message...",
-    "submit": "Send message",
-    "success": "Message sent! We'll get back to you within 48 hours.",
-    "info_title": "Contact Info",
-    "info_email": "hello@globalle.co",
-    "info_social": "Social Media",
-    "info_response": "Average response time: 48h"
+  "comunidade": {
+    "label": "Community",
+    "headline": "Globalle Community",
+    "subheadline": "For real estate professionals who want to think beyond their own market",
+    "intro1": "The Globalle Community is a space for real estate professionals who want to go beyond the newsletter and join a qualified network for learning, discussion and exchanging opportunities.",
+    "intro2": "Every month, we bring together brokers, managers, agency owners and industry professionals to discuss international practices featured in our issues, market trends, sales strategies, technology, management and new ways to grow in real estate.",
+    "intro3": "The idea is simple: turn global references into practical, everyday action and build a network of professionals who share the same growth mindset.",
+    "features_title": "What you'll find in the community",
+    "features": [
+      { "icon": "newsletter", "title": "Exclusive content", "body": "Materials, analyses, summaries and references that go deeper into the topics covered in the newsletter and help you turn knowledge into practice." },
+      { "icon": "calendar", "title": "Monthly discussion sessions", "body": "Live meetings to discuss relevant topics in the global real estate market and understand how those ideas can be applied in your market." },
+      { "icon": "globe", "title": "International practices radar", "body": "A recurring curation of ideas, strategies and moves happening in other real estate markets that can inspire new actions in your own operation." },
+      { "icon": "community", "title": "Qualified networking", "body": "A private group of professionals who want to exchange experience, discuss real challenges and build relationships with people who think globally." },
+      { "icon": "share", "title": "Exchange of opportunities and referrals", "body": "A space to present needs, opportunities, partnerships, referrals and potential deals among community members." },
+      { "icon": "curation", "title": "Global access and qualified connections", "body": "Full interviews with international experts, networking with professionals from other markets, and strategic connections between members with complementary interests, goals and opportunities." }
+    ],
+    "audience_title": "Who it's for",
+    "audience_intro": "The Globalle Community was created for professionals who want to learn from global practices, sharpen their craft and connect with other names in real estate.",
+    "why_title": "Why join",
+    "why_body": "Our community is a space for exchange and learning, for professionals who want to discuss, apply and progress within a highly qualified network.",
+    "plan_name": "Globalle Community",
+    "plan_price": { "eur": "€32", "brl": "R$97" },
+    "plan_period": "/month",
+    "plan_includes": "Includes:",
+    "plan_features": [
+      "Monthly community session",
+      "Exclusive content",
+      "International practices radar",
+      "Private networking group",
+      "Exchange of opportunities and referrals"
+    ],
+    "plan_cta": "Join the community",
+    "plan_tagline": "The newsletter delivers the idea. The community helps you discuss, adapt and apply it.",
+    "newsletter_link": "New here? Start with the newsletter"
   },
   "footer": {
     "tagline": "Global real estate intelligence, every week.",
     "links_title": "Links",
     "social_title": "Social",
-    "copyright": "© 2024 Globalle. All rights reserved.",
+    "newsletter_mini_body": "Global intelligence, every week.",
+    "newsletter_mini_cta": "Subscribe",
+    "copyright": "© 2026 Globalle. All rights reserved.",
     "powered": "Powered by Globalle"
   }
 }

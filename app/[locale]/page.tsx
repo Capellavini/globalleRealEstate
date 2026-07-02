@@ -207,7 +207,7 @@ export default function HomePage() {
                       <div style={{ height: 8, width: '92%', background: 'rgba(255,255,255,0.07)', borderRadius: 4, marginBottom: 8 }} />
                       <div style={{ height: 8, width: '96%', background: 'rgba(255,255,255,0.07)', borderRadius: 4, marginBottom: 18 }} />
                       <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '8px 14px', borderRadius: 8, background: 'var(--color-blue)', color: '#04121f', fontSize: 12, fontWeight: 700, fontFamily: 'var(--font-display)' }}>
-                        {locale === 'pt' ? 'Ler análise' : 'Read analysis'} <Icon name="arrow" size={13} strokeWidth={2.2} />
+                        {t('products.mockup_cta')} <Icon name="arrow" size={13} strokeWidth={2.2} />
                       </div>
                     </div>
                   )}

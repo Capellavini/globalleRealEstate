@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Globalle — Inteligência Imobiliária Global",
+    "description": "Newsletter semanal de inteligência imobiliária global. Práticas dos melhores mercados do mundo, traduzidas em ação para profissionais em Portugal e Brasil."
+  },
   "nav": {
     "home": "Home",
     "about": "Sobre",
@@ -56,7 +60,8 @@
     "community_cta": "Conheça a comunidade",
     "consultoria_title": "Consultoria Estratégica",
     "consultoria_body": "Para corretores, equipes e imobiliárias que querem ir além do conteúdo e transformar inteligência em processos concretos. Da adoção de novas técnicas à reestruturação completa da operação.",
-    "consultoria_cta": "Ver planos"
+    "consultoria_cta": "Ver planos",
+    "mockup_cta": "Ler análise"
   },
   "final_cta": {
     "headline": "Faça parte de uma comunidade de profissionais como você.",
@@ -171,12 +176,15 @@
       "Troca de oportunidades e referências"
     ],
     "plan_cta": "Entrar na comunidade",
-    "plan_tagline": "A newsletter entrega a ideia. A comunidade ajuda você a discutir, adaptar e aplicar."
+    "plan_tagline": "A newsletter entrega a ideia. A comunidade ajuda você a discutir, adaptar e aplicar.",
+    "newsletter_link": "Ainda não conhece a newsletter? Comece por aqui"
   },
   "footer": {
     "tagline": "Inteligência imobiliária global, toda semana.",
     "links_title": "Links",
     "social_title": "Redes Sociais",
+    "newsletter_mini_body": "Inteligência global, toda semana.",
+    "newsletter_mini_cta": "Assinar",
     "copyright": "© 2026 Globalle. Todos os direitos reservados.",
     "powered": "Powered by Globalle"
   }

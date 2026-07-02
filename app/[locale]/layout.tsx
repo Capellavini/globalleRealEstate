@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
+import { getMessages, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 
-export const metadata: Metadata = {
-  title: 'Globalle — Inteligência Imobiliária Global',
-  description: 'Newsletter semanal de inteligência imobiliária global. Práticas dos melhores mercados do mundo, traduzidas em ação para profissionais em Portugal e Brasil.',
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: 'meta' })
+  return { title: t('title'), description: t('description') }
 }
 
 export default async function LocaleLayout({
@@ -18,7 +18,7 @@ export default async function LocaleLayout({
 }) {
   const { locale } = params
 
-  if (!routing.locales.includes(locale as 'pt')) {
+  if (!(routing.locales as readonly string[]).includes(locale)) {
     notFound()
   }
 

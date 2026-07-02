@@ -1,0 +1,191 @@
+{
+  "meta": {
+    "title": "Globalle — Intelligence Immobiliare Globale",
+    "description": "Newsletter settimanale di intelligence immobiliare globale. Le pratiche dei migliori mercati del mondo, tradotte in azione per professionisti ovunque."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "Chi siamo",
+    "manifesto": "Manifesto",
+    "comunidade": "Community",
+    "consultoria": "Consulenza",
+    "subscribe": "Iscriviti alla Newsletter"
+  },
+  "hero": {
+    "headline": "Intelligence Immobiliare Globale, tradotta in azione locale.",
+    "subheadline": "Ogni settimana mostriamo cosa stanno facendo le migliori agenzie immobiliari del mondo — e come applicarlo nel tuo mercato.",
+    "cta": "Iscriviti gratis",
+    "cta_placeholder": "La tua migliore email",
+    "scroll": "Scopri di più"
+  },
+  "approach": {
+    "label": "Il Nostro Approccio",
+    "headline": "Il mercato è globale, tu dovresti esserlo anche tu",
+    "col1_title": "Il Nostro Approccio",
+    "col1_body": "Analizziamo in profondità le pratiche delle migliori agenzie immobiliari del mondo e traduciamo questa conoscenza in contenuti applicabili al tuo mercato.",
+    "col2_title": "Cosa Ci Distingue",
+    "col2_body": "Non siamo una newsletter di notizie. Siamo una piattaforma di intelligence strategica: ogni edizione porta un caso reale, una tecnica comprovata e un passo concreto che puoi implementare già questa settimana.",
+    "quote": "Globalle: una piattaforma che collega il mercato immobiliare al mondo attraverso contenuti rilevanti per ogni professionista del settore."
+  },
+  "manifesto": {
+    "label": "Manifesto",
+    "headline": "Perché il mondo ha bisogno di professionisti immobiliari con una visione globale",
+    "p1": "La conoscenza è diventata globale, ma resta distribuita in modo disorganizzato. Ogni giorno, professionisti immobiliari in paesi diversi sviluppano nuove strategie di vendita, marketing, gestione, tecnologia e relazione con i clienti. La maggior parte di queste idee, però, non supera mai i confini in cui è nata. E quando li supera, raramente arriva in forma strutturata e applicabile a chi potrebbe beneficiarne.",
+    "p2": "La conoscenza che definisce l'eccellenza nel real estate globale — dagli script di conversione usati dai migliori agenti a New York, al modello di onboarding applicato dalle maggiori agenzie di Londra ai nuovi consulenti, fino al modo in cui gli sviluppatori italiani costruiscono un brand locale con portata internazionale — raramente arriva, in modo chiaro e strutturato, a chi vorrebbe replicarla.",
+    "p3": "Globalle è nata per cambiare questo.",
+    "p4": "Non siamo un aggregatore di notizie di mercato. Siamo il tuo punto di contatto tra il tuo mercato locale e il meglio dell'intelligence strategica. Facciamo il lavoro di ricerca, intervistiamo i professionisti giusti, traduciamo ciò che è essenziale e lo consegniamo in un linguaggio che ogni professionista ambizioso può applicare da subito.",
+    "p5": "Crediamo che la prossima generazione di grandi nomi dell'immobiliare non sarà formata solo da chi ha avuto accesso ai migliori corsi o mentori. Sarà formata da chi ha avuto la curiosità di guardare fuori e la disciplina di tradurre ciò che ha imparato in azione.",
+    "p6": "Questo è ciò che Globalle offre, settimana dopo settimana.",
+    "closing": "I confini sono aperti. Unisciti a noi in questo percorso."
+  },
+  "value_props": {
+    "label": "Proposta di Valore",
+    "headline": "Perché Globalle è diversa",
+    "cards": [
+      { "icon": "curation", "title": "Curatela Intelligente delle Interviste", "body": "Intervistiamo professionisti di alto livello da mercati di tutto il mondo — da quelli più ovvi a quelli che non avresti mai immaginato. Ogni edizione porta prospettive che non trovi da nessun'altra parte." },
+      { "icon": "cultural", "title": "Visione Culturale + Tecnica", "body": "Capiamo che le pratiche di altri mercati non si copiano, si traducono. Con uno sguardo culturale oltre il puramente tecnico, traduciamo per i nostri lettori le sfumature di ogni mercato." },
+      { "icon": "experience", "title": "Vasta Esperienza nel Mercato Immobiliare", "body": "Anche noi respiriamo e viviamo il mercato immobiliare! Con esperienza diretta in mercati diversi, il nostro team parla la lingua del settore, traducendo le tattiche in azioni davvero applicabili." },
+      { "icon": "community", "title": "Community Orientata alla Crescita", "body": "I nostri lettori sono professionisti che applicano ciò che leggono, condividono risultati e costruiscono insieme. La community fa parte del prodotto. Unisciti a un gruppo di professionisti che vogliono vincere." }
+    ]
+  },
+  "products": {
+    "label": "Prodotti",
+    "headline": "Cosa offre Globalle",
+    "newsletter_title": "Newsletter Settimanale",
+    "newsletter_body": "Il cuore di Globalle. Ogni settimana, un'analisi approfondita di una pratica, un caso o una tendenza del mercato immobiliare globale.",
+    "newsletter_cta": "Iscriviti gratis",
+    "community_title": "Community Globalle",
+    "community_lead": "Per professionisti che vogliono andare oltre la newsletter.",
+    "community_body": "La Community Globalle riunisce agenti, manager, titolari di agenzie e professionisti del settore immobiliare interessati a imparare dal mondo, scambiare esperienze e trasformare conoscenza in azione. Più di una community di contenuti, Globalle è una rete per professionisti immobiliari che pensano in grande. Scopri di più nella pagina Piani.",
+    "community_cta": "Scopri la community",
+    "consultoria_title": "Consulenza Strategica",
+    "consultoria_body": "Per agenti, team e agenzie che vogliono andare oltre i contenuti e trasformare l'intelligence in processi concreti. Dall'adozione di nuove tecniche alla riorganizzazione completa dell'operatività.",
+    "consultoria_cta": "Vedi i piani",
+    "mockup_cta": "Leggi l'analisi"
+  },
+  "final_cta": {
+    "headline": "Entra a far parte di una community di professionisti come te.",
+    "subheadline": "Iscriviti ora e unisciti ai professionisti che già ricevono intelligence immobiliare globale ogni settimana.",
+    "cta": "Iscriviti gratis",
+    "placeholder": "La tua migliore email"
+  },
+  "newsletter_form": {
+    "success": "Grazie! Conferma la tua email per iniziare a ricevere i contenuti.",
+    "error": "Si è verificato un errore. Riprova.",
+    "invalid": "Inserisci un indirizzo email valido.",
+    "continue": "Continua",
+    "step2_title": "Ancora un passo",
+    "step2_subtitle": "Raccontaci di te per personalizzare i contenuti.",
+    "name_label": "Nome",
+    "name_placeholder": "Come possiamo chiamarti?",
+    "company_label": "Azienda",
+    "company_placeholder": "Nome dell'azienda (opzionale)",
+    "profile_label": "Tu sei...",
+    "profile_options": ["Agente immobiliare", "Manager o responsabile commerciale", "Titolare di agenzia", "Sviluppatore immobiliare", "Marketing immobiliare", "Consulente", "Altro"],
+    "languages_label": "Lingue che parli",
+    "languages_placeholder": "Es.: Italiano, inglese, spagnolo",
+    "submit": "Completa l'iscrizione",
+    "back": "Indietro"
+  },
+  "consultoria": {
+    "label": "Consulenza",
+    "headline": "Scegli come crescere con Globalle",
+    "subheadline": "Dalla community ai progetti strategici, aiutiamo professionisti e aziende del mercato immobiliare a trasformare riferimenti globali in azioni pratiche per vendite, gestione, marketing e crescita.",
+    "positioning": "La newsletter mostra cosa succede nel mondo. La Community e i piani Globalle ti aiutano a metterlo in pratica.",
+    "popular": "Più scelto",
+    "plans": [
+      {
+        "id": "inicial",
+        "name": "Consulenza Iniziale",
+        "price": { "eur": "€300", "brl": "R$1.500" },
+        "period": "/mese",
+        "description": "Per professionisti e agenzie che vogliono iniziare ad applicare nuove pratiche con una direzione chiara.",
+        "features": [
+          "Accesso alla Community Globalle",
+          "1 call individuale mensile",
+          "Playbook e template pratici",
+          "Piano d'azione mensile semplificato",
+          "Diagnosi e mappatura dei processi"
+        ],
+        "cta": "Inizia ora",
+        "popular": false
+      },
+      {
+        "id": "crescimento",
+        "name": "Consulenza di Crescita",
+        "price": { "eur": "€550", "brl": "R$3.500" },
+        "period": "/mese",
+        "description": "Per professionisti, leader e agenzie che vogliono un accompagnamento più ravvicinato.",
+        "features": [
+          "Tutto della Consulenza Iniziale",
+          "Diagnosi iniziale dell'operatività",
+          "2 call individuali al mese",
+          "Piano d'azione personalizzato e training commerciale del team",
+          "Revisione dei materiali e dell'approccio commerciale"
+        ],
+        "cta": "Parla con Globalle",
+        "popular": true
+      },
+      {
+        "id": "medida",
+        "name": "Progetto Su Misura",
+        "price": { "eur": "Su richiesta", "brl": "Su richiesta" },
+        "period": "",
+        "description": "Per aziende che necessitano di un progetto specifico, approfondito o di maggiore complessità.",
+        "features": [
+          "Diagnosi completa dell'operatività",
+          "Progetto personalizzato per obiettivo",
+          "Formazione per il team",
+          "Strutturazione dei processi commerciali",
+          "Workshop, conferenze o progetti speciali"
+        ],
+        "cta": "Richiedi una proposta",
+        "popular": false
+      }
+    ]
+  },
+  "comunidade": {
+    "label": "Community",
+    "headline": "Community Globalle",
+    "subheadline": "Per professionisti immobiliari che vogliono pensare oltre il proprio mercato",
+    "intro1": "La Community Globalle è uno spazio per professionisti del mercato immobiliare che vogliono andare oltre la newsletter e partecipare a una rete qualificata di apprendimento, discussione e scambio di opportunità.",
+    "intro2": "Ogni mese riuniamo agenti, manager, titolari di agenzie e professionisti del settore per discutere pratiche internazionali presentate nelle nostre edizioni, tendenze di mercato, strategie commerciali, tecnologia, gestione e nuovi modi di crescere nell'immobiliare.",
+    "intro3": "La proposta è semplice: trasformare riferimenti globali in azioni pratiche quotidiane e creare una rete di professionisti con la stessa mentalità di crescita.",
+    "features_title": "Cosa trovi nella community",
+    "features": [
+      { "icon": "newsletter", "title": "Contenuti esclusivi", "body": "Materiali, analisi, riassunti e riferimenti che approfondiscono i temi trattati nella newsletter e ti aiutano a trasformare la conoscenza in pratica." },
+      { "icon": "calendar", "title": "Incontri mensili di discussione", "body": "Riunioni dal vivo per discutere temi rilevanti del mercato immobiliare globale e capire come queste idee possano essere applicate nel tuo mercato." },
+      { "icon": "globe", "title": "Radar delle pratiche internazionali", "body": "Una curatela ricorrente con idee, strategie e movimenti che accadono in altri mercati immobiliari e che possono ispirare nuove azioni nella tua operatività." },
+      { "icon": "community", "title": "Networking qualificato", "body": "Un gruppo chiuso con professionisti che vogliono scambiare esperienze, discutere sfide reali e costruire relazioni con persone che pensano in modo globale." },
+      { "icon": "share", "title": "Scambio di opportunità e referenze", "body": "Uno spazio per presentare esigenze, opportunità, partnership, referenze e possibili affari tra i membri della community." },
+      { "icon": "curation", "title": "Accesso globale e connessioni qualificate", "body": "Interviste complete con esperti internazionali, networking con professionisti di altri mercati e avvicinamento strategico tra membri con interessi, obiettivi e opportunità complementari." }
+    ],
+    "audience_title": "Per chi è",
+    "audience_intro": "La Community Globalle è nata per professionisti che vogliono imparare dalle pratiche globali, migliorare il proprio lavoro e connettersi con altri nomi del mercato immobiliare.",
+    "why_title": "Perché partecipare",
+    "why_body": "La nostra community è uno spazio di scambio e apprendimento, per professionisti che vogliono discutere, applicare e progredire all'interno di una rete altamente qualificata.",
+    "plan_name": "Community Globalle",
+    "plan_price": { "eur": "€32", "brl": "R$97" },
+    "plan_period": "/mese",
+    "plan_includes": "Include:",
+    "plan_features": [
+      "Incontro mensile della community",
+      "Contenuti esclusivi",
+      "Radar delle pratiche internazionali",
+      "Gruppo chiuso di networking",
+      "Scambio di opportunità e referenze"
+    ],
+    "plan_cta": "Entra nella community",
+    "plan_tagline": "La newsletter offre l'idea. La community ti aiuta a discuterla, adattarla e applicarla.",
+    "newsletter_link": "Non conosci ancora la newsletter? Inizia da qui"
+  },
+  "footer": {
+    "tagline": "Intelligence immobiliare globale, ogni settimana.",
+    "links_title": "Link",
+    "social_title": "Social",
+    "newsletter_mini_body": "Intelligence globale, ogni settimana.",
+    "newsletter_mini_cta": "Iscriviti",
+    "copyright": "© 2026 Globalle. Tutti i diritti riservati.",
+    "powered": "Powered by Globalle"
+  }
+}

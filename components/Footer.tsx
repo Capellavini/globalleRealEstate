@@ -69,11 +69,11 @@ export default function Footer() {
           <div>
             <p className="footer-label">Newsletter</p>
             <p style={{ color: 'var(--color-ink-dim)', fontSize: 13.5, lineHeight: 1.65, marginBottom: 16 }}>
-              {locale === 'pt' ? 'Inteligência global, toda semana.' : 'Global intelligence, every week.'}
+              {t('newsletter_mini_body')}
             </p>
             <Link href={`/${locale}/#newsletter`}
               style={{ display: 'inline-flex', alignItems: 'center', gap: 7, color: 'var(--color-blue-bright)', textDecoration: 'none', fontSize: 14, fontWeight: 600, fontFamily: 'var(--font-display)' }}>
-              {locale === 'pt' ? 'Assinar' : 'Subscribe'}
+              {t('newsletter_mini_cta')}
               <Icon name="arrowUpRight" size={15} strokeWidth={2} />
             </Link>
           </div>
