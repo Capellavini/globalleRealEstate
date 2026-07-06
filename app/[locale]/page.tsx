@@ -188,10 +188,11 @@ export default function HomePage() {
             </h2>
           </Reveal>
 
+          {/* Community/Consultoria rows hidden until launch — re-add the two entries below to relaunch:
+              { key: 'community', icon: 'community', tag: '02', visual: 'community', href: '/comunidade' },
+              { key: 'consultoria', icon: 'advisory', tag: '03', visual: 'advisory', href: '/consultoria' } */}
           {[
             { key: 'newsletter', icon: 'newsletter', tag: '01', visual: 'newsletter', href: '#newsletter' },
-            { key: 'community', icon: 'community', tag: '02', visual: 'community', href: '/comunidade' },
-            { key: 'consultoria', icon: 'advisory', tag: '03', visual: 'advisory', href: '/consultoria' },
           ].map((p, i) => (
             <Reveal key={p.key}>
               <div className="product-row" style={{ borderTop: '1px solid var(--color-line)', padding: '48px 0' }}>

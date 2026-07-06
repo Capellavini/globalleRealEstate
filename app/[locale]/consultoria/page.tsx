@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Header from '@/components/Header'
@@ -6,6 +7,9 @@ import NewsletterForm from '@/components/NewsletterForm'
 import Reveal from '@/components/Reveal'
 import Icon from '@/components/Icon'
 import { detectCurrency, type Currency } from '@/lib/currency'
+
+// Pre-launch: keep the page out of search engines until the official launch.
+export const metadata: Metadata = { robots: { index: false, follow: false } }
 
 type Plan = {
   id: string; name: string; price: Record<Currency, string>; period: string;

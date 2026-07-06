@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,6 +7,9 @@ import Footer from '@/components/Footer'
 import Reveal from '@/components/Reveal'
 import Icon, { IconName } from '@/components/Icon'
 import { detectCurrency, type Currency } from '@/lib/currency'
+
+// Pre-launch: keep the page out of search engines until the official launch.
+export const metadata: Metadata = { robots: { index: false, follow: false } }
 
 export default function ComunidadePage() {
   const t = useTranslations('comunidade')

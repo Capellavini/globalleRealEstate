@@ -20,11 +20,10 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
+  // Comunidade/Consultoria are hidden until launch — pages stay reachable by direct URL only.
   const navLinks = [
     { href: '/#sobre', label: t('about') },
     { href: '/#manifesto', label: t('manifesto') },
-    { href: '/comunidade', label: t('comunidade') },
-    { href: '/consultoria', label: t('consultoria') },
   ]
 
   return (
