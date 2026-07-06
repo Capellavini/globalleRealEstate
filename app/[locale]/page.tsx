@@ -101,7 +101,7 @@ export default function HomePage() {
           <Reveal>
             <blockquote style={{ margin: 0, maxWidth: 880 }}>
               <p className="serif" style={{ fontSize: 'clamp(22px, 3vw, 33px)', fontWeight: 500, color: 'var(--color-ink-dark)', lineHeight: 1.4, letterSpacing: '-0.01em' }}>
-                <span style={{ color: 'var(--color-blue)' }}>“</span>{t('approach.quote')}<span style={{ color: 'var(--color-blue)' }}>”</span>
+                {t('approach.quote')}
               </p>
             </blockquote>
           </Reveal>
