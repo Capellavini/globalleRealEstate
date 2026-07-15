@@ -19,27 +19,34 @@ export async function updateSession(request: NextRequest) {
   }
 
   let response = NextResponse.next({ request })
+  let user = null
 
-  const supabase = createServerClient(url, anonKey, {
-    cookies: {
-      getAll() {
-        return request.cookies.getAll()
+  try {
+    const supabase = createServerClient(url, anonKey, {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll()
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
+          response = NextResponse.next({ request })
+          cookiesToSet.forEach(({ name, value, options }) =>
+            response.cookies.set(name, value, options)
+          )
+        },
       },
-      setAll(cookiesToSet) {
-        cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
-        response = NextResponse.next({ request })
-        cookiesToSet.forEach(({ name, value, options }) =>
-          response.cookies.set(name, value, options)
-        )
-      },
-    },
-  })
+    })
 
-  // Do not run code between createServerClient and auth.getUser() —
-  // it can cause random logouts (session refresh happens inside getUser).
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+    // Do not run code between createServerClient and auth.getUser() —
+    // it can cause random logouts (session refresh happens inside getUser).
+    const { data } = await supabase.auth.getUser()
+    user = data.user
+  } catch (e) {
+    // Edge-runtime failure must not take the route down: let the request
+    // through and rely on the protected layout's server-side auth check.
+    console.error('[admin middleware] Supabase session check failed:', e)
+    return response
+  }
 
   if (!user && !isLoginPage) {
     const redirectUrl = request.nextUrl.clone()
