@@ -9,9 +9,6 @@ export async function updateSession(request: NextRequest) {
   const { pathname } = request.nextUrl
   const isLoginPage = pathname === '/admin/login'
 
-  // TEMPORARY: diagnostic page bypasses auth — remove with app/(admin)/admin/debug.
-  if (pathname === '/admin/debug') return NextResponse.next({ request })
-
   const url = supabaseUrl()
   const anonKey = supabaseAnonKey()
 
