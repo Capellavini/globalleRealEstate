@@ -1,10 +1,8 @@
 import { createBrowserClient } from '@supabase/ssr'
+import { supabaseAnonKey, supabaseUrl } from './env'
 
 // Browser-side client. Only call this inside event handlers / effects so the
 // app still prerenders when the Supabase env vars are absent.
 export function createClient() {
-  return createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
+  return createBrowserClient(supabaseUrl()!, supabaseAnonKey()!)
 }

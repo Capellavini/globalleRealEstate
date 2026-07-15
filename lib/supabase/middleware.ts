@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import { supabaseAnonKey, supabaseUrl } from './env'
 
 // Refreshes the Supabase session and gates /admin behind auth.
 // If the env vars aren't set yet, everything funnels to /admin/login,
@@ -11,8 +12,8 @@ export async function updateSession(request: NextRequest) {
   // TEMPORARY: diagnostic page bypasses auth — remove with app/(admin)/admin/debug.
   if (pathname === '/admin/debug') return NextResponse.next({ request })
 
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  const url = supabaseUrl()
+  const anonKey = supabaseAnonKey()
 
   if (!url || !anonKey) {
     if (isLoginPage) return NextResponse.next({ request })
