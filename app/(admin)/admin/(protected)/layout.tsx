@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { href: '/admin/properties', label: 'Imóveis' },
   { href: '/admin/theses', label: 'Teses' },
   { href: '/admin/cost-rules', label: 'Custos' },
+  { href: '/admin/users', label: 'Usuários' },
 ]
 
 export default async function ProtectedLayout({ children }: { children: React.ReactNode }) {
