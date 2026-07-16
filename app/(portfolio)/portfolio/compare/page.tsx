@@ -100,7 +100,7 @@ export default async function ComparePage({
   return (
     <>
       <Link href={backHref} style={{ fontSize: 13, color: 'rgba(11,18,48,0.60)', textDecoration: 'none' }}>
-        ← Voltar ao portfólio
+        {isTeam ? '← Voltar ao portfólio' : '← Voltar às opções'}
       </Link>
       <h1 style={{ fontSize: 24, fontWeight: 800, margin: '12px 0 20px' }}>Comparação de imóveis</h1>
 

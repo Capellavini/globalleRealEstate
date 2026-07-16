@@ -22,10 +22,10 @@ export default async function PortfoliosPage() {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
         <h1 style={{ fontSize: 24, fontWeight: 700 }}>Portfólios</h1>
         <Link
-          href="/admin/theses"
+          href="/admin/users"
           style={{ background: '#070B24', color: '#fff', borderRadius: 8, padding: '10px 18px', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}
         >
-          + Nova tese / cliente
+          + Novo cliente
         </Link>
       </div>
 
@@ -33,7 +33,7 @@ export default async function PortfoliosPage() {
 
       {!error && (theses ?? []).length === 0 && (
         <div style={{ background: '#fff', border: '1px dashed rgba(11,18,48,0.15)', borderRadius: 12, padding: 48, textAlign: 'center', color: 'rgba(11,18,48,0.6)', fontSize: 14 }}>
-          Nenhuma tese ainda. Crie a primeira em “Nova tese / cliente”.
+          Nenhuma tese ainda. Convide o primeiro cliente em “Novo cliente”.
         </div>
       )}
 

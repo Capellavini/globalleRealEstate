@@ -7,7 +7,7 @@ import { getSessionProfile } from '@/lib/supabase/roles'
 import { signOut } from '@/app/actions/auth'
 
 export const metadata: Metadata = {
-  title: 'Portfólio — Globalle',
+  title: 'Opções — Globalle',
   robots: { index: false, follow: false },
 }
 
@@ -55,7 +55,7 @@ export default async function PortfolioLayout({ children }: { children: React.Re
                   paddingLeft: 12,
                 }}
               >
-                Portfólio
+                Opções
               </span>
             </Link>
 

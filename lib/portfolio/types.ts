@@ -106,14 +106,15 @@ export const OBJECTIVE_LABELS: Record<ThesisObjective, string> = {
 }
 
 export const STATUS_LABELS: Record<PortfolioStatus, string> = {
-  novo: 'Novo',
+  novo: 'Imóveis', // valor 'novo' no banco permanece; só o rótulo mudou (Fase 1.5)
   favorito: 'Favorito',
   em_analise: 'Em análise',
   descartado: 'Descartado',
   avancar: 'Avançar',
 }
 
-export const STATUS_ORDER: PortfolioStatus[] = ['novo', 'favorito', 'em_analise', 'descartado', 'avancar']
+// Ordem de exibição do kanban (Fase 1.5): Imóveis → Em análise → Favorito → Avançar → Descartado
+export const STATUS_ORDER: PortfolioStatus[] = ['novo', 'em_analise', 'favorito', 'avancar', 'descartado']
 
 // Sistema de sinalização do kanban (seção 5 do spec) — nada além dessas cores.
 export const STATUS_COLORS: Record<PortfolioStatus, { bg: string; fg: string; column: string }> = {

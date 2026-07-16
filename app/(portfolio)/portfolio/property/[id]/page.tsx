@@ -125,7 +125,7 @@ export default async function PropertyDetailPage({
   return (
     <>
       <Link href={backHref} style={{ fontSize: 13, color: 'rgba(11,18,48,0.60)', textDecoration: 'none' }}>
-        ← Voltar ao portfólio
+        {isTeam ? '← Voltar ao portfólio' : '← Voltar às opções'}
       </Link>
 
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, margin: '12px 0 4px', flexWrap: 'wrap' }}>
