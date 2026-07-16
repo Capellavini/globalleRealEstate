@@ -1,18 +1,26 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
-import { createClient, isSupabaseConfigured } from '@/lib/supabase/server'
+import { isSupabaseConfigured } from '@/lib/supabase/server'
+import { getSessionProfile } from '@/lib/supabase/roles'
 import { signOut } from '@/app/actions/auth'
+
+const NAV_LINKS = [
+  { href: '/admin', label: 'Transações' },
+  { href: '/admin/portfolios', label: 'Portfólios' },
+  { href: '/admin/properties', label: 'Imóveis' },
+  { href: '/admin/theses', label: 'Teses' },
+  { href: '/admin/cost-rules', label: 'Custos' },
+]
 
 export default async function ProtectedLayout({ children }: { children: React.ReactNode }) {
   if (!isSupabaseConfigured()) redirect('/admin/login')
 
-  const supabase = createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const { user, profile } = await getSessionProfile()
 
   if (!user) redirect('/admin/login')
+  // Clientes não entram no admin — vão para o portfólio deles.
+  if (profile?.role === 'client') redirect('/portfolio')
 
   return (
     <>
@@ -72,9 +80,37 @@ export default async function ProtectedLayout({ children }: { children: React.Re
             </form>
           </div>
         </div>
+
+        <nav
+          style={{
+            maxWidth: 1080,
+            margin: '0 auto',
+            display: 'flex',
+            gap: 22,
+            overflowX: 'auto',
+            borderTop: '1px solid rgba(255,255,255,0.09)',
+          }}
+        >
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              style={{
+                color: 'rgba(237,241,247,0.75)',
+                textDecoration: 'none',
+                fontSize: 13,
+                fontWeight: 600,
+                padding: '10px 0',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
       </header>
 
-      <main style={{ maxWidth: 1080, margin: '0 auto', padding: '32px 24px 80px' }}>{children}</main>
+      <main style={{ maxWidth: 1200, margin: '0 auto', padding: '32px 24px 80px' }}>{children}</main>
     </>
   )
 }

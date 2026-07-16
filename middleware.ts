@@ -6,8 +6,10 @@ import { updateSession } from './lib/supabase/middleware'
 const intlMiddleware = createMiddleware(routing)
 
 export default async function middleware(request: NextRequest) {
-  // /admin é o Transaction Room (interno) — auth Supabase, sem locale prefix.
-  if (request.nextUrl.pathname.startsWith('/admin')) {
+  // /admin (Transaction Room + telas da equipe) e /portfolio (cliente) usam
+  // auth Supabase, sem locale prefix.
+  const { pathname } = request.nextUrl
+  if (pathname.startsWith('/admin') || pathname.startsWith('/portfolio')) {
     return updateSession(request)
   }
   return intlMiddleware(request)
