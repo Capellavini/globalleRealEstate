@@ -8,7 +8,7 @@ import { STEP_TEMPLATES, type TransactionStatus, type TransactionThesis } from '
 export async function createTransaction(formData: FormData) {
   const client_name = String(formData.get('client_name') ?? '').trim()
   const thesis = String(formData.get('thesis') ?? '') as TransactionThesis
-  const target_close_date = String(formData.get('target_close_date') ?? '') || null
+  // target_close_date saiu do formulário (Fase 1.5); a coluna segue no banco.
 
   if (!client_name || !STEP_TEMPLATES[thesis]) {
     throw new Error('Nome do cliente e tese são obrigatórios.')
@@ -18,7 +18,7 @@ export async function createTransaction(formData: FormData) {
 
   const { data: transaction, error } = await supabase
     .from('transactions')
-    .insert({ client_name, thesis, target_close_date })
+    .insert({ client_name, thesis })
     .select('id')
     .single()
 

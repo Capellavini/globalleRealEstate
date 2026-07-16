@@ -54,11 +54,6 @@ export default function NewTransactionPage() {
           </select>
         </label>
 
-        <label style={{ display: 'grid', gap: 6, fontSize: 13, fontWeight: 600 }}>
-          Data alvo de fechamento (opcional)
-          <input name="target_close_date" type="date" style={inputStyle} />
-        </label>
-
         <button
           type="submit"
           style={{

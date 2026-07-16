@@ -14,7 +14,9 @@ export default async function PortfoliosPage() {
   const supabase = createClient()
   const { data: theses, error } = await supabase
     .from('theses')
-    .select('*, profiles!theses_client_id_fkey(full_name), portfolio_items(status)')
+    .select(
+      '*, profiles!theses_client_id_fkey(full_name, avatar_url, company, residence_country, preferred_language), portfolio_items(status)'
+    )
     .order('created_at', { ascending: false })
 
   return (
@@ -39,7 +41,17 @@ export default async function PortfoliosPage() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 16 }}>
         {(theses ?? []).map((thesisRow) => {
-          const thesis = thesisRow as Thesis & { profiles: { full_name: string } | null; portfolio_items: { status: string }[] }
+          const thesis = thesisRow as Thesis & {
+            profiles: {
+              full_name: string
+              avatar_url: string | null
+              company: string | null
+              residence_country: string | null
+              preferred_language: string | null
+            } | null
+            portfolio_items: { status: string }[]
+          }
+          const client = thesis.profiles
           const items = thesis.portfolio_items ?? []
           const advancing = items.filter((i) => i.status === 'avancar').length
           return (
@@ -59,7 +71,42 @@ export default async function PortfoliosPage() {
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, alignItems: 'flex-start' }}>
-                <strong style={{ fontSize: 16, fontWeight: 800 }}>{thesis.profiles?.full_name ?? '—'}</strong>
+                <div style={{ display: 'flex', gap: 10, alignItems: 'center', minWidth: 0 }}>
+                  <div
+                    style={{
+                      width: 38,
+                      height: 38,
+                      borderRadius: '50%',
+                      flexShrink: 0,
+                      background: client?.avatar_url
+                        ? `url(${client.avatar_url}) center/cover no-repeat`
+                        : 'linear-gradient(135deg, #0E1530, #131B38)',
+                      display: 'grid',
+                      placeItems: 'center',
+                      color: '#EDF1F7',
+                      fontWeight: 800,
+                      fontSize: 15,
+                    }}
+                  >
+                    {!client?.avatar_url && (client?.full_name?.[0] ?? '?').toUpperCase()}
+                  </div>
+                  <div style={{ minWidth: 0 }}>
+                    <strong style={{ fontSize: 15.5, fontWeight: 800, display: 'block' }}>
+                      {client?.full_name ?? '—'}
+                    </strong>
+                    <span style={{ fontSize: 12, color: 'rgba(11,18,48,0.55)' }}>
+                      {[
+                        client?.company,
+                        client?.residence_country
+                          ? `${countryFlag(client.residence_country)} ${client.residence_country}`
+                          : null,
+                        client?.preferred_language?.toUpperCase(),
+                      ]
+                        .filter(Boolean)
+                        .join(' · ') || 'perfil por completar'}
+                    </span>
+                  </div>
+                </div>
                 {!thesis.is_active && <span style={{ fontSize: 11, color: 'rgba(11,18,48,0.5)' }}>inativa</span>}
               </div>
               <span style={{ fontSize: 13.5, color: 'rgba(11,18,48,0.7)' }}>{thesis.title}</span>
