@@ -10,7 +10,24 @@ export interface Profile {
   id: string
   full_name: string
   role: UserRole
+  avatar_url: string | null
+  phone: string | null
+  company: string | null
+  residence_country: string | null // ISO alpha-2
+  preferred_language: string | null // 'pt' | 'en' | 'it' | 'es'
   created_at: string
+}
+
+// Onboarding (Fase 1.5): telefone e foto são opcionais; o resto obrigatório.
+export function isProfileComplete(profile: Pick<Profile, 'full_name' | 'company' | 'residence_country' | 'preferred_language'>): boolean {
+  return Boolean(profile.full_name && profile.company && profile.residence_country && profile.preferred_language)
+}
+
+export const LANGUAGE_LABELS: Record<string, string> = {
+  pt: 'Português',
+  en: 'English',
+  it: 'Italiano',
+  es: 'Español',
 }
 
 export interface Thesis {
@@ -153,6 +170,10 @@ export const COUNTRY_NAMES: Record<string, string> = {
   IT: 'Itália',
   US: 'Estados Unidos',
   AE: 'Emirados Árabes',
+  GB: 'Reino Unido',
+  FR: 'França',
+  DE: 'Alemanha',
+  CH: 'Suíça',
 }
 
 export function countryFlag(code: string): string {

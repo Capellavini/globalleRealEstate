@@ -88,9 +88,9 @@ export default function SetPasswordForm() {
       return
     }
 
-    // Redireciona conforme o papel.
+    // Redireciona conforme o papel; cliente novo passa pelo onboarding do perfil.
     const { data: profile } = await supabase.from('profiles').select('role').eq('id', data.user.id).maybeSingle()
-    router.push(profile?.role === 'team' ? '/admin/portfolios' : '/portfolio')
+    router.push(profile?.role === 'team' ? '/admin/portfolios' : '/perfil/completar')
     router.refresh()
   }
 
