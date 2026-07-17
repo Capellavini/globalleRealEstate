@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Definir senha — Globalle',
+  title: 'Acesso — Globalle',
   robots: { index: false, follow: false },
 }
 

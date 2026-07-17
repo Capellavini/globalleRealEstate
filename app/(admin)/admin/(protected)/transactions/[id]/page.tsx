@@ -15,6 +15,9 @@ import {
   cycleDocumentStatus,
   deleteDocument,
 } from '@/app/actions/documents'
+import ParticipantsSection from '@/components/transactions/ParticipantsSection'
+import DocumentsSection from '@/components/transactions/DocumentsSection'
+import CommentsSection from '@/components/transactions/CommentsSection'
 import {
   DOC_STATUS_COLORS,
   DOC_STATUS_LABELS,
@@ -70,7 +73,13 @@ const sectionTitle: React.CSSProperties = {
   marginBottom: 14,
 }
 
-export default async function TransactionDetailPage({ params }: { params: { id: string } }) {
+export default async function TransactionDetailPage({
+  params,
+  searchParams,
+}: {
+  params: { id: string }
+  searchParams: { ok?: string; erro?: string; cat?: string }
+}) {
   const supabase = createClient()
 
   const { data: tx } = await supabase
@@ -96,6 +105,17 @@ export default async function TransactionDetailPage({ params }: { params: { id: 
       <Link href="/admin" style={{ fontSize: 13, color: 'rgba(11,18,48,0.60)', textDecoration: 'none' }}>
         ← Transações
       </Link>
+
+      {searchParams.ok && (
+        <div style={{ background: 'rgba(43,160,90,0.12)', color: '#1E7A44', borderRadius: 10, padding: '10px 16px', fontSize: 13.5, margin: '12px 0' }}>
+          {searchParams.ok}
+        </div>
+      )}
+      {searchParams.erro && (
+        <div style={{ background: 'rgba(194,61,61,0.10)', color: '#A03030', borderRadius: 10, padding: '10px 16px', fontSize: 13.5, margin: '12px 0' }}>
+          {searchParams.erro}
+        </div>
+      )}
 
       {/* Header */}
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 16, margin: '12px 0 8px' }}>
@@ -346,6 +366,20 @@ export default async function TransactionDetailPage({ params }: { params: { id: 
             </ConfirmSubmitButton>
           </form>
         </section>
+      </div>
+
+      {/* Fase 2+3: participantes, documentos e comentários da transação */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 24, marginTop: 24, alignItems: 'start' }}>
+        <DocumentsSection
+          transactionId={transaction.id}
+          canManage
+          basePath={`/admin/transactions/${transaction.id}`}
+          filterCategory={searchParams.cat}
+        />
+        <div style={{ display: 'grid', gap: 24 }}>
+          <ParticipantsSection transactionId={transaction.id} canManage />
+          <CommentsSection transactionId={transaction.id} basePath={`/admin/transactions/${transaction.id}`} />
+        </div>
       </div>
     </>
   )

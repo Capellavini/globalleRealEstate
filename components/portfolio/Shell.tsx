@@ -56,6 +56,19 @@ export default function PortfolioShell({
               </span>
             </Link>
 
+            <nav style={{ display: 'flex', gap: 18, flex: 1, marginLeft: 10 }}>
+              {profile?.role === 'client' && (
+                <Link href="/portfolio" style={{ color: 'rgba(237,241,247,0.75)', fontSize: 13, fontWeight: 600, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                  Opções
+                </Link>
+              )}
+              {(profile?.role === 'client' || profile?.role === 'lawyer') && (
+                <Link href="/transacoes" style={{ color: 'rgba(237,241,247,0.75)', fontSize: 13, fontWeight: 600, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                  Minhas transações
+                </Link>
+              )}
+            </nav>
+
             <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               {isTeam && (
                 <Link href="/admin/portfolios" style={{ color: '#1EA7E8', fontSize: 13, fontWeight: 600, textDecoration: 'none' }}>
