@@ -20,7 +20,8 @@ export async function inviteUser(formData: FormData) {
 
   const full_name = String(formData.get('full_name') ?? '').trim()
   const email = String(formData.get('email') ?? '').trim().toLowerCase()
-  const role = String(formData.get('role')) === 'team' ? 'team' : 'client'
+  const roleRaw = String(formData.get('role'))
+  const role = ['team', 'client', 'lawyer'].includes(roleRaw) ? roleRaw : 'client'
   if (!full_name || !email) backWithError('Nome e e-mail são obrigatórios.')
 
   const admin = createAdminClient()
@@ -108,7 +109,8 @@ export async function updateUserProfile(formData: FormData) {
   const { user } = await requireTeam()
   const id = String(formData.get('id'))
   const full_name = String(formData.get('full_name') ?? '').trim()
-  const role = String(formData.get('role')) === 'team' ? 'team' : 'client'
+  const roleRaw = String(formData.get('role'))
+  const role = ['team', 'client', 'lawyer'].includes(roleRaw) ? roleRaw : 'client'
   if (!full_name) backWithError('O nome não pode ficar vazio.')
   if (id === user.id && role !== 'team') backWithError('Você não pode rebaixar o próprio papel.')
 

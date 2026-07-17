@@ -12,7 +12,8 @@ export default async function ClientPortfolioPage() {
   const { user, profile } = await getSessionProfile()
   if (!user) redirect('/admin/login')
 
-  // Equipe não tem tese própria — vai para a lista de portfólios.
+  // Equipe não tem tese própria; advogado vive nas transações.
+  if (profile?.role === 'lawyer') redirect('/transacoes')
   if (profile?.role !== 'client') redirect('/admin/portfolios')
 
   const supabase = createClient()

@@ -20,8 +20,10 @@ export default async function ProtectedLayout({ children }: { children: React.Re
   const { user, profile } = await getSessionProfile()
 
   if (!user) redirect('/admin/login')
-  // Clientes não entram no admin — vão para o portfólio deles.
-  if (profile?.role === 'client') redirect('/portfolio')
+  // Só a equipe entra no admin; cliente vai às opções, advogado às transações.
+  if (profile && profile.role !== 'team') {
+    redirect(profile.role === 'lawyer' ? '/transacoes' : '/portfolio')
+  }
 
   return (
     <>

@@ -85,6 +85,16 @@ export async function confirmAdvance(itemId: string, transactionThesis: Transact
     .single()
   if (error) throw new Error(`Erro ao criar transação: ${error.message}`)
 
+  // Fase 2+3: o cliente da tese entra automaticamente como participante.
+  if (thesis?.client_id) {
+    await supabase.from('transaction_participants').insert({
+      transaction_id: transaction.id,
+      profile_id: thesis.client_id,
+      role: 'client',
+      invited_by: user.id,
+    })
+  }
+
   const steps = STEP_TEMPLATES[transactionThesis].map((step, i) => ({
     transaction_id: transaction.id,
     title: step.title,

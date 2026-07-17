@@ -1,6 +1,6 @@
 // Tipos + labels + cores do módulo de Portfólio. Espelham migration-portfolio.sql.
 
-export type UserRole = 'team' | 'client'
+export type UserRole = 'team' | 'client' | 'lawyer'
 export type ThesisObjective = 'moradia' | 'para_renda' | 'revenda' | 'patrimonial' | 'desenvolvimento'
 export type PortfolioStatus = 'novo' | 'favorito' | 'em_analise' | 'descartado' | 'avancar'
 export type FitValue = 'sim' | 'parcial' | 'nao'

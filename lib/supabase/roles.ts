@@ -24,7 +24,8 @@ export async function getSessionProfile(): Promise<{ user: User | null; profile:
 // anterior à migration → tratado como equipe.
 export async function requireTeam() {
   const { user, profile } = await getSessionProfile()
-  if (!user || profile?.role === 'client') {
+  // profile null = usuário anterior à migration → equipe legada.
+  if (!user || (profile && profile.role !== 'team')) {
     throw new Error('Ação restrita à equipe Globalle.')
   }
   return { user, profile }

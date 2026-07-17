@@ -40,10 +40,16 @@ const smallBtn: React.CSSProperties = {
 type UserRow = {
   id: string
   full_name: string
-  role: 'team' | 'client'
+  role: Profile['role']
   email: string
   created_at: string
   status: 'pendente' | 'ativo' | 'desativado'
+}
+
+const ROLE_BADGE: Record<Profile['role'], { bg: string; fg: string }> = {
+  team: { bg: 'rgba(30,167,232,0.16)', fg: '#0E6FA3' },
+  client: { bg: 'rgba(11,18,48,0.08)', fg: 'rgba(11,18,48,0.6)' },
+  lawyer: { bg: 'rgba(232,184,109,0.25)', fg: '#8A6320' },
 }
 
 const STATUS_UI: Record<UserRow['status'], { label: string; bg: string; fg: string }> = {
@@ -105,7 +111,7 @@ export default async function UsersPage({
   const q = (searchParams.q ?? '').trim().toLowerCase()
   const papel = searchParams.papel ?? ''
   if (q) rows = rows.filter((r) => r.full_name.toLowerCase().includes(q) || r.email.toLowerCase().includes(q))
-  if (papel === 'team' || papel === 'client') rows = rows.filter((r) => r.role === papel)
+  if (papel === 'team' || papel === 'client' || papel === 'lawyer') rows = rows.filter((r) => r.role === papel)
 
   return (
     <>
@@ -150,6 +156,7 @@ export default async function UsersPage({
               <select name="role" required defaultValue="client" style={inputStyle}>
                 <option value="client">client — investidor</option>
                 <option value="team">team — equipe Globalle</option>
+                <option value="lawyer">lawyer — advogado/terceiro</option>
               </select>
             </label>
           </div>
@@ -225,6 +232,7 @@ export default async function UsersPage({
           <option value="">todos os papéis</option>
           <option value="team">team</option>
           <option value="client">client</option>
+          <option value="lawyer">lawyer</option>
         </select>
         <button type="submit" style={{ ...smallBtn, padding: '9px 16px' }}>
           Filtrar
@@ -254,7 +262,7 @@ export default async function UsersPage({
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: 11.5, fontWeight: 700, borderRadius: 999, padding: '3px 10px', background: row.role === 'team' ? 'rgba(30,167,232,0.16)' : 'rgba(11,18,48,0.08)', color: row.role === 'team' ? '#0E6FA3' : 'rgba(11,18,48,0.6)' }}>
+                  <span style={{ fontSize: 11.5, fontWeight: 700, borderRadius: 999, padding: '3px 10px', background: ROLE_BADGE[row.role].bg, color: ROLE_BADGE[row.role].fg }}>
                     {row.role}
                   </span>
                   <span style={{ fontSize: 11.5, fontWeight: 700, borderRadius: 999, padding: '3px 10px', background: status.bg, color: status.fg }}>
@@ -270,6 +278,7 @@ export default async function UsersPage({
                   <select name="role" defaultValue={row.role} disabled={isMe} style={{ ...inputStyle, padding: '6px 10px', fontSize: 12.5 }}>
                     <option value="client">client</option>
                     <option value="team">team</option>
+                    <option value="lawyer">lawyer</option>
                   </select>
                   {isMe && <input type="hidden" name="role" value="team" />}
                   <button type="submit" style={smallBtn}>
