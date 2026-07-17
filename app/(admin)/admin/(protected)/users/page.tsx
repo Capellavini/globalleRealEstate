@@ -4,6 +4,7 @@ import { inviteUser, resendInvite, setUserActive, updateUserProfile } from '@/ap
 import { getSessionProfile } from '@/lib/supabase/roles'
 import ConfirmSubmitButton from '@/components/admin/ConfirmSubmitButton'
 import { OBJECTIVE_LABELS, type Profile, type ThesisObjective } from '@/lib/portfolio/types'
+import { THESIS_COUNTRIES } from '@/lib/thesis-options'
 
 export const dynamic = 'force-dynamic'
 
@@ -173,10 +174,17 @@ export default async function UsersPage({
                   ))}
                 </select>
               </label>
-              <label style={{ display: 'grid', gap: 5, fontSize: 12.5, fontWeight: 600 }}>
-                Países-alvo (ISO, vírgula)
-                <input name="thesis_countries" type="text" placeholder="PT, BR" style={inputStyle} />
-              </label>
+              <div style={{ display: 'grid', gap: 5, fontSize: 12.5, fontWeight: 600 }}>
+                Países-alvo
+                <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', fontWeight: 400 }}>
+                  {THESIS_COUNTRIES.map((country) => (
+                    <label key={country.value} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 13 }}>
+                      <input type="checkbox" name="thesis_countries" value={country.value} />
+                      {country.label}
+                    </label>
+                  ))}
+                </div>
+              </div>
               <label style={{ display: 'grid', gap: 5, fontSize: 12.5, fontWeight: 600 }}>
                 Orçamento mín.
                 <input name="thesis_budget_min" type="number" step="any" style={inputStyle} />

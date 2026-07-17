@@ -1,7 +1,7 @@
 // Tipos + labels + cores do módulo de Portfólio. Espelham migration-portfolio.sql.
 
 export type UserRole = 'team' | 'client'
-export type ThesisObjective = 'morar' | 'arrendar' | 'valorizar' | 'desenvolver'
+export type ThesisObjective = 'moradia' | 'para_renda' | 'revenda' | 'patrimonial' | 'desenvolvimento'
 export type PortfolioStatus = 'novo' | 'favorito' | 'em_analise' | 'descartado' | 'avancar'
 export type FitValue = 'sim' | 'parcial' | 'nao'
 export type SourceType = 'portal' | 'partner_agent' | 'off_market' | 'direct_owner'
@@ -116,10 +116,11 @@ export interface CriterionFit {
 /* ── Labels (PT) ── */
 
 export const OBJECTIVE_LABELS: Record<ThesisObjective, string> = {
-  morar: 'Morar',
-  arrendar: 'Arrendar',
-  valorizar: 'Valorizar',
-  desenvolver: 'Desenvolver',
+  moradia: 'Moradia',
+  para_renda: 'Para renda',
+  revenda: 'Revenda',
+  patrimonial: 'Patrimonial',
+  desenvolvimento: 'Desenvolvimento',
 }
 
 export const STATUS_LABELS: Record<PortfolioStatus, string> = {

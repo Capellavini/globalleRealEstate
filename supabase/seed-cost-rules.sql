@@ -5,7 +5,7 @@
 
 -- ============ PORTUGAL (nacional, EUR) ============
 
--- IMT — habitação própria e permanente (objective = 'morar').
+-- IMT — habitação própria e permanente (objective = 'moradia').
 -- Formato brackets: taxa sobre o valor total com parcela a abater
 -- [{"up_to": teto_do_escalao_ou_null, "marginal_rate": taxa, "deduction": abate}]
 -- TODO: equipe confirma escalões IMT vigentes (mudam todo ano no OE).
@@ -18,7 +18,7 @@ insert into cost_rules (country_code, municipality, cost_label, calc_type, brack
   {"up_to": 633453,  "marginal_rate": 0.08,   "deduction": 13190.14},
   {"up_to": 1102920, "marginal_rate": 0.06,   "deduction": 0},
   {"up_to": null,    "marginal_rate": 0.075,  "deduction": 0}
-]'::jsonb, 'morar', 'EUR', current_date);
+]'::jsonb, 'moradia', 'EUR', current_date);
 
 -- IMT — habitação secundária / investimento (todos os demais objetivos).
 -- TODO: equipe confirma escalões IMT de habitação secundária.

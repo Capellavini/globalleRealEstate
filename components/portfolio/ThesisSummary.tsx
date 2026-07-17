@@ -4,6 +4,7 @@ import {
   OBJECTIVE_LABELS,
   type Thesis,
 } from '@/lib/portfolio/types'
+import { formatPropertyType } from '@/lib/thesis-options'
 
 // Resumo da tese — contexto permanente no topo do kanban.
 export default function ThesisSummary({ thesis, clientName }: { thesis: Thesis; clientName?: string }) {
@@ -45,7 +46,9 @@ export default function ThesisSummary({ thesis, clientName }: { thesis: Thesis; 
           {thesis.target_countries.map((c) => `${countryFlag(c)} ${c}`).join('  ')}
         </span>
         {!!thesis.target_cities?.length && <span style={chip}>{thesis.target_cities.join(', ')}</span>}
-        {!!thesis.property_types?.length && <span style={chip}>{thesis.property_types.join(', ')}</span>}
+        {!!thesis.property_types?.length && (
+          <span style={chip}>{thesis.property_types.map(formatPropertyType).join(', ')}</span>
+        )}
         {thesis.min_yield !== null && <span style={chip}>yield ≥ {thesis.min_yield}%</span>}
       </div>
     </div>

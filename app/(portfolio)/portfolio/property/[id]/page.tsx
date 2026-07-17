@@ -118,7 +118,7 @@ export default async function PropertyDetailPage({
   const fitByCriterion = new Map<string, CriterionFit>(
     (fits as CriterionFit[]).map((f) => [f.criterion_id, f] as [string, CriterionFit])
   )
-  const estimate = estimateForProperty(property, thesis?.objective ?? 'arrendar', rules)
+  const estimate = estimateForProperty(property, thesis?.objective ?? 'para_renda', rules)
   const selfPath = `/portfolio/property/${property.id}${thesisId ? `?thesis=${thesisId}` : ''}`
   const backHref = isTeam && thesisId ? `/admin/portfolios/${thesisId}` : '/portfolio'
 

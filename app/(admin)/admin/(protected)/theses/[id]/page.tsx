@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { updateThesis, toggleThesisActive, addCriterion, deleteCriterion } from '@/app/actions/theses'
 import ConfirmSubmitButton from '@/components/admin/ConfirmSubmitButton'
+import ThesisCascadeFields from '@/components/portfolio/ThesisCascadeFields'
+import { isStructuredPropertyType, REGIONS_BY_COUNTRY } from '@/lib/thesis-options'
 import { OBJECTIVE_LABELS, type Thesis, type ThesisObjective } from '@/lib/portfolio/types'
 
 export const dynamic = 'force-dynamic'
@@ -42,6 +44,13 @@ export default async function ThesisDetailPage({ params }: { params: { id: strin
   ])
   if (!thesisData) notFound()
   const thesis = thesisData as Thesis & { profiles: { full_name: string } | null }
+
+  // Valores antigos (Fase 1) → estado inicial da cascata.
+  const knownRegions = Object.values(REGIONS_BY_COUNTRY).flat()
+  const cities = thesis.target_cities ?? []
+  const initialRegions = cities.filter((c) => knownRegions.includes(c))
+  const initialOtherRegion = cities.filter((c) => !knownRegions.includes(c)).join(', ')
+  const legacyTypes = (thesis.property_types ?? []).filter((t) => !isStructuredPropertyType(t))
 
   return (
     <div style={{ maxWidth: 760 }}>
@@ -98,15 +107,18 @@ export default async function ThesisDetailPage({ params }: { params: { id: strin
             <input name="budget_max" type="number" step="any" defaultValue={thesis.budget_max ?? ''} style={inputStyle} />
           </Field>
         </div>
-        <Field label="Países-alvo (ISO, vírgula)">
-          <input name="target_countries" type="text" required defaultValue={thesis.target_countries.join(', ')} style={inputStyle} />
-        </Field>
-        <Field label="Cidades-alvo">
-          <input name="target_cities" type="text" defaultValue={thesis.target_cities?.join(', ') ?? ''} style={inputStyle} />
-        </Field>
-        <Field label="Tipos de imóvel">
-          <input name="property_types" type="text" defaultValue={thesis.property_types?.join(', ') ?? ''} style={inputStyle} />
-        </Field>
+        <ThesisCascadeFields
+          initialCountries={thesis.target_countries}
+          initialRegions={initialRegions}
+          initialOtherRegion={initialOtherRegion}
+          initialTypes={thesis.property_types ?? []}
+        />
+        {legacyTypes.length > 0 && (
+          <p style={{ fontSize: 12, color: '#8A5B00', margin: 0 }}>
+            Tipos antigos desta tese ({legacyTypes.join(', ')}) não seguem o novo formato — remarque nas opções acima;
+            ao salvar, valem só as seleções novas.
+          </p>
+        )}
         <Field label="Yield mínimo (%)">
           <input name="min_yield" type="number" step="any" defaultValue={thesis.min_yield ?? ''} style={inputStyle} />
         </Field>

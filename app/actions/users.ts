@@ -53,9 +53,9 @@ export async function inviteUser(formData: FormData) {
       const v = String(formData.get(name) ?? '').replace(',', '.').trim()
       return v ? Number(v) : null
     }
-    const countries = String(formData.get('thesis_countries') ?? '')
-      .split(',')
-      .map((s) => s.trim().toUpperCase())
+    const countries = formData
+      .getAll('thesis_countries')
+      .map((v) => String(v).trim().toUpperCase())
       .filter(Boolean)
     const objective = String(formData.get('thesis_objective') ?? '')
     if (!countries.length || !objective) {

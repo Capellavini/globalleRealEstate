@@ -4,24 +4,31 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { requireTeam } from '@/lib/supabase/roles'
+import { THESIS_OBJECTIVES } from '@/lib/thesis-options'
 
 function thesisFromForm(formData: FormData) {
   const num = (name: string) => {
     const v = String(formData.get(name) ?? '').replace(',', '.').trim()
     return v ? Number(v) : null
   }
+  // Checkboxes/inputs em cascata (ThesisCascadeFields): um valor por entrada.
   const list = (name: string) =>
-    String(formData.get(name) ?? '')
-      .split(',')
-      .map((s) => s.trim())
+    formData
+      .getAll(name)
+      .map((v) => String(v).trim())
       .filter(Boolean)
 
-  const countries = list('target_countries').map((c) => c.toUpperCase())
-  if (!countries.length) throw new Error('Informe pelo menos um país-alvo (ex.: PT, BR).')
+  const countries = [...new Set(list('target_countries').map((c) => c.toUpperCase()))]
+  if (!countries.length) throw new Error('Selecione pelo menos um país-alvo.')
+
+  const objective = String(formData.get('objective') ?? '')
+  if (!THESIS_OBJECTIVES.some((o) => o.value === objective)) {
+    throw new Error('Selecione o objetivo da tese.')
+  }
 
   return {
     title: String(formData.get('title') ?? '').trim(),
-    objective: String(formData.get('objective') ?? ''),
+    objective,
     budget_min: num('budget_min'),
     budget_max: num('budget_max'),
     budget_currency: String(formData.get('budget_currency') ?? 'EUR').trim().toUpperCase(),

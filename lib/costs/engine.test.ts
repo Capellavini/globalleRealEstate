@@ -14,7 +14,7 @@ const ptRules: CostRule[] = [
       { up_to: 316772, marginal_rate: 0.07, deduction: 10022.42 },
       { up_to: null, marginal_rate: 0.075, deduction: 0 },
     ],
-    applies_to_objective: 'morar', currency: 'EUR', valid_from: '2026-01-01', valid_to: null,
+    applies_to_objective: 'moradia', currency: 'EUR', valid_from: '2026-01-01', valid_to: null,
   },
   {
     country_code: 'PT', municipality: null, cost_label: 'IMT', calc_type: 'brackets',
@@ -61,10 +61,10 @@ const brRules: CostRule[] = [
   },
 ]
 
-// ── PT: IMT de habitação própria (objetivo 'morar') usa a regra específica ──
+// ── PT: IMT de habitação própria (objetivo 'moradia') usa a regra específica ──
 {
   const r = estimateAcquisitionCosts({
-    askingPrice: 300000, currency: 'EUR', countryCode: 'PT', objective: 'morar',
+    askingPrice: 300000, currency: 'EUR', countryCode: 'PT', objective: 'moradia',
     rules: ptRules, asOf,
   })
   const imt = r.lines.find((l) => l.label === 'IMT')!
@@ -75,19 +75,19 @@ const brRules: CostRule[] = [
   assert.equal(r.rulesAsOf, '2026-01-01')
 }
 
-// ── PT: objetivo 'arrendar' cai na regra genérica de IMT (secundária) ──
+// ── PT: objetivo 'para_renda' cai na regra genérica de IMT (secundária) ──
 {
   const r = estimateAcquisitionCosts({
-    askingPrice: 300000, currency: 'EUR', countryCode: 'PT', objective: 'arrendar',
+    askingPrice: 300000, currency: 'EUR', countryCode: 'PT', objective: 'para_renda',
     rules: ptRules, asOf,
   })
   assert.equal(r.lines.find((l) => l.label === 'IMT')!.amount, 11996.75) // 300000×0.07 − 9003.25
 }
 
-// ── PT: primeiro escalão isento no 'morar' ──
+// ── PT: primeiro escalão isento no 'moradia' ──
 {
   const r = estimateAcquisitionCosts({
-    askingPrice: 90000, currency: 'EUR', countryCode: 'PT', objective: 'morar',
+    askingPrice: 90000, currency: 'EUR', countryCode: 'PT', objective: 'moradia',
     rules: ptRules, asOf,
   })
   assert.equal(r.lines.find((l) => l.label === 'IMT')!.amount, 0)
@@ -97,7 +97,7 @@ const brRules: CostRule[] = [
 {
   const r = estimateAcquisitionCosts({
     askingPrice: 800000, currency: 'BRL', countryCode: 'BR', municipality: 'São Paulo',
-    objective: 'arrendar', rules: brRules, asOf,
+    objective: 'para_renda', rules: brRules, asOf,
   })
   const itbi = r.lines.find((l) => l.label === 'ITBI')!
   assert.equal(itbi.amount, 24000) // 3%, não 2%
@@ -109,7 +109,7 @@ const brRules: CostRule[] = [
 {
   const r = estimateAcquisitionCosts({
     askingPrice: 800000, currency: 'BRL', countryCode: 'BR', municipality: 'Curitiba',
-    objective: 'arrendar', rules: brRules, asOf,
+    objective: 'para_renda', rules: brRules, asOf,
   })
   assert.equal(r.lines.find((l) => l.label === 'ITBI')!.amount, 16000) // nacional 2%
 }
@@ -118,7 +118,7 @@ const brRules: CostRule[] = [
 {
   const expired: CostRule = { ...ptRules[2], percent_rate: 0.05, valid_from: '2020-01-01', valid_to: '2025-12-31' }
   const r = estimateAcquisitionCosts({
-    askingPrice: 100000, currency: 'EUR', countryCode: 'PT', objective: 'arrendar',
+    askingPrice: 100000, currency: 'EUR', countryCode: 'PT', objective: 'para_renda',
     rules: [expired, ptRules[2]], asOf,
   })
   assert.equal(r.lines.find((l) => l.label === 'Imposto do Selo')!.amount, 800) // 0.8%, não 5%
@@ -127,7 +127,7 @@ const brRules: CostRule[] = [
 // ── País sem regras → só o preço ──
 {
   const r = estimateAcquisitionCosts({
-    askingPrice: 500000, currency: 'USD', countryCode: 'US', objective: 'morar',
+    askingPrice: 500000, currency: 'USD', countryCode: 'US', objective: 'moradia',
     rules: [...ptRules, ...brRules], asOf,
   })
   assert.equal(r.lines.length, 0)

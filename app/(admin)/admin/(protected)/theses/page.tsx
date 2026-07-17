@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { createThesis, setProfileRole } from '@/app/actions/theses'
+import ThesisCascadeFields from '@/components/portfolio/ThesisCascadeFields'
 import { getSessionProfile } from '@/lib/supabase/roles'
 import { OBJECTIVE_LABELS, type Profile, type ThesisObjective } from '@/lib/portfolio/types'
 
@@ -101,16 +102,8 @@ export default async function ThesesPage() {
                 <input name="budget_max" type="number" step="any" style={inputStyle} />
               </Field>
             </div>
-            <Field label="Países-alvo" hint="códigos ISO separados por vírgula: PT, BR">
-              <input name="target_countries" type="text" required placeholder="PT, BR" style={inputStyle} />
-            </Field>
-            <Field label="Cidades-alvo" hint="separadas por vírgula">
-              <input name="target_cities" type="text" placeholder="Porto, Lisboa" style={inputStyle} />
-            </Field>
-            <Field label="Tipos de imóvel" hint="separados por vírgula">
-              <input name="property_types" type="text" placeholder="apartamento, moradia" style={inputStyle} />
-            </Field>
-            <Field label="Yield mínimo (%)" hint="relevante para arrendar">
+            <ThesisCascadeFields />
+            <Field label="Yield mínimo (%)" hint="relevante para renda">
               <input name="min_yield" type="number" step="any" style={inputStyle} />
             </Field>
             <Field label="Critérios qualitativos" hint="um por linha — viram as linhas do fit">

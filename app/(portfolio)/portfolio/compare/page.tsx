@@ -77,7 +77,7 @@ export default async function ComparePage({
     : { data: [] }
   const fitLookup = new Map((fits ?? []).map((f) => [`${f.portfolio_item_id}:${f.criterion_id}`, f]))
 
-  const estimates = properties.map((p) => estimateForProperty(p, thesis?.objective ?? 'arrendar', rules))
+  const estimates = properties.map((p) => estimateForProperty(p, thesis?.objective ?? 'para_renda', rules))
 
   const th: React.CSSProperties = {
     textAlign: 'left',
