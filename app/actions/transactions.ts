@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { STEP_TEMPLATES, type TransactionStatus, type TransactionThesis } from '@/lib/admin/types'
+import { instantiateProcessSteps, processCountryForThesis } from '@/lib/transactions/process'
 
 export async function createTransaction(formData: FormData) {
   const client_name = String(formData.get('client_name') ?? '').trim()
@@ -34,6 +35,10 @@ export async function createTransaction(formData: FormData) {
 
   const { error: stepsError } = await supabase.from('steps').insert(steps)
   if (stepsError) throw new Error(`Erro ao criar etapas: ${stepsError.message}`)
+
+  // Parte D: etapas de processo do país escolhido no formulário.
+  const processCountry = String(formData.get('process_country') ?? '') || processCountryForThesis(thesis)
+  await instantiateProcessSteps(supabase, transaction.id, processCountry)
 
   revalidatePath('/admin')
   redirect(`/admin/transactions/${transaction.id}`)

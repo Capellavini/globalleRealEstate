@@ -54,6 +54,17 @@ export default function NewTransactionPage() {
           </select>
         </label>
 
+        <label style={{ display: 'grid', gap: 6, fontSize: 13, fontWeight: 600 }}>
+          País do processo
+          <select name="process_country" required defaultValue="PT" style={inputStyle}>
+            <option value="PT">🇵🇹 Portugal</option>
+            <option value="BR">🇧🇷 Brasil</option>
+          </select>
+          <span style={{ fontWeight: 400, fontSize: 12, color: 'rgba(11,18,48,0.55)' }}>
+            Define as etapas do processo de compra (Proposta → … → Pós-compra).
+          </span>
+        </label>
+
         <button
           type="submit"
           style={{
