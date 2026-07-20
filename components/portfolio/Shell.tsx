@@ -2,6 +2,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { signOut } from '@/app/actions/auth'
 import { getUnreadCommentsTotal } from '@/lib/portfolio/queries'
+import Avatar from '@/components/ui/Avatar'
+import NavLink from '@/components/ui/NavLink'
 import type { Profile } from '@/lib/portfolio/types'
 import type { User } from '@supabase/supabase-js'
 
@@ -48,7 +50,16 @@ export default async function PortfolioShell({
         />
       </head>
       <body style={{ background: '#F4F9FE', color: '#0B1230', minHeight: '100vh' }}>
-        <header style={{ background: '#070B24', color: '#EDF1F7', padding: '0 24px' }}>
+        <header
+          style={{
+            background: 'linear-gradient(180deg, #0A1130 0%, #070B24 100%)',
+            color: '#EDF1F7',
+            padding: '0 24px',
+            position: 'relative',
+            zIndex: 1,
+            boxShadow: '0 10px 24px -6px rgba(7,11,36,0.28)',
+          }}
+        >
           <div
             style={{
               maxWidth: 1200,
@@ -77,34 +88,26 @@ export default async function PortfolioShell({
               </span>
             </Link>
 
-            <nav style={{ display: 'flex', gap: 18, flex: 1, marginLeft: 10 }}>
+            <nav style={{ display: 'flex', gap: 22, flex: 1, marginLeft: 10 }}>
               {profile?.role === 'client' && (
-                <Link
-                  href="/portfolio"
-                  style={{ color: 'rgba(237,241,247,0.75)', fontSize: 13, fontWeight: 600, textDecoration: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center' }}
-                >
+                <NavLink href="/portfolio">
                   Opções
                   <UnreadBadge count={unreadCount} />
-                </Link>
+                </NavLink>
               )}
               {(profile?.role === 'client' || profile?.role === 'lawyer') && (
-                <Link href="/transacoes" style={{ color: 'rgba(237,241,247,0.75)', fontSize: 13, fontWeight: 600, textDecoration: 'none', whiteSpace: 'nowrap' }}>
-                  Minhas transações
-                </Link>
+                <NavLink href="/transacoes">Minhas transações</NavLink>
               )}
             </nav>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
               {isTeam && (
                 <Link href="/admin/portfolios" style={{ color: '#1EA7E8', fontSize: 13, fontWeight: 600, textDecoration: 'none' }}>
                   Admin
                 </Link>
               )}
-              <Link href="/perfil" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', color: 'rgba(237,241,247,0.62)' }}>
-                {profile?.avatar_url ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={profile.avatar_url} alt="" style={{ width: 26, height: 26, borderRadius: '50%', objectFit: 'cover' }} />
-                ) : null}
+              <Link href="/perfil" style={{ display: 'flex', alignItems: 'center', gap: 9, textDecoration: 'none', color: 'rgba(237,241,247,0.75)' }}>
+                <Avatar name={profile?.full_name ?? user.email ?? '?'} imageUrl={profile?.avatar_url} />
                 <span style={{ fontSize: 13 }}>{profile?.full_name ?? user.email}</span>
               </Link>
               <form action={signOut}>

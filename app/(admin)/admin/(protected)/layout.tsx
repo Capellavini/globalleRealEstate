@@ -5,6 +5,8 @@ import { isSupabaseConfigured } from '@/lib/supabase/server'
 import { getSessionProfile } from '@/lib/supabase/roles'
 import { getUnreadCommentsTotal } from '@/lib/portfolio/queries'
 import { signOut } from '@/app/actions/auth'
+import Avatar from '@/components/ui/Avatar'
+import NavLink from '@/components/ui/NavLink'
 
 const NAV_LINKS = [
   { href: '/admin/clientes', label: 'Clientes' },
@@ -31,9 +33,12 @@ export default async function ProtectedLayout({ children }: { children: React.Re
     <>
       <header
         style={{
-          background: '#070B24',
+          background: 'linear-gradient(180deg, #0A1130 0%, #070B24 100%)',
           color: '#EDF1F7',
           padding: '0 24px',
+          position: 'relative',
+          zIndex: 1,
+          boxShadow: '0 10px 24px -6px rgba(7,11,36,0.28)',
         }}
       >
         <div
@@ -65,7 +70,10 @@ export default async function ProtectedLayout({ children }: { children: React.Re
           </Link>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <span style={{ fontSize: 13, color: 'rgba(237,241,247,0.62)' }}>{user.email}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
+              <Avatar name={profile?.full_name ?? user.email ?? '?'} imageUrl={profile?.avatar_url} />
+              <span style={{ fontSize: 13, color: 'rgba(237,241,247,0.75)' }}>{profile?.full_name ?? user.email}</span>
+            </div>
             <form action={signOut}>
               <button
                 type="submit"
@@ -97,25 +105,11 @@ export default async function ProtectedLayout({ children }: { children: React.Re
           }}
         >
           {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              style={{
-                color: 'rgba(237,241,247,0.75)',
-                textDecoration: 'none',
-                fontSize: 13,
-                fontWeight: 600,
-                padding: '10px 0',
-                whiteSpace: 'nowrap',
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
+            <NavLink key={link.href} href={link.href}>
               {link.label}
               {link.href === '/admin/clientes' && unreadCount > 0 && (
                 <span
                   style={{
-                    marginLeft: 6,
                     background: '#FF3B5C',
                     color: '#fff',
                     borderRadius: 999,
@@ -127,7 +121,7 @@ export default async function ProtectedLayout({ children }: { children: React.Re
                   {unreadCount}
                 </span>
               )}
-            </Link>
+            </NavLink>
           ))}
         </nav>
       </header>
