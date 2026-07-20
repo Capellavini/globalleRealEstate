@@ -40,6 +40,23 @@ export default function PropertyChat({
   const bottomRef = useRef<HTMLDivElement>(null)
   const supabaseRef = useRef(createClient())
 
+  function markRead() {
+    supabaseRef.current
+      .from('comment_reads')
+      .upsert(
+        { portfolio_item_id: itemId, user_id: currentUserId, last_read_at: new Date().toISOString() },
+        { onConflict: 'portfolio_item_id,user_id' }
+      )
+      .then(() => {})
+  }
+
+  // Marca como lido ao abrir — some o badge de não lidas nos cards do
+  // kanban e do contador global assim que a pessoa vê a conversa.
+  useEffect(() => {
+    markRead()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemId])
+
   useEffect(() => {
     const supabase = supabaseRef.current
     const channel = supabase
@@ -61,6 +78,8 @@ export default function PropertyChat({
           setComments((prev) =>
             prev.some((c) => c.id === row.id) ? prev : [...prev, { ...row, profiles: authorProfile }]
           )
+          // Chegou enquanto a pessoa estava com o chat aberto — já é "lida".
+          markRead()
         }
       )
       .subscribe()
@@ -68,6 +87,7 @@ export default function PropertyChat({
     return () => {
       supabase.removeChannel(channel)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemId, currentUserId])
 
   useEffect(() => {

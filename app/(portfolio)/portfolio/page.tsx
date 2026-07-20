@@ -48,7 +48,7 @@ export default async function ClientPortfolioPage() {
     )
   }
 
-  const data = await getKanbanData(thesis.id)
+  const data = await getKanbanData(thesis.id, user.id)
   if (!data) redirect('/admin/login')
 
   return (

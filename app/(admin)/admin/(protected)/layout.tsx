@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import { isSupabaseConfigured } from '@/lib/supabase/server'
 import { getSessionProfile } from '@/lib/supabase/roles'
+import { getUnreadCommentsTotal } from '@/lib/portfolio/queries'
 import { signOut } from '@/app/actions/auth'
 
 const NAV_LINKS = [
@@ -23,6 +24,8 @@ export default async function ProtectedLayout({ children }: { children: React.Re
   if (profile && profile.role !== 'team') {
     redirect(profile.role === 'lawyer' ? '/transacoes' : '/portfolio')
   }
+
+  const unreadCount = await getUnreadCommentsTotal(user.id, true)
 
   return (
     <>
@@ -104,9 +107,26 @@ export default async function ProtectedLayout({ children }: { children: React.Re
                 fontWeight: 600,
                 padding: '10px 0',
                 whiteSpace: 'nowrap',
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
               {link.label}
+              {link.href === '/admin/clientes' && unreadCount > 0 && (
+                <span
+                  style={{
+                    marginLeft: 6,
+                    background: '#FF3B5C',
+                    color: '#fff',
+                    borderRadius: 999,
+                    padding: '1px 6px',
+                    fontSize: 10.5,
+                    fontWeight: 800,
+                  }}
+                >
+                  {unreadCount}
+                </span>
+              )}
             </Link>
           ))}
         </nav>

@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { getKanbanData } from '@/lib/portfolio/queries'
+import { getSessionProfile } from '@/lib/supabase/roles'
 import KanbanBoard from '@/components/portfolio/KanbanBoard'
 import ThesisSummary from '@/components/portfolio/ThesisSummary'
 
@@ -27,7 +28,10 @@ export default async function OptionsSection({ clientId }: { clientId: string })
 
   if (!thesis) return null
 
-  const data = await getKanbanData(thesis.id)
+  const { user } = await getSessionProfile()
+  if (!user) return null
+
+  const data = await getKanbanData(thesis.id, user.id)
   if (!data) return null
 
   return (

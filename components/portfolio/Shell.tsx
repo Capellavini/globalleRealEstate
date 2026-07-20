@@ -1,11 +1,31 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { signOut } from '@/app/actions/auth'
+import { getUnreadCommentsTotal } from '@/lib/portfolio/queries'
 import type { Profile } from '@/lib/portfolio/types'
 import type { User } from '@supabase/supabase-js'
 
+function UnreadBadge({ count }: { count: number }) {
+  if (count <= 0) return null
+  return (
+    <span
+      style={{
+        marginLeft: 6,
+        background: '#FF3B5C',
+        color: '#fff',
+        borderRadius: 999,
+        padding: '1px 6px',
+        fontSize: 10.5,
+        fontWeight: 800,
+      }}
+    >
+      {count}
+    </span>
+  )
+}
+
 // Casca (html/body + header) partilhada pela área do cliente: /portfolio e /perfil.
-export default function PortfolioShell({
+export default async function PortfolioShell({
   user,
   profile,
   children,
@@ -15,6 +35,7 @@ export default function PortfolioShell({
   children: React.ReactNode
 }) {
   const isTeam = profile?.role !== 'client'
+  const unreadCount = profile?.role === 'client' ? await getUnreadCommentsTotal(user.id, false) : 0
 
   return (
     <html lang="pt">
@@ -58,8 +79,12 @@ export default function PortfolioShell({
 
             <nav style={{ display: 'flex', gap: 18, flex: 1, marginLeft: 10 }}>
               {profile?.role === 'client' && (
-                <Link href="/portfolio" style={{ color: 'rgba(237,241,247,0.75)', fontSize: 13, fontWeight: 600, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                <Link
+                  href="/portfolio"
+                  style={{ color: 'rgba(237,241,247,0.75)', fontSize: 13, fontWeight: 600, textDecoration: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center' }}
+                >
                   Opções
+                  <UnreadBadge count={unreadCount} />
                 </Link>
               )}
               {(profile?.role === 'client' || profile?.role === 'lawyer') && (

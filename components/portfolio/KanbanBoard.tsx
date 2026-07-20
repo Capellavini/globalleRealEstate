@@ -39,6 +39,7 @@ export type KanbanCard = {
   fitYes: number
   fitTotal: number
   commentCount: number
+  unreadCount: number
 }
 
 type Role = 'team' | 'client'
@@ -384,7 +385,24 @@ function Card({
         )}
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11.5, color: 'rgba(11,18,48,0.55)' }}>
           <span>{card.fitTotal > 0 ? `${card.fitYes}/${card.fitTotal} critérios ✓` : 'sem avaliação'}</span>
-          <span>💬 {card.commentCount}</span>
+          <span style={card.unreadCount > 0 ? { color: '#A03030', fontWeight: 800 } : undefined}>
+            💬 {card.commentCount}
+            {card.unreadCount > 0 && (
+              <span
+                style={{
+                  marginLeft: 5,
+                  background: '#A03030',
+                  color: '#fff',
+                  borderRadius: 999,
+                  padding: '1px 6px',
+                  fontSize: 10.5,
+                  fontWeight: 800,
+                }}
+              >
+                {card.unreadCount} nova{card.unreadCount > 1 ? 's' : ''}
+              </span>
+            )}
+          </span>
         </div>
 
         <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>

@@ -27,7 +27,7 @@ export function estimateForProperty(property: Property, objective: string, rules
   })
 }
 
-export async function getKanbanData(thesisId: string): Promise<KanbanData | null> {
+export async function getKanbanData(thesisId: string, viewerId: string): Promise<KanbanData | null> {
   const supabase = createClient()
 
   const { data: thesis } = await supabase
@@ -50,6 +50,7 @@ export async function getKanbanData(thesisId: string): Promise<KanbanData | null
   const itemIds = (items ?? []).map((i) => i.id)
   const fitsByItem = new Map<string, { yes: number; total: number }>()
   const commentsByItem = new Map<string, number>()
+  const unreadByItem = await getUnreadByItem(itemIds, viewerId)
 
   if (itemIds.length) {
     const [{ data: fits }, { data: comments }] = await Promise.all([
@@ -90,6 +91,7 @@ export async function getKanbanData(thesisId: string): Promise<KanbanData | null
       fitYes: fit?.yes ?? 0,
       fitTotal: criteriaCount,
       commentCount: commentsByItem.get(item.id) ?? 0,
+      unreadCount: unreadByItem.get(item.id) ?? 0,
     }
   })
 
@@ -99,4 +101,54 @@ export async function getKanbanData(thesisId: string): Promise<KanbanData | null
     criteria: (criteria ?? []) as ThesisCriterion[],
     cards,
   }
+}
+
+// Mensagens de outra pessoa, ainda não marcadas como lidas por `viewerId`,
+// por portfolio_item — usado pelos badges do kanban e pelo contador global.
+async function getUnreadByItem(itemIds: string[], viewerId: string): Promise<Map<string, number>> {
+  const unread = new Map<string, number>()
+  if (!itemIds.length) return unread
+
+  const supabase = createClient()
+  const [{ data: comments }, { data: reads }] = await Promise.all([
+    supabase
+      .from('comments')
+      .select('portfolio_item_id, author_id, created_at')
+      .in('portfolio_item_id', itemIds)
+      .neq('author_id', viewerId),
+    supabase.from('comment_reads').select('portfolio_item_id, last_read_at').eq('user_id', viewerId).in('portfolio_item_id', itemIds),
+  ])
+
+  const readAtByItem = new Map((reads ?? []).map((r) => [r.portfolio_item_id, r.last_read_at as string]))
+  for (const c of comments ?? []) {
+    const readAt = readAtByItem.get(c.portfolio_item_id)
+    if (!readAt || c.created_at > readAt) {
+      unread.set(c.portfolio_item_id, (unread.get(c.portfolio_item_id) ?? 0) + 1)
+    }
+  }
+  return unread
+}
+
+// Total de mensagens não lidas do usuário — cliente: só as próprias teses;
+// equipe: todos os portfólios (vê tudo via RLS).
+export async function getUnreadCommentsTotal(viewerId: string, isTeam: boolean): Promise<number> {
+  const supabase = createClient()
+
+  let itemIds: string[]
+  if (isTeam) {
+    const { data: items } = await supabase.from('portfolio_items').select('id')
+    itemIds = (items ?? []).map((i) => i.id)
+  } else {
+    const { data: theses } = await supabase.from('theses').select('id').eq('client_id', viewerId)
+    const thesisIds = (theses ?? []).map((t) => t.id)
+    if (!thesisIds.length) return 0
+    const { data: items } = await supabase.from('portfolio_items').select('id').in('thesis_id', thesisIds)
+    itemIds = (items ?? []).map((i) => i.id)
+  }
+  if (!itemIds.length) return 0
+
+  const unreadByItem = await getUnreadByItem(itemIds, viewerId)
+  let total = 0
+  for (const n of unreadByItem.values()) total += n
+  return total
 }

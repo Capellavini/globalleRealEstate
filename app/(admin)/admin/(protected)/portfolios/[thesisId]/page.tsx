@@ -1,13 +1,17 @@
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { getKanbanData } from '@/lib/portfolio/queries'
+import { getSessionProfile } from '@/lib/supabase/roles'
 import KanbanBoard from '@/components/portfolio/KanbanBoard'
 import ThesisSummary from '@/components/portfolio/ThesisSummary'
 
 export const dynamic = 'force-dynamic'
 
 export default async function TeamKanbanPage({ params }: { params: { thesisId: string } }) {
-  const data = await getKanbanData(params.thesisId)
+  const { user } = await getSessionProfile()
+  if (!user) redirect('/admin/login')
+
+  const data = await getKanbanData(params.thesisId, user.id)
   if (!data) notFound()
 
   return (
