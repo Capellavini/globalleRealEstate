@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import { PROPERTY_TYPES, SOURCE_LABELS, type Property, type SourceType } from '@/lib/portfolio/types'
 
 const inputStyle: React.CSSProperties = {
@@ -9,6 +12,20 @@ const inputStyle: React.CSSProperties = {
   fontFamily: 'inherit',
   background: '#fff',
   color: '#0B1230',
+}
+
+// Moeda padrão por país — evita o erro clássico de cadastrar um imóvel em
+// Portugal com moeda BRL (ou vice-versa), que quebra a tabela de custos.
+const CURRENCY_BY_COUNTRY: Record<string, string> = {
+  PT: 'EUR',
+  ES: 'EUR',
+  IT: 'EUR',
+  FR: 'EUR',
+  DE: 'EUR',
+  BR: 'BRL',
+  US: 'USD',
+  AE: 'AED',
+  GB: 'GBP',
 }
 
 function Field({ label, children, hint }: { label: string; children: React.ReactNode; hint?: string }) {
@@ -25,6 +42,8 @@ function Field({ label, children, hint }: { label: string; children: React.React
 
 // Campos do formulário de imóvel (criar/editar). BR exige município (ITBI).
 export default function PropertyFormFields({ property }: { property?: Property }) {
+  const [currency, setCurrency] = useState(property?.currency ?? 'EUR')
+
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14 }}>
       <div style={{ gridColumn: '1 / -1' }}>
@@ -33,8 +52,17 @@ export default function PropertyFormFields({ property }: { property?: Property }
         </Field>
       </div>
 
-      <Field label="País (ISO)" hint="dirige o motor de custos">
-        <select name="country_code" required defaultValue={property?.country_code ?? ''} style={inputStyle}>
+      <Field label="País (ISO)" hint="dirige o motor de custos e a moeda">
+        <select
+          name="country_code"
+          required
+          defaultValue={property?.country_code ?? ''}
+          style={inputStyle}
+          onChange={(e) => {
+            const suggested = CURRENCY_BY_COUNTRY[e.target.value]
+            if (suggested) setCurrency(suggested)
+          }}
+        >
           <option value="" disabled>
             selecione…
           </option>
@@ -71,11 +99,19 @@ export default function PropertyFormFields({ property }: { property?: Property }
       <Field label="Preço pedido">
         <input name="asking_price" type="number" step="any" required defaultValue={property?.asking_price} style={inputStyle} />
       </Field>
-      <Field label="Moeda">
-        <select name="currency" required defaultValue={property?.currency ?? 'EUR'} style={inputStyle}>
+      <Field label="Moeda" hint="preenchida pelo país, pode ajustar">
+        <select
+          name="currency"
+          required
+          value={currency}
+          onChange={(e) => setCurrency(e.target.value)}
+          style={inputStyle}
+        >
           <option value="EUR">EUR</option>
           <option value="BRL">BRL</option>
           <option value="USD">USD</option>
+          <option value="AED">AED</option>
+          <option value="GBP">GBP</option>
         </select>
       </Field>
       <Field label="Área (m²)">
@@ -83,6 +119,9 @@ export default function PropertyFormFields({ property }: { property?: Property }
       </Field>
       <Field label="Quartos">
         <input name="bedrooms" type="number" defaultValue={property?.bedrooms ?? ''} style={inputStyle} />
+      </Field>
+      <Field label="Renda mensal esperada" hint="opcional, mesma moeda do preço — calcula o yield">
+        <input name="expected_monthly_rent" type="number" step="any" defaultValue={property?.expected_monthly_rent ?? ''} style={inputStyle} />
       </Field>
 
       <Field label="Origem" hint="semente da rede">
@@ -97,6 +136,17 @@ export default function PropertyFormFields({ property }: { property?: Property }
       <Field label="Nome da origem" hint="portal / corretor parceiro">
         <input name="source_name" type="text" defaultValue={property?.source_name ?? ''} style={inputStyle} />
       </Field>
+      <div style={{ gridColumn: '1 / -1' }}>
+        <Field label="Descrição" hint="texto que o cliente vê na página do imóvel">
+          <textarea
+            name="description"
+            rows={4}
+            defaultValue={property?.description ?? ''}
+            placeholder="Ex.: T2 renovado, luz natural todo o dia, a 5 min a pé do metro…"
+            style={{ ...inputStyle, resize: 'vertical', fontFamily: 'inherit' }}
+          />
+        </Field>
+      </div>
       <div style={{ gridColumn: '1 / -1' }}>
         <Field label="Link do anúncio">
           <input name="listing_url" type="url" defaultValue={property?.listing_url ?? ''} style={inputStyle} />

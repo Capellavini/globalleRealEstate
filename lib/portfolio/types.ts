@@ -73,6 +73,8 @@ export interface Property {
   source_name: string | null
   cover_photo_url: string | null
   photos: string[]
+  description: string | null
+  expected_monthly_rent: number | null
   created_by: string | null
   created_at: string
 }

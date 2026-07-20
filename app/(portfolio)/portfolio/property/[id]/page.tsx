@@ -42,6 +42,11 @@ function formatDateTime(iso: string): string {
   return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' })
 }
 
+function formatTime(iso: string): string {
+  const d = new Date(iso)
+  return d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+}
+
 export default async function PropertyDetailPage({
   params,
   searchParams,
@@ -90,10 +95,10 @@ export default async function PropertyDetailPage({
     : { data: null }
 
   const [criteria, fits, comments, history, rules] = await Promise.all([
-    thesisId
+    isTeam && thesisId
       ? supabase.from('thesis_criteria').select('*').eq('thesis_id', thesisId).order('sort_order').then((r) => r.data ?? [])
       : Promise.resolve([]),
-    item
+    isTeam && item
       ? supabase.from('criterion_fits').select('*').eq('portfolio_item_id', item.id).then((r) => r.data ?? [])
       : Promise.resolve([]),
     item
@@ -104,7 +109,7 @@ export default async function PropertyDetailPage({
           .order('created_at')
           .then((r) => r.data ?? [])
       : Promise.resolve([]),
-    item
+    isTeam && item
       ? supabase
           .from('status_history')
           .select('*, profiles(full_name)')
@@ -119,8 +124,13 @@ export default async function PropertyDetailPage({
     (fits as CriterionFit[]).map((f) => [f.criterion_id, f] as [string, CriterionFit])
   )
   const estimate = estimateForProperty(property, thesis?.objective ?? 'para_renda', rules)
+  const currencyMismatch = estimate.lines.some((l) => l.currency !== property.currency)
   const selfPath = `/portfolio/property/${property.id}${thesisId ? `?thesis=${thesisId}` : ''}`
   const backHref = isTeam && thesisId ? `/admin/portfolios/${thesisId}` : '/portfolio'
+
+  const monthlyRent = property.expected_monthly_rent ? Number(property.expected_monthly_rent) : null
+  const yieldPct =
+    monthlyRent && Number(property.asking_price) > 0 ? ((monthlyRent * 12) / Number(property.asking_price)) * 100 : null
 
   return (
     <>
@@ -128,8 +138,8 @@ export default async function PropertyDetailPage({
         {isTeam ? '← Voltar ao portfólio' : '← Voltar às opções'}
       </Link>
 
-      {/* Hero — foto grande + miniaturas, como num portal de imóveis */}
-      {gallery.length > 0 && (
+      {/* Fotos — hero grande + miniaturas, como num portal de imóveis */}
+      {gallery.length > 0 ? (
         <div style={{ margin: '12px 0 20px' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -146,6 +156,27 @@ export default async function PropertyDetailPage({
             </div>
           )}
         </div>
+      ) : (
+        isTeam && (
+          <div
+            style={{
+              margin: '12px 0 20px',
+              height: 120,
+              borderRadius: 16,
+              border: '1px dashed rgba(11,18,48,0.15)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: 13,
+              color: 'rgba(11,18,48,0.5)',
+            }}
+          >
+            Sem fotos — adicione em{' '}
+            <Link href={`/admin/properties/${property.id}`} style={{ color: '#0E6FA3', marginLeft: 4 }}>
+              editar imóvel
+            </Link>
+          </div>
+        )
       )}
 
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, margin: '0 0 4px', flexWrap: 'wrap' }}>
@@ -181,23 +212,47 @@ export default async function PropertyDetailPage({
         <span style={{ textTransform: 'capitalize' }}>🏠 {property.property_type}</span>
         {property.area_m2 && (
           <span>
-            €/m² {formatMoney(Math.round(Number(property.asking_price) / Number(property.area_m2)), property.currency)}
+            Preço/m² {formatMoney(Math.round(Number(property.asking_price) / Number(property.area_m2)), property.currency)}
           </span>
+        )}
+        {yieldPct !== null && (
+          <span style={{ color: '#1E7A44', fontWeight: 700 }}>📈 Yield {yieldPct.toFixed(1)}%/ano</span>
         )}
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 24, alignItems: 'start' }}>
         <section style={{ display: 'grid', gap: 24 }}>
-          {/* Origem */}
+          {/* Descrição */}
           <div style={card}>
             <h2 style={sectionTitle}>Sobre o anúncio</h2>
-            <div style={{ fontSize: 14 }}>
-              <span style={{ color: 'rgba(11,18,48,0.55)' }}>Origem: </span>
-              <strong>
-                {SOURCE_LABELS[property.source_type as SourceType] ?? property.source_type}
-                {property.source_name ? ` — ${property.source_name}` : ''}
-              </strong>
-            </div>
+            {property.description ? (
+              <p style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(11,18,48,0.8)', whiteSpace: 'pre-wrap' }}>
+                {property.description}
+              </p>
+            ) : (
+              <p style={{ fontSize: 13, color: 'rgba(11,18,48,0.45)', fontStyle: 'italic' }}>
+                {isTeam ? (
+                  <>
+                    Sem descrição —{' '}
+                    <Link href={`/admin/properties/${property.id}`} style={{ color: '#0E6FA3' }}>
+                      adicione ao editar o imóvel
+                    </Link>
+                    .
+                  </>
+                ) : (
+                  'Descrição em breve.'
+                )}
+              </p>
+            )}
+            {isTeam && (
+              <div style={{ fontSize: 13, marginTop: 14, paddingTop: 14, borderTop: '1px solid rgba(11,18,48,0.08)' }}>
+                <span style={{ color: 'rgba(11,18,48,0.55)' }}>Origem: </span>
+                <strong>
+                  {SOURCE_LABELS[property.source_type as SourceType] ?? property.source_type}
+                  {property.source_name ? ` — ${property.source_name}` : ''}
+                </strong>
+              </div>
+            )}
             {property.listing_url && (
               <a
                 href={property.listing_url}
@@ -238,12 +293,20 @@ export default async function PropertyDetailPage({
                         <td style={{ padding: '8px 0', textAlign: 'right' }}>{formatMoneyExact(line.amount, line.currency)}</td>
                       </tr>
                     ))}
-                    <tr>
-                      <td style={{ padding: '10px 0', fontWeight: 800 }}>Custo total de aquisição</td>
-                      <td style={{ padding: '10px 0', textAlign: 'right', fontWeight: 800, fontSize: 16 }}>
-                        {formatMoneyExact(estimate.grandTotal, property.currency)}
-                      </td>
-                    </tr>
+                    {currencyMismatch ? (
+                      <tr>
+                        <td colSpan={2} style={{ padding: '10px 0', fontSize: 12, color: '#A03030' }}>
+                          ⚠ Preço e custos estão em moedas diferentes — corrija a moeda do imóvel para ver o total.
+                        </td>
+                      </tr>
+                    ) : (
+                      <tr>
+                        <td style={{ padding: '10px 0', fontWeight: 800 }}>Custo total de aquisição</td>
+                        <td style={{ padding: '10px 0', textAlign: 'right', fontWeight: 800, fontSize: 16 }}>
+                          {formatMoneyExact(estimate.grandTotal, property.currency)}
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
                 <p style={{ fontSize: 11.5, color: 'rgba(11,18,48,0.5)', marginTop: 8 }}>
@@ -254,8 +317,8 @@ export default async function PropertyDetailPage({
             )}
           </div>
 
-          {/* Histórico */}
-          {(history as any[]).length > 0 && (
+          {/* Histórico — só equipe */}
+          {isTeam && (history as any[]).length > 0 && (
             <div style={card}>
               <h2 style={sectionTitle}>Histórico</h2>
               <div style={{ display: 'grid', gap: 8 }}>
@@ -276,69 +339,71 @@ export default async function PropertyDetailPage({
         </section>
 
         <section style={{ display: 'grid', gap: 24 }}>
-          {/* Fit com a tese */}
-          <div style={card}>
-            <h2 style={sectionTitle}>Fit com a tese</h2>
-            {!thesisId || (criteria as any[]).length === 0 ? (
-              <p style={{ fontSize: 13, color: 'rgba(11,18,48,0.55)' }}>
-                {thesisId ? 'A tese ainda não tem critérios cadastrados.' : 'Sem contexto de tese para avaliar o fit.'}
-              </p>
-            ) : (
-              <div style={{ display: 'grid', gap: 12 }}>
-                {(criteria as any[]).map((criterion) => {
-                  const fit = fitByCriterion.get(criterion.id)
-                  return (
-                    <div key={criterion.id} style={{ borderBottom: '1px solid rgba(11,18,48,0.07)', paddingBottom: 10 }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, fontSize: 13.5 }}>
-                        <span>{criterion.label}</span>
-                        <strong style={{ color: fit ? FIT_COLORS[fit.fit] : 'rgba(11,18,48,0.35)', fontSize: 15 }}>
-                          {fit ? FIT_LABELS[fit.fit] : '·'}
-                        </strong>
+          {/* Fit com a tese — só equipe */}
+          {isTeam && (
+            <div style={card}>
+              <h2 style={sectionTitle}>Fit com a tese</h2>
+              {!thesisId || (criteria as any[]).length === 0 ? (
+                <p style={{ fontSize: 13, color: 'rgba(11,18,48,0.55)' }}>
+                  {thesisId ? 'A tese ainda não tem critérios cadastrados.' : 'Sem contexto de tese para avaliar o fit.'}
+                </p>
+              ) : (
+                <div style={{ display: 'grid', gap: 12 }}>
+                  {(criteria as any[]).map((criterion) => {
+                    const fit = fitByCriterion.get(criterion.id)
+                    return (
+                      <div key={criterion.id} style={{ borderBottom: '1px solid rgba(11,18,48,0.07)', paddingBottom: 10 }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, fontSize: 13.5 }}>
+                          <span>{criterion.label}</span>
+                          <strong style={{ color: fit ? FIT_COLORS[fit.fit] : 'rgba(11,18,48,0.35)', fontSize: 15 }}>
+                            {fit ? FIT_LABELS[fit.fit] : '·'}
+                          </strong>
+                        </div>
+                        {fit?.note && (
+                          <p style={{ fontSize: 12.5, color: 'rgba(11,18,48,0.55)', marginTop: 4 }}>{fit.note}</p>
+                        )}
+                        {item && (
+                          <form action={setCriterionFit} style={{ display: 'flex', gap: 6, marginTop: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+                            <input type="hidden" name="portfolio_item_id" value={item.id} />
+                            <input type="hidden" name="criterion_id" value={criterion.id} />
+                            <input type="hidden" name="revalidate" value={selfPath} />
+                            <select
+                              name="fit"
+                              defaultValue={fit?.fit ?? ''}
+                              required
+                              style={{ padding: '5px 8px', border: '1px solid rgba(11,18,48,0.14)', borderRadius: 6, fontSize: 12.5, fontFamily: 'inherit' }}
+                            >
+                              <option value="" disabled>
+                                avaliar…
+                              </option>
+                              <option value="sim">✓ atende</option>
+                              <option value="parcial">~ parcial</option>
+                              <option value="nao">✗ não atende</option>
+                            </select>
+                            <input
+                              type="text"
+                              name="note"
+                              defaultValue={fit?.note ?? ''}
+                              placeholder="nota (opcional)"
+                              style={{ flex: 1, minWidth: 120, padding: '5px 8px', border: '1px solid rgba(11,18,48,0.14)', borderRadius: 6, fontSize: 12.5, fontFamily: 'inherit' }}
+                            />
+                            <button
+                              type="submit"
+                              style={{ padding: '5px 12px', border: '1px solid rgba(11,18,48,0.15)', borderRadius: 6, background: 'none', fontSize: 12.5, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer' }}
+                            >
+                              Salvar
+                            </button>
+                          </form>
+                        )}
                       </div>
-                      {fit?.note && (
-                        <p style={{ fontSize: 12.5, color: 'rgba(11,18,48,0.55)', marginTop: 4 }}>{fit.note}</p>
-                      )}
-                      {isTeam && item && (
-                        <form action={setCriterionFit} style={{ display: 'flex', gap: 6, marginTop: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-                          <input type="hidden" name="portfolio_item_id" value={item.id} />
-                          <input type="hidden" name="criterion_id" value={criterion.id} />
-                          <input type="hidden" name="revalidate" value={selfPath} />
-                          <select
-                            name="fit"
-                            defaultValue={fit?.fit ?? ''}
-                            required
-                            style={{ padding: '5px 8px', border: '1px solid rgba(11,18,48,0.14)', borderRadius: 6, fontSize: 12.5, fontFamily: 'inherit' }}
-                          >
-                            <option value="" disabled>
-                              avaliar…
-                            </option>
-                            <option value="sim">✓ atende</option>
-                            <option value="parcial">~ parcial</option>
-                            <option value="nao">✗ não atende</option>
-                          </select>
-                          <input
-                            type="text"
-                            name="note"
-                            defaultValue={fit?.note ?? ''}
-                            placeholder="nota (opcional)"
-                            style={{ flex: 1, minWidth: 120, padding: '5px 8px', border: '1px solid rgba(11,18,48,0.14)', borderRadius: 6, fontSize: 12.5, fontFamily: 'inherit' }}
-                          />
-                          <button
-                            type="submit"
-                            style={{ padding: '5px 12px', border: '1px solid rgba(11,18,48,0.15)', borderRadius: 6, background: 'none', fontSize: 12.5, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer' }}
-                          >
-                            Salvar
-                          </button>
-                        </form>
-                      )}
-                    </div>
-                  )
-                })}
-              </div>
-            )}
-          </div>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+          )}
 
-          {/* Comentários */}
+          {/* Comentários — formato de chat */}
           <div style={card}>
             <h2 style={sectionTitle}>Comentários</h2>
             {!item ? (
@@ -347,42 +412,61 @@ export default async function PropertyDetailPage({
               </p>
             ) : (
               <>
-                <div style={{ display: 'grid', gap: 12, marginBottom: 16 }}>
+                <div style={{ display: 'grid', gap: 12, marginBottom: 16, maxHeight: 420, overflowY: 'auto' }}>
                   {(comments as any[]).length === 0 && (
-                    <p style={{ fontSize: 13, color: 'rgba(11,18,48,0.5)' }}>Nenhum comentário ainda.</p>
+                    <p style={{ fontSize: 13, color: 'rgba(11,18,48,0.5)' }}>Nenhuma mensagem ainda.</p>
                   )}
-                  {(comments as any[]).map((comment) => (
-                    <div key={comment.id}>
-                      <div style={{ fontSize: 12, color: 'rgba(11,18,48,0.55)' }}>
-                        <strong style={{ color: '#0B1230' }}>{comment.profiles?.full_name ?? '—'}</strong>
-                        {comment.profiles?.role === 'team' && (
-                          <span style={{ color: '#0E6FA3', fontWeight: 700 }}> · Globalle</span>
+                  {(comments as any[]).map((comment) => {
+                    const isSelf = comment.author_id === user.id
+                    const isTeamAuthor = comment.profiles?.role === 'team'
+                    return (
+                      <div key={comment.id} style={{ display: 'flex', flexDirection: 'column', alignItems: isSelf ? 'flex-end' : 'flex-start' }}>
+                        {!isSelf && (
+                          <div style={{ fontSize: 11, color: 'rgba(11,18,48,0.55)', marginBottom: 3, padding: '0 4px' }}>
+                            <strong style={{ color: '#0B1230' }}>{comment.profiles?.full_name ?? '—'}</strong>
+                            {isTeamAuthor && <span style={{ color: '#0E6FA3', fontWeight: 700 }}> · Globalle</span>}
+                          </div>
                         )}
-                        {' · '}
-                        {formatDateTime(comment.created_at)}
+                        <div
+                          style={{
+                            maxWidth: '82%',
+                            padding: '9px 13px',
+                            borderRadius: 14,
+                            fontSize: 14,
+                            lineHeight: 1.45,
+                            whiteSpace: 'pre-wrap',
+                            background: isSelf ? '#070B24' : isTeamAuthor ? 'rgba(30,167,232,0.10)' : 'rgba(11,18,48,0.06)',
+                            color: isSelf ? '#fff' : '#0B1230',
+                            borderBottomRightRadius: isSelf ? 4 : 14,
+                            borderBottomLeftRadius: isSelf ? 14 : 4,
+                          }}
+                        >
+                          {comment.body}
+                        </div>
+                        <div style={{ fontSize: 10.5, color: 'rgba(11,18,48,0.4)', marginTop: 3, padding: '0 4px' }}>
+                          {formatDateTime(comment.created_at)} · {formatTime(comment.created_at)}
+                        </div>
                       </div>
-                      <p style={{ fontSize: 14, marginTop: 2, whiteSpace: 'pre-wrap' }}>{comment.body}</p>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
-                <form action={addComment} style={{ display: 'grid', gap: 8 }}>
+                <form action={addComment} style={{ display: 'flex', gap: 8, alignItems: 'flex-end' }}>
                   <input type="hidden" name="portfolio_item_id" value={item.id} />
                   <input type="hidden" name="revalidate" value={selfPath} />
                   <textarea
                     name="body"
-                    rows={2}
+                    rows={1}
                     required
-                    placeholder="Escreva um comentário…"
-                    style={{ padding: 10, border: '1px solid rgba(11,18,48,0.15)', borderRadius: 8, fontSize: 14, fontFamily: 'inherit', resize: 'vertical' }}
+                    placeholder="Escreva uma mensagem…"
+                    style={{ flex: 1, padding: '10px 14px', border: '1px solid rgba(11,18,48,0.15)', borderRadius: 20, fontSize: 14, fontFamily: 'inherit', resize: 'none' }}
                   />
-                  <div>
-                    <button
-                      type="submit"
-                      style={{ padding: '8px 16px', border: 'none', borderRadius: 8, background: '#070B24', color: '#fff', fontSize: 13.5, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer' }}
-                    >
-                      Comentar
-                    </button>
-                  </div>
+                  <button
+                    type="submit"
+                    aria-label="Enviar"
+                    style={{ width: 40, height: 40, flexShrink: 0, borderRadius: '50%', border: 'none', background: '#070B24', color: '#fff', fontSize: 16, fontFamily: 'inherit', cursor: 'pointer' }}
+                  >
+                    ➤
+                  </button>
                 </form>
               </>
             )}

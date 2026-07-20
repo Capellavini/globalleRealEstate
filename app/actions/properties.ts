@@ -34,6 +34,8 @@ function propertyFromForm(formData: FormData) {
     source_type: String(formData.get('source_type') ?? 'portal'),
     source_name: text('source_name'),
     cover_photo_url: text('cover_photo_url'),
+    description: text('description'),
+    expected_monthly_rent: num('expected_monthly_rent'),
   }
 }
 
