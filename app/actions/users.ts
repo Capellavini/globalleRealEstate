@@ -25,17 +25,24 @@ export async function inviteUser(formData: FormData) {
   if (!full_name || !email) backWithError('Nome e e-mail são obrigatórios.')
 
   const admin = createAdminClient()
-  const { data, error } = await admin.auth.admin.inviteUserByEmail(email, {
-    data: { full_name },
-    redirectTo: INVITE_REDIRECT,
-  })
+
+  // "Criar sem convite": conta gerenciada — nasce no Supabase mas nenhum
+  // e-mail sai. O botão "Reenviar convite" (status Pendente) convida depois.
+  const managed = String(formData.get('managed')) === 'on'
+
+  const { data, error } = managed
+    ? await admin.auth.admin.createUser({ email, user_metadata: { full_name } })
+    : await admin.auth.admin.inviteUserByEmail(email, {
+        data: { full_name },
+        redirectTo: INVITE_REDIRECT,
+      })
 
   if (error) {
     const msg = error.message.toLowerCase()
     if (msg.includes('already') || error.status === 422) {
       backWithError('Este e-mail já tem conta.')
     }
-    backWithError(`Erro ao convidar: ${error.message}`)
+    backWithError(`Erro ao ${managed ? 'criar' : 'convidar'}: ${error.message}`)
   }
 
   const userId = data.user!.id
@@ -75,7 +82,11 @@ export async function inviteUser(formData: FormData) {
   }
 
   revalidatePath('/admin/users')
-  redirect(`/admin/users?ok=${encodeURIComponent(`Convite enviado para ${email}.`)}`)
+  redirect(
+    `/admin/users?ok=${encodeURIComponent(
+      managed ? `Perfil de ${full_name} criado sem convite (gerenciado pela equipe).` : `Convite enviado para ${email}.`
+    )}`
+  )
 }
 
 // A3 — reenviar convite a usuário pendente. Tenta reenviar o e-mail; se a lib
@@ -114,9 +125,15 @@ export async function updateUserProfile(formData: FormData) {
   if (!full_name) backWithError('O nome não pode ficar vazio.')
   if (id === user.id && role !== 'team') backWithError('Você não pode rebaixar o próprio papel.')
 
+  // Linha de advisory (etiqueta comercial) — '' = sem linha.
+  const advisoryRaw = String(formData.get('advisory_line') ?? '')
+  const advisory_line = ['renda_euro', 'yield_real_brasil', 'cidadania_patrimonio'].includes(advisoryRaw)
+    ? advisoryRaw
+    : null
+
   if (!isAdminConfigured()) backWithError('SUPABASE_SERVICE_ROLE_KEY não configurada.')
   const admin = createAdminClient()
-  const { error } = await admin.from('profiles').update({ full_name, role }).eq('id', id)
+  const { error } = await admin.from('profiles').update({ full_name, role, advisory_line }).eq('id', id)
   if (error) backWithError(`Erro ao salvar: ${error.message}`)
 
   await admin.auth.admin.updateUserById(id, { user_metadata: { full_name } })

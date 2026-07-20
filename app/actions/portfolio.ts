@@ -46,16 +46,17 @@ export async function moveItem(itemId: string, toStatus: PortfolioStatus, reason
 }
 
 // Equipe confirma o avanço: cria a transação no Transaction Room existente,
-// copiando os dados do imóvel e vinculando property_id.
-export async function confirmAdvance(itemId: string, transactionThesis: TransactionThesis) {
+// copiando os dados do imóvel e vinculando property_id, cliente e tese.
+// A linha de advisory vem da etiqueta do cliente (fallback: país do imóvel) —
+// o modal não pergunta mais.
+export async function confirmAdvance(itemId: string) {
   const { user } = await requireTeam()
-  if (!STEP_TEMPLATES[transactionThesis]) throw new Error('Tese de transação inválida.')
 
   const supabase = createClient()
 
   const { data: item, error: readError } = await supabase
     .from('portfolio_items')
-    .select('id, thesis_id, status, properties(*), theses(id, title, client_id, profiles(full_name))')
+    .select('id, thesis_id, status, properties(*), theses(id, title, client_id, profiles(full_name, advisory_line))')
     .eq('id', itemId)
     .single()
   if (readError || !item) throw new Error('Imóvel não encontrado no portfólio.')
@@ -63,6 +64,24 @@ export async function confirmAdvance(itemId: string, transactionThesis: Transact
   const property = item.properties as any
   const thesis = item.theses as any
   const clientName: string = thesis?.profiles?.full_name ?? 'Cliente'
+
+  const transactionThesis: TransactionThesis =
+    thesis?.profiles?.advisory_line ??
+    (String(property.country_code).toUpperCase() === 'BR' ? 'yield_real_brasil' : 'renda_euro')
+
+  // 1 transação ativa por cliente (v1): conclua ou cancele a atual antes.
+  if (thesis?.client_id) {
+    const { data: activeTx } = await supabase
+      .from('transactions')
+      .select('id')
+      .eq('client_id', thesis.client_id)
+      .eq('status', 'active')
+      .limit(1)
+      .maybeSingle()
+    if (activeTx) {
+      throw new Error('Este cliente já tem uma transação ativa — conclua ou cancele a atual antes de avançar outro imóvel.')
+    }
+  }
 
   const notes = [
     `Origem: portfólio — tese "${thesis?.title ?? ''}".`,
@@ -81,6 +100,8 @@ export async function confirmAdvance(itemId: string, transactionThesis: Transact
       thesis: transactionThesis,
       notes,
       property_id: property.id,
+      client_id: thesis?.client_id ?? null,
+      thesis_id: item.thesis_id,
     })
     .select('id')
     .single()

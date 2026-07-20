@@ -5,6 +5,7 @@ import { getSessionProfile } from '@/lib/supabase/roles'
 import ConfirmSubmitButton from '@/components/admin/ConfirmSubmitButton'
 import { OBJECTIVE_LABELS, type Profile, type ThesisObjective } from '@/lib/portfolio/types'
 import { THESIS_COUNTRIES } from '@/lib/thesis-options'
+import { THESIS_LABELS, type TransactionThesis } from '@/lib/admin/types'
 
 export const dynamic = 'force-dynamic'
 
@@ -41,6 +42,7 @@ type UserRow = {
   id: string
   full_name: string
   role: Profile['role']
+  advisory_line: Profile['advisory_line']
   email: string
   created_at: string
   status: 'pendente' | 'ativo' | 'desativado'
@@ -102,6 +104,7 @@ export default async function UsersPage({
       id: profile.id,
       full_name: profile.full_name,
       role: profile.role,
+      advisory_line: profile.advisory_line ?? null,
       email: auth?.email ?? '—',
       created_at: profile.created_at,
       status: banned ? 'desativado' : pending ? 'pendente' : 'ativo',
@@ -211,16 +214,17 @@ export default async function UsersPage({
             </div>
           </details>
 
-          <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
             <button
               type="submit"
               style={{ padding: '11px 18px', border: 'none', borderRadius: 8, background: '#070B24', color: '#fff', fontSize: 14, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer' }}
             >
-              Enviar convite
+              Criar usuário
             </button>
-            <span style={{ fontSize: 12, color: 'rgba(11,18,48,0.55)', marginLeft: 12 }}>
-              O usuário recebe um e-mail e define a própria senha.
-            </span>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12.5, color: 'rgba(11,18,48,0.7)' }}>
+              <input type="checkbox" name="managed" />
+              criar sem convite (perfil gerenciado pela equipe — nenhum e-mail é enviado)
+            </label>
           </div>
         </form>
       </details>
@@ -281,6 +285,21 @@ export default async function UsersPage({
                     <option value="lawyer">lawyer</option>
                   </select>
                   {isMe && <input type="hidden" name="role" value="team" />}
+                  {row.role === 'client' && (
+                    <select
+                      name="advisory_line"
+                      defaultValue={row.advisory_line ?? ''}
+                      title="Linha de advisory (etiqueta comercial)"
+                      style={{ ...inputStyle, padding: '6px 10px', fontSize: 12.5 }}
+                    >
+                      <option value="">sem linha de advisory</option>
+                      {(Object.keys(THESIS_LABELS) as TransactionThesis[]).map((key) => (
+                        <option key={key} value={key}>
+                          {THESIS_LABELS[key]}
+                        </option>
+                      ))}
+                    </select>
+                  )}
                   <button type="submit" style={smallBtn}>
                     Salvar
                   </button>

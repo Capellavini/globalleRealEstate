@@ -22,8 +22,6 @@ import {
   STATUS_ORDER,
   type PortfolioStatus,
 } from '@/lib/portfolio/types'
-import { THESIS_LABELS, type TransactionThesis } from '@/lib/admin/types'
-
 export type KanbanCard = {
   itemId: string
   propertyId: string
@@ -58,7 +56,6 @@ export default function KanbanBoard({
   const [pendingDiscard, setPendingDiscard] = useState<PendingMove>(null)
   const [pendingAdvance, setPendingAdvance] = useState<PendingMove>(null)
   const [discardReason, setDiscardReason] = useState('')
-  const [advanceThesis, setAdvanceThesis] = useState<TransactionThesis>('renda_euro')
   const [compare, setCompare] = useState<string[]>([])
   const [, startTransition] = useTransition()
 
@@ -105,7 +102,7 @@ export default function KanbanBoard({
   function runTeamAdvance(card: KanbanCard) {
     startTransition(async () => {
       try {
-        await confirmAdvance(card.itemId, advanceThesis) // redireciona para a transação
+        await confirmAdvance(card.itemId) // redireciona para a transação
       } catch (e) {
         alert(e instanceof Error ? e.message : 'Erro ao confirmar o avanço.')
       }
@@ -226,24 +223,10 @@ export default function KanbanBoard({
       {pendingAdvance && role === 'team' && (
         <Modal onClose={() => setPendingAdvance(null)}>
           <h3 style={{ fontSize: 17, fontWeight: 700, marginBottom: 6 }}>Confirmar avanço</h3>
-          <p style={{ fontSize: 13, color: 'rgba(11,18,48,0.6)', marginBottom: 12 }}>
-            Cria a transação no Transaction Room com os dados de{' '}
-            <strong>{pendingAdvance.card.title}</strong> e abre o detalhe.
+          <p style={{ fontSize: 13, color: 'rgba(11,18,48,0.6)', marginBottom: 4 }}>
+            Cria a transação com os dados de <strong>{pendingAdvance.card.title}</strong>, vinculada ao cliente e à
+            tese, com as etapas do país do imóvel — e abre o detalhe.
           </p>
-          <label style={{ display: 'grid', gap: 6, fontSize: 13, fontWeight: 600 }}>
-            Tese da transação (define as etapas)
-            <select
-              value={advanceThesis}
-              onChange={(e) => setAdvanceThesis(e.target.value as TransactionThesis)}
-              style={{ padding: 10, border: '1px solid rgba(11,18,48,0.15)', borderRadius: 8, fontFamily: 'inherit', fontSize: 14 }}
-            >
-              {(Object.keys(THESIS_LABELS) as TransactionThesis[]).map((key) => (
-                <option key={key} value={key}>
-                  {THESIS_LABELS[key]}
-                </option>
-              ))}
-            </select>
-          </label>
           <ModalActions
             confirmLabel="Criar transação"
             onCancel={() => setPendingAdvance(null)}

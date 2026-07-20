@@ -15,6 +15,8 @@ export interface Profile {
   company: string | null
   residence_country: string | null // ISO alpha-2
   preferred_language: string | null // 'pt' | 'en' | 'it' | 'es'
+  // Linha de advisory — etiqueta comercial do cliente (Passo 1 da consolidação).
+  advisory_line: 'renda_euro' | 'yield_real_brasil' | 'cidadania_patrimonio' | null
   created_at: string
 }
 
