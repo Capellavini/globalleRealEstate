@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import { countryFlag, type Profile } from '@/lib/portfolio/types'
+import { type Profile } from '@/lib/portfolio/types'
 import { sumByCurrency, type ProcessStepStatus } from '@/lib/transactions/types'
+import FunnelBoard, { type FunnelCard } from '@/components/admin/FunnelBoard'
 
 export const dynamic = 'force-dynamic'
 
@@ -10,17 +10,6 @@ export const dynamic = 'force-dynamic'
 // diligence, CPCV/Compromisso, Financiamento, Escritura, Registro) até o
 // fechamento; a subetapa exata aparece como legenda no card.
 const COLUMNS = ['Lead', 'Tese definida', 'Buscando imóveis', 'Proposta', 'Due Diligence', 'Fechado', 'Perdido'] as const
-type Column = (typeof COLUMNS)[number]
-
-const COLUMN_COLORS: Record<Column, { bg: string; fg: string }> = {
-  Lead: { bg: 'rgba(11,18,48,0.03)', fg: 'rgba(11,18,48,0.55)' },
-  'Tese definida': { bg: 'rgba(11,18,48,0.03)', fg: 'rgba(11,18,48,0.55)' },
-  'Buscando imóveis': { bg: 'rgba(30,167,232,0.05)', fg: '#0E6FA3' },
-  Proposta: { bg: 'rgba(30,167,232,0.05)', fg: '#0E6FA3' },
-  'Due Diligence': { bg: 'rgba(30,167,232,0.05)', fg: '#0E6FA3' },
-  Fechado: { bg: 'rgba(43,160,90,0.05)', fg: '#1E7A44' },
-  Perdido: { bg: 'rgba(194,61,61,0.04)', fg: '#A03030' },
-}
 
 type ThesisRow = { id: string; client_id: string }
 type ItemRow = { thesis_id: string; status: string }
@@ -81,15 +70,10 @@ export default async function FunilPage() {
     txByClient.set(tx.client_id, list)
   }
 
-  type CardInfo = {
-    client: Profile
-    column: Column
-    subLabel: string | null
-    property: { title: string; country_code: string } | null
-    revenueTx: TxRow | null
-  }
+  const cards: FunnelCard[] = []
+  const revenueTxByColumn = new Map<string, TxRow[]>()
 
-  const cards: CardInfo[] = clients.map((client) => {
+  for (const client of clients) {
     const thesisId = thesisByClient.get(client.id)
     const items = thesisId ? itemsByThesis.get(thesisId) ?? [] : []
     const txs = (txByClient.get(client.id) ?? []).sort((a, b) => (a.created_at < b.created_at ? 1 : -1))
@@ -97,58 +81,64 @@ export default async function FunilPage() {
     const closed = txs.find((t) => t.status === 'closed')
     const cancelled = txs.find((t) => t.status === 'cancelled')
 
+    let column: (typeof COLUMNS)[number]
+    let subLabel: string | null = null
+    let property: { title: string; country_code: string } | null = null
+    let revenueTx: TxRow | null = null
+
     if (active) {
       const step = currentStepName(active)
-      const column: Column = step === 'Proposta' ? 'Proposta' : 'Due Diligence'
-      return {
-        client,
-        column,
-        subLabel: column === 'Due Diligence' ? step : null,
-        property: active.properties,
-        revenueTx: active,
-      }
+      column = step === 'Proposta' ? 'Proposta' : 'Due Diligence'
+      subLabel = column === 'Due Diligence' ? step : null
+      property = active.properties
+      revenueTx = active
+    } else if (closed) {
+      column = 'Fechado'
+      property = closed.properties
+      revenueTx = closed
+    } else if (cancelled) {
+      column = 'Perdido'
+      property = cancelled.properties
+      revenueTx = cancelled
+    } else if (thesisId && items.length > 0) {
+      column = 'Buscando imóveis'
+      subLabel = `${items.length} imóve${items.length === 1 ? 'l' : 'is'}`
+    } else if (thesisId) {
+      column = 'Tese definida'
+    } else {
+      column = 'Lead'
     }
-    if (closed) {
-      return { client, column: 'Fechado', subLabel: null, property: closed.properties, revenueTx: closed }
-    }
-    if (cancelled) {
-      return { client, column: 'Perdido', subLabel: null, property: cancelled.properties, revenueTx: cancelled }
-    }
-    if (thesisId && items.length > 0) {
-      return { client, column: 'Buscando imóveis', subLabel: `${items.length} imóve${items.length === 1 ? 'l' : 'is'}`, property: null, revenueTx: null }
-    }
-    if (thesisId) {
-      return { client, column: 'Tese definida', subLabel: null, property: null, revenueTx: null }
-    }
-    return { client, column: 'Lead', subLabel: null, property: null, revenueTx: null }
-  })
 
-  const byColumn = new Map<Column, CardInfo[]>()
-  for (const c of cards) {
-    const list = byColumn.get(c.column) ?? []
-    list.push(c)
-    byColumn.set(c.column, list)
+    cards.push({
+      clientId: client.id,
+      clientName: client.full_name,
+      column,
+      subLabel,
+      propertyTitle: property?.title ?? null,
+      propertyCountry: property?.country_code ?? null,
+    })
+
+    if (revenueTx) {
+      const list = revenueTxByColumn.get(column) ?? []
+      list.push(revenueTx)
+      revenueTxByColumn.set(column, list)
+    }
   }
 
-  function pendingRevenue(list: CardInfo[]): string {
-    const entries = list
-      .map((c) => c.revenueTx)
-      .filter((tx): tx is TxRow => tx !== null)
-      .flatMap((tx) => tx.transaction_revenues.filter((r) => r.status !== 'recebido'))
-    return entries.length ? sumByCurrency(entries) : ''
+  const revenueByColumn: Record<string, string> = {}
+  for (const [column, txs] of revenueTxByColumn) {
+    const entries = txs.flatMap((tx) => tx.transaction_revenues.filter((r) => r.status !== 'recebido'))
+    if (entries.length) revenueByColumn[column] = sumByCurrency(entries)
   }
 
   return (
     <>
-      <style>{`
-        .crm-cols { display: flex; gap: 12px; overflow-x: auto; align-items: flex-start; padding-bottom: 8px; }
-        .crm-col { min-width: 210px; width: 210px; flex-shrink: 0; }
-        @media (max-width: 860px) { .crm-col { min-width: 78vw; } }
-      `}</style>
-
       <div style={{ marginBottom: 24 }}>
         <h1 style={{ fontSize: 24, fontWeight: 700 }}>Funil</h1>
-        <p style={{ fontSize: 13, color: 'rgba(11,18,48,0.55)' }}>Clientes por estágio comercial — previsibilidade de faturamento.</p>
+        <p style={{ fontSize: 13, color: 'rgba(11,18,48,0.55)' }}>
+          Clientes por estágio comercial — previsibilidade de faturamento. Arraste entre Proposta, Due Diligence,
+          Fechado e Perdido.
+        </p>
       </div>
 
       {error && <p style={{ color: '#A03030', fontSize: 14 }}>Erro ao carregar: {error.message}</p>}
@@ -159,76 +149,7 @@ export default async function FunilPage() {
         </div>
       )}
 
-      {clients.length > 0 && (
-        <div className="crm-cols">
-          {COLUMNS.map((column) => {
-            const list = byColumn.get(column) ?? []
-            const revenue = pendingRevenue(list)
-            const colors = COLUMN_COLORS[column]
-            return (
-              <div
-                key={column}
-                className="crm-col"
-                style={{
-                  background: colors.bg,
-                  border: '1px solid rgba(11,18,48,0.08)',
-                  borderRadius: 12,
-                  padding: 10,
-                  display: 'grid',
-                  gap: 10,
-                  alignContent: 'start',
-                }}
-              >
-                <div style={{ padding: '2px 4px', display: 'grid', gap: 2 }}>
-                  <span
-                    style={{
-                      fontFamily: "'Space Mono', monospace",
-                      fontSize: 11,
-                      letterSpacing: '0.1em',
-                      textTransform: 'uppercase',
-                      color: colors.fg,
-                    }}
-                  >
-                    {column} <span style={{ color: 'rgba(11,18,48,0.35)' }}>({list.length})</span>
-                  </span>
-                  {revenue && (
-                    <span style={{ fontSize: 11.5, fontWeight: 700, color: '#8A6320' }} title="Receita prevista ainda não recebida">
-                      ⏳ {revenue}
-                    </span>
-                  )}
-                </div>
-
-                {list.map((c) => (
-                  <Link
-                    key={c.client.id}
-                    href={`/admin/clientes/${c.client.id}`}
-                    style={{
-                      background: '#fff',
-                      border: '1px solid rgba(11,18,48,0.10)',
-                      borderRadius: 10,
-                      padding: 14,
-                      textDecoration: 'none',
-                      color: '#0B1230',
-                      display: 'grid',
-                      gap: 6,
-                    }}
-                  >
-                    <strong style={{ fontSize: 14, fontWeight: 700 }}>{c.client.full_name}</strong>
-                    {c.property && (
-                      <span style={{ fontSize: 12, color: 'rgba(11,18,48,0.6)' }}>
-                        {countryFlag(c.property.country_code)} {c.property.title}
-                      </span>
-                    )}
-                    {c.subLabel && (
-                      <span style={{ fontSize: 11.5, color: 'rgba(11,18,48,0.55)' }}>{c.subLabel}</span>
-                    )}
-                  </Link>
-                ))}
-              </div>
-            )
-          })}
-        </div>
-      )}
+      {clients.length > 0 && <FunnelBoard columns={COLUMNS} initialCards={cards} revenueByColumn={revenueByColumn} />}
     </>
   )
 }

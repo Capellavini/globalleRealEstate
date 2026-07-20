@@ -9,7 +9,12 @@ export default async function middleware(request: NextRequest) {
   // /admin (Transaction Room + telas da equipe) e /portfolio (cliente) usam
   // auth Supabase, sem locale prefix.
   const { pathname } = request.nextUrl
-  if (pathname.startsWith('/admin') || pathname.startsWith('/portfolio') || pathname.startsWith('/perfil')) {
+  if (
+    pathname.startsWith('/admin') ||
+    pathname.startsWith('/portfolio') ||
+    pathname.startsWith('/perfil') ||
+    pathname.startsWith('/transacoes')
+  ) {
     return updateSession(request)
   }
   // /auth/* (ex.: definir senha vindo do e-mail de convite): sem locale prefix
