@@ -356,15 +356,29 @@ function Card({
               left: 10,
               bottom: 8,
               color: '#fff',
-              fontWeight: 800,
-              fontSize: 16,
+              fontFamily: "'Fraunces', serif",
+              fontOpticalSizing: 'auto',
+              fontWeight: 600,
+              fontSize: 17,
             }}
           >
             {formatMoney(card.price, card.currency)}
           </span>
         </div>
         <div style={{ padding: '10px 10px 0' }}>
-          <strong style={{ display: 'block', fontWeight: 700, fontSize: 13.5, color: '#0B1230', lineHeight: 1.3 }}>{card.title}</strong>
+          <strong
+            style={{
+              display: 'block',
+              fontFamily: "'Fraunces', serif",
+              fontOpticalSizing: 'auto',
+              fontWeight: 600,
+              fontSize: 14.5,
+              color: '#0B1230',
+              lineHeight: 1.3,
+            }}
+          >
+            {card.title}
+          </strong>
           <div style={{ fontSize: 12, color: 'rgba(11,18,48,0.6)', marginTop: 2 }}>
             {countryFlag(card.countryCode)} {card.city} · {card.countryCode}
           </div>

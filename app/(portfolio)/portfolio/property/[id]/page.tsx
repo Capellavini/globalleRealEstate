@@ -172,7 +172,9 @@ export default async function PropertyDetailPage({
       )}
 
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, margin: '0 0 4px', flexWrap: 'wrap' }}>
-        <h1 style={{ fontSize: 24, fontWeight: 800 }}>{property.title}</h1>
+        <h1 style={{ fontFamily: "'Fraunces', serif", fontOpticalSizing: 'auto', fontSize: 30, fontWeight: 600 }}>
+          {property.title}
+        </h1>
         {item && (
           <span
             style={{
@@ -195,7 +197,7 @@ export default async function PropertyDetailPage({
       </p>
 
       {/* Preço em destaque + faixa de fatos-chave, como num portal */}
-      <div style={{ fontSize: 30, fontWeight: 800, marginBottom: 10 }}>
+      <div style={{ fontFamily: "'Fraunces', serif", fontOpticalSizing: 'auto', fontSize: 36, fontWeight: 600, marginBottom: 10 }}>
         {formatMoney(Number(property.asking_price), property.currency)}
       </div>
       <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', fontSize: 14, color: 'rgba(11,18,48,0.75)', marginBottom: 24, alignItems: 'center' }}>
