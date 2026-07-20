@@ -161,13 +161,14 @@ function Card({ card }: { card: FunnelCard }) {
       {...listeners}
       style={{
         background: '#fff',
-        border: '1px solid rgba(11,18,48,0.10)',
-        borderRadius: 10,
+        border: '1px solid rgba(11,18,48,0.08)',
+        borderRadius: 12,
         padding: 14,
         display: 'grid',
         gap: 6,
         cursor: 'grab',
         touchAction: 'manipulation',
+        boxShadow: '0 1px 2px rgba(11,18,48,0.04), 0 4px 12px rgba(11,18,48,0.05)',
         opacity: isDragging ? 0.4 : 1,
         transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : undefined,
         position: 'relative',

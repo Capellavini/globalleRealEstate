@@ -12,12 +12,9 @@ import {
 
 // Receita Globalle — INTERNA (RLS team-only). Nunca renderizada no portal.
 
-const card: React.CSSProperties = {
-  background: '#fff',
-  border: '1px solid rgba(232,184,109,0.5)',
-  borderRadius: 12,
-  padding: 20,
-}
+import { cardStyle } from '@/lib/ui/style'
+
+const card: React.CSSProperties = { ...cardStyle, border: '1px solid rgba(232,184,109,0.5)' }
 
 const inputStyle: React.CSSProperties = {
   padding: '6px 9px',

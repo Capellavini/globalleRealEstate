@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { SendIcon } from '@/components/icons/LineIcons'
 
 type CommentRow = {
   id: string
@@ -183,12 +184,14 @@ export default function PropertyChat({
             border: 'none',
             background: sending || !text.trim() ? 'rgba(7,11,36,0.35)' : '#070B24',
             color: '#fff',
-            fontSize: 16,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             fontFamily: 'inherit',
             cursor: sending || !text.trim() ? 'default' : 'pointer',
           }}
         >
-          ➤
+          <SendIcon size={17} />
         </button>
       </div>
     </>

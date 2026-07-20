@@ -9,12 +9,7 @@ import { DOC_CATEGORIES, docCategoryLabel, type TransactionDocument } from '@/li
 // Lista de documentos da transação — componente isolado (base da Fase 4/IA).
 // O RLS já esconde documentos internos de quem não é equipe.
 
-const card: React.CSSProperties = {
-  background: '#fff',
-  border: '1px solid rgba(11,18,48,0.10)',
-  borderRadius: 12,
-  padding: 20,
-}
+import { cardStyle as card } from '@/lib/ui/style'
 
 type Row = TransactionDocument & { profiles: { full_name: string } | null }
 

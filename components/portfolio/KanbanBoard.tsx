@@ -22,6 +22,7 @@ import {
   STATUS_ORDER,
   type PortfolioStatus,
 } from '@/lib/portfolio/types'
+import { AreaIcon, BedIcon, ChatIcon, HomeIcon } from '@/components/icons/LineIcons'
 export type KanbanCard = {
   itemId: string
   propertyId: string
@@ -124,6 +125,10 @@ export default function KanbanBoard({
       <style>{`
         .kanban-cols { display: grid; grid-template-columns: repeat(5, minmax(232px, 1fr)); gap: 12px; align-items: start; }
         @media (max-width: 860px) { .kanban-cols { grid-template-columns: 1fr; } }
+        .kanban-card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+        .kanban-card:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(11,18,48,0.06), 0 16px 32px rgba(11,18,48,0.14); }
+        .kanban-card-photo { transition: transform 0.3s ease; }
+        .kanban-card:hover .kanban-card-photo { transform: scale(1.05); }
       `}</style>
 
       <DndContext sensors={sensors} onDragEnd={onDragEnd}>
@@ -312,11 +317,13 @@ function Card({
       ref={setNodeRef}
       {...attributes}
       {...listeners}
+      className="kanban-card"
       style={{
         background: '#fff',
-        border: selected ? '1.5px solid #1EA7E8' : '1px solid rgba(11,18,48,0.10)',
-        borderRadius: 12,
+        border: selected ? '1.5px solid #1EA7E8' : '1px solid rgba(11,18,48,0.08)',
+        borderRadius: 14,
         overflow: 'hidden',
+        boxShadow: '0 1px 2px rgba(11,18,48,0.04), 0 6px 16px rgba(11,18,48,0.06)',
         opacity: isDragging ? 0.4 : discarded ? 0.55 : 1,
         transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : undefined,
         cursor: 'grab',
@@ -331,26 +338,26 @@ function Card({
         onPointerDown={(e) => e.stopPropagation()}
         style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
       >
-        <div
-          style={{
-            height: 148,
-            position: 'relative',
-            background: card.coverUrl
-              ? `url(${card.coverUrl}) center/cover no-repeat`
-              : 'linear-gradient(135deg, #0E1530, #131B38)',
-          }}
-        >
+        <div style={{ height: 148, position: 'relative', overflow: 'hidden' }}>
+          <div
+            className="kanban-card-photo"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: card.coverUrl
+                ? `url(${card.coverUrl}) center/cover no-repeat`
+                : 'linear-gradient(135deg, #0E1530, #131B38)',
+            }}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(7,11,36,0.75), rgba(7,11,36,0) 60%)' }} />
           <span
             style={{
               position: 'absolute',
-              left: 8,
+              left: 10,
               bottom: 8,
-              background: 'rgba(7,11,36,0.82)',
               color: '#fff',
               fontWeight: 800,
-              fontSize: 14.5,
-              padding: '4px 10px',
-              borderRadius: 8,
+              fontSize: 16,
             }}
           >
             {formatMoney(card.price, card.currency)}
@@ -361,10 +368,20 @@ function Card({
           <div style={{ fontSize: 12, color: 'rgba(11,18,48,0.6)', marginTop: 2 }}>
             {countryFlag(card.countryCode)} {card.city} · {card.countryCode}
           </div>
-          <div style={{ display: 'flex', gap: 10, fontSize: 11.5, color: 'rgba(11,18,48,0.65)', marginTop: 5 }}>
-            {card.bedrooms !== null && <span>🛏 {card.bedrooms}</span>}
-            {card.areaM2 !== null && <span>📐 {card.areaM2} m²</span>}
-            <span style={{ textTransform: 'capitalize' }}>🏠 {card.propertyType}</span>
+          <div style={{ display: 'flex', gap: 10, fontSize: 11.5, color: 'rgba(11,18,48,0.65)', marginTop: 5, alignItems: 'center' }}>
+            {card.bedrooms !== null && (
+              <span style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+                <BedIcon style={{ color: 'rgba(11,18,48,0.45)' }} /> {card.bedrooms}
+              </span>
+            )}
+            {card.areaM2 !== null && (
+              <span style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+                <AreaIcon style={{ color: 'rgba(11,18,48,0.45)' }} /> {card.areaM2} m²
+              </span>
+            )}
+            <span style={{ display: 'flex', alignItems: 'center', gap: 3, textTransform: 'capitalize' }}>
+              <HomeIcon style={{ color: 'rgba(11,18,48,0.45)' }} /> {card.propertyType}
+            </span>
           </div>
         </div>
       </Link>
@@ -385,8 +402,15 @@ function Card({
         )}
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11.5, color: 'rgba(11,18,48,0.55)' }}>
           <span>{card.fitTotal > 0 ? `${card.fitYes}/${card.fitTotal} critérios ✓` : 'sem avaliação'}</span>
-          <span style={card.unreadCount > 0 ? { color: '#A03030', fontWeight: 800 } : undefined}>
-            💬 {card.commentCount}
+          <span
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 3,
+              ...(card.unreadCount > 0 ? { color: '#A03030', fontWeight: 800 } : {}),
+            }}
+          >
+            <ChatIcon style={{ color: card.unreadCount > 0 ? '#A03030' : 'rgba(11,18,48,0.45)' }} /> {card.commentCount}
             {card.unreadCount > 0 && (
               <span
                 style={{

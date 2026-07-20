@@ -5,6 +5,7 @@ import { getSessionProfile } from '@/lib/supabase/roles'
 import { estimateForProperty, getCostRules } from '@/lib/portfolio/queries'
 import { setCriterionFit } from '@/app/actions/portfolio'
 import PropertyChat from '@/components/portfolio/PropertyChat'
+import { AreaIcon, BedIcon, HomeIcon, TrendingUpIcon } from '@/components/icons/LineIcons'
 import {
   countryFlag,
   FIT_COLORS,
@@ -22,12 +23,7 @@ import {
 
 export const dynamic = 'force-dynamic'
 
-const card: React.CSSProperties = {
-  background: '#fff',
-  border: '1px solid rgba(11,18,48,0.10)',
-  borderRadius: 12,
-  padding: 20,
-}
+import { cardStyle as card } from '@/lib/ui/style'
 
 const sectionTitle: React.CSSProperties = {
   fontFamily: "'Space Mono', monospace",
@@ -202,17 +198,29 @@ export default async function PropertyDetailPage({
       <div style={{ fontSize: 30, fontWeight: 800, marginBottom: 10 }}>
         {formatMoney(Number(property.asking_price), property.currency)}
       </div>
-      <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', fontSize: 14, color: 'rgba(11,18,48,0.75)', marginBottom: 24 }}>
-        {property.bedrooms !== null && <span>🛏 {property.bedrooms} quartos</span>}
-        {property.area_m2 !== null && <span>📐 {property.area_m2} m²</span>}
-        <span style={{ textTransform: 'capitalize' }}>🏠 {property.property_type}</span>
+      <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', fontSize: 14, color: 'rgba(11,18,48,0.75)', marginBottom: 24, alignItems: 'center' }}>
+        {property.bedrooms !== null && (
+          <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+            <BedIcon size={17} style={{ color: 'rgba(11,18,48,0.5)' }} /> {property.bedrooms} quartos
+          </span>
+        )}
+        {property.area_m2 !== null && (
+          <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+            <AreaIcon size={17} style={{ color: 'rgba(11,18,48,0.5)' }} /> {property.area_m2} m²
+          </span>
+        )}
+        <span style={{ display: 'flex', alignItems: 'center', gap: 5, textTransform: 'capitalize' }}>
+          <HomeIcon size={17} style={{ color: 'rgba(11,18,48,0.5)' }} /> {property.property_type}
+        </span>
         {property.area_m2 && (
           <span>
             Preço/m² {formatMoney(Math.round(Number(property.asking_price) / Number(property.area_m2)), property.currency)}
           </span>
         )}
         {yieldPct !== null && (
-          <span style={{ color: '#1E7A44', fontWeight: 700 }}>📈 Yield {yieldPct.toFixed(1)}%/ano</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#1E7A44', fontWeight: 700 }}>
+            <TrendingUpIcon size={17} /> Yield {yieldPct.toFixed(1)}%/ano
+          </span>
         )}
       </div>
 

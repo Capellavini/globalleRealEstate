@@ -6,12 +6,7 @@ import type { ProcessStepStatus } from '@/lib/transactions/types'
 
 export const dynamic = 'force-dynamic'
 
-const card: React.CSSProperties = {
-  background: '#fff',
-  border: '1px solid rgba(11,18,48,0.10)',
-  borderRadius: 12,
-  padding: 20,
-}
+import { cardStyle as card } from '@/lib/ui/style'
 
 type ThesisRow = { id: string; client_id: string }
 type ItemRow = { thesis_id: string; status: string }

@@ -2,12 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { addTransactionComment } from '@/app/actions/transaction-comments'
 import type { TransactionComment } from '@/lib/transactions/types'
 
-const card: React.CSSProperties = {
-  background: '#fff',
-  border: '1px solid rgba(11,18,48,0.10)',
-  borderRadius: 12,
-  padding: 20,
-}
+import { cardStyle as card } from '@/lib/ui/style'
 
 type Row = TransactionComment & { profiles: { full_name: string; role: string } | null }
 

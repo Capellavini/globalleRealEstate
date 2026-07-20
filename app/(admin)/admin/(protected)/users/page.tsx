@@ -9,12 +9,7 @@ import { THESIS_LABELS, type TransactionThesis } from '@/lib/admin/types'
 
 export const dynamic = 'force-dynamic'
 
-const card: React.CSSProperties = {
-  background: '#fff',
-  border: '1px solid rgba(11,18,48,0.10)',
-  borderRadius: 12,
-  padding: 20,
-}
+import { cardStyle as card } from '@/lib/ui/style'
 
 const inputStyle: React.CSSProperties = {
   padding: '9px 12px',

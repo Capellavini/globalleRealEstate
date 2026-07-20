@@ -11,12 +11,7 @@ import RevenueSection from '@/components/transactions/RevenueSection'
 import { THESIS_COLORS, THESIS_LABELS, TX_STATUS_LABELS, type Transaction, type TransactionStatus } from '@/lib/admin/types'
 import { countryFlag } from '@/lib/portfolio/types'
 
-const card: React.CSSProperties = {
-  background: '#fff',
-  border: '1px solid rgba(11,18,48,0.10)',
-  borderRadius: 12,
-  padding: 20,
-}
+import { cardStyle as card } from '@/lib/ui/style'
 
 const inputStyle: React.CSSProperties = {
   padding: '8px 10px',

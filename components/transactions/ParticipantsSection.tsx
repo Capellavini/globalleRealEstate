@@ -8,12 +8,7 @@ import {
   type ParticipantRole,
 } from '@/lib/transactions/types'
 
-const card: React.CSSProperties = {
-  background: '#fff',
-  border: '1px solid rgba(11,18,48,0.10)',
-  borderRadius: 12,
-  padding: 20,
-}
+import { cardStyle as card } from '@/lib/ui/style'
 
 const inputStyle: React.CSSProperties = {
   padding: '8px 10px',

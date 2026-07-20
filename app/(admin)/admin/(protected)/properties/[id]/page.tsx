@@ -9,12 +9,7 @@ import type { Property } from '@/lib/portfolio/types'
 
 export const dynamic = 'force-dynamic'
 
-const card: React.CSSProperties = {
-  background: '#fff',
-  border: '1px solid rgba(11,18,48,0.10)',
-  borderRadius: 12,
-  padding: 20,
-}
+import { cardStyle as card } from '@/lib/ui/style'
 
 export default async function EditPropertyPage({ params }: { params: { id: string } }) {
   const supabase = createClient()

@@ -5,12 +5,7 @@ import ThesisCascadeFields from '@/components/portfolio/ThesisCascadeFields'
 import { isStructuredPropertyType, REGIONS_BY_COUNTRY } from '@/lib/thesis-options'
 import { OBJECTIVE_LABELS, type Thesis, type ThesisObjective } from '@/lib/portfolio/types'
 
-const card: React.CSSProperties = {
-  background: '#fff',
-  border: '1px solid rgba(11,18,48,0.10)',
-  borderRadius: 12,
-  padding: 20,
-}
+import { cardStyle as card } from '@/lib/ui/style'
 
 const inputStyle: React.CSSProperties = {
   width: '100%',
