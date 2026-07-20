@@ -163,22 +163,6 @@ export async function removeItem(formData: FormData) {
   if (item) revalidateBoards(item.thesis_id)
 }
 
-export async function addComment(formData: FormData) {
-  const { user } = await requireUser()
-  const itemId = String(formData.get('portfolio_item_id'))
-  const body = String(formData.get('body') ?? '').trim()
-  if (!body) return
-
-  const supabase = createClient()
-  const { error } = await supabase
-    .from('comments')
-    .insert({ portfolio_item_id: itemId, author_id: user.id, body })
-  if (error) throw new Error(`Erro ao comentar: ${error.message}`)
-
-  const path = String(formData.get('revalidate') ?? '')
-  if (path) revalidatePath(path)
-}
-
 // Fit manual por critério (✓ / ~ / ✗ + nota) — só equipe.
 export async function setCriterionFit(formData: FormData) {
   const { user } = await requireTeam()

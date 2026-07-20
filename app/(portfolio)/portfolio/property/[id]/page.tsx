@@ -3,7 +3,8 @@ import { notFound, redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { getSessionProfile } from '@/lib/supabase/roles'
 import { estimateForProperty, getCostRules } from '@/lib/portfolio/queries'
-import { addComment, setCriterionFit } from '@/app/actions/portfolio'
+import { setCriterionFit } from '@/app/actions/portfolio'
+import PropertyChat from '@/components/portfolio/PropertyChat'
 import {
   countryFlag,
   FIT_COLORS,
@@ -40,11 +41,6 @@ const sectionTitle: React.CSSProperties = {
 function formatDateTime(iso: string): string {
   const d = new Date(iso)
   return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' })
-}
-
-function formatTime(iso: string): string {
-  const d = new Date(iso)
-  return d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
 }
 
 export default async function PropertyDetailPage({
@@ -403,7 +399,7 @@ export default async function PropertyDetailPage({
             </div>
           )}
 
-          {/* Comentários — formato de chat */}
+          {/* Comentários — chat em tempo real (Supabase Realtime) */}
           <div style={card}>
             <h2 style={sectionTitle}>Comentários</h2>
             {!item ? (
@@ -411,64 +407,7 @@ export default async function PropertyDetailPage({
                 Este imóvel ainda não está num portfólio — sem thread de comentários.
               </p>
             ) : (
-              <>
-                <div style={{ display: 'grid', gap: 12, marginBottom: 16, maxHeight: 420, overflowY: 'auto' }}>
-                  {(comments as any[]).length === 0 && (
-                    <p style={{ fontSize: 13, color: 'rgba(11,18,48,0.5)' }}>Nenhuma mensagem ainda.</p>
-                  )}
-                  {(comments as any[]).map((comment) => {
-                    const isSelf = comment.author_id === user.id
-                    const isTeamAuthor = comment.profiles?.role === 'team'
-                    return (
-                      <div key={comment.id} style={{ display: 'flex', flexDirection: 'column', alignItems: isSelf ? 'flex-end' : 'flex-start' }}>
-                        {!isSelf && (
-                          <div style={{ fontSize: 11, color: 'rgba(11,18,48,0.55)', marginBottom: 3, padding: '0 4px' }}>
-                            <strong style={{ color: '#0B1230' }}>{comment.profiles?.full_name ?? '—'}</strong>
-                            {isTeamAuthor && <span style={{ color: '#0E6FA3', fontWeight: 700 }}> · Globalle</span>}
-                          </div>
-                        )}
-                        <div
-                          style={{
-                            maxWidth: '82%',
-                            padding: '9px 13px',
-                            borderRadius: 14,
-                            fontSize: 14,
-                            lineHeight: 1.45,
-                            whiteSpace: 'pre-wrap',
-                            background: isSelf ? '#070B24' : isTeamAuthor ? 'rgba(30,167,232,0.10)' : 'rgba(11,18,48,0.06)',
-                            color: isSelf ? '#fff' : '#0B1230',
-                            borderBottomRightRadius: isSelf ? 4 : 14,
-                            borderBottomLeftRadius: isSelf ? 14 : 4,
-                          }}
-                        >
-                          {comment.body}
-                        </div>
-                        <div style={{ fontSize: 10.5, color: 'rgba(11,18,48,0.4)', marginTop: 3, padding: '0 4px' }}>
-                          {formatDateTime(comment.created_at)} · {formatTime(comment.created_at)}
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-                <form action={addComment} style={{ display: 'flex', gap: 8, alignItems: 'flex-end' }}>
-                  <input type="hidden" name="portfolio_item_id" value={item.id} />
-                  <input type="hidden" name="revalidate" value={selfPath} />
-                  <textarea
-                    name="body"
-                    rows={1}
-                    required
-                    placeholder="Escreva uma mensagem…"
-                    style={{ flex: 1, padding: '10px 14px', border: '1px solid rgba(11,18,48,0.15)', borderRadius: 20, fontSize: 14, fontFamily: 'inherit', resize: 'none' }}
-                  />
-                  <button
-                    type="submit"
-                    aria-label="Enviar"
-                    style={{ width: 40, height: 40, flexShrink: 0, borderRadius: '50%', border: 'none', background: '#070B24', color: '#fff', fontSize: 16, fontFamily: 'inherit', cursor: 'pointer' }}
-                  >
-                    ➤
-                  </button>
-                </form>
-              </>
+              <PropertyChat itemId={item.id} initialComments={comments as any[]} currentUserId={user.id} />
             )}
           </div>
         </section>
