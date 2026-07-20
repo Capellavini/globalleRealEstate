@@ -128,7 +128,27 @@ export default async function PropertyDetailPage({
         {isTeam ? '← Voltar ao portfólio' : '← Voltar às opções'}
       </Link>
 
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, margin: '12px 0 4px', flexWrap: 'wrap' }}>
+      {/* Hero — foto grande + miniaturas, como num portal de imóveis */}
+      {gallery.length > 0 && (
+        <div style={{ margin: '12px 0 20px' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={gallery[0]}
+            alt=""
+            style={{ width: '100%', height: 380, objectFit: 'cover', borderRadius: 16, display: 'block' }}
+          />
+          {gallery.length > 1 && (
+            <div style={{ display: 'flex', gap: 8, overflowX: 'auto', marginTop: 8 }}>
+              {gallery.slice(1).map((url) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img key={url} src={url} alt="" style={{ height: 76, width: 100, borderRadius: 8, objectFit: 'cover', flexShrink: 0 }} />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, margin: '0 0 4px', flexWrap: 'wrap' }}>
         <h1 style={{ fontSize: 24, fontWeight: 800 }}>{property.title}</h1>
         {item && (
           <span
@@ -145,42 +165,34 @@ export default async function PropertyDetailPage({
           </span>
         )}
       </div>
-      <p style={{ fontSize: 14, color: 'rgba(11,18,48,0.6)', marginBottom: 20 }}>
+      <p style={{ fontSize: 14, color: 'rgba(11,18,48,0.6)', marginBottom: 12 }}>
         {countryFlag(property.country_code)} {property.city}
         {property.municipality ? ` · ${property.municipality}` : ''} · {property.country_code}
         {property.address ? ` — ${property.address}` : ''}
       </p>
 
-      {gallery.length > 0 && (
-        <div style={{ display: 'flex', gap: 10, overflowX: 'auto', marginBottom: 24 }}>
-          {gallery.map((url) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img key={url} src={url} alt="" style={{ height: 220, borderRadius: 12, objectFit: 'cover', maxWidth: 340 }} />
-          ))}
-        </div>
-      )}
+      {/* Preço em destaque + faixa de fatos-chave, como num portal */}
+      <div style={{ fontSize: 30, fontWeight: 800, marginBottom: 10 }}>
+        {formatMoney(Number(property.asking_price), property.currency)}
+      </div>
+      <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', fontSize: 14, color: 'rgba(11,18,48,0.75)', marginBottom: 24 }}>
+        {property.bedrooms !== null && <span>🛏 {property.bedrooms} quartos</span>}
+        {property.area_m2 !== null && <span>📐 {property.area_m2} m²</span>}
+        <span style={{ textTransform: 'capitalize' }}>🏠 {property.property_type}</span>
+        {property.area_m2 && (
+          <span>
+            €/m² {formatMoney(Math.round(Number(property.asking_price) / Number(property.area_m2)), property.currency)}
+          </span>
+        )}
+      </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 24, alignItems: 'start' }}>
         <section style={{ display: 'grid', gap: 24 }}>
-          {/* Dados */}
+          {/* Origem */}
           <div style={card}>
-            <h2 style={sectionTitle}>Dados do imóvel</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, fontSize: 14 }}>
-              <span style={{ color: 'rgba(11,18,48,0.55)' }}>Preço pedido</span>
-              <strong>{formatMoney(Number(property.asking_price), property.currency)}</strong>
-              <span style={{ color: 'rgba(11,18,48,0.55)' }}>Tipo</span>
-              <strong>{property.property_type}</strong>
-              <span style={{ color: 'rgba(11,18,48,0.55)' }}>Área</span>
-              <strong>{property.area_m2 ? `${property.area_m2} m²` : '—'}</strong>
-              <span style={{ color: 'rgba(11,18,48,0.55)' }}>Quartos</span>
-              <strong>{property.bedrooms ?? '—'}</strong>
-              <span style={{ color: 'rgba(11,18,48,0.55)' }}>€/m²</span>
-              <strong>
-                {property.area_m2
-                  ? formatMoney(Math.round(Number(property.asking_price) / Number(property.area_m2)), property.currency)
-                  : '—'}
-              </strong>
-              <span style={{ color: 'rgba(11,18,48,0.55)' }}>Origem</span>
+            <h2 style={sectionTitle}>Sobre o anúncio</h2>
+            <div style={{ fontSize: 14 }}>
+              <span style={{ color: 'rgba(11,18,48,0.55)' }}>Origem: </span>
               <strong>
                 {SOURCE_LABELS[property.source_type as SourceType] ?? property.source_type}
                 {property.source_name ? ` — ${property.source_name}` : ''}

@@ -33,6 +33,9 @@ export type KanbanCard = {
   currency: string
   grandTotal: number | null
   coverUrl: string | null
+  bedrooms: number | null
+  areaM2: number | null
+  propertyType: string
   fitYes: number
   fitTotal: number
   commentCount: number
@@ -321,25 +324,50 @@ function Card({
         position: 'relative',
       }}
     >
-      <div
-        style={{
-          height: 92,
-          background: card.coverUrl
-            ? `url(${card.coverUrl}) center/cover no-repeat`
-            : 'linear-gradient(135deg, #0E1530, #131B38)',
-        }}
-      />
-      <div style={{ padding: 10, display: 'grid', gap: 6 }}>
-        <Link
-          href={`/portfolio/property/${card.propertyId}${detailQuery}`}
-          style={{ fontWeight: 700, fontSize: 13.5, color: '#0B1230', textDecoration: 'none', lineHeight: 1.3 }}
+      {/* Foto + preço em destaque, estilo portal — todo o bloco é o link do imóvel */}
+      <Link
+        href={`/portfolio/property/${card.propertyId}${detailQuery}`}
+        onPointerDown={(e) => e.stopPropagation()}
+        style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
+      >
+        <div
+          style={{
+            height: 148,
+            position: 'relative',
+            background: card.coverUrl
+              ? `url(${card.coverUrl}) center/cover no-repeat`
+              : 'linear-gradient(135deg, #0E1530, #131B38)',
+          }}
         >
-          {card.title}
-        </Link>
-        <div style={{ fontSize: 12, color: 'rgba(11,18,48,0.6)' }}>
-          {countryFlag(card.countryCode)} {card.city} · {card.countryCode}
+          <span
+            style={{
+              position: 'absolute',
+              left: 8,
+              bottom: 8,
+              background: 'rgba(7,11,36,0.82)',
+              color: '#fff',
+              fontWeight: 800,
+              fontSize: 14.5,
+              padding: '4px 10px',
+              borderRadius: 8,
+            }}
+          >
+            {formatMoney(card.price, card.currency)}
+          </span>
         </div>
-        <div style={{ fontSize: 15, fontWeight: 800 }}>{formatMoney(card.price, card.currency)}</div>
+        <div style={{ padding: '10px 10px 0' }}>
+          <strong style={{ display: 'block', fontWeight: 700, fontSize: 13.5, color: '#0B1230', lineHeight: 1.3 }}>{card.title}</strong>
+          <div style={{ fontSize: 12, color: 'rgba(11,18,48,0.6)', marginTop: 2 }}>
+            {countryFlag(card.countryCode)} {card.city} · {card.countryCode}
+          </div>
+          <div style={{ display: 'flex', gap: 10, fontSize: 11.5, color: 'rgba(11,18,48,0.65)', marginTop: 5 }}>
+            {card.bedrooms !== null && <span>🛏 {card.bedrooms}</span>}
+            {card.areaM2 !== null && <span>📐 {card.areaM2} m²</span>}
+            <span style={{ textTransform: 'capitalize' }}>🏠 {card.propertyType}</span>
+          </div>
+        </div>
+      </Link>
+      <div style={{ padding: 10, display: 'grid', gap: 6 }}>
         {card.grandTotal !== null && (
           <div
             style={{

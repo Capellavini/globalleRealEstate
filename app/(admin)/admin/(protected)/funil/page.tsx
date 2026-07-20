@@ -1,119 +1,176 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import Badge from '@/components/admin/Badge'
-import {
-  formatDate,
-  THESIS_COLORS,
-  THESIS_LABELS,
-  TX_STATUS_COLORS,
-  TX_STATUS_LABELS,
-  type Transaction,
-} from '@/lib/admin/types'
-import { countryFlag } from '@/lib/portfolio/types'
+import { countryFlag, type Profile } from '@/lib/portfolio/types'
 import { sumByCurrency, type ProcessStepStatus } from '@/lib/transactions/types'
 
 export const dynamic = 'force-dynamic'
 
-type TransactionRow = Transaction & {
-  property_id: string | null
-  client_id: string | null
-  properties: { country_code: string } | null
+// 7 colunas do funil comercial — visão de cliente, não de etapa de processo.
+// "Due Diligence" agrega TODAS as subetapas do processo (Reserva, Due
+// diligence, CPCV/Compromisso, Financiamento, Escritura, Registro) até o
+// fechamento; a subetapa exata aparece como legenda no card.
+const COLUMNS = ['Lead', 'Tese definida', 'Buscando imóveis', 'Proposta', 'Due Diligence', 'Fechado', 'Perdido'] as const
+type Column = (typeof COLUMNS)[number]
+
+const COLUMN_COLORS: Record<Column, { bg: string; fg: string }> = {
+  Lead: { bg: 'rgba(11,18,48,0.03)', fg: 'rgba(11,18,48,0.55)' },
+  'Tese definida': { bg: 'rgba(11,18,48,0.03)', fg: 'rgba(11,18,48,0.55)' },
+  'Buscando imóveis': { bg: 'rgba(30,167,232,0.05)', fg: '#0E6FA3' },
+  Proposta: { bg: 'rgba(30,167,232,0.05)', fg: '#0E6FA3' },
+  'Due Diligence': { bg: 'rgba(30,167,232,0.05)', fg: '#0E6FA3' },
+  Fechado: { bg: 'rgba(43,160,90,0.05)', fg: '#1E7A44' },
+  Perdido: { bg: 'rgba(194,61,61,0.04)', fg: '#A03030' },
+}
+
+type ThesisRow = { id: string; client_id: string }
+type ItemRow = { thesis_id: string; status: string }
+type TxRow = {
+  id: string
+  client_id: string
+  status: string
+  created_at: string
+  properties: { title: string; country_code: string } | null
   transaction_steps: { name: string; sort_order: number; status: ProcessStepStatus }[]
   transaction_revenues: { amount: number; currency: string; status: string }[]
 }
 
-const DONE_KEY = '__done__'
-
-// Coluna da transação = sua etapa em_andamento (senão a 1ª pendente).
-function columnOf(tx: TransactionRow, firstColumn: string | undefined): string {
-  if (tx.status !== 'active') return DONE_KEY
+function currentStepName(tx: TxRow): string | null {
   const steps = [...tx.transaction_steps].sort((a, b) => a.sort_order - b.sort_order)
   const current = steps.find((s) => s.status === 'em_andamento') ?? steps.find((s) => s.status === 'pendente')
-  if (!current) return steps.length ? DONE_KEY : (firstColumn ?? DONE_KEY)
-  return current.name
+  return current?.name ?? null
 }
 
-// Visão CRM: lente por fase do processo (previsibilidade de faturamento),
-// complementar ao pipeline por cliente em /admin/clientes.
 export default async function FunilPage() {
   const supabase = createClient()
 
-  const [{ data: txData, error }, { data: templateSteps }] = await Promise.all([
-    supabase
-      .from('transactions')
-      .select(
-        '*, properties(country_code), transaction_steps(name, sort_order, status), transaction_revenues(amount, currency, status)'
-      )
-      .order('created_at', { ascending: false }),
-    supabase.from('template_steps').select('name, sort_order'),
+  const { data: clientsData, error } = await supabase.from('profiles').select('*').eq('role', 'client')
+  const clients = (clientsData ?? []) as Profile[]
+  const clientIds = clients.map((c) => c.id)
+
+  const [{ data: thesesData }, { data: txData }] = await Promise.all([
+    clientIds.length
+      ? supabase.from('theses').select('id, client_id').eq('is_active', true).in('client_id', clientIds)
+      : Promise.resolve({ data: [] as ThesisRow[] }),
+    clientIds.length
+      ? supabase
+          .from('transactions')
+          .select(
+            'id, client_id, status, created_at, properties(title, country_code), transaction_steps(name, sort_order, status), transaction_revenues(amount, currency, status)'
+          )
+          .in('client_id', clientIds)
+      : Promise.resolve({ data: [] as TxRow[] }),
   ])
 
-  const transactions = (txData ?? []) as unknown as TransactionRow[]
+  const thesisByClient = new Map((thesesData ?? []).map((t: ThesisRow) => [t.client_id, t.id]))
+  const thesisIds = (thesesData ?? []).map((t: ThesisRow) => t.id)
 
-  // Colunas = união dos templates por NOME (a simetria PT/BR foi desenhada
-  // pra isso), ordenadas pelo menor sort_order em que o nome aparece.
-  const orderByName = new Map<string, number>()
-  for (const step of templateSteps ?? []) {
-    const current = orderByName.get(step.name)
-    if (current === undefined || step.sort_order < current) orderByName.set(step.name, step.sort_order)
+  const { data: itemsData } = thesisIds.length
+    ? await supabase.from('portfolio_items').select('thesis_id, status').in('thesis_id', thesisIds)
+    : { data: [] as ItemRow[] }
+  const itemsByThesis = new Map<string, ItemRow[]>()
+  for (const item of (itemsData ?? []) as ItemRow[]) {
+    const list = itemsByThesis.get(item.thesis_id) ?? []
+    list.push(item)
+    itemsByThesis.set(item.thesis_id, list)
   }
-  const stepColumns = [...orderByName.entries()]
-    .sort((a, b) => a[1] - b[1] || a[0].localeCompare(b[0]))
-    .map(([name]) => name)
-  const columns = [...stepColumns, DONE_KEY]
 
-  const byColumn = new Map<string, TransactionRow[]>()
-  for (const tx of transactions) {
-    const key = columnOf(tx, stepColumns[0])
-    const list = byColumn.get(key) ?? []
+  const txByClient = new Map<string, TxRow[]>()
+  for (const tx of (txData ?? []) as unknown as TxRow[]) {
+    const list = txByClient.get(tx.client_id) ?? []
     list.push(tx)
-    byColumn.set(key, list)
+    txByClient.set(tx.client_id, list)
   }
 
-  // Previsibilidade de faturamento: receita prevista ainda não recebida,
-  // somada por coluna (apenas transações ativas).
-  function pendingRevenue(cards: TransactionRow[]): string {
-    const entries = cards
-      .filter((tx) => tx.status === 'active')
+  type CardInfo = {
+    client: Profile
+    column: Column
+    subLabel: string | null
+    property: { title: string; country_code: string } | null
+    revenueTx: TxRow | null
+  }
+
+  const cards: CardInfo[] = clients.map((client) => {
+    const thesisId = thesisByClient.get(client.id)
+    const items = thesisId ? itemsByThesis.get(thesisId) ?? [] : []
+    const txs = (txByClient.get(client.id) ?? []).sort((a, b) => (a.created_at < b.created_at ? 1 : -1))
+    const active = txs.find((t) => t.status === 'active')
+    const closed = txs.find((t) => t.status === 'closed')
+    const cancelled = txs.find((t) => t.status === 'cancelled')
+
+    if (active) {
+      const step = currentStepName(active)
+      const column: Column = step === 'Proposta' ? 'Proposta' : 'Due Diligence'
+      return {
+        client,
+        column,
+        subLabel: column === 'Due Diligence' ? step : null,
+        property: active.properties,
+        revenueTx: active,
+      }
+    }
+    if (closed) {
+      return { client, column: 'Fechado', subLabel: null, property: closed.properties, revenueTx: closed }
+    }
+    if (cancelled) {
+      return { client, column: 'Perdido', subLabel: null, property: cancelled.properties, revenueTx: cancelled }
+    }
+    if (thesisId && items.length > 0) {
+      return { client, column: 'Buscando imóveis', subLabel: `${items.length} imóve${items.length === 1 ? 'l' : 'is'}`, property: null, revenueTx: null }
+    }
+    if (thesisId) {
+      return { client, column: 'Tese definida', subLabel: null, property: null, revenueTx: null }
+    }
+    return { client, column: 'Lead', subLabel: null, property: null, revenueTx: null }
+  })
+
+  const byColumn = new Map<Column, CardInfo[]>()
+  for (const c of cards) {
+    const list = byColumn.get(c.column) ?? []
+    list.push(c)
+    byColumn.set(c.column, list)
+  }
+
+  function pendingRevenue(list: CardInfo[]): string {
+    const entries = list
+      .map((c) => c.revenueTx)
+      .filter((tx): tx is TxRow => tx !== null)
       .flatMap((tx) => tx.transaction_revenues.filter((r) => r.status !== 'recebido'))
     return entries.length ? sumByCurrency(entries) : ''
   }
-
-  const visibleColumns = columns.filter((c) => c === DONE_KEY || stepColumns.includes(c))
 
   return (
     <>
       <style>{`
         .crm-cols { display: flex; gap: 12px; overflow-x: auto; align-items: flex-start; padding-bottom: 8px; }
-        .crm-col { min-width: 225px; width: 225px; flex-shrink: 0; }
+        .crm-col { min-width: 210px; width: 210px; flex-shrink: 0; }
         @media (max-width: 860px) { .crm-col { min-width: 78vw; } }
       `}</style>
 
       <div style={{ marginBottom: 24 }}>
         <h1 style={{ fontSize: 24, fontWeight: 700 }}>Funil</h1>
-        <p style={{ fontSize: 13, color: 'rgba(11,18,48,0.55)' }}>Transações por fase do processo — previsibilidade de faturamento.</p>
+        <p style={{ fontSize: 13, color: 'rgba(11,18,48,0.55)' }}>Clientes por estágio comercial — previsibilidade de faturamento.</p>
       </div>
 
       {error && <p style={{ color: '#A03030', fontSize: 14 }}>Erro ao carregar: {error.message}</p>}
 
-      {!error && transactions.length === 0 && (
+      {!error && clients.length === 0 && (
         <div style={{ background: '#fff', border: '1px dashed rgba(11,18,48,0.15)', borderRadius: 12, padding: 48, textAlign: 'center', color: 'rgba(11,18,48,0.60)', fontSize: 14 }}>
-          Nenhuma transação ainda. Elas nascem do “Avançar” no dossiê do cliente.
+          Nenhum cliente ainda.
         </div>
       )}
 
-      {transactions.length > 0 && (
+      {clients.length > 0 && (
         <div className="crm-cols">
-          {visibleColumns.map((column) => {
-            const cards = byColumn.get(column) ?? []
-            const revenue = pendingRevenue(cards)
-            const isDone = column === DONE_KEY
+          {COLUMNS.map((column) => {
+            const list = byColumn.get(column) ?? []
+            const revenue = pendingRevenue(list)
+            const colors = COLUMN_COLORS[column]
             return (
               <div
                 key={column}
                 className="crm-col"
                 style={{
-                  background: isDone ? 'rgba(43,160,90,0.05)' : 'rgba(11,18,48,0.03)',
+                  background: colors.bg,
                   border: '1px solid rgba(11,18,48,0.08)',
                   borderRadius: 12,
                   padding: 10,
@@ -129,10 +186,10 @@ export default async function FunilPage() {
                       fontSize: 11,
                       letterSpacing: '0.1em',
                       textTransform: 'uppercase',
-                      color: 'rgba(11,18,48,0.55)',
+                      color: colors.fg,
                     }}
                   >
-                    {isDone ? 'Concluídas' : column} <span style={{ color: 'rgba(11,18,48,0.35)' }}>({cards.length})</span>
+                    {column} <span style={{ color: 'rgba(11,18,48,0.35)' }}>({list.length})</span>
                   </span>
                   {revenue && (
                     <span style={{ fontSize: 11.5, fontWeight: 700, color: '#8A6320' }} title="Receita prevista ainda não recebida">
@@ -141,52 +198,32 @@ export default async function FunilPage() {
                   )}
                 </div>
 
-                {cards.map((tx) => {
-                  const thesis = THESIS_COLORS[tx.thesis]
-                  const status = TX_STATUS_COLORS[tx.status]
-                  return (
-                    <Link
-                      key={tx.id}
-                      href={tx.client_id ? `/admin/clientes/${tx.client_id}` : `/admin/transactions/${tx.id}`}
-                      style={{
-                        background: '#fff',
-                        border: '1px solid rgba(11,18,48,0.10)',
-                        borderRadius: 10,
-                        padding: 14,
-                        textDecoration: 'none',
-                        color: '#0B1230',
-                        display: 'grid',
-                        gap: 8,
-                      }}
-                    >
-                      <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, alignItems: 'flex-start' }}>
-                        <strong style={{ fontSize: 14, fontWeight: 700 }}>
-                          {tx.properties && (
-                            <span title={`Imóvel em ${tx.properties.country_code}`} style={{ marginRight: 6 }}>
-                              {countryFlag(tx.properties.country_code)}
-                            </span>
-                          )}
-                          {tx.client_name}
-                        </strong>
-                        {isDone && (
-                          <Badge bg={status.bg} fg={status.fg}>
-                            {TX_STATUS_LABELS[tx.status]}
-                          </Badge>
-                        )}
-                      </div>
-                      <div>
-                        <Badge bg={thesis.bg} fg={thesis.fg}>
-                          {THESIS_LABELS[tx.thesis]}
-                        </Badge>
-                      </div>
-                      {tx.target_close_date && (
-                        <span style={{ fontSize: 12, color: 'rgba(11,18,48,0.55)' }}>
-                          Data alvo: {formatDate(tx.target_close_date)}
-                        </span>
-                      )}
-                    </Link>
-                  )
-                })}
+                {list.map((c) => (
+                  <Link
+                    key={c.client.id}
+                    href={`/admin/clientes/${c.client.id}`}
+                    style={{
+                      background: '#fff',
+                      border: '1px solid rgba(11,18,48,0.10)',
+                      borderRadius: 10,
+                      padding: 14,
+                      textDecoration: 'none',
+                      color: '#0B1230',
+                      display: 'grid',
+                      gap: 6,
+                    }}
+                  >
+                    <strong style={{ fontSize: 14, fontWeight: 700 }}>{c.client.full_name}</strong>
+                    {c.property && (
+                      <span style={{ fontSize: 12, color: 'rgba(11,18,48,0.6)' }}>
+                        {countryFlag(c.property.country_code)} {c.property.title}
+                      </span>
+                    )}
+                    {c.subLabel && (
+                      <span style={{ fontSize: 11.5, color: 'rgba(11,18,48,0.55)' }}>{c.subLabel}</span>
+                    )}
+                  </Link>
+                ))}
               </div>
             )
           })}
