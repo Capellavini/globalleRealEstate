@@ -7,119 +7,140 @@ import {
   THESIS_LABELS,
   TX_STATUS_COLORS,
   TX_STATUS_LABELS,
-  type Step,
   type Transaction,
 } from '@/lib/admin/types'
 import { countryFlag } from '@/lib/portfolio/types'
+import { sumByCurrency, type ProcessStepStatus } from '@/lib/transactions/types'
 
 export const dynamic = 'force-dynamic'
 
 type TransactionRow = Transaction & {
   property_id: string | null
-  steps: Step[]
   properties: { country_code: string } | null
+  transaction_steps: { name: string; sort_order: number; status: ProcessStepStatus }[]
+  transaction_revenues: { amount: number; currency: string; status: string }[]
 }
 
-// Fase do processo = primeira etapa não concluída (1–4); tudo feito ou
-// transação fechada/cancelada → coluna final.
-const PHASE_COLUMNS = [
-  { key: '1', label: '01 · Entender o perfil' },
-  { key: '2', label: '02 · Definir a tese' },
-  { key: '3', label: '03 · Curar os ativos' },
-  { key: '4', label: '04 · Executar e acompanhar' },
-  { key: 'done', label: 'Concluídas' },
-] as const
+const DONE_KEY = '__done__'
 
-function phaseOf(tx: TransactionRow): string {
-  if (tx.status !== 'active') return 'done'
-  const next = [...tx.steps].sort((a, b) => a.order_index - b.order_index).find((s) => s.status !== 'done')
-  if (!next) return 'done'
-  return String(Math.min(next.order_index, 4))
+// Coluna da transação = sua etapa em_andamento (senão a 1ª pendente).
+function columnOf(tx: TransactionRow, firstColumn: string | undefined): string {
+  if (tx.status !== 'active') return DONE_KEY
+  const steps = [...tx.transaction_steps].sort((a, b) => a.sort_order - b.sort_order)
+  const current = steps.find((s) => s.status === 'em_andamento') ?? steps.find((s) => s.status === 'pendente')
+  if (!current) return steps.length ? DONE_KEY : (firstColumn ?? DONE_KEY)
+  return current.name
 }
 
 export default async function DashboardPage() {
   const supabase = createClient()
-  const { data, error } = await supabase
-    .from('transactions')
-    .select('*, steps(*), properties(country_code)')
-    .order('created_at', { ascending: false })
 
-  const transactions = (data ?? []) as TransactionRow[]
+  const [{ data: txData, error }, { data: templateSteps }] = await Promise.all([
+    supabase
+      .from('transactions')
+      .select(
+        '*, properties(country_code), transaction_steps(name, sort_order, status), transaction_revenues(amount, currency, status)'
+      )
+      .order('created_at', { ascending: false }),
+    supabase.from('template_steps').select('name, sort_order'),
+  ])
+
+  const transactions = (txData ?? []) as unknown as TransactionRow[]
+
+  // Colunas = união dos templates por NOME (a simetria PT/BR foi desenhada
+  // pra isso), ordenadas pelo menor sort_order em que o nome aparece.
+  const orderByName = new Map<string, number>()
+  for (const step of templateSteps ?? []) {
+    const current = orderByName.get(step.name)
+    if (current === undefined || step.sort_order < current) orderByName.set(step.name, step.sort_order)
+  }
+  const stepColumns = [...orderByName.entries()]
+    .sort((a, b) => a[1] - b[1] || a[0].localeCompare(b[0]))
+    .map(([name]) => name)
+  const columns = [...stepColumns, DONE_KEY]
+
+  const byColumn = new Map<string, TransactionRow[]>()
+  for (const tx of transactions) {
+    const key = columnOf(tx, stepColumns[0])
+    const list = byColumn.get(key) ?? []
+    list.push(tx)
+    byColumn.set(key, list)
+  }
+
+  // Previsibilidade de faturamento: receita prevista ainda não recebida,
+  // somada por coluna (apenas transações ativas).
+  function pendingRevenue(cards: TransactionRow[]): string {
+    const entries = cards
+      .filter((tx) => tx.status === 'active')
+      .flatMap((tx) => tx.transaction_revenues.filter((r) => r.status !== 'recebido'))
+    return entries.length ? sumByCurrency(entries) : ''
+  }
+
+  const visibleColumns = columns.filter((c) => c === DONE_KEY || stepColumns.includes(c))
 
   return (
     <>
       <style>{`
-        .tx-cols { display: grid; grid-template-columns: repeat(5, minmax(210px, 1fr)); gap: 12px; align-items: start; }
-        @media (max-width: 860px) { .tx-cols { grid-template-columns: 1fr; } }
+        .crm-cols { display: flex; gap: 12px; overflow-x: auto; align-items: flex-start; padding-bottom: 8px; }
+        .crm-col { min-width: 225px; width: 225px; flex-shrink: 0; }
+        @media (max-width: 860px) { .crm-col { min-width: 78vw; } }
       `}</style>
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
         <h1 style={{ fontSize: 24, fontWeight: 700 }}>Transações</h1>
         <Link
           href="/admin/transactions/new"
-          style={{
-            background: '#070B24',
-            color: '#fff',
-            borderRadius: 8,
-            padding: '10px 18px',
-            fontSize: 14,
-            fontWeight: 600,
-            textDecoration: 'none',
-          }}
+          style={{ background: '#070B24', color: '#fff', borderRadius: 8, padding: '10px 18px', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}
         >
           + Nova transação
         </Link>
       </div>
 
-      {error && (
-        <p style={{ color: '#A03030', fontSize: 14 }}>Erro ao carregar transações: {error.message}</p>
-      )}
+      {error && <p style={{ color: '#A03030', fontSize: 14 }}>Erro ao carregar: {error.message}</p>}
 
       {!error && transactions.length === 0 && (
-        <div
-          style={{
-            background: '#fff',
-            border: '1px dashed rgba(11,18,48,0.15)',
-            borderRadius: 12,
-            padding: 48,
-            textAlign: 'center',
-            color: 'rgba(11,18,48,0.60)',
-            fontSize: 14,
-          }}
-        >
-          Nenhuma transação ainda. Crie a primeira com “Nova transação”.
+        <div style={{ background: '#fff', border: '1px dashed rgba(11,18,48,0.15)', borderRadius: 12, padding: 48, textAlign: 'center', color: 'rgba(11,18,48,0.60)', fontSize: 14 }}>
+          Nenhuma transação ainda. Elas nascem do “Avançar” no portfólio do cliente.
         </div>
       )}
 
       {transactions.length > 0 && (
-        <div className="tx-cols">
-          {PHASE_COLUMNS.map((column) => {
-            const cards = transactions.filter((tx) => phaseOf(tx) === column.key)
+        <div className="crm-cols">
+          {visibleColumns.map((column) => {
+            const cards = byColumn.get(column) ?? []
+            const revenue = pendingRevenue(cards)
+            const isDone = column === DONE_KEY
             return (
               <div
-                key={column.key}
+                key={column}
+                className="crm-col"
                 style={{
-                  background: column.key === 'done' ? 'rgba(43,160,90,0.05)' : 'rgba(11,18,48,0.03)',
+                  background: isDone ? 'rgba(43,160,90,0.05)' : 'rgba(11,18,48,0.03)',
                   border: '1px solid rgba(11,18,48,0.08)',
                   borderRadius: 12,
                   padding: 10,
                   display: 'grid',
                   gap: 10,
                   alignContent: 'start',
-                  minHeight: 120,
                 }}
               >
-                <div
-                  style={{
-                    fontFamily: "'Space Mono', monospace",
-                    fontSize: 11,
-                    letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(11,18,48,0.55)',
-                    padding: '2px 4px',
-                  }}
-                >
-                  {column.label} <span style={{ color: 'rgba(11,18,48,0.35)' }}>({cards.length})</span>
+                <div style={{ padding: '2px 4px', display: 'grid', gap: 2 }}>
+                  <span
+                    style={{
+                      fontFamily: "'Space Mono', monospace",
+                      fontSize: 11,
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      color: 'rgba(11,18,48,0.55)',
+                    }}
+                  >
+                    {isDone ? 'Concluídas' : column} <span style={{ color: 'rgba(11,18,48,0.35)' }}>({cards.length})</span>
+                  </span>
+                  {revenue && (
+                    <span style={{ fontSize: 11.5, fontWeight: 700, color: '#8A6320' }} title="Receita prevista ainda não recebida">
+                      ⏳ {revenue}
+                    </span>
+                  )}
                 </div>
 
                 {cards.map((tx) => {
@@ -149,7 +170,7 @@ export default async function DashboardPage() {
                           )}
                           {tx.client_name}
                         </strong>
-                        {column.key === 'done' && (
+                        {isDone && (
                           <Badge bg={status.bg} fg={status.fg}>
                             {TX_STATUS_LABELS[tx.status]}
                           </Badge>

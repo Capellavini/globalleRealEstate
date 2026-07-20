@@ -8,7 +8,6 @@ import {
   updateTransactionNotes,
   updateTransactionStatus,
 } from '@/app/actions/transactions'
-import { createStep, cycleStepStatus, deleteStep, updateStep } from '@/app/actions/steps'
 import {
   attachFile,
   createDocument,
@@ -18,17 +17,16 @@ import {
 import ParticipantsSection from '@/components/transactions/ParticipantsSection'
 import DocumentsSection from '@/components/transactions/DocumentsSection'
 import CommentsSection from '@/components/transactions/CommentsSection'
+import ProcessTimeline from '@/components/transactions/ProcessTimeline'
+import RevenueSection from '@/components/transactions/RevenueSection'
 import {
   DOC_STATUS_COLORS,
   DOC_STATUS_LABELS,
   formatDate,
-  STEP_STATUS_COLORS,
-  STEP_STATUS_LABELS,
   THESIS_COLORS,
   THESIS_LABELS,
   TX_STATUS_LABELS,
   type DocumentRow,
-  type Step,
   type Transaction,
   type TransactionStatus,
 } from '@/lib/admin/types'
@@ -78,7 +76,7 @@ export default async function TransactionDetailPage({
   searchParams,
 }: {
   params: { id: string }
-  searchParams: { ok?: string; erro?: string; cat?: string }
+  searchParams: { ok?: string; erro?: string; cat?: string; custos?: string }
 }) {
   const supabase = createClient()
 
@@ -91,11 +89,11 @@ export default async function TransactionDetailPage({
   if (!tx) notFound()
   const transaction = tx as Transaction
 
-  const [{ data: stepsData }, { data: docsData }] = await Promise.all([
-    supabase.from('steps').select('*').eq('transaction_id', params.id).order('order_index'),
-    supabase.from('documents').select('*').eq('transaction_id', params.id).order('created_at'),
-  ])
-  const steps = (stepsData ?? []) as Step[]
+  const { data: docsData } = await supabase
+    .from('documents')
+    .select('*')
+    .eq('transaction_id', params.id)
+    .order('created_at')
   const documents = (docsData ?? []) as DocumentRow[]
 
   const thesis = THESIS_COLORS[transaction.thesis]
@@ -153,92 +151,14 @@ export default async function TransactionDetailPage({
       </p>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 24, alignItems: 'start' }}>
-        {/* ── Timeline de etapas ── */}
-        <section>
-          <h2 style={sectionTitle}>Etapas</h2>
-          <div style={{ display: 'grid', gap: 12 }}>
-            {steps.map((step) => {
-              const color = STEP_STATUS_COLORS[step.status]
-              return (
-                <div key={step.id} style={card}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10 }}>
-                    <strong style={{ fontSize: 15, fontWeight: 700 }}>
-                      <span style={{ fontFamily: "'Space Mono', monospace", color: 'rgba(11,18,48,0.40)', marginRight: 8 }}>
-                        {String(step.order_index).padStart(2, '0')}
-                      </span>
-                      {step.title}
-                    </strong>
-                    <form action={cycleStepStatus}>
-                      <input type="hidden" name="id" value={step.id} />
-                      <input type="hidden" name="transaction_id" value={transaction.id} />
-                      <input type="hidden" name="current" value={step.status} />
-                      <button
-                        type="submit"
-                        title="Clique para avançar o status"
-                        style={{
-                          background: color.bg,
-                          color: color.fg,
-                          border: 'none',
-                          borderRadius: 999,
-                          padding: '4px 12px',
-                          fontSize: 12,
-                          fontWeight: 600,
-                          fontFamily: 'inherit',
-                          cursor: 'pointer',
-                          whiteSpace: 'nowrap',
-                        }}
-                      >
-                        {STEP_STATUS_LABELS[step.status]}
-                      </button>
-                    </form>
-                  </div>
-
-                  <form action={updateStep} style={{ display: 'grid', gap: 10, marginTop: 12 }}>
-                    <input type="hidden" name="id" value={step.id} />
-                    <input type="hidden" name="transaction_id" value={transaction.id} />
-                    <textarea
-                      name="description"
-                      defaultValue={step.description ?? ''}
-                      rows={3}
-                      placeholder="Descrição / notas da etapa…"
-                      style={{ ...inputStyle, resize: 'vertical', width: '100%' }}
-                    />
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                      <label style={{ fontSize: 12, color: 'rgba(11,18,48,0.60)', display: 'flex', alignItems: 'center', gap: 6 }}>
-                        Prazo
-                        <input type="date" name="due_date" defaultValue={step.due_date ?? ''} style={inputStyle} />
-                      </label>
-                      <button type="submit" style={smallBtn}>
-                        Salvar
-                      </button>
-                    </div>
-                  </form>
-
-                  <form action={deleteStep} style={{ marginTop: 10, textAlign: 'right' }}>
-                    <input type="hidden" name="id" value={step.id} />
-                    <input type="hidden" name="transaction_id" value={transaction.id} />
-                    <ConfirmSubmitButton message={`Excluir a etapa "${step.title}"?`}>
-                      Excluir etapa
-                    </ConfirmSubmitButton>
-                  </form>
-                </div>
-              )
-            })}
-
-            <form action={createStep} style={{ display: 'flex', gap: 8 }}>
-              <input type="hidden" name="transaction_id" value={transaction.id} />
-              <input
-                type="text"
-                name="title"
-                required
-                placeholder="Nova etapa…"
-                style={{ ...inputStyle, flex: 1 }}
-              />
-              <button type="submit" style={smallBtn}>
-                Adicionar
-              </button>
-            </form>
-          </div>
+        {/* ── Processo + custos por etapa + Receita Globalle (Parte D) ── */}
+        <section style={{ display: 'grid', gap: 24 }}>
+          <ProcessTimeline
+            transactionId={transaction.id}
+            basePath={`/admin/transactions/${transaction.id}`}
+            costFilter={searchParams.custos}
+          />
+          <RevenueSection transactionId={transaction.id} />
         </section>
 
         {/* ── Documentos + notas ── */}

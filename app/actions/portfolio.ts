@@ -4,8 +4,8 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { requireTeam, requireUser } from '@/lib/supabase/roles'
-import { STEP_TEMPLATES, type TransactionThesis } from '@/lib/admin/types'
 import { instantiateProcessSteps } from '@/lib/transactions/process'
+import type { TransactionThesis } from '@/lib/admin/types'
 import type { FitValue, PortfolioStatus } from '@/lib/portfolio/types'
 
 const VALID_STATUSES: PortfolioStatus[] = ['novo', 'favorito', 'em_analise', 'descartado', 'avancar']
@@ -117,16 +117,8 @@ export async function confirmAdvance(itemId: string) {
     })
   }
 
-  const steps = STEP_TEMPLATES[transactionThesis].map((step, i) => ({
-    transaction_id: transaction.id,
-    title: step.title,
-    description: step.description,
-    order_index: i + 1,
-  }))
-  const { error: stepsError } = await supabase.from('steps').insert(steps)
-  if (stepsError) throw new Error(`Transação criada, mas erro nas etapas: ${stepsError.message}`)
-
   // Parte D: etapas de processo do país do imóvel (PT/BR; país sem template → nenhuma).
+  // (As 4 etapas antigas de advisory foram aposentadas junto com a UI delas.)
   await instantiateProcessSteps(supabase, transaction.id, String(property.country_code ?? ''))
 
   if (item.status !== 'avancar') {

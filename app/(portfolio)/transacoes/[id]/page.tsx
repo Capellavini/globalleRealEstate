@@ -2,18 +2,17 @@ import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { getSessionProfile } from '@/lib/supabase/roles'
-import TransactionStatus from '@/components/transactions/TransactionStatus'
+import ClientTimeline from '@/components/transactions/ClientTimeline'
 import DocumentsSection from '@/components/transactions/DocumentsSection'
 import ParticipantsSection from '@/components/transactions/ParticipantsSection'
 import CommentsSection from '@/components/transactions/CommentsSection'
 import { countryFlag } from '@/lib/portfolio/types'
-import type { Step, Transaction } from '@/lib/admin/types'
+import type { Transaction } from '@/lib/admin/types'
 
 export const dynamic = 'force-dynamic'
 
 type Row = Transaction & {
   properties: { title: string; country_code: string; city: string } | null
-  steps: Step[]
 }
 
 // Detalhe da transação para o participante. O RLS decide o acesso: sem
@@ -32,7 +31,7 @@ export default async function TransacaoDetailPage({
   const supabase = createClient()
   const { data } = await supabase
     .from('transactions')
-    .select('*, properties(title, country_code, city), steps(*)')
+    .select('*, properties(title, country_code, city)')
     .eq('id', params.id)
     .maybeSingle()
   if (!data) notFound()
@@ -58,7 +57,7 @@ export default async function TransacaoDetailPage({
       )}
 
       <div style={{ display: 'grid', gap: 24, marginTop: 12 }}>
-        <TransactionStatus transaction={transaction} steps={transaction.steps} />
+        <ClientTimeline transactionId={transaction.id} />
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 24, alignItems: 'start' }}>
           <div style={{ display: 'grid', gap: 24 }}>

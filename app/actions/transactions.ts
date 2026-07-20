@@ -25,18 +25,8 @@ export async function createTransaction(formData: FormData) {
 
   if (error) throw new Error(`Erro ao criar transação: ${error.message}`)
 
-  // Clona o template de etapas da tese escolhida.
-  const steps = STEP_TEMPLATES[thesis].map((step, i) => ({
-    transaction_id: transaction.id,
-    title: step.title,
-    description: step.description,
-    order_index: i + 1,
-  }))
-
-  const { error: stepsError } = await supabase.from('steps').insert(steps)
-  if (stepsError) throw new Error(`Erro ao criar etapas: ${stepsError.message}`)
-
   // Parte D: etapas de processo do país escolhido no formulário.
+  // (As 4 etapas antigas de advisory foram aposentadas junto com a UI delas.)
   const processCountry = String(formData.get('process_country') ?? '') || processCountryForThesis(thesis)
   await instantiateProcessSteps(supabase, transaction.id, processCountry)
 
