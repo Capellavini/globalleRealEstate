@@ -8,12 +8,13 @@ import { requireTeam } from '@/lib/supabase/roles'
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://globalleinsights.com'
 const INVITE_REDIRECT = `${SITE_URL}/auth/set-password`
 
-function backWithError(message: string): never {
-  redirect(`/admin/users?erro=${encodeURIComponent(message)}`)
+function backWithError(message: string, to = '/admin/users'): never {
+  redirect(`${to}?erro=${encodeURIComponent(message)}`)
 }
 
 // A4 — cria usuário por convite (Supabase envia o e-mail; usuário define a
-// senha em /auth/set-password). Opcionalmente já cria a tese inicial do cliente.
+// senha em /auth/set-password). Cliente cai direto no dossiê para definir a
+// tese em seguida — a criação nunca fica solta, é o início do processo.
 export async function inviteUser(formData: FormData) {
   await requireTeam()
   if (!isAdminConfigured()) backWithError('SUPABASE_SERVICE_ROLE_KEY não configurada.')
@@ -54,34 +55,18 @@ export async function inviteUser(formData: FormData) {
     .upsert({ id: userId, full_name, role }, { onConflict: 'id' })
   if (profileError) backWithError(`Convite enviado, mas erro no perfil: ${profileError.message}`)
 
-  // Passo 2 opcional: tese inicial do cliente.
-  const thesisTitle = String(formData.get('thesis_title') ?? '').trim()
-  if (role === 'client' && thesisTitle) {
-    const num = (name: string) => {
-      const v = String(formData.get(name) ?? '').replace(',', '.').trim()
-      return v ? Number(v) : null
-    }
-    const countries = formData
-      .getAll('thesis_countries')
-      .map((v) => String(v).trim().toUpperCase())
-      .filter(Boolean)
-    const objective = String(formData.get('thesis_objective') ?? '')
-    if (!countries.length || !objective) {
-      backWithError('Convite enviado, mas a tese precisa de objetivo e países-alvo — crie em Teses.')
-    }
-    const { error: thesisError } = await admin.from('theses').insert({
-      client_id: userId,
-      title: thesisTitle,
-      objective,
-      budget_min: num('thesis_budget_min'),
-      budget_max: num('thesis_budget_max'),
-      budget_currency: String(formData.get('thesis_currency') ?? 'EUR').toUpperCase(),
-      target_countries: countries,
-    })
-    if (thesisError) backWithError(`Convite enviado, mas erro na tese: ${thesisError.message}`)
-  }
-
   revalidatePath('/admin/users')
+
+  // Cliente: o processo continua no dossiê (definir a tese vem a seguir).
+  // Team/lawyer não têm dossiê — ficam na gestão de contas.
+  if (role === 'client') {
+    revalidatePath('/admin/clientes')
+    redirect(
+      `/admin/clientes/${userId}?ok=${encodeURIComponent(
+        managed ? 'Perfil criado sem convite — defina a tese abaixo.' : 'Convite enviado — defina a tese abaixo.'
+      )}`
+    )
+  }
   redirect(
     `/admin/users?ok=${encodeURIComponent(
       managed ? `Perfil de ${full_name} criado sem convite (gerenciado pela equipe).` : `Convite enviado para ${email}.`
@@ -93,13 +78,14 @@ export async function inviteUser(formData: FormData) {
 // recusar (usuário já registrado), gera o link de convite para envio manual.
 export async function resendInvite(formData: FormData) {
   await requireTeam()
-  if (!isAdminConfigured()) backWithError('SUPABASE_SERVICE_ROLE_KEY não configurada.')
+  const redirectTo = String(formData.get('redirect_to') ?? '') || '/admin/users'
+  if (!isAdminConfigured()) backWithError('SUPABASE_SERVICE_ROLE_KEY não configurada.', redirectTo)
   const email = String(formData.get('email') ?? '').trim().toLowerCase()
 
   const admin = createAdminClient()
   const { error } = await admin.auth.admin.inviteUserByEmail(email, { redirectTo: INVITE_REDIRECT })
   if (!error) {
-    redirect(`/admin/users?ok=${encodeURIComponent(`Convite reenviado para ${email}.`)}`)
+    redirect(`${redirectTo}?ok=${encodeURIComponent(`Convite reenviado para ${email}.`)}`)
   }
 
   const { data: linkData, error: linkError } = await admin.auth.admin.generateLink({
@@ -108,22 +94,23 @@ export async function resendInvite(formData: FormData) {
     options: { redirectTo: INVITE_REDIRECT },
   })
   if (linkError || !linkData.properties?.action_link) {
-    backWithError(`Não consegui reenviar: ${linkError?.message ?? error.message}`)
+    backWithError(`Não consegui reenviar: ${linkError?.message ?? error.message}`, redirectTo)
   }
   // Link de uso único — mostrado à equipe para envio manual (WhatsApp/e-mail).
   redirect(
-    `/admin/users?link=${encodeURIComponent(linkData.properties.action_link)}&link_email=${encodeURIComponent(email)}`
+    `${redirectTo}?link=${encodeURIComponent(linkData.properties.action_link)}&link_email=${encodeURIComponent(email)}`
   )
 }
 
 export async function updateUserProfile(formData: FormData) {
   const { user } = await requireTeam()
   const id = String(formData.get('id'))
+  const redirectTo = String(formData.get('redirect_to') ?? '') || '/admin/users'
   const full_name = String(formData.get('full_name') ?? '').trim()
   const roleRaw = String(formData.get('role'))
   const role = ['team', 'client', 'lawyer'].includes(roleRaw) ? roleRaw : 'client'
-  if (!full_name) backWithError('O nome não pode ficar vazio.')
-  if (id === user.id && role !== 'team') backWithError('Você não pode rebaixar o próprio papel.')
+  if (!full_name) backWithError('O nome não pode ficar vazio.', redirectTo)
+  if (id === user.id && role !== 'team') backWithError('Você não pode rebaixar o próprio papel.', redirectTo)
 
   // Linha de advisory (etiqueta comercial) — '' = sem linha.
   const advisoryRaw = String(formData.get('advisory_line') ?? '')
@@ -131,15 +118,16 @@ export async function updateUserProfile(formData: FormData) {
     ? advisoryRaw
     : null
 
-  if (!isAdminConfigured()) backWithError('SUPABASE_SERVICE_ROLE_KEY não configurada.')
+  if (!isAdminConfigured()) backWithError('SUPABASE_SERVICE_ROLE_KEY não configurada.', redirectTo)
   const admin = createAdminClient()
   const { error } = await admin.from('profiles').update({ full_name, role, advisory_line }).eq('id', id)
-  if (error) backWithError(`Erro ao salvar: ${error.message}`)
+  if (error) backWithError(`Erro ao salvar: ${error.message}`, redirectTo)
 
   await admin.auth.admin.updateUserById(id, { user_metadata: { full_name } })
 
   revalidatePath('/admin/users')
-  redirect(`/admin/users?ok=${encodeURIComponent('Usuário atualizado.')}`)
+  revalidatePath(redirectTo)
+  redirect(`${redirectTo}?ok=${encodeURIComponent('Perfil atualizado.')}`)
 }
 
 // A3 — desativar = ban via Admin API (nunca deletar: histórico/comentários
@@ -147,16 +135,18 @@ export async function updateUserProfile(formData: FormData) {
 export async function setUserActive(formData: FormData) {
   const { user } = await requireTeam()
   const id = String(formData.get('id'))
+  const redirectTo = String(formData.get('redirect_to') ?? '') || '/admin/users'
   const activate = String(formData.get('activate')) === 'true'
-  if (id === user.id) backWithError('Você não pode desativar a própria conta.')
+  if (id === user.id) backWithError('Você não pode desativar a própria conta.', redirectTo)
 
-  if (!isAdminConfigured()) backWithError('SUPABASE_SERVICE_ROLE_KEY não configurada.')
+  if (!isAdminConfigured()) backWithError('SUPABASE_SERVICE_ROLE_KEY não configurada.', redirectTo)
   const admin = createAdminClient()
   const { error } = await admin.auth.admin.updateUserById(id, {
     ban_duration: activate ? 'none' : '87600h', // ~10 anos
   })
-  if (error) backWithError(`Erro: ${error.message}`)
+  if (error) backWithError(`Erro: ${error.message}`, redirectTo)
 
   revalidatePath('/admin/users')
-  redirect(`/admin/users?ok=${encodeURIComponent(activate ? 'Usuário reativado.' : 'Usuário desativado.')}`)
+  revalidatePath(redirectTo)
+  redirect(`${redirectTo}?ok=${encodeURIComponent(activate ? 'Usuário reativado.' : 'Usuário desativado.')}`)
 }

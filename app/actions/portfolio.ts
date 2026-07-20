@@ -142,6 +142,12 @@ export async function confirmAdvance(itemId: string) {
 
   revalidateBoards(item.thesis_id)
   revalidatePath('/admin')
+  revalidatePath('/admin/clientes')
+  // O processo continua no dossiê do cliente (transação embutida ali).
+  if (thesis?.client_id) {
+    revalidatePath(`/admin/clientes/${thesis.client_id}`)
+    redirect(`/admin/clientes/${thesis.client_id}`)
+  }
   redirect(`/admin/transactions/${transaction.id}`)
 }
 

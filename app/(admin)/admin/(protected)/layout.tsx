@@ -6,10 +6,9 @@ import { getSessionProfile } from '@/lib/supabase/roles'
 import { signOut } from '@/app/actions/auth'
 
 const NAV_LINKS = [
-  { href: '/admin', label: 'Transações' },
-  { href: '/admin/portfolios', label: 'Portfólios' },
+  { href: '/admin/clientes', label: 'Clientes' },
+  { href: '/admin/funil', label: 'Funil' },
   { href: '/admin/properties', label: 'Imóveis' },
-  { href: '/admin/theses', label: 'Teses' },
   { href: '/admin/cost-rules', label: 'Custos' },
   { href: '/admin/users', label: 'Usuários' },
 ]
@@ -45,7 +44,7 @@ export default async function ProtectedLayout({ children }: { children: React.Re
             gap: 16,
           }}
         >
-          <Link href="/admin" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', color: 'inherit' }}>
+          <Link href="/admin/clientes" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', color: 'inherit' }}>
             <Image src="/globalle-logo.png" alt="Globalle" width={110} height={30} style={{ display: 'block' }} />
             <span
               style={{

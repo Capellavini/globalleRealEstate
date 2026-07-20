@@ -40,68 +40,58 @@ function thesisFromForm(formData: FormData) {
   }
 }
 
+// Todas as actions abaixo vivem no dossiê do cliente (/admin/clientes/[id]) —
+// nunca numa página própria de tese. revalidate/redirect sempre apontam pra lá.
+
 export async function createThesis(formData: FormData) {
   await requireTeam()
   const client_id = String(formData.get('client_id'))
-  if (!client_id) throw new Error('Selecione o cliente da tese.')
+  if (!client_id) throw new Error('Cliente não identificado.')
 
   const supabase = createClient()
 
   // v1: 1 tese ativa por cliente — desativa as anteriores.
   await supabase.from('theses').update({ is_active: false }).eq('client_id', client_id).eq('is_active', true)
 
-  const { data: thesis, error } = await supabase
-    .from('theses')
-    .insert({ ...thesisFromForm(formData), client_id })
-    .select('id')
-    .single()
+  const { error } = await supabase.from('theses').insert({ ...thesisFromForm(formData), client_id })
   if (error) throw new Error(`Erro ao criar tese: ${error.message}`)
 
-  // Critérios qualitativos: um por linha do textarea.
-  const criteria = String(formData.get('criteria') ?? '')
-    .split('\n')
-    .map((s) => s.trim())
-    .filter(Boolean)
-    .map((label, i) => ({ thesis_id: thesis.id, label, sort_order: i }))
-  if (criteria.length) {
-    const { error: critError } = await supabase.from('thesis_criteria').insert(criteria)
-    if (critError) throw new Error(`Tese criada, mas erro nos critérios: ${critError.message}`)
-  }
-
-  revalidatePath('/admin/theses')
-  revalidatePath('/admin/portfolios')
-  redirect(`/admin/theses/${thesis.id}`)
+  revalidatePath('/admin/clientes')
+  revalidatePath(`/admin/clientes/${client_id}`)
+  redirect(`/admin/clientes/${client_id}`)
 }
 
 export async function updateThesis(formData: FormData) {
   await requireTeam()
   const id = String(formData.get('id'))
+  const client_id = String(formData.get('client_id'))
   const supabase = createClient()
 
   const { error } = await supabase.from('theses').update(thesisFromForm(formData)).eq('id', id)
   if (error) throw new Error(`Erro ao salvar tese: ${error.message}`)
 
-  revalidatePath(`/admin/theses/${id}`)
-  revalidatePath('/admin/portfolios')
+  revalidatePath(`/admin/clientes/${client_id}`)
   revalidatePath('/portfolio')
 }
 
 export async function toggleThesisActive(formData: FormData) {
   await requireTeam()
   const id = String(formData.get('id'))
+  const client_id = String(formData.get('client_id'))
   const active = String(formData.get('active')) === 'true'
   const supabase = createClient()
 
   const { error } = await supabase.from('theses').update({ is_active: active }).eq('id', id)
   if (error) throw new Error(error.message)
 
-  revalidatePath('/admin/theses')
-  revalidatePath(`/admin/theses/${id}`)
+  revalidatePath('/admin/clientes')
+  revalidatePath(`/admin/clientes/${client_id}`)
 }
 
 export async function addCriterion(formData: FormData) {
   await requireTeam()
   const thesisId = String(formData.get('thesis_id'))
+  const client_id = String(formData.get('client_id'))
   const label = String(formData.get('label') ?? '').trim()
   if (!label) return
 
@@ -119,33 +109,17 @@ export async function addCriterion(formData: FormData) {
     .insert({ thesis_id: thesisId, label, sort_order: (last?.sort_order ?? -1) + 1 })
   if (error) throw new Error(error.message)
 
-  revalidatePath(`/admin/theses/${thesisId}`)
+  revalidatePath(`/admin/clientes/${client_id}`)
 }
 
 export async function deleteCriterion(formData: FormData) {
   await requireTeam()
   const id = String(formData.get('id'))
-  const thesisId = String(formData.get('thesis_id'))
+  const client_id = String(formData.get('client_id'))
   const supabase = createClient()
 
   const { error } = await supabase.from('thesis_criteria').delete().eq('id', id)
   if (error) throw new Error(error.message)
 
-  revalidatePath(`/admin/theses/${thesisId}`)
-}
-
-// Papéis: promover/rebaixar usuário (a criação do usuário em si é no painel
-// do Supabase — Authentication → Users — ou por convite; sem service key aqui).
-export async function setProfileRole(formData: FormData) {
-  const { user } = await requireTeam()
-  const id = String(formData.get('id'))
-  const role = String(formData.get('role'))
-  if (role !== 'team' && role !== 'client') return
-  if (id === user.id) throw new Error('Você não pode alterar o próprio papel.')
-
-  const supabase = createClient()
-  const { error } = await supabase.from('profiles').update({ role }).eq('id', id)
-  if (error) throw new Error(error.message)
-
-  revalidatePath('/admin/theses')
+  revalidatePath(`/admin/clientes/${client_id}`)
 }

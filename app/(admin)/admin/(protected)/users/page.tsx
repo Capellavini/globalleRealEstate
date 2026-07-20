@@ -1,10 +1,10 @@
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient, isAdminConfigured } from '@/lib/supabase/admin'
 import { inviteUser, resendInvite, setUserActive, updateUserProfile } from '@/app/actions/users'
 import { getSessionProfile } from '@/lib/supabase/roles'
 import ConfirmSubmitButton from '@/components/admin/ConfirmSubmitButton'
-import { OBJECTIVE_LABELS, type Profile, type ThesisObjective } from '@/lib/portfolio/types'
-import { THESIS_COUNTRIES } from '@/lib/thesis-options'
+import type { Profile } from '@/lib/portfolio/types'
 import { THESIS_LABELS, type TransactionThesis } from '@/lib/admin/types'
 
 export const dynamic = 'force-dynamic'
@@ -164,55 +164,9 @@ export default async function UsersPage({
             </label>
           </div>
 
-          <details>
-            <summary style={{ cursor: 'pointer', fontSize: 13, fontWeight: 600, color: 'rgba(11,18,48,0.7)' }}>
-              Tese inicial do cliente (opcional — dá para criar depois em Teses)
-            </summary>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 12, marginTop: 12 }}>
-              <label style={{ display: 'grid', gap: 5, fontSize: 12.5, fontWeight: 600 }}>
-                Título da tese
-                <input name="thesis_title" type="text" placeholder="Apartamento para arrendar no Porto" style={inputStyle} />
-              </label>
-              <label style={{ display: 'grid', gap: 5, fontSize: 12.5, fontWeight: 600 }}>
-                Objetivo
-                <select name="thesis_objective" defaultValue="" style={inputStyle}>
-                  <option value="">selecione…</option>
-                  {(Object.keys(OBJECTIVE_LABELS) as ThesisObjective[]).map((o) => (
-                    <option key={o} value={o}>
-                      {OBJECTIVE_LABELS[o]}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <div style={{ display: 'grid', gap: 5, fontSize: 12.5, fontWeight: 600 }}>
-                Países-alvo
-                <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', fontWeight: 400 }}>
-                  {THESIS_COUNTRIES.map((country) => (
-                    <label key={country.value} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 13 }}>
-                      <input type="checkbox" name="thesis_countries" value={country.value} />
-                      {country.label}
-                    </label>
-                  ))}
-                </div>
-              </div>
-              <label style={{ display: 'grid', gap: 5, fontSize: 12.5, fontWeight: 600 }}>
-                Orçamento mín.
-                <input name="thesis_budget_min" type="number" step="any" style={inputStyle} />
-              </label>
-              <label style={{ display: 'grid', gap: 5, fontSize: 12.5, fontWeight: 600 }}>
-                Orçamento máx.
-                <input name="thesis_budget_max" type="number" step="any" style={inputStyle} />
-              </label>
-              <label style={{ display: 'grid', gap: 5, fontSize: 12.5, fontWeight: 600 }}>
-                Moeda
-                <select name="thesis_currency" defaultValue="EUR" style={inputStyle}>
-                  <option value="EUR">EUR</option>
-                  <option value="BRL">BRL</option>
-                  <option value="USD">USD</option>
-                </select>
-              </label>
-            </div>
-          </details>
+          <p style={{ fontSize: 12, color: 'rgba(11,18,48,0.55)', margin: 0 }}>
+            Para clientes, a tese de investimento é definida a seguir, no dossiê.
+          </p>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
             <button
@@ -258,11 +212,25 @@ export default async function UsersPage({
               <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
                 <div>
                   <strong style={{ fontSize: 14.5 }}>
-                    {row.full_name}
+                    {row.role === 'client' ? (
+                      <Link href={`/admin/clientes/${row.id}`} style={{ color: '#0B1230', textDecoration: 'none' }}>
+                        {row.full_name}
+                      </Link>
+                    ) : (
+                      row.full_name
+                    )}
                     {isMe && <span style={{ color: 'rgba(11,18,48,0.45)', fontWeight: 400 }}> (você)</span>}
                   </strong>
                   <div style={{ fontSize: 12.5, color: 'rgba(11,18,48,0.6)' }}>
                     {row.email} · desde {new Date(row.created_at).toLocaleDateString('pt-BR')}
+                    {row.role === 'client' && (
+                      <>
+                        {' · '}
+                        <Link href={`/admin/clientes/${row.id}`} style={{ color: '#0E6FA3', fontWeight: 600 }}>
+                          ver dossiê →
+                        </Link>
+                      </>
+                    )}
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>

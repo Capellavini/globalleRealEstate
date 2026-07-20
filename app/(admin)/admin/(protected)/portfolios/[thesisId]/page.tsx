@@ -13,17 +13,12 @@ export default async function TeamKanbanPage({ params }: { params: { thesisId: s
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, marginBottom: 12, flexWrap: 'wrap' }}>
-        <Link href="/admin/portfolios" style={{ fontSize: 13, color: 'rgba(11,18,48,0.60)', textDecoration: 'none' }}>
-          ← Portfólios
+        <Link href={`/admin/clientes/${data.thesis.client_id}`} style={{ fontSize: 13, color: 'rgba(11,18,48,0.60)', textDecoration: 'none' }}>
+          ← Dossiê do cliente
         </Link>
-        <div style={{ display: 'flex', gap: 14 }}>
-          <Link href={`/admin/theses/${data.thesis.id}`} style={{ fontSize: 13, color: '#0E6FA3', fontWeight: 600, textDecoration: 'none' }}>
-            Editar tese e critérios
-          </Link>
-          <Link href="/admin/properties" style={{ fontSize: 13, color: '#0E6FA3', fontWeight: 600, textDecoration: 'none' }}>
-            Adicionar imóveis
-          </Link>
-        </div>
+        <Link href="/admin/properties" style={{ fontSize: 13, color: '#0E6FA3', fontWeight: 600, textDecoration: 'none' }}>
+          Adicionar imóveis
+        </Link>
       </div>
 
       <ThesisSummary thesis={data.thesis} clientName={data.clientName} />
