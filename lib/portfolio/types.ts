@@ -1,7 +1,7 @@
 // Tipos + labels + cores do módulo de Portfólio. Espelham migration-portfolio.sql.
 
 export type UserRole = 'team' | 'client' | 'lawyer'
-export type ThesisObjective = 'moradia' | 'para_renda' | 'revenda' | 'patrimonial' | 'desenvolvimento'
+export type ThesisObjective = 'moradia' | 'para_renda' | 'revenda' | 'patrimonial' | 'desenvolvimento' | 'projetos_especiais'
 export type PortfolioStatus = 'novo' | 'favorito' | 'em_analise' | 'descartado' | 'avancar'
 export type FitValue = 'sim' | 'parcial' | 'nao'
 export type SourceType = 'portal' | 'partner_agent' | 'off_market' | 'direct_owner'
@@ -125,6 +125,7 @@ export const OBJECTIVE_LABELS: Record<ThesisObjective, string> = {
   revenda: 'Revenda',
   patrimonial: 'Patrimonial',
   desenvolvimento: 'Desenvolvimento',
+  projetos_especiais: 'Projetos Especiais',
 }
 
 export const STATUS_LABELS: Record<PortfolioStatus, string> = {

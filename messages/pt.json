@@ -212,7 +212,8 @@
       { "value": "patrimonial", "title": "Patrimonial", "body": "Diversificação e proteção de patrimônio em mercados fora do seu país de origem." },
       { "value": "desenvolvimento", "title": "Desenvolvimento", "body": "Projetos e terrenos com potencial para incorporação ou desenvolvimento." },
       { "value": "moradia", "title": "Moradia ou Uso", "body": "Um imóvel para você viver ou usar em outro país." },
-      { "value": "revenda", "title": "Revenda", "body": "Oportunidades com potencial de valorização, para comprar e vender no médio prazo." }
+      { "value": "revenda", "title": "Revenda", "body": "Oportunidades com potencial de valorização, para comprar e vender no médio prazo." },
+      { "value": "projetos_especiais", "title": "Projetos Especiais", "body": "Para aqueles que ainda não definiram exatamente o que buscam. Imóveis ou projetos em situações especiais." }
     ],
     "form_label": "Comece por aqui",
     "form_headline": "Nos conte o que busca, o resto deixe com a Globalle.",

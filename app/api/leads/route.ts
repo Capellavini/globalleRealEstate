@@ -13,7 +13,7 @@ const BUDGET_RANGES: Record<string, [number | null, number | null]> = {
   acima_1m: [1000000, null],
 }
 
-const VALID_OBJECTIVES = ['moradia', 'para_renda', 'revenda', 'patrimonial', 'desenvolvimento']
+const VALID_OBJECTIVES = ['moradia', 'para_renda', 'revenda', 'patrimonial', 'desenvolvimento', 'projetos_especiais']
 const VALID_LOCALES = ['pt', 'en', 'es', 'it']
 
 export async function POST(req: Request) {

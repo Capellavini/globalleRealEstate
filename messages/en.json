@@ -212,7 +212,8 @@
       { "value": "patrimonial", "title": "Wealth Preservation", "body": "Diversifying and protecting wealth in markets outside your home country." },
       { "value": "desenvolvimento", "title": "Development", "body": "Projects and land with potential for development or redevelopment." },
       { "value": "moradia", "title": "Home or Personal Use", "body": "A property for you to live in or use in another country." },
-      { "value": "revenda", "title": "Resale", "body": "Opportunities with appreciation potential, to buy and sell in the medium term." }
+      { "value": "revenda", "title": "Resale", "body": "Opportunities with appreciation potential, to buy and sell in the medium term." },
+      { "value": "projetos_especiais", "title": "Special Projects", "body": "For those who haven't quite defined what they're looking for yet. Properties or projects in special situations." }
     ],
     "form_label": "Start here",
     "form_headline": "Tell us what you're looking for — leave the rest to Globalle.",

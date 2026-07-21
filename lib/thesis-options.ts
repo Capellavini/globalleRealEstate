@@ -16,6 +16,7 @@ export const THESIS_OBJECTIVES = [
   { value: 'revenda', label: 'Revenda' },
   { value: 'patrimonial', label: 'Patrimonial' },
   { value: 'desenvolvimento', label: 'Desenvolvimento' },
+  { value: 'projetos_especiais', label: 'Projetos Especiais' },
 ] as const
 
 export const THESIS_COUNTRIES = [
