@@ -1,13 +1,18 @@
 import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
-import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import LanguageSelect from '@/components/LanguageSelect'
+import Logo from '@/components/Logo'
 import Reveal from '@/components/Reveal'
 import Icon from '@/components/Icon'
 
 // Home gateway: dois caminhos — Investidores (/investidores) e
 // Profissionais Imobiliários (/profissionais, a antiga home).
+// Sem o Header do site (nav Sobre/Manifesto e CTA de newsletter ficam nas
+// páginas internas): só o logo grande centralizado + seletor de idioma no
+// canto. O idioma inicial é detectado pelo middleware do next-intl
+// (Accept-Language do navegador); o seletor é o override manual.
 export default function HomePage() {
   const t = useTranslations('gateway')
   const locale = useLocale()
@@ -33,18 +38,24 @@ export default function HomePage() {
 
   return (
     <>
-      <Header />
-
       <section className="grain" style={{ position: 'relative', background: 'var(--color-navy)', overflow: 'hidden', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <Image src="/bg-bokeh.jpg" alt="" fill priority style={{ objectFit: 'cover', opacity: 0.45 }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(7,11,36,0.6) 0%, rgba(7,11,36,0.8) 55%, var(--color-navy) 100%)' }} />
         </div>
 
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1000, margin: '0 auto', padding: '150px 28px 90px', width: '100%' }}>
+        {/* Seletor de idioma no canto */}
+        <div style={{ position: 'absolute', top: 24, right: 24, zIndex: 2 }}>
+          <LanguageSelect />
+        </div>
+
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1000, margin: '0 auto', padding: '110px 28px 90px', width: '100%' }}>
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 30 }}>
+              <Logo height={58} priority />
+            </div>
             <span className="kicker" style={{ color: 'var(--color-ink-faint)', display: 'block', marginBottom: 18 }}>{t('tagline')}</span>
-            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(34px, 5vw, 56px)', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.025em', lineHeight: 1.06 }}>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.4vw, 48px)', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.025em', lineHeight: 1.06 }}>
               {t('headline')}
             </h1>
           </div>
