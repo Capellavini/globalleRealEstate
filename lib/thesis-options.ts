@@ -11,7 +11,7 @@
 //     simples de guardar e de ler de volta.
 
 export const THESIS_OBJECTIVES = [
-  { value: 'moradia', label: 'Moradia' },
+  { value: 'moradia', label: 'Moradia ou Uso' },
   { value: 'para_renda', label: 'Para renda' },
   { value: 'revenda', label: 'Revenda' },
   { value: 'patrimonial', label: 'Patrimonial' },

@@ -18,10 +18,10 @@
     "tagline": "Inteligencia Inmobiliaria Global",
     "headline": "¿Cuál es su camino?",
     "investors_title": "Globalle para Inversores",
-    "investors_body": "Consultoría para invertir en inmuebles fuera de su país — de la tesis de inversión a la escritura, con curaduría y acompañamiento en cada etapa.",
+    "investors_body": "Consultoría especializada en inversiones inmobiliarias cross-border. Le acompañamos desde la definición de su tesis de inversión hasta la escritura, con curaduría de inmuebles y acompañamiento de cerca en cada etapa.",
     "investors_cta": "Soy inversor",
     "pros_title": "Globalle para Profesionales Inmobiliarios",
-    "pros_body": "Newsletter, comunidad y consultoría con las prácticas de los mejores mercados del mundo, traducidas en acción para su día a día.",
+    "pros_body": "Hub de inteligencia de mercado, con prácticas aplicables de mercados de todo el mundo, traducidas para su día a día. Aprendizaje continuo para convertirse en un profesional global.",
     "pros_cta": "Soy profesional del sector"
   },
   "hero": {
@@ -194,27 +194,29 @@
   },
   "investidores": {
     "label": "Para inversores",
-    "headline": "Invierta en inmuebles fuera de su país sin perder el control.",
-    "subheadline": "Globalle conduce todo el proceso — de la tesis de inversión a la escritura — con curaduría de inmuebles, análisis de costos y acompañamiento en cada etapa.",
+    "headline": "Invierta en inmuebles fuera de su país, con objetivos claros y procesos transparentes.",
+    "subheadline": "Globalle le acompaña en todo el proceso — de la tesis de inversión a la escritura — trayendo opciones de inmuebles que encajan con su perfil. En nuestra plataforma, podrá seguir cada etapa.",
     "what_label": "Qué hacemos",
-    "what_headline": "Un proceso, no una promesa",
+    "what_headline": "Invierta con proceso y conocimiento.",
     "what_items": [
       { "title": "Tesis a su medida", "body": "Entendemos su objetivo, presupuesto y mercados de interés antes de mostrar un solo inmueble." },
-      { "title": "Curaduría activa", "body": "Buscamos y filtramos oportunidades — off-market y de socios — que encajan con su tesis." },
-      { "title": "Transacción acompañada", "body": "Costos, documentos y etapas del proceso, visibles de principio a fin, en un solo lugar." }
+      { "title": "Curaduría Activa", "body": "Buscamos y filtramos opciones relevantes, de acuerdo con su tesis." },
+      { "title": "Transacción Acompañada", "body": "Inmuebles, documentos, costos y etapas del proceso visibles de principio a fin, en un solo lugar." }
     ],
     "thesis_label": "Las tesis",
     "thesis_headline": "Cada inversor tiene un objetivo diferente. El proceso empieza por entender el suyo.",
+    "thesis_subheadline": "Nuestras tesis existen para atender cada tipo de inversión. La conversación inicial con nuestro equipo busca entender la suya y explicar nuestro trabajo.",
+    "thesis_intro": "Conozca nuestras tesis",
     "objectives": [
-      { "value": "moradia", "title": "Vivienda", "body": "Un inmueble para vivir, con la compra fuera del país gestionada de principio a fin." },
-      { "value": "para_renda", "title": "Renta", "body": "Inmuebles con potencial de alquiler, evaluados también por el yield esperado." },
-      { "value": "revenda", "title": "Reventa", "body": "Oportunidades con potencial de valorización, para comprar y vender a medio plazo." },
+      { "value": "para_renda", "title": "Renta", "body": "Inmuebles con renta o para alquiler, considerando demanda futura, yield actual y potencial de valorización." },
       { "value": "patrimonial", "title": "Patrimonial", "body": "Diversificación y protección de patrimonio en mercados fuera de su país de origen." },
-      { "value": "desenvolvimento", "title": "Desarrollo", "body": "Proyectos y terrenos con potencial de desarrollo." }
+      { "value": "desenvolvimento", "title": "Desarrollo", "body": "Proyectos y terrenos con potencial de desarrollo." },
+      { "value": "moradia", "title": "Vivienda o Uso", "body": "Un inmueble para vivir o usar en otro país." },
+      { "value": "revenda", "title": "Reventa", "body": "Oportunidades con potencial de valorización, para comprar y vender a medio plazo." }
     ],
     "form_label": "Empiece aquí",
-    "form_headline": "Cuéntenos su tesis — el resto lo hacemos con usted",
-    "form_subheadline": "Toma menos de 2 minutos. Nuestro equipo se pondrá en contacto para los próximos pasos.",
+    "form_headline": "Cuéntenos qué busca — el resto déjelo con Globalle.",
+    "form_subheadline": "Complete nuestro formulario y nuestro equipo se pondrá en contacto para los próximos pasos.",
     "contact_note": "¿Prefiere hablar directamente?",
     "contact_cta": "Escribir al equipo"
   },

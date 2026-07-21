@@ -18,10 +18,10 @@
     "tagline": "Intelligence Immobiliare Globale",
     "headline": "Qual è il tuo percorso?",
     "investors_title": "Globalle per Investitori",
-    "investors_body": "Consulenza per investire in immobili all'estero — dalla tesi d'investimento al rogito, con curatela e accompagnamento in ogni fase.",
+    "investors_body": "Consulenza specializzata in investimenti immobiliari cross-border. Vi accompagniamo dalla definizione della vostra tesi d'investimento al rogito, con curatela degli immobili e accompagnamento ravvicinato in ogni fase.",
     "investors_cta": "Sono un investitore",
     "pros_title": "Globalle per Professionisti Immobiliari",
-    "pros_body": "Newsletter, community e consulenza con le pratiche dei migliori mercati del mondo, tradotte in azione per il tuo lavoro quotidiano.",
+    "pros_body": "Hub di intelligence di mercato, con pratiche applicabili da mercati di tutto il mondo, tradotte per il tuo lavoro quotidiano. Apprendimento continuo per diventare un professionista globale.",
     "pros_cta": "Sono un professionista del settore"
   },
   "hero": {
@@ -194,27 +194,29 @@
   },
   "investidores": {
     "label": "Per investitori",
-    "headline": "Investire in immobili all'estero senza rinunciare al controllo.",
-    "subheadline": "Globalle gestisce l'intero processo — dalla tesi d'investimento al rogito — con curatela degli immobili, analisi dei costi e accompagnamento in ogni fase.",
+    "headline": "Investi in immobili all'estero, con obiettivi chiari e processi trasparenti.",
+    "subheadline": "Globalle ti accompagna nell'intero processo — dalla tesi d'investimento al rogito — proponendo immobili in linea con il tuo profilo. Sulla nostra piattaforma potrai seguire ogni fase.",
     "what_label": "Cosa facciamo",
-    "what_headline": "Un processo, non una promessa",
+    "what_headline": "Investi con processo e conoscenza.",
     "what_items": [
       { "title": "Una tesi su misura", "body": "Capiamo il vostro obiettivo, budget e mercati di interesse prima di mostrare un solo immobile." },
-      { "title": "Curatela attiva", "body": "Cerchiamo e filtriamo opportunità — off-market e da partner — in linea con la vostra tesi." },
-      { "title": "Transazione seguita", "body": "Costi, documenti e fasi del processo, visibili dall'inizio al rogito, in un unico posto." }
+      { "title": "Curatela Attiva", "body": "Cerchiamo e filtriamo opzioni rilevanti, in linea con la vostra tesi." },
+      { "title": "Transazione Seguita", "body": "Immobili, documenti, costi e fasi del processo visibili dall'inizio al rogito, in un unico posto." }
     ],
     "thesis_label": "Le tesi",
     "thesis_headline": "Ogni investitore ha un obiettivo diverso. Il processo parte dal capire il vostro.",
+    "thesis_subheadline": "Le nostre tesi esistono per rispondere a ogni tipo di investimento. Il primo colloquio con il nostro team serve a capire la vostra e a spiegare il nostro lavoro.",
+    "thesis_intro": "Scopri le nostre tesi",
     "objectives": [
-      { "value": "moradia", "title": "Abitazione", "body": "Un immobile in cui vivere, con l'acquisto all'estero seguito dall'inizio alla fine." },
-      { "value": "para_renda", "title": "Rendita", "body": "Immobili con potenziale di affitto, valutati anche in base allo yield atteso." },
-      { "value": "revenda", "title": "Rivendita", "body": "Opportunità con potenziale di rivalutazione, da comprare e rivendere nel medio termine." },
+      { "value": "para_renda", "title": "Rendita", "body": "Immobili con rendita o da affittare, considerando domanda futura, yield attuale e potenziale di rivalutazione." },
       { "value": "patrimonial", "title": "Patrimoniale", "body": "Diversificazione e protezione del patrimonio in mercati fuori dal proprio paese." },
-      { "value": "desenvolvimento", "title": "Sviluppo", "body": "Progetti e terreni con potenziale di sviluppo o riqualificazione." }
+      { "value": "desenvolvimento", "title": "Sviluppo", "body": "Progetti e terreni con potenziale di sviluppo o riqualificazione." },
+      { "value": "moradia", "title": "Abitazione o Uso", "body": "Un immobile in cui vivere o da usare in un altro paese." },
+      { "value": "revenda", "title": "Rivendita", "body": "Opportunità con potenziale di rivalutazione, da comprare e rivendere nel medio termine." }
     ],
     "form_label": "Inizia qui",
-    "form_headline": "Raccontaci la tua tesi — al resto pensiamo insieme",
-    "form_subheadline": "Richiede meno di 2 minuti. Il nostro team vi contatterà per i prossimi passi.",
+    "form_headline": "Raccontaci cosa cerchi — al resto pensa Globalle.",
+    "form_subheadline": "Compila il nostro modulo e il nostro team ti contatterà per i prossimi passi.",
     "contact_note": "Preferisci parlare direttamente?",
     "contact_cta": "Scrivi al team"
   },

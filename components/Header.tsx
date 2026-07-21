@@ -5,9 +5,9 @@ import { useTranslations, useLocale } from 'next-intl'
 import Link from 'next/link'
 import Logo from './Logo'
 import Icon from './Icon'
-import LanguageSwitcher from './LanguageSwitcher'
+import LanguageSelect from './LanguageSelect'
 
-export default function Header() {
+export default function Header({ showSubscribe = true }: { showSubscribe?: boolean }) {
   const t = useTranslations('nav')
   const locale = useLocale()
   const [scrolled, setScrolled] = useState(false)
@@ -68,31 +68,33 @@ export default function Header() {
           </nav>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 18, marginLeft: 'auto' }}>
-            <LanguageSwitcher />
+            <LanguageSelect />
 
-            <Link
-              href={`/${locale}/profissionais#newsletter`}
-              className="hidden sm:inline-flex"
-              style={{
-                alignItems: 'center', gap: 8,
-                background: 'var(--color-blue)',
-                color: '#04121f',
-                textDecoration: 'none',
-                padding: '10px 18px',
-                borderRadius: 10,
-                fontSize: 14,
-                fontWeight: 700,
-                fontFamily: 'var(--font-display)',
-                transition: 'transform 0.2s, box-shadow 0.2s',
-                boxShadow: '0 6px 20px -8px rgba(30,167,232,0.6)',
-                whiteSpace: 'nowrap',
-              }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 10px 26px -8px rgba(30,167,232,0.8)' }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 6px 20px -8px rgba(30,167,232,0.6)' }}
-            >
-              {t('subscribe')}
-              <Icon name="arrow" size={16} strokeWidth={2} />
-            </Link>
+            {showSubscribe && (
+              <Link
+                href={`/${locale}/profissionais#newsletter`}
+                className="hidden sm:inline-flex"
+                style={{
+                  alignItems: 'center', gap: 8,
+                  background: 'var(--color-blue)',
+                  color: '#04121f',
+                  textDecoration: 'none',
+                  padding: '10px 18px',
+                  borderRadius: 10,
+                  fontSize: 14,
+                  fontWeight: 700,
+                  fontFamily: 'var(--font-display)',
+                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  boxShadow: '0 6px 20px -8px rgba(30,167,232,0.6)',
+                  whiteSpace: 'nowrap',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 10px 26px -8px rgba(30,167,232,0.8)' }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 6px 20px -8px rgba(30,167,232,0.6)' }}
+              >
+                {t('subscribe')}
+                <Icon name="arrow" size={16} strokeWidth={2} />
+              </Link>
+            )}
 
             {/* Mobile hamburger */}
             <button
@@ -126,7 +128,7 @@ export default function Header() {
           padding: '12px 28px 28px',
         }}>
           <div style={{ padding: '14px 0', borderBottom: '1px solid var(--color-line)' }}>
-            <LanguageSwitcher />
+            <LanguageSelect />
           </div>
           {navLinks.map(link => (
             <Link
@@ -142,19 +144,21 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href={`/${locale}/profissionais#newsletter`}
-            onClick={() => setMenuOpen(false)}
-            style={{
-              display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8,
-              marginTop: 20, background: 'var(--color-blue)', color: '#04121f',
-              textDecoration: 'none', padding: '14px 20px', borderRadius: 12,
-              fontSize: 15, fontWeight: 700, fontFamily: 'var(--font-display)',
-            }}
-          >
-            {t('subscribe')}
-            <Icon name="arrow" size={16} strokeWidth={2} />
-          </Link>
+          {showSubscribe && (
+            <Link
+              href={`/${locale}/profissionais#newsletter`}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8,
+                marginTop: 20, background: 'var(--color-blue)', color: '#04121f',
+                textDecoration: 'none', padding: '14px 20px', borderRadius: 12,
+                fontSize: 15, fontWeight: 700, fontFamily: 'var(--font-display)',
+              }}
+            >
+              {t('subscribe')}
+              <Icon name="arrow" size={16} strokeWidth={2} />
+            </Link>
+          )}
         </div>
       )}
     </header>

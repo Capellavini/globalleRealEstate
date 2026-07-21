@@ -18,10 +18,10 @@
     "tagline": "Global Real Estate Intelligence",
     "headline": "Which path is yours?",
     "investors_title": "Globalle for Investors",
-    "investors_body": "Advisory for investing in property abroad — from investment thesis to closing, with curation and guidance at every step.",
+    "investors_body": "Specialized advisory for cross-border real estate investment. We support you from defining your investment thesis to closing, with property curation and close guidance at every step.",
     "investors_cta": "I'm an investor",
     "pros_title": "Globalle for Real Estate Professionals",
-    "pros_body": "Newsletter, community and advisory with the practices of the world's best markets, translated into action for your day-to-day.",
+    "pros_body": "A market-intelligence hub, with applicable practices from markets around the world, translated for your day-to-day. Continuous learning to become a global professional.",
     "pros_cta": "I'm a real estate professional"
   },
   "hero": {
@@ -194,27 +194,29 @@
   },
   "investidores": {
     "label": "For investors",
-    "headline": "Invest in property abroad without giving up control.",
-    "subheadline": "Globalle runs the whole process — from investment thesis to closing — with property curation, cost analysis and guidance at every step.",
+    "headline": "Invest in property abroad, with clear goals and a transparent process.",
+    "subheadline": "Globalle helps you through the whole process — from investment thesis to closing — bringing property options that match your profile. On our platform, you can follow every step.",
     "what_label": "What we do",
-    "what_headline": "A process, not a promise",
+    "what_headline": "Invest with process and knowledge.",
     "what_items": [
       { "title": "A thesis built for you", "body": "We understand your goal, budget and target markets before showing a single property." },
-      { "title": "Active curation", "body": "We source and filter opportunities — off-market and from partners — that match your thesis." },
-      { "title": "A guided transaction", "body": "Costs, documents and process steps, visible from start to closing, in one place." }
+      { "title": "Active Curation", "body": "We source and filter relevant options, matched to your thesis." },
+      { "title": "A Guided Transaction", "body": "Properties, documents, costs and process steps visible from start to closing, in one place." }
     ],
     "thesis_label": "The theses",
     "thesis_headline": "Every investor has a different goal. The process starts by understanding yours.",
+    "thesis_subheadline": "Our theses exist to serve every type of investment. The first conversation with our team is meant to understand yours and explain how we work.",
+    "thesis_intro": "Meet our theses",
     "objectives": [
-      { "value": "moradia", "title": "A home", "body": "A property for you to live in, with the purchase abroad handled start to finish." },
-      { "value": "para_renda", "title": "Rental income", "body": "Properties with rental potential, evaluated by expected yield too." },
-      { "value": "revenda", "title": "Resale", "body": "Opportunities with appreciation potential, to buy and sell in the medium term." },
-      { "value": "patrimonial", "title": "Wealth preservation", "body": "Diversifying and protecting wealth in markets outside your home country." },
-      { "value": "desenvolvimento", "title": "Development", "body": "Projects and land with development or redevelopment potential." }
+      { "value": "para_renda", "title": "Rental Income", "body": "Properties with rental income, weighing future demand, current yield and upside." },
+      { "value": "patrimonial", "title": "Wealth Preservation", "body": "Diversifying and protecting wealth in markets outside your home country." },
+      { "value": "desenvolvimento", "title": "Development", "body": "Projects and land with potential for development or redevelopment." },
+      { "value": "moradia", "title": "Home or Personal Use", "body": "A property for you to live in or use in another country." },
+      { "value": "revenda", "title": "Resale", "body": "Opportunities with appreciation potential, to buy and sell in the medium term." }
     ],
     "form_label": "Start here",
-    "form_headline": "Tell us your thesis — we'll handle the rest with you",
-    "form_subheadline": "Takes under 2 minutes. Our team will reach out with next steps.",
+    "form_headline": "Tell us what you're looking for — leave the rest to Globalle.",
+    "form_subheadline": "Fill out our form and our team will reach out with next steps.",
     "contact_note": "Prefer to talk directly?",
     "contact_cta": "Email the team"
   },

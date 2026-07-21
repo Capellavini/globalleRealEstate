@@ -16,7 +16,7 @@ export default function InvestidoresPage() {
 
   return (
     <>
-      <Header />
+      <Header showSubscribe={false} />
 
       {/* Hero */}
       <section className="grain" style={{ position: 'relative', background: 'var(--color-navy)', overflow: 'hidden' }}>
@@ -78,9 +78,15 @@ export default function InvestidoresPage() {
               <span className="serif" style={{ fontSize: 17, fontWeight: 600, color: 'var(--color-gold)', fontStyle: 'italic' }}>02</span>
               <span className="kicker" style={{ color: 'var(--color-ink-faint)' }}>{t('thesis_label')}</span>
             </div>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 3.8vw, 42px)', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.02em', marginBottom: 48, maxWidth: 640 }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 3.8vw, 42px)', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.02em', marginBottom: 16, maxWidth: 640 }}>
               {t('thesis_headline')}
             </h2>
+            <p style={{ color: 'var(--color-ink-dim)', fontSize: 15.5, lineHeight: 1.65, maxWidth: 560, marginBottom: 44 }}>
+              {t('thesis_subheadline')}
+            </p>
+            <p className="serif-i" style={{ color: 'var(--color-gold)', fontSize: 18, marginBottom: 24 }}>
+              {t('thesis_intro')}
+            </p>
           </Reveal>
 
           <div className="thesis-grid">

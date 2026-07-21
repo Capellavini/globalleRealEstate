@@ -120,7 +120,7 @@ export interface CriterionFit {
 /* ── Labels (PT) ── */
 
 export const OBJECTIVE_LABELS: Record<ThesisObjective, string> = {
-  moradia: 'Moradia',
+  moradia: 'Moradia ou Uso',
   para_renda: 'Para renda',
   revenda: 'Revenda',
   patrimonial: 'Patrimonial',
