@@ -15,6 +15,7 @@ export default function Footer() {
     { href: '/#sobre', label: nav('about') },
     { href: '/#manifesto', label: nav('manifesto') },
     { href: '/investidores', label: nav('investidores') },
+    { href: '/corretores', label: nav('corretores') },
   ]
   const socials = ['LinkedIn', 'Instagram', 'YouTube']
 

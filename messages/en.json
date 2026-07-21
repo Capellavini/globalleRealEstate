@@ -10,6 +10,7 @@
     "comunidade": "Community",
     "consultoria": "Advisory",
     "investidores": "Investors",
+    "corretores": "Agents",
     "subscribe": "Subscribe to Newsletter"
   },
   "hero": {
@@ -233,6 +234,28 @@
     "notes_placeholder": "Optional",
     "submit": "Send thesis",
     "back": "Back"
+  },
+  "corretores": {
+    "label": "For agents",
+    "headline": "Take your client across borders — without losing the deal.",
+    "subheadline": "A program for agents and agencies who want to offer property abroad to their clients, with the support, network and process to do it safely.",
+    "features_title": "What you get access to",
+    "features": [
+      { "icon": "newsletter", "title": "Globalle Newsletter", "body": "Global real estate intelligence, every week — practices from the world's best markets, translated into action." },
+      { "icon": "advisory", "title": "Advisory for selling abroad", "body": "Support to structure and run cross-border deals with your client, from first contact to closing." },
+      { "icon": "share", "title": "Access to process and partners", "body": "Access to Globalle's partner network and the process already structured for each market." },
+      { "icon": "globe", "title": "International network", "body": "Connection with agents, agencies and professionals from other real estate markets." },
+      { "icon": "calendar", "title": "Monthly meetings", "body": "Meetings to discuss real cases, trends and opportunities among agents in the network." }
+    ],
+    "price_label": "Investment",
+    "price": "€350",
+    "price_period": "/month",
+    "price_note": "Limited spots per market.",
+    "form_label": "Start here",
+    "form_headline": "Join the Globalle network",
+    "form_subheadline": "Leave your contact — our team will explain the next steps.",
+    "form_placeholder": "Your best email",
+    "form_cta": "I want in"
   },
   "footer": {
     "tagline": "Global real estate intelligence, every week.",

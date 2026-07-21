@@ -10,6 +10,7 @@
     "comunidade": "Comunidad",
     "consultoria": "Consultoría",
     "investidores": "Inversores",
+    "corretores": "Agentes",
     "subscribe": "Suscribirse a la Newsletter"
   },
   "hero": {
@@ -233,6 +234,28 @@
     "notes_placeholder": "Opcional",
     "submit": "Enviar tesis",
     "back": "Volver"
+  },
+  "corretores": {
+    "label": "Para agentes",
+    "headline": "Lleve a su cliente más allá de las fronteras — sin perder el negocio.",
+    "subheadline": "Un programa para agentes e inmobiliarias que quieren ofrecer inmuebles fuera del país a sus clientes, con el soporte, la red y el proceso para hacerlo con seguridad.",
+    "features_title": "A qué tiene acceso",
+    "features": [
+      { "icon": "newsletter", "title": "Newsletter Globalle", "body": "Inteligencia inmobiliaria global, cada semana — las prácticas de los mejores mercados, traducidas en acción." },
+      { "icon": "advisory", "title": "Consultoría para vender fuera del país", "body": "Apoyo para estructurar y conducir negocios internacionales con su cliente, del primer contacto al cierre." },
+      { "icon": "share", "title": "Conexión con procesos y socios", "body": "Acceso a la red de socios y al proceso ya estructurado de Globalle en cada mercado." },
+      { "icon": "globe", "title": "Red internacional", "body": "Conexión con agentes, agencias y profesionales de otros mercados inmobiliarios." },
+      { "icon": "calendar", "title": "Encuentros mensuales", "body": "Encuentros para discutir casos reales, tendencias y oportunidades entre agentes de la red." }
+    ],
+    "price_label": "Inversión",
+    "price": "€350",
+    "price_period": "/mes",
+    "price_note": "Cupos limitados por mercado.",
+    "form_label": "Empiece aquí",
+    "form_headline": "Únase a la red Globalle",
+    "form_subheadline": "Deje su contacto — nuestro equipo le explica los próximos pasos.",
+    "form_placeholder": "Su mejor e-mail",
+    "form_cta": "Quiero unirme"
   },
   "footer": {
     "tagline": "Inteligencia inmobiliaria global, cada semana.",

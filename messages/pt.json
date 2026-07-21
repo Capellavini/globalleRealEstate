@@ -10,6 +10,7 @@
     "comunidade": "Comunidade",
     "consultoria": "Consultoria",
     "investidores": "Investidores",
+    "corretores": "Corretores",
     "subscribe": "Assinar Newsletter"
   },
   "hero": {
@@ -233,6 +234,28 @@
     "notes_placeholder": "Opcional",
     "submit": "Enviar tese",
     "back": "Voltar"
+  },
+  "corretores": {
+    "label": "Para corretores",
+    "headline": "Leve o seu cliente além das fronteiras — sem perder o negócio.",
+    "subheadline": "Um programa para corretores e imobiliárias que querem oferecer imóveis fora do país aos seus clientes, com o suporte, a rede e o processo para fazer isso com segurança.",
+    "features_title": "O que você tem acesso",
+    "features": [
+      { "icon": "newsletter", "title": "Newsletter Globalle", "body": "Inteligência imobiliária global, toda semana — as práticas dos melhores mercados, traduzidas em ação." },
+      { "icon": "advisory", "title": "Consultoria para vender fora do país", "body": "Suporte para estruturar e conduzir negócios internacionais com o seu cliente, do primeiro contato ao fechamento." },
+      { "icon": "share", "title": "Conexão com processos e parceiros", "body": "Acesso à rede de parceiros e ao processo já estruturado da Globalle em cada mercado." },
+      { "icon": "globe", "title": "Rede internacional", "body": "Conexão com corretores, agências e profissionais de outros mercados imobiliários." },
+      { "icon": "calendar", "title": "Encontros mensais", "body": "Encontros para discutir casos reais, tendências e oportunidades entre corretores da rede." }
+    ],
+    "price_label": "Investimento",
+    "price": "€350",
+    "price_period": "/mês",
+    "price_note": "Vagas limitadas por mercado.",
+    "form_label": "Comece por aqui",
+    "form_headline": "Entre para a rede Globalle",
+    "form_subheadline": "Deixe seu contato — nossa equipe explica os próximos passos.",
+    "form_placeholder": "Seu melhor e-mail",
+    "form_cta": "Quero fazer parte"
   },
   "footer": {
     "tagline": "Inteligência imobiliária global, toda semana.",

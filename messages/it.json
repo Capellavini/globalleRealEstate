@@ -10,6 +10,7 @@
     "comunidade": "Community",
     "consultoria": "Consulenza",
     "investidores": "Investitori",
+    "corretores": "Agenti",
     "subscribe": "Iscriviti alla Newsletter"
   },
   "hero": {
@@ -233,6 +234,28 @@
     "notes_placeholder": "Facoltativo",
     "submit": "Invia tesi",
     "back": "Indietro"
+  },
+  "corretores": {
+    "label": "Per agenti",
+    "headline": "Porta il tuo cliente oltre confine — senza perdere l'affare.",
+    "subheadline": "Un programma per agenti e agenzie che vogliono offrire immobili all'estero ai propri clienti, con il supporto, la rete e il processo per farlo in sicurezza.",
+    "features_title": "A cosa hai accesso",
+    "features": [
+      { "icon": "newsletter", "title": "Newsletter Globalle", "body": "Intelligence immobiliare globale, ogni settimana — le pratiche dei migliori mercati, tradotte in azione." },
+      { "icon": "advisory", "title": "Consulenza per vendere all'estero", "body": "Supporto per strutturare e gestire trattative internazionali con il tuo cliente, dal primo contatto al rogito." },
+      { "icon": "share", "title": "Accesso a processi e partner", "body": "Accesso alla rete di partner e al processo già strutturato di Globalle in ogni mercato." },
+      { "icon": "globe", "title": "Rete internazionale", "body": "Connessione con agenti, agenzie e professionisti di altri mercati immobiliari." },
+      { "icon": "calendar", "title": "Incontri mensili", "body": "Incontri per discutere casi reali, tendenze e opportunità tra gli agenti della rete." }
+    ],
+    "price_label": "Investimento",
+    "price": "€350",
+    "price_period": "/mese",
+    "price_note": "Posti limitati per mercato.",
+    "form_label": "Inizia qui",
+    "form_headline": "Entra nella rete Globalle",
+    "form_subheadline": "Lascia il tuo contatto — il nostro team ti spiega i prossimi passi.",
+    "form_placeholder": "La tua migliore email",
+    "form_cta": "Voglio partecipare"
   },
   "footer": {
     "tagline": "Intelligence immobiliare globale, ogni settimana.",
