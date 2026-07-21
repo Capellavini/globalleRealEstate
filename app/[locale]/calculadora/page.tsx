@@ -1,17 +1,15 @@
-import { useTranslations, useLocale } from 'next-intl'
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CapRateCalculator from '@/components/CapRateCalculator'
 import Reveal from '@/components/Reveal'
-import Icon from '@/components/Icon'
 
 // Ferramenta pública de cap rate — réplica web da planilha do usuário
-// ("Calculadora de Cap Rate.xlsx"). Também funciona como isca pra LP de
-// investidores (CTA no fim).
+// ("Calculadora de Cap Rate.xlsx"). CTA pra LP de investidores removido a
+// pedido do usuário (frase guardada em messages.calculadora.cta_note/cta
+// pra quando quiser reativar).
 export default function CalculadoraPage() {
   const t = useTranslations('calculadora')
-  const locale = useLocale()
 
   return (
     <>
@@ -40,15 +38,6 @@ export default function CalculadoraPage() {
         <div style={{ maxWidth: 680, margin: '0 auto' }}>
           <Reveal>
             <CapRateCalculator />
-          </Reveal>
-
-          <Reveal delay={100}>
-            <p style={{ textAlign: 'center', marginTop: 32, fontSize: 14.5, color: 'var(--color-ink-dark-dim)' }}>
-              {t('cta_note')}{' '}
-              <Link href={`/${locale}/investidores`} style={{ color: '#0E6FA3', fontWeight: 700, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-                {t('cta')} <Icon name="arrowUpRight" size={15} strokeWidth={2} />
-              </Link>
-            </p>
           </Reveal>
         </div>
       </section>

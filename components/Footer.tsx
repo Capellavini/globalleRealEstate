@@ -10,13 +10,11 @@ export default function Footer() {
   const nav = useTranslations('nav')
   const locale = useLocale()
 
-  // Comunidade/Consultoria are hidden until launch — pages stay reachable by direct URL only.
+  // Comunidade/Consultoria/Investidores/Corretores/Calculadora are hidden
+  // until launch — pages stay reachable by direct URL only.
   const links = [
     { href: '/#sobre', label: nav('about') },
     { href: '/#manifesto', label: nav('manifesto') },
-    { href: '/investidores', label: nav('investidores') },
-    { href: '/corretores', label: nav('corretores') },
-    { href: '/calculadora', label: nav('calculadora') },
   ]
   const socials = ['LinkedIn', 'Instagram', 'YouTube']
 

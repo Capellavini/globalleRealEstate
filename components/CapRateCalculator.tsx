@@ -1,40 +1,103 @@
 'use client'
 
 import { useState } from 'react'
-import { useTranslations, useLocale } from 'next-intl'
+import { useTranslations } from 'next-intl'
 
 // Calculadora de cap rate — mesmos três cálculos da planilha do usuário
 // ("Calculadora de Cap Rate.xlsx", aba Cap Rate):
-//   1. preço + aluguel        → cap rate mensal (aluguel/preço) e anual (×12)
+//   1. preço + aluguel        → cap rate anual (aluguel×12/preço) e rentabilidade mensal
 //   2. preço + cap rate anual → aluguel mensal (preço × taxa / 12)
 //   3. aluguel + cap rate     → preço máximo (aluguel × 12 / taxa anual)
 // Cap rate BRUTO, como na planilha — sem custos/impostos/vacância.
+// v1 só em BRL, com máscara de dinheiro estilo banco (dígitos preenchem
+// a partir dos centavos: 1.000.000,00).
 
 type Mode = 'caprate' | 'rent' | 'price'
-const LOCALE_TAGS: Record<string, string> = { pt: 'pt-PT', en: 'en-US', es: 'es-ES', it: 'it-IT' }
+
+function formatBRL(digits: string): string {
+  if (!digits) return ''
+  const cents = Number(digits)
+  return (cents / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+}
+
+function moneyValue(digits: string): number | null {
+  if (!digits) return null
+  const v = Number(digits) / 100
+  return v > 0 ? v : null
+}
+
+const labelStyle: React.CSSProperties = {
+  display: 'block',
+  fontFamily: 'var(--font-mono)',
+  fontSize: 11.5,
+  fontWeight: 700,
+  letterSpacing: '0.1em',
+  textTransform: 'uppercase',
+  color: 'var(--color-ink-dark-dim)',
+  marginBottom: 10,
+}
+const fieldWrap: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  borderRadius: 11,
+  border: '1px solid rgba(11,18,48,0.14)',
+  background: '#fff',
+  overflow: 'hidden',
+}
+const prefixStyle: React.CSSProperties = {
+  padding: '13px 0 13px 16px',
+  fontSize: 17,
+  color: 'rgba(11,18,48,0.45)',
+  fontFamily: 'var(--font-body)',
+  flexShrink: 0,
+}
+const fieldStyle: React.CSSProperties = {
+  flex: 1,
+  minWidth: 0,
+  boxSizing: 'border-box',
+  padding: '13px 16px 13px 8px',
+  border: 'none',
+  background: 'transparent',
+  color: 'var(--color-ink-dark)',
+  fontSize: 17,
+  outline: 'none',
+  fontFamily: 'var(--font-body)',
+}
+
+// Fora do componente principal: definido dentro, seria um tipo novo a cada
+// render e o input desmontaria/perderia o foco a cada tecla.
+function MoneyInput({ id, digits, onDigits, placeholder }: { id: string; digits: string; onDigits: (d: string) => void; placeholder: string }) {
+  return (
+    <div style={fieldWrap}>
+      <span style={prefixStyle}>R$</span>
+      <input
+        id={id}
+        type="text"
+        inputMode="numeric"
+        value={formatBRL(digits)}
+        onChange={(e) => onDigits(e.target.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 15))}
+        placeholder={placeholder}
+        style={fieldStyle}
+      />
+    </div>
+  )
+}
 
 export default function CapRateCalculator() {
   const t = useTranslations('calculadora')
-  const locale = useLocale()
-  const tag = LOCALE_TAGS[locale] ?? 'pt-PT'
 
   const [mode, setMode] = useState<Mode>('caprate')
-  const [currency, setCurrency] = useState<'EUR' | 'BRL' | 'USD'>('EUR')
-  const [price, setPrice] = useState('')
-  const [rent, setRent] = useState('')
+  const [priceDigits, setPriceDigits] = useState('')
+  const [rentDigits, setRentDigits] = useState('')
   const [capRate, setCapRate] = useState('')
 
-  const num = (v: string) => {
-    const n = Number(v.replace(/\s/g, '').replace(',', '.'))
-    return Number.isFinite(n) && n > 0 ? n : null
-  }
-  const priceN = num(price)
-  const rentN = num(rent)
-  const capN = num(capRate)
+  const priceN = moneyValue(priceDigits)
+  const rentN = moneyValue(rentDigits)
+  const capParsed = Number(capRate.replace(/\s/g, '').replace(',', '.'))
+  const capN = Number.isFinite(capParsed) && capParsed > 0 ? capParsed : null
 
-  const money = (v: number) =>
-    new Intl.NumberFormat(tag, { style: 'currency', currency, maximumFractionDigits: 0 }).format(v)
-  const pct = (v: number, digits = 2) => `${(v * 100).toLocaleString(tag, { maximumFractionDigits: digits })}%`
+  const money = (v: number) => `R$ ${v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+  const pct = (v: number, digits = 2) => `${(v * 100).toLocaleString('pt-BR', { maximumFractionDigits: digits })}%`
 
   let results: { label: string; value: string; highlight?: boolean }[] = []
   if (mode === 'caprate' && priceN && rentN) {
@@ -58,29 +121,6 @@ export default function CapRateCalculator() {
     { id: 'rent', title: t('mode_rent'), hint: t('mode_rent_hint') },
     { id: 'price', title: t('mode_price'), hint: t('mode_price_hint') },
   ]
-
-  const labelStyle: React.CSSProperties = {
-    display: 'block',
-    fontFamily: 'var(--font-mono)',
-    fontSize: 11.5,
-    fontWeight: 700,
-    letterSpacing: '0.1em',
-    textTransform: 'uppercase',
-    color: 'var(--color-ink-dark-dim)',
-    marginBottom: 10,
-  }
-  const fieldStyle: React.CSSProperties = {
-    width: '100%',
-    boxSizing: 'border-box',
-    padding: '13px 16px',
-    borderRadius: 11,
-    border: '1px solid rgba(11,18,48,0.14)',
-    background: '#fff',
-    color: 'var(--color-ink-dark)',
-    fontSize: 17,
-    outline: 'none',
-    fontFamily: 'var(--font-body)',
-  }
 
   return (
     <div style={{ background: 'rgba(11,18,48,0.02)', border: '1px solid rgba(11,18,48,0.1)', borderRadius: 18, padding: 26 }}>
@@ -114,50 +154,22 @@ export default function CapRateCalculator() {
         })}
       </div>
 
-      {/* Moeda */}
-      <div style={{ marginBottom: 20 }}>
-        <label style={labelStyle}>{t('currency_label')}</label>
-        <div style={{ display: 'flex', gap: 8 }}>
-          {(['EUR', 'BRL', 'USD'] as const).map((c) => (
-            <button
-              key={c}
-              type="button"
-              aria-pressed={currency === c}
-              onClick={() => setCurrency(c)}
-              style={{
-                padding: '7px 14px',
-                borderRadius: 100,
-                fontSize: 13,
-                fontFamily: 'var(--font-display)',
-                fontWeight: 600,
-                cursor: 'pointer',
-                border: `1px solid ${currency === c ? 'var(--color-blue)' : 'rgba(11,18,48,0.14)'}`,
-                background: currency === c ? 'rgba(30,167,232,0.12)' : '#fff',
-                color: currency === c ? '#0E6FA3' : 'var(--color-ink-dark-dim)',
-              }}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Entradas */}
       <div style={{ display: 'grid', gap: 18, marginBottom: 26 }}>
         {mode !== 'price' && (
           <div>
             <label htmlFor="calc-price" style={labelStyle}>
-              {t('price_label')} ({currency})
+              {t('price_label')}
             </label>
-            <input id="calc-price" type="text" inputMode="decimal" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="450 000" style={fieldStyle} />
+            <MoneyInput id="calc-price" digits={priceDigits} onDigits={setPriceDigits} placeholder="1.000.000,00" />
           </div>
         )}
         {mode !== 'rent' && (
           <div>
             <label htmlFor="calc-rent" style={labelStyle}>
-              {t('rent_label')} ({currency})
+              {t('rent_label')}
             </label>
-            <input id="calc-rent" type="text" inputMode="decimal" value={rent} onChange={(e) => setRent(e.target.value)} placeholder="2 500" style={fieldStyle} />
+            <MoneyInput id="calc-rent" digits={rentDigits} onDigits={setRentDigits} placeholder="5.000,00" />
           </div>
         )}
         {mode !== 'caprate' && (
@@ -165,7 +177,18 @@ export default function CapRateCalculator() {
             <label htmlFor="calc-cap" style={labelStyle}>
               {t('caprate_label')}
             </label>
-            <input id="calc-cap" type="text" inputMode="decimal" value={capRate} onChange={(e) => setCapRate(e.target.value)} placeholder="7" style={fieldStyle} />
+            <div style={fieldWrap}>
+              <input
+                id="calc-cap"
+                type="text"
+                inputMode="decimal"
+                value={capRate}
+                onChange={(e) => setCapRate(e.target.value)}
+                placeholder="7"
+                style={{ ...fieldStyle, padding: '13px 8px 13px 16px' }}
+              />
+              <span style={{ ...prefixStyle, padding: '13px 16px 13px 0' }}>%</span>
+            </div>
           </div>
         )}
       </div>

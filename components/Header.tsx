@@ -20,13 +20,11 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
-  // Comunidade/Consultoria are hidden until launch — pages stay reachable by direct URL only.
+  // Comunidade/Consultoria/Investidores/Corretores/Calculadora are hidden
+  // until launch — pages stay reachable by direct URL only.
   const navLinks = [
     { href: '/#sobre', label: t('about') },
     { href: '/#manifesto', label: t('manifesto') },
-    { href: '/investidores', label: t('investidores') },
-    { href: '/corretores', label: t('corretores') },
-    { href: '/calculadora', label: t('calculadora') },
   ]
 
   return (
