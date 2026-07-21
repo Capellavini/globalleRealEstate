@@ -23,8 +23,8 @@ export default function Header() {
   // Comunidade/Consultoria/Investidores/Corretores/Calculadora are hidden
   // until launch — pages stay reachable by direct URL only.
   const navLinks = [
-    { href: '/#sobre', label: t('about') },
-    { href: '/#manifesto', label: t('manifesto') },
+    { href: '/profissionais#sobre', label: t('about') },
+    { href: '/profissionais#manifesto', label: t('manifesto') },
   ]
 
   return (
@@ -71,7 +71,7 @@ export default function Header() {
             <LanguageSwitcher />
 
             <Link
-              href={`/${locale}/#newsletter`}
+              href={`/${locale}/profissionais#newsletter`}
               className="hidden sm:inline-flex"
               style={{
                 alignItems: 'center', gap: 8,
@@ -143,7 +143,7 @@ export default function Header() {
             </Link>
           ))}
           <Link
-            href={`/${locale}/#newsletter`}
+            href={`/${locale}/profissionais#newsletter`}
             onClick={() => setMenuOpen(false)}
             style={{
               display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8,

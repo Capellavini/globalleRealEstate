@@ -14,6 +14,16 @@
     "calculadora": "Calculadora",
     "subscribe": "Suscribirse a la Newsletter"
   },
+  "gateway": {
+    "tagline": "Inteligencia Inmobiliaria Global",
+    "headline": "¿Cuál es su camino?",
+    "investors_title": "Globalle para Inversores",
+    "investors_body": "Consultoría para invertir en inmuebles fuera de su país — de la tesis de inversión a la escritura, con curaduría y acompañamiento en cada etapa.",
+    "investors_cta": "Soy inversor",
+    "pros_title": "Globalle para Profesionales Inmobiliarios",
+    "pros_body": "Newsletter, comunidad y consultoría con las prácticas de los mejores mercados del mundo, traducidas en acción para su día a día.",
+    "pros_cta": "Soy profesional del sector"
+  },
   "hero": {
     "headline": "Inteligencia Inmobiliaria Global, traducida en acción local.",
     "subheadline": "Cada semana te mostramos lo que están haciendo las mejores inmobiliarias del mundo — y cómo aplicarlo en tu mercado.",

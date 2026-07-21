@@ -13,8 +13,8 @@ export default function Footer() {
   // Comunidade/Consultoria/Investidores/Corretores/Calculadora are hidden
   // until launch — pages stay reachable by direct URL only.
   const links = [
-    { href: '/#sobre', label: nav('about') },
-    { href: '/#manifesto', label: nav('manifesto') },
+    { href: '/profissionais#sobre', label: nav('about') },
+    { href: '/profissionais#manifesto', label: nav('manifesto') },
   ]
   const socials = ['LinkedIn', 'Instagram', 'YouTube']
 
@@ -71,7 +71,7 @@ export default function Footer() {
             <p style={{ color: 'var(--color-ink-dim)', fontSize: 13.5, lineHeight: 1.65, marginBottom: 16 }}>
               {t('newsletter_mini_body')}
             </p>
-            <Link href={`/${locale}/#newsletter`}
+            <Link href={`/${locale}/profissionais#newsletter`}
               style={{ display: 'inline-flex', alignItems: 'center', gap: 7, color: 'var(--color-blue-bright)', textDecoration: 'none', fontSize: 14, fontWeight: 600, fontFamily: 'var(--font-display)' }}>
               {t('newsletter_mini_cta')}
               <Icon name="arrowUpRight" size={15} strokeWidth={2} />
