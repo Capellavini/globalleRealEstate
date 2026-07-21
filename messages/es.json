@@ -25,8 +25,8 @@
     "pros_cta": "Soy profesional del sector"
   },
   "hero": {
-    "headline": "Inteligencia Inmobiliaria Global, traducida en acción local.",
-    "subheadline": "Cada semana te mostramos lo que están haciendo las mejores inmobiliarias del mundo — y cómo aplicarlo en tu mercado.",
+    "headline": "Inteligencia inmobiliaria global, en una red de profesionales que piensan en grande.",
+    "subheadline": "Cada semana te mostramos lo que están haciendo las mejores inmobiliarias del mundo — y te conectamos con una comunidad de profesionales que ya lo aplican en la práctica.",
     "cta": "Suscribirse gratis",
     "cta_placeholder": "Tu mejor correo electrónico",
     "scroll": "Saber más"
@@ -37,7 +37,7 @@
     "col1_title": "Cómo Trabajamos",
     "col1_body": "Analizamos en profundidad las prácticas de las mejores inmobiliarias del mundo y traducimos ese conocimiento en contenido aplicable a tu mercado.",
     "col2_title": "Nuestro Diferencial",
-    "col2_body": "No somos una newsletter de noticias. Somos una plataforma de inteligencia estratégica: cada edición trae un caso real, una técnica comprobada y un paso concreto que puedes implementar esta misma semana.",
+    "col2_body": "No somos solo una newsletter de noticias. Cada edición trae un caso real y una técnica comprobada — y una red de profesionales para discutirlo, adaptarlo y aplicarlo junto a ti.",
     "quote": "Globalle: una plataforma que conecta el mercado inmobiliario con el mundo a través de contenidos relevantes para todos los profesionales de este sector."
   },
   "manifesto": {
@@ -49,16 +49,16 @@
     "p4": "No somos un agregador de noticias del mercado. Somos tu punto de contacto entre tu mercado local y lo mejor de la inteligencia estratégica. Hacemos el trabajo de investigación, entrevistamos a los profesionales correctos, traducimos lo esencial y lo entregamos en un lenguaje que cualquier profesional ambicioso puede aplicar de inmediato.",
     "p5": "Creemos que la próxima generación de grandes nombres del sector inmobiliario no se formará solo por quienes tuvieron acceso a los mejores cursos o mentores. Se formará por quienes tuvieron la curiosidad de mirar hacia afuera y la disciplina de traducir lo aprendido en acción.",
     "p6": "Eso es lo que Globalle ofrece, semana tras semana.",
-    "closing": "Las fronteras están abiertas. Súmate a este viaje con nosotros."
+    "closing": "Las fronteras están abiertas. Súmate a este viaje con una red de profesionales a tu lado."
   },
   "value_props": {
     "label": "Propuesta de Valor",
     "headline": "Por qué Globalle es diferente",
     "cards": [
       { "icon": "curation", "title": "Curaduría Inteligente de Entrevistas", "body": "Entrevistamos a profesionales de primer nivel de mercados de todo el mundo — desde los más obvios hasta los que nunca imaginarías. Cada edición trae perspectivas que no encontrarás en ningún otro lugar." },
+      { "icon": "community", "title": "Comunidad Enfocada en Crecer", "body": "No se aprende en solitario. Nuestra comunidad reúne a profesionales que aplican lo que leen, intercambian experiencias reales y crecen juntos — el contenido te da el insight, la red te da el impulso para llevarlo a la práctica." },
       { "icon": "cultural", "title": "Visión Cultural + Técnica", "body": "Entendemos que las prácticas de otros mercados no se copian, se traducen. Con una mirada cultural más allá de lo puramente técnico, traducimos para nuestros lectores los matices de cada mercado." },
-      { "icon": "experience", "title": "Amplia Experiencia en el Mercado Inmobiliario", "body": "¡Nosotros también respiramos y vivimos el mercado inmobiliario! Con experiencia directa en distintos mercados, nuestro equipo domina el lenguaje del sector, traduciendo tácticas en acciones realmente aplicables." },
-      { "icon": "community", "title": "Comunidad Enfocada en Crecer", "body": "Nuestros lectores son profesionales que aplican lo que leen, comparten resultados y construyen juntos. La comunidad es parte del producto. Únete a un grupo de profesionales con ganas de ganar." }
+      { "icon": "experience", "title": "Amplia Experiencia en el Mercado Inmobiliario", "body": "¡Nosotros también respiramos y vivimos el mercado inmobiliario! Con experiencia directa en distintos mercados, nuestro equipo domina el lenguaje del sector, traduciendo tácticas en acciones realmente aplicables." }
     ]
   },
   "products": {
@@ -67,10 +67,13 @@
     "newsletter_title": "Newsletter Semanal",
     "newsletter_body": "El corazón de Globalle. Cada semana, un análisis en profundidad de una práctica, caso o tendencia del mercado inmobiliario global.",
     "newsletter_cta": "Suscribirse gratis",
+    "partnership_title": "Alianza para Vender Fuera del País",
+    "partnership_body": "Ayudamos a agentes e inmobiliarias a representar a sus clientes en compras internacionales — con asesoría, red de socios locales y el proceso ya estructurado de Globalle en cada mercado.",
+    "partnership_cta": "Conoce el programa",
     "community_title": "Comunidad Globalle",
-    "community_lead": "Para profesionales que quieren ir más allá de la newsletter.",
-    "community_body": "La Comunidad Globalle reúne a agentes, gerentes, dueños de inmobiliarias y profesionales del sector interesados en aprender del mundo, intercambiar experiencias y transformar conocimiento en acción. Más que una comunidad de contenido, Globalle es una red para profesionales inmobiliarios que piensan en grande. Conoce más en la página de Planes.",
-    "community_cta": "Conoce la comunidad",
+    "community_lead": "Para quienes quieren ir más allá del contenido.",
+    "community_body": "Un espacio cerrado con agentes, gerentes y profesionales inmobiliarios que aplican lo que aprenden e intercambian experiencias reales entre mercados. Próximamente, abriendo sus puertas.",
+    "community_soon": "Próximamente",
     "consultoria_title": "Consultoría Estratégica",
     "consultoria_body": "Para agentes, equipos e inmobiliarias que quieren ir más allá del contenido y transformar inteligencia en procesos concretos. Desde la adopción de nuevas técnicas hasta la reestructuración completa de la operación.",
     "consultoria_cta": "Ver planes",
@@ -78,7 +81,7 @@
   },
   "final_cta": {
     "headline": "Únete a una comunidad de profesionales como tú.",
-    "subheadline": "Suscríbete ahora y únete a los profesionales que ya reciben inteligencia inmobiliaria global cada semana.",
+    "subheadline": "Suscríbete ahora y únete a una red de profesionales que ya reciben inteligencia inmobiliaria global cada semana.",
     "cta": "Suscribirse gratis",
     "placeholder": "Tu mejor correo electrónico"
   },

@@ -25,8 +25,8 @@
     "pros_cta": "I'm a real estate professional"
   },
   "hero": {
-    "headline": "Global Real Estate Intelligence, translated into local action.",
-    "subheadline": "Every week, we show you what the world's best real estate firms are doing — and how to apply it in your market.",
+    "headline": "Global real estate intelligence, in a network of professionals who think big.",
+    "subheadline": "Every week, we show you what the world's best real estate firms are doing — and connect you to a community of professionals putting it into practice.",
     "cta": "Subscribe for free",
     "cta_placeholder": "Your best email address",
     "scroll": "Learn more"
@@ -37,7 +37,7 @@
     "col1_title": "How We Work",
     "col1_body": "We dig deep into the practices of the world's best real estate firms and translate that knowledge into content you can actually apply in your own market.",
     "col2_title": "What Sets Us Apart",
-    "col2_body": "We're not a news digest. We're a strategic intelligence platform: every issue brings a real case, a proven technique, and one concrete step you can implement this week.",
+    "col2_body": "We're not just a news digest. Every issue brings a real case and a proven technique — plus a network of professionals to discuss, adapt and apply it alongside you.",
     "quote": "Globalle: a platform connecting the real estate market to the world through content that matters to every professional in the industry."
   },
   "manifesto": {
@@ -49,16 +49,16 @@
     "p4": "We're not a market news aggregator. We're your point of contact between your local market and the best of strategic intelligence out there. We do the research, interview the right people, translate what's essential, and deliver it in language any ambitious professional can put to use immediately.",
     "p5": "We believe the next generation of great names in real estate won't be shaped only by access to the best courses or mentors. It will be shaped by those with the curiosity to look outward — and the discipline to turn what they learn into action.",
     "p6": "That's what Globalle delivers, week after week.",
-    "closing": "The borders are open. Join us on this journey."
+    "closing": "The borders are open. Join this journey with a network of professionals by your side."
   },
   "value_props": {
     "label": "Value Proposition",
     "headline": "Why Globalle is different",
     "cards": [
       { "icon": "curation", "title": "Smart Interview Curation", "body": "We interview top professionals from markets around the globe — from the obvious ones to those you'd never expect. Every issue brings perspectives you won't find anywhere else." },
+      { "icon": "community", "title": "A Community Built to Grow", "body": "You don't learn alone. Our community brings together professionals who apply what they read, share real experiences and grow together — the content gives you the insight, the network gives you the push to put it into practice." },
       { "icon": "cultural", "title": "Cultural + Technical Insight", "body": "We understand that practices from other markets can't just be copied — they need to be translated. With a cultural lens beyond the purely technical, we translate the nuances of each market for our readers." },
-      { "icon": "experience", "title": "Deep Real Estate Experience", "body": "We live and breathe real estate ourselves. With hands-on experience across different markets, our team is fluent in the business, turning tactics into actions you can really apply." },
-      { "icon": "community", "title": "A Community Built to Grow", "body": "Our readers are professionals who apply what they read, share results, and build together. The community is part of the product. Join a group of professionals who want to win." }
+      { "icon": "experience", "title": "Deep Real Estate Experience", "body": "We live and breathe real estate ourselves. With hands-on experience across different markets, our team is fluent in the business, turning tactics into actions you can really apply." }
     ]
   },
   "products": {
@@ -67,10 +67,13 @@
     "newsletter_title": "Weekly Newsletter",
     "newsletter_body": "The heart of Globalle. Every week, an in-depth look at a practice, case or trend from the global real estate market.",
     "newsletter_cta": "Subscribe for free",
+    "partnership_title": "Partner With Us to Sell Abroad",
+    "partnership_body": "We help brokers and agencies represent their clients in cross-border purchases — with advisory, a network of local partners and Globalle's structured process in each market.",
+    "partnership_cta": "See the program",
     "community_title": "Globalle Community",
-    "community_lead": "For professionals who want to go beyond the newsletter.",
-    "community_body": "The Globalle Community brings together brokers, managers, agency owners and real estate professionals who want to learn from the world, exchange experience and turn knowledge into action. More than a content community, Globalle is a network for real estate professionals who think bigger. Learn more on the Plans page.",
-    "community_cta": "Discover the community",
+    "community_lead": "For those who want to go beyond the content.",
+    "community_body": "A closed space with brokers, managers and real estate professionals who apply what they learn and exchange real experience across markets. Coming soon — opening its doors.",
+    "community_soon": "Coming soon",
     "consultoria_title": "Strategic Advisory",
     "consultoria_body": "For brokers, teams and agencies who want to go beyond content and turn intelligence into concrete processes. From adopting new techniques to a full operational overhaul.",
     "consultoria_cta": "See plans",
@@ -78,7 +81,7 @@
   },
   "final_cta": {
     "headline": "Join a community of professionals like you.",
-    "subheadline": "Subscribe now and join the professionals who already get global real estate intelligence every week.",
+    "subheadline": "Subscribe now and join a network of professionals who already get global real estate intelligence every week.",
     "cta": "Subscribe for free",
     "placeholder": "Your best email address"
   },

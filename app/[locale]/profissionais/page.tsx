@@ -190,11 +190,12 @@ export default function ProfissionaisPage() {
             </h2>
           </Reveal>
 
-          {/* Community/Consultoria rows hidden until launch — re-add the two entries below to relaunch:
-              { key: 'community', icon: 'community', tag: '02', visual: 'community', href: '/comunidade' },
-              { key: 'consultoria', icon: 'advisory', tag: '03', visual: 'advisory', href: '/consultoria' } */}
+          {/* Consultoria row hidden until launch — re-add below to relaunch:
+              { key: 'consultoria', icon: 'advisory', tag: '04', visual: 'advisory', href: '/consultoria' } */}
           {[
             { key: 'newsletter', icon: 'newsletter', tag: '01', visual: 'newsletter', href: '/profissionais#newsletter' },
+            { key: 'partnership', icon: 'advisory', tag: '02', visual: 'advisory', href: '/corretores' },
+            { key: 'community', icon: 'community', tag: '03', visual: 'community', href: null },
           ].map((p, i) => (
             <Reveal key={p.key}>
               <div className="product-row" style={{ borderTop: '1px solid var(--color-line)', padding: '48px 0' }}>
@@ -264,9 +265,15 @@ export default function ProfissionaisPage() {
                       {para}
                     </p>
                   ))}
-                  <Link href={p.href.startsWith('/') ? `/${locale}${p.href}` : `/${locale}/${p.href}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 8, color: 'var(--color-blue)', textDecoration: 'none', fontSize: 15, fontWeight: 700, fontFamily: 'var(--font-display)' }}>
-                    {t(`products.${p.key}_cta`)} <Icon name="arrowUpRight" size={16} strokeWidth={2} />
-                  </Link>
+                  {p.href ? (
+                    <Link href={p.href.startsWith('/') ? `/${locale}${p.href}` : `/${locale}/${p.href}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 8, color: 'var(--color-blue)', textDecoration: 'none', fontSize: 15, fontWeight: 700, fontFamily: 'var(--font-display)' }}>
+                      {t(`products.${p.key}_cta`)} <Icon name="arrowUpRight" size={16} strokeWidth={2} />
+                    </Link>
+                  ) : (
+                    <span style={{ display: 'inline-flex', alignItems: 'center', marginTop: 8, padding: '6px 14px', borderRadius: 20, background: 'rgba(255,255,255,0.06)', border: '1px solid var(--color-line)', color: 'var(--color-ink-faint)', fontSize: 13, fontWeight: 700, fontFamily: 'var(--font-display)', letterSpacing: '0.02em' }}>
+                      {t('products.community_soon')}
+                    </span>
+                  )}
                 </div>
               </div>
             </Reveal>
