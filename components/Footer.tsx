@@ -14,6 +14,7 @@ export default function Footer() {
   const links = [
     { href: '/#sobre', label: nav('about') },
     { href: '/#manifesto', label: nav('manifesto') },
+    { href: '/investidores', label: nav('investidores') },
   ]
   const socials = ['LinkedIn', 'Instagram', 'YouTube']
 

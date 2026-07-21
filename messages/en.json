@@ -9,6 +9,7 @@
     "manifesto": "Manifesto",
     "comunidade": "Community",
     "consultoria": "Advisory",
+    "investidores": "Investors",
     "subscribe": "Subscribe to Newsletter"
   },
   "hero": {
@@ -178,6 +179,60 @@
     "plan_cta": "Join the community",
     "plan_tagline": "The newsletter delivers the idea. The community helps you discuss, adapt and apply it.",
     "newsletter_link": "New here? Start with the newsletter"
+  },
+  "investidores": {
+    "label": "For investors",
+    "headline": "Invest in property abroad without giving up control.",
+    "subheadline": "Globalle runs the whole process — from investment thesis to closing — with property curation, cost analysis and guidance at every step.",
+    "what_label": "What we do",
+    "what_headline": "A process, not a promise",
+    "what_items": [
+      { "title": "A thesis built for you", "body": "We understand your goal, budget and target markets before showing a single property." },
+      { "title": "Active curation", "body": "We source and filter opportunities — off-market and from partners — that match your thesis." },
+      { "title": "A guided transaction", "body": "Costs, documents and process steps, visible from start to closing, in one place." }
+    ],
+    "thesis_label": "The theses",
+    "thesis_headline": "Every investor has a different goal. The process starts by understanding yours.",
+    "objectives": [
+      { "value": "moradia", "title": "A home", "body": "A property for you to live in, with the purchase abroad handled start to finish." },
+      { "value": "para_renda", "title": "Rental income", "body": "Properties with rental potential, evaluated by expected yield too." },
+      { "value": "revenda", "title": "Resale", "body": "Opportunities with appreciation potential, to buy and sell in the medium term." },
+      { "value": "patrimonial", "title": "Wealth preservation", "body": "Diversifying and protecting wealth in markets outside your home country." },
+      { "value": "desenvolvimento", "title": "Development", "body": "Projects and land with development or redevelopment potential." }
+    ],
+    "form_label": "Start here",
+    "form_headline": "Tell us your thesis — we'll handle the rest with you",
+    "form_subheadline": "Takes under 2 minutes. Our team will reach out with next steps.",
+    "contact_note": "Prefer to talk directly?",
+    "contact_cta": "Email the team"
+  },
+  "lead_form": {
+    "success_title": "We've received your thesis.",
+    "success_body": "Our team will review it and reach out soon.",
+    "error": "Something went wrong. Please try again.",
+    "invalid_email": "Enter a valid email.",
+    "email_placeholder": "Your best email",
+    "continue": "Continue",
+    "step2_title": "About your thesis",
+    "name_label": "Full name",
+    "name_placeholder": "Your name",
+    "phone_label": "Phone / WhatsApp",
+    "phone_placeholder": "Optional",
+    "objective_label": "Goal",
+    "countries_label": "Countries of interest",
+    "countries": [
+      { "value": "BR", "label": "Brazil" },
+      { "value": "PT", "label": "Portugal" },
+      { "value": "IT", "label": "Italy" },
+      { "value": "OUTROS", "label": "Other" }
+    ],
+    "budget_label": "Investment range",
+    "budget_ranges": ["Up to 200k", "200k – 500k", "500k – 1M", "Above 1M"],
+    "currency_label": "Currency",
+    "notes_label": "Anything else we should know?",
+    "notes_placeholder": "Optional",
+    "submit": "Send thesis",
+    "back": "Back"
   },
   "footer": {
     "tagline": "Global real estate intelligence, every week.",

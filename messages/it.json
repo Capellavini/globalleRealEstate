@@ -9,6 +9,7 @@
     "manifesto": "Manifesto",
     "comunidade": "Community",
     "consultoria": "Consulenza",
+    "investidores": "Investitori",
     "subscribe": "Iscriviti alla Newsletter"
   },
   "hero": {
@@ -178,6 +179,60 @@
     "plan_cta": "Entra nella community",
     "plan_tagline": "La newsletter offre l'idea. La community ti aiuta a discuterla, adattarla e applicarla.",
     "newsletter_link": "Non conosci ancora la newsletter? Inizia da qui"
+  },
+  "investidores": {
+    "label": "Per investitori",
+    "headline": "Investire in immobili all'estero senza rinunciare al controllo.",
+    "subheadline": "Globalle gestisce l'intero processo — dalla tesi d'investimento al rogito — con curatela degli immobili, analisi dei costi e accompagnamento in ogni fase.",
+    "what_label": "Cosa facciamo",
+    "what_headline": "Un processo, non una promessa",
+    "what_items": [
+      { "title": "Una tesi su misura", "body": "Capiamo il vostro obiettivo, budget e mercati di interesse prima di mostrare un solo immobile." },
+      { "title": "Curatela attiva", "body": "Cerchiamo e filtriamo opportunità — off-market e da partner — in linea con la vostra tesi." },
+      { "title": "Transazione seguita", "body": "Costi, documenti e fasi del processo, visibili dall'inizio al rogito, in un unico posto." }
+    ],
+    "thesis_label": "Le tesi",
+    "thesis_headline": "Ogni investitore ha un obiettivo diverso. Il processo parte dal capire il vostro.",
+    "objectives": [
+      { "value": "moradia", "title": "Abitazione", "body": "Un immobile in cui vivere, con l'acquisto all'estero seguito dall'inizio alla fine." },
+      { "value": "para_renda", "title": "Rendita", "body": "Immobili con potenziale di affitto, valutati anche in base allo yield atteso." },
+      { "value": "revenda", "title": "Rivendita", "body": "Opportunità con potenziale di rivalutazione, da comprare e rivendere nel medio termine." },
+      { "value": "patrimonial", "title": "Patrimoniale", "body": "Diversificazione e protezione del patrimonio in mercati fuori dal proprio paese." },
+      { "value": "desenvolvimento", "title": "Sviluppo", "body": "Progetti e terreni con potenziale di sviluppo o riqualificazione." }
+    ],
+    "form_label": "Inizia qui",
+    "form_headline": "Raccontaci la tua tesi — al resto pensiamo insieme",
+    "form_subheadline": "Richiede meno di 2 minuti. Il nostro team vi contatterà per i prossimi passi.",
+    "contact_note": "Preferisci parlare direttamente?",
+    "contact_cta": "Scrivi al team"
+  },
+  "lead_form": {
+    "success_title": "Abbiamo ricevuto la vostra tesi.",
+    "success_body": "Il nostro team la esaminerà e vi contatterà a breve.",
+    "error": "Si è verificato un errore. Riprova.",
+    "invalid_email": "Inserisci un'email valida.",
+    "email_placeholder": "La tua migliore email",
+    "continue": "Continua",
+    "step2_title": "Sulla vostra tesi",
+    "name_label": "Nome completo",
+    "name_placeholder": "Il tuo nome",
+    "phone_label": "Telefono / WhatsApp",
+    "phone_placeholder": "Facoltativo",
+    "objective_label": "Obiettivo",
+    "countries_label": "Paesi di interesse",
+    "countries": [
+      { "value": "BR", "label": "Brasile" },
+      { "value": "PT", "label": "Portogallo" },
+      { "value": "IT", "label": "Italia" },
+      { "value": "OUTROS", "label": "Altro" }
+    ],
+    "budget_label": "Fascia di investimento",
+    "budget_ranges": ["Fino a 200 mila", "200 mila – 500 mila", "500 mila – 1 milione", "Oltre 1 milione"],
+    "currency_label": "Valuta",
+    "notes_label": "Altro che dovremmo sapere?",
+    "notes_placeholder": "Facoltativo",
+    "submit": "Invia tesi",
+    "back": "Indietro"
   },
   "footer": {
     "tagline": "Intelligence immobiliare globale, ogni settimana.",

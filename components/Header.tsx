@@ -24,6 +24,7 @@ export default function Header() {
   const navLinks = [
     { href: '/#sobre', label: t('about') },
     { href: '/#manifesto', label: t('manifesto') },
+    { href: '/investidores', label: t('investidores') },
   ]
 
   return (
