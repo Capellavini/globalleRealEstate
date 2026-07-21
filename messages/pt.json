@@ -11,6 +11,7 @@
     "consultoria": "Consultoria",
     "investidores": "Investidores",
     "corretores": "Corretores",
+    "calculadora": "Calculadora",
     "subscribe": "Assinar Newsletter"
   },
   "hero": {
@@ -256,6 +257,29 @@
     "form_subheadline": "Deixe seu contato — nossa equipe explica os próximos passos.",
     "form_placeholder": "Seu melhor e-mail",
     "form_cta": "Quero fazer parte"
+  },
+  "calculadora": {
+    "label": "Ferramenta",
+    "headline": "Calculadora de Cap Rate",
+    "subheadline": "Descubra a taxa de retorno de um imóvel de renda — ou o aluguel e o preço que fazem a conta fechar.",
+    "mode_caprate": "Qual o cap rate?",
+    "mode_caprate_hint": "Tenho o preço e o aluguel",
+    "mode_rent": "Qual o aluguel?",
+    "mode_rent_hint": "Tenho o preço e o cap rate desejado",
+    "mode_price": "Qual o preço?",
+    "mode_price_hint": "Tenho o aluguel e o cap rate desejado",
+    "price_label": "Preço do imóvel",
+    "rent_label": "Aluguel mensal",
+    "caprate_label": "Cap rate anual desejado (%)",
+    "currency_label": "Moeda",
+    "result_caprate_monthly": "Cap rate mensal",
+    "result_caprate_annual": "Cap rate anual",
+    "result_rent_monthly": "Aluguel mensal",
+    "result_rent_annual": "Aluguel anual",
+    "result_price": "Preço máximo do imóvel",
+    "disclaimer": "Cap rate bruto — não considera custos de aquisição, impostos, condomínio ou vacância. Para uma análise completa, fale com a Globalle.",
+    "cta_note": "Quer investir em imóveis de renda fora do seu país?",
+    "cta": "Conheça a consultoria para investidores"
   },
   "footer": {
     "tagline": "Inteligência imobiliária global, toda semana.",

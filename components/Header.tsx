@@ -26,6 +26,7 @@ export default function Header() {
     { href: '/#manifesto', label: t('manifesto') },
     { href: '/investidores', label: t('investidores') },
     { href: '/corretores', label: t('corretores') },
+    { href: '/calculadora', label: t('calculadora') },
   ]
 
   return (

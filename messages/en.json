@@ -11,6 +11,7 @@
     "consultoria": "Advisory",
     "investidores": "Investors",
     "corretores": "Agents",
+    "calculadora": "Calculator",
     "subscribe": "Subscribe to Newsletter"
   },
   "hero": {
@@ -256,6 +257,29 @@
     "form_subheadline": "Leave your contact — our team will explain the next steps.",
     "form_placeholder": "Your best email",
     "form_cta": "I want in"
+  },
+  "calculadora": {
+    "label": "Tool",
+    "headline": "Cap Rate Calculator",
+    "subheadline": "Find the return rate of an income property — or the rent and price that make the numbers work.",
+    "mode_caprate": "What's the cap rate?",
+    "mode_caprate_hint": "I have the price and the rent",
+    "mode_rent": "What's the rent?",
+    "mode_rent_hint": "I have the price and target cap rate",
+    "mode_price": "What's the price?",
+    "mode_price_hint": "I have the rent and target cap rate",
+    "price_label": "Property price",
+    "rent_label": "Monthly rent",
+    "caprate_label": "Target annual cap rate (%)",
+    "currency_label": "Currency",
+    "result_caprate_monthly": "Monthly cap rate",
+    "result_caprate_annual": "Annual cap rate",
+    "result_rent_monthly": "Monthly rent",
+    "result_rent_annual": "Annual rent",
+    "result_price": "Maximum property price",
+    "disclaimer": "Gross cap rate — does not include acquisition costs, taxes, condo fees or vacancy. For a full analysis, talk to Globalle.",
+    "cta_note": "Want to invest in income property abroad?",
+    "cta": "Meet our investor advisory"
   },
   "footer": {
     "tagline": "Global real estate intelligence, every week.",

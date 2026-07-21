@@ -11,6 +11,7 @@
     "consultoria": "Consulenza",
     "investidores": "Investitori",
     "corretores": "Agenti",
+    "calculadora": "Calcolatrice",
     "subscribe": "Iscriviti alla Newsletter"
   },
   "hero": {
@@ -256,6 +257,29 @@
     "form_subheadline": "Lascia il tuo contatto — il nostro team ti spiega i prossimi passi.",
     "form_placeholder": "La tua migliore email",
     "form_cta": "Voglio partecipare"
+  },
+  "calculadora": {
+    "label": "Strumento",
+    "headline": "Calcolatrice di Cap Rate",
+    "subheadline": "Scopri il tasso di rendimento di un immobile a reddito — o l'affitto e il prezzo che fanno tornare i conti.",
+    "mode_caprate": "Qual è il cap rate?",
+    "mode_caprate_hint": "Ho il prezzo e l'affitto",
+    "mode_rent": "Qual è l'affitto?",
+    "mode_rent_hint": "Ho il prezzo e il cap rate desiderato",
+    "mode_price": "Qual è il prezzo?",
+    "mode_price_hint": "Ho l'affitto e il cap rate desiderato",
+    "price_label": "Prezzo dell'immobile",
+    "rent_label": "Affitto mensile",
+    "caprate_label": "Cap rate annuo desiderato (%)",
+    "currency_label": "Valuta",
+    "result_caprate_monthly": "Cap rate mensile",
+    "result_caprate_annual": "Cap rate annuo",
+    "result_rent_monthly": "Affitto mensile",
+    "result_rent_annual": "Affitto annuo",
+    "result_price": "Prezzo massimo dell'immobile",
+    "disclaimer": "Cap rate lordo — non considera costi di acquisto, tasse, spese condominiali o sfitto. Per un'analisi completa, parla con Globalle.",
+    "cta_note": "Vuoi investire in immobili a reddito all'estero?",
+    "cta": "Scopri la consulenza per investitori"
   },
   "footer": {
     "tagline": "Intelligence immobiliare globale, ogni settimana.",
