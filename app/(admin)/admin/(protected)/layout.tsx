@@ -31,6 +31,7 @@ export default async function ProtectedLayout({ children }: { children: React.Re
 
   return (
     <>
+      <style>{`.admin-nav::-webkit-scrollbar { display: none; }`}</style>
       <header
         style={{
           background: 'linear-gradient(180deg, #0A1130 0%, #070B24 100%)',
@@ -38,7 +39,7 @@ export default async function ProtectedLayout({ children }: { children: React.Re
           padding: '0 24px',
           position: 'relative',
           zIndex: 1,
-          boxShadow: '0 10px 24px -6px rgba(7,11,36,0.28)',
+          boxShadow: '0 6px 14px -8px rgba(7,11,36,0.30)',
         }}
       >
         <div
@@ -95,12 +96,16 @@ export default async function ProtectedLayout({ children }: { children: React.Re
         </div>
 
         <nav
+          className="admin-nav"
           style={{
             maxWidth: 1080,
             margin: '0 auto',
             display: 'flex',
             gap: 22,
+            padding: '2px 0 0',
             overflowX: 'auto',
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
             borderTop: '1px solid rgba(255,255,255,0.09)',
           }}
         >

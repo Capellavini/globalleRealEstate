@@ -57,7 +57,7 @@ export default async function PortfolioShell({
             padding: '0 24px',
             position: 'relative',
             zIndex: 1,
-            boxShadow: '0 10px 24px -6px rgba(7,11,36,0.28)',
+            boxShadow: '0 6px 14px -8px rgba(7,11,36,0.30)',
           }}
         >
           <div
