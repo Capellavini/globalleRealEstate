@@ -20,11 +20,11 @@ export default function Header({ showSubscribe = true }: { showSubscribe?: boole
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
-  // Comunidade/Consultoria/Investidores/Corretores/Calculadora are hidden
-  // until launch — pages stay reachable by direct URL only.
+  // Comunidade/Consultoria/Investidores/Corretores/Calculadora/Newsletter
+  // are hidden until launch — pages stay reachable by direct URL only.
   const navLinks = [
     { href: '/profissionais#sobre', label: t('about') },
-    { href: '/profissionais#manifesto', label: t('manifesto') },
+    { href: '/profissionais#rede', label: t('network') },
   ]
 
   return (
@@ -72,7 +72,7 @@ export default function Header({ showSubscribe = true }: { showSubscribe?: boole
 
             {showSubscribe && (
               <Link
-                href={`/${locale}/profissionais#newsletter`}
+                href={`/${locale}/newsletter`}
                 className="hidden sm:inline-flex"
                 style={{
                   alignItems: 'center', gap: 8,
@@ -146,7 +146,7 @@ export default function Header({ showSubscribe = true }: { showSubscribe?: boole
           ))}
           {showSubscribe && (
             <Link
-              href={`/${locale}/profissionais#newsletter`}
+              href={`/${locale}/newsletter`}
               onClick={() => setMenuOpen(false)}
               style={{
                 display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8,

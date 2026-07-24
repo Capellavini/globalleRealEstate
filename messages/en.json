@@ -6,7 +6,7 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "manifesto": "Manifesto",
+    "network": "Network",
     "comunidade": "Community",
     "consultoria": "Advisory",
     "investidores": "Investors",
@@ -25,51 +25,28 @@
     "pros_cta": "I'm a real estate professional"
   },
   "hero": {
-    "headline": "Global real estate intelligence, in a network of professionals who think big.",
-    "subheadline": "Every week, we show you what the world's best real estate firms are doing — and connect you to a community of professionals putting it into practice.",
-    "cta": "Subscribe for free",
-    "cta_placeholder": "Your best email address",
-    "scroll": "Learn more"
+    "label": "For professionals",
+    "headline": "Sell real estate abroad, with a network to do it safely.",
+    "subheadline": "Globalle connects you with brokers and partners in real estate markets around the world — with knowledge of each foreign market and the support to represent your client from first contact to closing."
   },
   "approach": {
-    "label": "Our Approach",
-    "headline": "The market is global. So should you be.",
-    "col1_title": "How We Work",
-    "col1_body": "We dig deep into the practices of the world's best real estate firms and translate that knowledge into content you can actually apply in your own market.",
-    "col2_title": "What Sets Us Apart",
-    "col2_body": "We're not just a news digest. Every issue brings a real case and a proven technique — plus a network of professionals to discuss, adapt and apply it alongside you.",
-    "quote": "Globalle: a platform connecting the real estate market to the world through content that matters to every professional in the industry."
-  },
-  "manifesto": {
-    "label": "Manifesto",
-    "headline": "Why the world needs real estate professionals with a global mindset",
-    "p1": "Knowledge has gone global, but it remains scattered. Every day, real estate professionals in different countries develop new strategies for sales, marketing, management, technology and client relationships. Most of those ideas, though, never cross the border where they were born. And when they do, they rarely arrive in a structured, applicable form to the people who could benefit from them.",
-    "p2": "The knowledge that defines excellence in global real estate — from the conversion scripts top brokers use in markets like New York, to the onboarding model the biggest London agencies apply to new consultants, to how Italian developers build local brands with international reach — rarely reaches, in a clear and structured way, the people who'd want to replicate it.",
-    "p3": "Globalle was built to change that.",
-    "p4": "We're not a market news aggregator. We're your point of contact between your local market and the best of strategic intelligence out there. We do the research, interview the right people, translate what's essential, and deliver it in language any ambitious professional can put to use immediately.",
-    "p5": "We believe the next generation of great names in real estate won't be shaped only by access to the best courses or mentors. It will be shaped by those with the curiosity to look outward — and the discipline to turn what they learn into action.",
-    "p6": "That's what Globalle delivers, week after week.",
-    "closing": "The borders are open. Join this journey with a network of professionals by your side."
-  },
-  "value_props": {
-    "label": "Value Proposition",
-    "headline": "Why Globalle is different",
-    "cards": [
-      { "icon": "curation", "title": "Smart Interview Curation", "body": "We interview top professionals from markets around the globe — from the obvious ones to those you'd never expect. Every issue brings perspectives you won't find anywhere else." },
-      { "icon": "community", "title": "A Community Built to Grow", "body": "You don't learn alone. Our community brings together professionals who apply what they read, share real experiences and grow together — the content gives you the insight, the network gives you the push to put it into practice." },
-      { "icon": "cultural", "title": "Cultural + Technical Insight", "body": "We understand that practices from other markets can't just be copied — they need to be translated. With a cultural lens beyond the purely technical, we translate the nuances of each market for our readers." },
-      { "icon": "experience", "title": "Deep Real Estate Experience", "body": "We live and breathe real estate ourselves. With hands-on experience across different markets, our team is fluent in the business, turning tactics into actions you can really apply." }
+    "label": "What we do",
+    "headline": "Your bridge to the global real estate market.",
+    "items": [
+      { "title": "International Network", "body": "We connect you with brokers, agencies and partners in real estate markets around the world." },
+      { "title": "Sell Abroad", "body": "Support to structure and run international deals with your client, from first contact to closing." },
+      { "title": "Foreign Markets", "body": "Content and intelligence on how the world's best markets operate — for you to apply in yours." }
     ]
   },
   "products": {
-    "label": "Products",
-    "headline": "What Globalle offers",
-    "newsletter_title": "Weekly Newsletter",
-    "newsletter_body": "The heart of Globalle. Every week, an in-depth look at a practice, case or trend from the global real estate market.",
-    "newsletter_cta": "Subscribe for free",
+    "label": "How",
+    "headline": "Three ways to get involved.",
     "partnership_title": "Partner With Us to Sell Abroad",
     "partnership_body": "We help brokers and agencies represent their clients in cross-border purchases — with advisory, a network of local partners and Globalle's structured process in each market.",
     "partnership_cta": "See the program",
+    "newsletter_title": "Weekly Newsletter",
+    "newsletter_body": "A weekly read on how the world's best markets operate — to keep you in the loop even before you join the network.",
+    "newsletter_cta": "Subscribe for free",
     "community_title": "Globalle Community",
     "community_lead": "For those who want to go beyond the content.",
     "community_body": "A closed space with brokers, managers and real estate professionals who apply what they learn and exchange real experience across markets. Coming soon — opening its doors.",
@@ -80,10 +57,12 @@
     "mockup_cta": "Read the analysis"
   },
   "final_cta": {
-    "headline": "Join a community of professionals like you.",
-    "subheadline": "Subscribe now and join a network of professionals who already get global real estate intelligence every week.",
-    "cta": "Subscribe for free",
-    "placeholder": "Your best email address"
+    "label": "Start here",
+    "headline": "Ready to take your client beyond borders?",
+    "subheadline": "Join the Globalle network and get the support, partners and process to sell abroad safely.",
+    "primary_cta": "I want to join the network",
+    "secondary_lead": "Prefer to just follow the content for now?",
+    "cta": "Subscribe for free"
   },
   "newsletter_form": {
     "success": "Thank you! Check your inbox to confirm your subscription.",
@@ -273,6 +252,24 @@
     "form_subheadline": "Leave your contact — our team will explain the next steps.",
     "form_placeholder": "Your best email",
     "form_cta": "I want in"
+  },
+  "newsletter_page": {
+    "label": "Newsletter",
+    "headline": "Global real estate intelligence, in your inbox every week.",
+    "subheadline": "Every issue brings what the world's best markets are doing — translated into a practical action for your market. Free, straight to your inbox.",
+    "form_placeholder": "Your best email address",
+    "form_cta": "Subscribe for free",
+    "features_title": "It's not just news. It's practice you can apply.",
+    "features": [
+      { "icon": "curation", "title": "A real case every issue", "body": "Every issue brings a real case, a proven technique and a concrete step you can apply this week." },
+      { "icon": "cultural", "title": "Translation, not copying", "body": "Practices from other markets can't just be copied — they need to be translated. We bring the cultural context behind each practice, not just the practice itself." },
+      { "icon": "experience", "title": "Written by people who live the market", "body": "Our team is in real estate too. We interview top professionals from markets around the world to bring you perspectives you won't find anywhere else." }
+    ],
+    "bridge_label": "Just the entry point",
+    "bridge_headline": "The newsletter is the first step.",
+    "bridge_body": "When it makes sense to go beyond the content, Globalle has a network of brokers selling real estate abroad and, coming soon, a closed community for those who want to exchange experience across markets.",
+    "bridge_cta": "Discover the Globalle network",
+    "final_headline": "Join those who already read Globalle every week."
   },
   "calculadora": {
     "label": "Tool",

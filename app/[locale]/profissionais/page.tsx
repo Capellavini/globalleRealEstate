@@ -3,18 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import NewsletterForm from '@/components/NewsletterForm'
 import Reveal from '@/components/Reveal'
 import Icon, { IconName } from '@/components/Icon'
-
-// renders **bold** segments inside a plain string
-function withBold(text: string) {
-  return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
-    part.startsWith('**') && part.endsWith('**')
-      ? <strong key={i} style={{ fontWeight: 700, color: 'var(--color-ink-dark)' }}>{part.slice(2, -2)}</strong>
-      : part
-  )
-}
 
 function Kicker({ num, label, dark }: { num: string; label: string; dark: boolean }) {
   return (
@@ -25,13 +15,19 @@ function Kicker({ num, label, dark }: { num: string; label: string; dark: boolea
   )
 }
 
+// Icons for the "what we do" cards — order matches approach.items in messages/*.json
+// (network / sell abroad / foreign markets), same across all locales.
+const APPROACH_ICONS: IconName[] = ['community', 'advisory', 'globe']
+
 // Antiga home page — desde o split da home em gateway (Investidores ×
-// Profissionais), este conteúdo vive em /profissionais.
+// Profissionais), este conteúdo vive em /profissionais. Reposicionada em
+// 2026-07 para liderar com rede + vender fora do país; a newsletter deixou
+// de ser o carro-chefe e agora tem página própria em /newsletter.
 export default function ProfissionaisPage() {
   const t = useTranslations()
   const locale = useLocale()
 
-  const valueCards = t.raw('value_props.cards') as Array<{ icon: IconName; title: string; body: string }>
+  const approachItems = t.raw('approach.items') as Array<{ title: string; body: string }>
 
   return (
     <>
@@ -39,32 +35,27 @@ export default function ProfissionaisPage() {
 
       {/* ═══ HERO ═══ */}
       <section className="grain" style={{ position: 'relative', overflow: 'hidden', background: 'var(--color-navy)' }}>
-        {/* bokeh texture */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <Image src="/bg-bokeh.jpg" alt="" fill priority style={{ objectFit: 'cover', opacity: 0.5 }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(7,11,36,0.55) 0%, rgba(7,11,36,0.75) 55%, var(--color-navy) 100%)' }} />
         </div>
 
         <div className="hero-grid" style={{ position: 'relative', zIndex: 1, maxWidth: 1240, margin: '0 auto' }}>
-          {/* Left: copy */}
           <div className="hero-copy">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
+              <span className="serif" style={{ fontSize: 17, fontStyle: 'italic', color: 'var(--color-gold)' }}>—</span>
+              <span className="kicker" style={{ color: 'var(--color-ink-faint)' }}>{t('hero.label')}</span>
+            </div>
+
             <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(38px, 5.4vw, 66px)', fontWeight: 800, lineHeight: 1.04, letterSpacing: '-0.025em', color: 'var(--color-ink)', marginBottom: 26 }}>
               {t('hero.headline')}
             </h1>
 
-            <p style={{ fontSize: 'clamp(16px, 2vw, 19px)', color: 'var(--color-ink-dim)', lineHeight: 1.65, maxWidth: 520, marginBottom: 38 }}>
+            <p style={{ fontSize: 'clamp(16px, 2vw, 19px)', color: 'var(--color-ink-dim)', lineHeight: 1.65, maxWidth: 520 }}>
               {t('hero.subheadline')}
             </p>
-
-            <div id="newsletter" style={{ maxWidth: 540, scrollMarginTop: 100 }}>
-              <NewsletterForm
-                placeholder={t('hero.cta_placeholder')}
-                cta={t('hero.cta')}
-              />
-            </div>
           </div>
 
-          {/* Right: skyline illustration */}
           <div className="hero-art">
             <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: 520 }}>
               <Image src="/skyline.jpg" alt="" fill style={{ objectFit: 'cover', objectPosition: 'bottom' }} />
@@ -75,104 +66,25 @@ export default function ProfissionaisPage() {
         </div>
       </section>
 
-      {/* ═══ 01 · APPROACH ═══ */}
+      {/* ═══ 01 · O QUE FAZEMOS ═══ */}
       <section id="sobre" style={{ background: 'linear-gradient(180deg, var(--color-paper) 0%, var(--color-paper-2) 100%)', padding: '110px 28px', scrollMarginTop: 76 }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <Reveal>
             <Kicker num="01" label={t('approach.label')} dark={false} />
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink-dark)', letterSpacing: '-0.02em', lineHeight: 1.1, maxWidth: 760, marginBottom: 64 }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink-dark)', letterSpacing: '-0.02em', lineHeight: 1.1, maxWidth: 760, marginBottom: 56 }}>
               {t('approach.headline')}
             </h2>
           </Reveal>
 
-          <div className="two-col" style={{ marginBottom: 72 }}>
-            {(['col1', 'col2'] as const).map((col, i) => (
-              <Reveal key={col} delay={i * 90}>
-                <div style={{ borderTop: '2px solid var(--color-ink-dark)', paddingTop: 24 }}>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 21, fontWeight: 700, color: 'var(--color-ink-dark)', marginBottom: 14 }}>
-                    {t(`approach.${col}_title`)}
-                  </h3>
-                  <p style={{ color: 'var(--color-ink-dark-dim)', lineHeight: 1.75, fontSize: 16 }}>
-                    {t(`approach.${col}_body`)}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal>
-            <blockquote style={{ margin: 0, maxWidth: 880 }}>
-              <p className="serif" style={{ fontSize: 'clamp(22px, 3vw, 33px)', fontWeight: 500, color: 'var(--color-ink-dark)', lineHeight: 1.4, letterSpacing: '-0.01em' }}>
-                {t('approach.quote')}
-              </p>
-            </blockquote>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══ 02 · MANIFESTO ═══ */}
-      <section id="manifesto" className="grain" style={{ position: 'relative', background: 'var(--color-navy)', padding: '120px 28px', overflow: 'hidden', scrollMarginTop: 76 }}>
-        <div style={{ position: 'absolute', top: 80, right: -40, fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 'clamp(160px, 28vw, 360px)', fontWeight: 600, color: 'rgba(255,255,255,0.018)', lineHeight: 1, pointerEvents: 'none', userSelect: 'none' }}>02</div>
-
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: 760, margin: '0 auto' }}>
-          <Reveal>
-            <Kicker num="02" label={t('manifesto.label')} dark />
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px, 3.6vw, 42px)', fontWeight: 800, color: 'var(--color-ink)', lineHeight: 1.16, letterSpacing: '-0.02em', marginBottom: 52 }}>
-              {t('manifesto.headline')}
-            </h2>
-          </Reveal>
-
-          <Reveal>
-            <p style={{ fontSize: 20, lineHeight: 1.7, color: 'var(--color-ink)', marginBottom: 26, fontWeight: 400 }}>
-              {t('manifesto.p1')}
-            </p>
-            <p style={{ fontSize: 16.5, lineHeight: 1.8, color: 'var(--color-ink-dim)', marginBottom: 30 }}>
-              {t('manifesto.p2')}
-            </p>
-            <p className="serif-i" style={{ fontSize: 'clamp(22px, 2.6vw, 29px)', lineHeight: 1.4, color: 'var(--color-gold)', marginBottom: 30 }}>
-              {t('manifesto.p3')}
-            </p>
-            {(['p4', 'p5', 'p6'] as const).map(key => (
-              <p key={key} style={{ fontSize: 16.5, lineHeight: 1.8, color: 'var(--color-ink-dim)', marginBottom: 22 }}>
-                {t(`manifesto.${key}`)}
-              </p>
-            ))}
-          </Reveal>
-
-          <Reveal>
-            <div style={{ marginTop: 48, paddingTop: 40, borderTop: '1px solid var(--color-line)' }}>
-              <p className="serif-i" style={{ fontSize: 'clamp(24px, 3.2vw, 36px)', fontWeight: 500, color: 'var(--color-ink)', lineHeight: 1.3, letterSpacing: '-0.01em' }}>
-                {t('manifesto.closing')}
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══ 03 · VALUE PROPS ═══ */}
-      <section style={{ background: 'linear-gradient(180deg, var(--color-paper-2) 0%, var(--color-paper) 100%)', padding: '110px 28px' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <Reveal>
-            <Kicker num="03" label={t('value_props.label')} dark={false} />
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink-dark)', letterSpacing: '-0.02em', marginBottom: 8 }}>
-              {t('value_props.headline')}
-            </h2>
-          </Reveal>
-
-          <div className="props-grid" style={{ marginTop: 48 }}>
-            {valueCards.map((card, i) => (
-              <Reveal key={i} delay={(i % 2) * 90}>
-                <div style={{ borderTop: '1px solid var(--color-line-dark)', paddingTop: 28, height: '100%' }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
-                    <span style={{ width: 52, height: 52, borderRadius: 14, background: 'rgba(30,167,232,0.1)', border: '1px solid rgba(30,167,232,0.2)', color: 'var(--color-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Icon name={card.icon} size={26} />
-                    </span>
-                    <span className="serif-i" style={{ fontSize: 28, color: 'rgba(11,18,48,0.12)', fontWeight: 600 }}>0{i + 1}</span>
-                  </div>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18.5, fontWeight: 700, color: 'var(--color-ink-dark)', marginBottom: 12, lineHeight: 1.25 }}>
-                    {card.title}
-                  </h3>
-                  <p style={{ color: 'var(--color-ink-dark-dim)', fontSize: 14.5, lineHeight: 1.7 }}>{withBold(card.body)}</p>
+          <div className="what-grid">
+            {approachItems.map((item, i) => (
+              <Reveal key={item.title} delay={i * 90}>
+                <div style={{ borderTop: '2px solid var(--color-ink-dark)', paddingTop: 24, height: '100%' }}>
+                  <span style={{ width: 46, height: 46, borderRadius: 12, background: 'rgba(30,167,232,0.1)', border: '1px solid rgba(30,167,232,0.2)', color: 'var(--color-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18 }}>
+                    <Icon name={APPROACH_ICONS[i]} size={22} />
+                  </span>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 19, fontWeight: 700, color: 'var(--color-ink-dark)', marginBottom: 10 }}>{item.title}</h3>
+                  <p style={{ color: 'var(--color-ink-dark-dim)', lineHeight: 1.7, fontSize: 15 }}>{item.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -180,11 +92,11 @@ export default function ProfissionaisPage() {
         </div>
       </section>
 
-      {/* ═══ 04 · PRODUCTS ═══ */}
-      <section style={{ background: 'var(--color-navy)', padding: '110px 28px' }}>
+      {/* ═══ 02 · COMO (produtos) ═══ */}
+      <section id="rede" style={{ background: 'var(--color-navy)', padding: '110px 28px', scrollMarginTop: 76 }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <Reveal>
-            <Kicker num="04" label={t('products.label')} dark />
+            <Kicker num="02" label={t('products.label')} dark />
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.2vw, 50px)', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.02em', marginBottom: 16 }}>
               {t('products.headline')}
             </h2>
@@ -193,8 +105,8 @@ export default function ProfissionaisPage() {
           {/* Consultoria row hidden until launch — re-add below to relaunch:
               { key: 'consultoria', icon: 'advisory', tag: '04', visual: 'advisory', href: '/consultoria' } */}
           {[
-            { key: 'newsletter', icon: 'newsletter', tag: '01', visual: 'newsletter', href: '/profissionais#newsletter' },
-            { key: 'partnership', icon: 'advisory', tag: '02', visual: 'advisory', href: '/corretores' },
+            { key: 'partnership', icon: 'advisory', tag: '01', visual: 'advisory', href: '/corretores' },
+            { key: 'newsletter', icon: 'newsletter', tag: '02', visual: 'newsletter', href: '/newsletter' },
             { key: 'community', icon: 'community', tag: '03', visual: 'community', href: null },
           ].map((p, i) => (
             <Reveal key={p.key}>
@@ -281,22 +193,42 @@ export default function ProfissionaisPage() {
         </div>
       </section>
 
-      {/* ═══ FINAL CTA ═══ */}
+      {/* ═══ 03 · CTA FINAL ═══ */}
       <section className="grain" style={{ position: 'relative', background: 'var(--color-navy)', padding: '120px 28px', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <Image src="/bg-bokeh.jpg" alt="" fill style={{ objectFit: 'cover', opacity: 0.35 }} />
           <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at center, rgba(7,11,36,0.6) 0%, var(--color-navy) 75%)' }} />
         </div>
         <Reveal>
-          <div style={{ position: 'relative', zIndex: 1, maxWidth: 640, margin: '0 auto', textAlign: 'center' }}>
+          <div style={{ position: 'relative', zIndex: 1, maxWidth: 560, margin: '0 auto', textAlign: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 14, marginBottom: 20 }}>
+              <span className="serif" style={{ fontSize: 17, fontWeight: 600, color: 'var(--color-gold)', fontStyle: 'italic' }}>03</span>
+              <span className="kicker" style={{ color: 'var(--color-ink-faint)' }}>{t('final_cta.label')}</span>
+            </div>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.6vw, 52px)', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.025em', lineHeight: 1.08, marginBottom: 20 }}>
               {t('final_cta.headline')}
             </h2>
-            <p style={{ color: 'var(--color-ink-dim)', fontSize: 17.5, lineHeight: 1.6, marginBottom: 40, maxWidth: 500, marginLeft: 'auto', marginRight: 'auto' }}>
+            <p style={{ color: 'var(--color-ink-dim)', fontSize: 17.5, lineHeight: 1.6, marginBottom: 36, maxWidth: 460, marginLeft: 'auto', marginRight: 'auto' }}>
               {t('final_cta.subheadline')}
             </p>
-            <div style={{ maxWidth: 500, margin: '0 auto' }}>
-              <NewsletterForm placeholder={t('final_cta.placeholder')} cta={t('final_cta.cta')} />
+
+            <Link
+              href={`/${locale}/corretores`}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 9,
+                background: 'var(--color-blue)', color: '#04121f', textDecoration: 'none',
+                padding: '16px 30px', borderRadius: 13, fontSize: 16, fontWeight: 700,
+                fontFamily: 'var(--font-display)', boxShadow: '0 10px 30px -10px rgba(30,167,232,0.65)',
+              }}
+            >
+              {t('final_cta.primary_cta')} <Icon name="arrow" size={17} strokeWidth={2} />
+            </Link>
+
+            <div style={{ marginTop: 40, paddingTop: 32, borderTop: '1px solid var(--color-line)' }}>
+              <p style={{ color: 'var(--color-ink-faint)', fontSize: 14.5, marginBottom: 12 }}>{t('final_cta.secondary_lead')}</p>
+              <Link href={`/${locale}/newsletter`} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, color: 'var(--color-blue-bright)', textDecoration: 'none', fontSize: 14.5, fontWeight: 600, fontFamily: 'var(--font-display)' }}>
+                {t('final_cta.cta')} <Icon name="arrowUpRight" size={15} strokeWidth={2} />
+              </Link>
             </div>
           </div>
         </Reveal>
@@ -306,22 +238,18 @@ export default function ProfissionaisPage() {
 
       <style>{`
         .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center; min-height: 92vh; padding: 120px 28px 40px; }
-        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px 40px; margin-top: 20px; }
-        .props-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px 56px; }
+        .what-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
         .product-row { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
         .product-visual { min-width: 0; }
         @media (max-width: 900px) {
           .hero-grid { grid-template-columns: 1fr; min-height: auto; padding: 150px 28px 36px; }
           .hero-art { display: none; }
-          .values-grid { grid-template-columns: 1fr 1fr; }
+          .what-grid { grid-template-columns: 1fr 1fr; }
           .product-row { grid-template-columns: 1fr; gap: 28px; }
           .product-visual { order: 2 !important; }
         }
         @media (max-width: 600px) {
-          .two-col { grid-template-columns: 1fr; gap: 32px; }
-          .values-grid { grid-template-columns: 1fr; gap: 24px; }
-          .props-grid { grid-template-columns: 1fr; gap: 32px; }
+          .what-grid { grid-template-columns: 1fr; gap: 32px; }
         }
       `}</style>
     </>
