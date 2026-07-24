@@ -245,8 +245,10 @@
       { "icon": "calendar", "title": "Monthly meetings", "body": "Meetings to discuss real cases, trends and opportunities among agents in the network." }
     ],
     "price_label": "Investment",
-    "price_headline": "Ask about the Globalle Full Service rate",
-    "price_note": "Limited spots per market — talk to us for details.",
+    "price": "€350",
+    "price_period": "/month",
+    "price_note": "Limited spots per market.",
+    "price_secondary_cta": "See our advisory plans",
     "form_label": "Start here",
     "form_headline": "Join the Globalle network",
     "form_subheadline": "Leave your contact — our team will explain the next steps.",

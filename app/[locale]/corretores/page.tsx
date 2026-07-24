@@ -1,5 +1,6 @@
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
+import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import NewsletterForm from '@/components/NewsletterForm'
@@ -15,6 +16,7 @@ type Feature = { icon: IconName; title: string; body: string }
 // globalle-public-site-roadmap).
 export default function CorretoresPage() {
   const t = useTranslations('corretores')
+  const locale = useLocale()
   const features = t.raw('features') as Feature[]
 
   return (
@@ -79,10 +81,24 @@ export default function CorretoresPage() {
         <Reveal>
           <div style={{ position: 'relative', zIndex: 1, maxWidth: 480, margin: '0 auto', textAlign: 'center' }}>
             <span className="kicker" style={{ color: 'var(--color-ink-faint)', display: 'block', marginBottom: 14 }}>{t('price_label')}</span>
-            <p className="serif-i" style={{ fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 600, color: 'var(--color-ink)', letterSpacing: '-0.01em', lineHeight: 1.3, marginBottom: 6 }}>
-              {t('price_headline')}
-            </p>
-            <p style={{ color: 'var(--color-ink-faint)', fontSize: 13.5, marginBottom: 48 }}>{t('price_note')}</p>
+            <div style={{ marginBottom: 6 }}>
+              <span className="serif" style={{ fontSize: 52, fontWeight: 600, color: 'var(--color-ink)', letterSpacing: '-0.02em' }}>{t('price')}</span>
+              <span style={{ color: 'var(--color-ink-dim)', fontSize: 17, fontFamily: 'var(--font-mono)' }}> {t('price_period')}</span>
+            </div>
+            <p style={{ color: 'var(--color-ink-faint)', fontSize: 13.5, marginBottom: 28 }}>{t('price_note')}</p>
+
+            <Link
+              href={`/${locale}/consultoria`}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                border: '1px solid var(--color-line)', color: 'var(--color-ink-dim)',
+                textDecoration: 'none', padding: '12px 22px', borderRadius: 10,
+                fontSize: 14, fontWeight: 600, fontFamily: 'var(--font-display)',
+                marginBottom: 44,
+              }}
+            >
+              {t('price_secondary_cta')} <Icon name="arrowUpRight" size={15} strokeWidth={2} />
+            </Link>
 
             <div style={{ height: 1, background: 'var(--color-line)', marginBottom: 44 }} />
 

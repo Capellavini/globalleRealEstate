@@ -245,8 +245,10 @@
       { "icon": "calendar", "title": "Encontros mensais", "body": "Encontros para discutir casos reais, tendências e oportunidades entre corretores da rede." }
     ],
     "price_label": "Investimento",
-    "price_headline": "Consulte o valor da Globalle Full Service",
-    "price_note": "Vagas limitadas por mercado — fale com a gente para conhecer as condições.",
+    "price": "€350",
+    "price_period": "/mês",
+    "price_note": "Vagas limitadas por mercado.",
+    "price_secondary_cta": "Conheça nossos planos de consultoria",
     "form_label": "Comece por aqui",
     "form_headline": "Entre para a rede Globalle",
     "form_subheadline": "Deixe seu contato — nossa equipe explica os próximos passos.",

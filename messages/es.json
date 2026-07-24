@@ -245,8 +245,10 @@
       { "icon": "calendar", "title": "Encuentros mensuales", "body": "Encuentros para discutir casos reales, tendencias y oportunidades entre agentes de la red." }
     ],
     "price_label": "Inversión",
-    "price_headline": "Consulte el valor de Globalle Full Service",
-    "price_note": "Cupos limitados por mercado — hable con nosotros para conocer las condiciones.",
+    "price": "€350",
+    "price_period": "/mes",
+    "price_note": "Cupos limitados por mercado.",
+    "price_secondary_cta": "Conozca nuestros planes de consultoría",
     "form_label": "Empiece aquí",
     "form_headline": "Únase a la red Globalle",
     "form_subheadline": "Deje su contacto — nuestro equipo le explica los próximos pasos.",

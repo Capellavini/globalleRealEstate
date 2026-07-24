@@ -245,8 +245,10 @@
       { "icon": "calendar", "title": "Incontri mensili", "body": "Incontri per discutere casi reali, tendenze e opportunità tra gli agenti della rete." }
     ],
     "price_label": "Investimento",
-    "price_headline": "Richiedi il valore di Globalle Full Service",
-    "price_note": "Posti limitati per mercato — contattaci per conoscere le condizioni.",
+    "price": "€350",
+    "price_period": "/mese",
+    "price_note": "Posti limitati per mercato.",
+    "price_secondary_cta": "Scopri i nostri piani di consulenza",
     "form_label": "Inizia qui",
     "form_headline": "Entra nella rete Globalle",
     "form_subheadline": "Lascia il tuo contatto — il nostro team ti spiega i prossimi passi.",
