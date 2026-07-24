@@ -31,7 +31,7 @@ export default function ProfissionaisPage() {
 
   return (
     <>
-      <Header />
+      <Header showSubscribe={false} />
 
       {/* ═══ HERO ═══ */}
       <section className="grain" style={{ position: 'relative', overflow: 'hidden', background: 'var(--color-navy)' }}>

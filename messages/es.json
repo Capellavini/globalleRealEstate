@@ -26,14 +26,14 @@
   },
   "hero": {
     "label": "Para profesionales",
-    "headline": "Vende inmuebles fuera de tu país, con una red para hacerlo con seguridad.",
-    "subheadline": "Globalle te conecta con agentes y socios en mercados inmobiliarios de todo el mundo — con el conocimiento de cada mercado extranjero y el soporte para representar a tu cliente desde el primer contacto hasta el cierre."
+    "headline": "Abre las fronteras del mercado inmobiliario para tus clientes, con una red de confianza.",
+    "subheadline": "Globalle te conecta con agentes, socios y developers en mercados inmobiliarios de todo el mundo, con el conocimiento de cada mercado y el soporte para representar a tu cliente desde el primer contacto hasta el cierre."
   },
   "approach": {
     "label": "Qué hacemos",
     "headline": "Tu puente hacia el mercado inmobiliario global.",
     "items": [
-      { "title": "Red Internacional", "body": "Te conectamos con agentes, agencias y socios en mercados inmobiliarios de todo el mundo." },
+      { "title": "Red Internacional", "body": "Te conectamos con agentes, agencias y productos en mercados inmobiliarios de todo el mundo." },
       { "title": "Vender Fuera del País", "body": "Soporte para estructurar y llevar adelante negocios internacionales con tu cliente, desde el primer contacto hasta el cierre." },
       { "title": "Mercados Extranjeros", "body": "Contenido e inteligencia sobre cómo operan los mejores mercados del mundo — para que lo apliques en el tuyo." }
     ]
@@ -42,10 +42,10 @@
     "label": "Cómo",
     "headline": "Tres formas de sumarte.",
     "partnership_title": "Alianza para Vender Fuera del País",
-    "partnership_body": "Ayudamos a agentes e inmobiliarias a representar a sus clientes en compras internacionales — con asesoría, red de socios locales y el proceso ya estructurado de Globalle en cada mercado.",
+    "partnership_body": "Ayudamos a agentes e inmobiliarias a representar a sus clientes en compras internacionales. Ya sea por nuestra asesoría, la red de socios locales o el proceso ya estructurado de Globalle en cada mercado.",
     "partnership_cta": "Conoce el programa",
     "newsletter_title": "Newsletter Semanal",
-    "newsletter_body": "Una lectura semanal sobre cómo operan los mejores mercados del mundo — para que estés al tanto incluso antes de sumarte a la red.",
+    "newsletter_body": "Una lectura semanal sobre cómo operan los mejores mercados del mundo. Mantente al tanto incluso antes de sumarte a la red.",
     "newsletter_cta": "Suscribirse gratis",
     "community_title": "Comunidad Globalle",
     "community_lead": "Para quienes quieren ir más allá del contenido.",
@@ -233,20 +233,20 @@
   },
   "corretores": {
     "label": "Para agentes",
-    "headline": "Lleve a su cliente más allá de las fronteras — sin perder el negocio.",
+    "headline": "¡Las fronteras del mercado inmobiliario están abiertas!",
     "subheadline": "Un programa para agentes e inmobiliarias que quieren ofrecer inmuebles fuera del país a sus clientes, con el soporte, la red y el proceso para hacerlo con seguridad.",
     "features_title": "A qué tiene acceso",
     "features": [
       { "icon": "newsletter", "title": "Newsletter Globalle", "body": "Inteligencia inmobiliaria global, cada semana — las prácticas de los mejores mercados, traducidas en acción." },
       { "icon": "advisory", "title": "Consultoría para vender fuera del país", "body": "Apoyo para estructurar y conducir negocios internacionales con su cliente, del primer contacto al cierre." },
       { "icon": "share", "title": "Conexión con procesos y socios", "body": "Acceso a la red de socios y al proceso ya estructurado de Globalle en cada mercado." },
+      { "icon": "experience", "title": "Playbooks y Materiales", "body": "Guías prácticas, plantillas y materiales listos para aplicar en cada etapa de la venta internacional con su cliente." },
       { "icon": "globe", "title": "Red internacional", "body": "Conexión con agentes, agencias y profesionales de otros mercados inmobiliarios." },
       { "icon": "calendar", "title": "Encuentros mensuales", "body": "Encuentros para discutir casos reales, tendencias y oportunidades entre agentes de la red." }
     ],
     "price_label": "Inversión",
-    "price": "€350",
-    "price_period": "/mes",
-    "price_note": "Cupos limitados por mercado.",
+    "price_headline": "Consulte el valor de Globalle Full Service",
+    "price_note": "Cupos limitados por mercado — hable con nosotros para conocer las condiciones.",
     "form_label": "Empiece aquí",
     "form_headline": "Únase a la red Globalle",
     "form_subheadline": "Deje su contacto — nuestro equipo le explica los próximos pasos.",

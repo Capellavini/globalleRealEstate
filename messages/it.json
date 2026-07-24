@@ -26,14 +26,14 @@
   },
   "hero": {
     "label": "Per professionisti",
-    "headline": "Vendi immobili fuori dal tuo paese, con una rete per farlo in sicurezza.",
-    "subheadline": "Globalle ti connette con agenti e partner in mercati immobiliari di tutto il mondo — con la conoscenza di ogni mercato estero e il supporto per rappresentare il tuo cliente dal primo contatto alla chiusura."
+    "headline": "Apri le frontiere del mercato immobiliare per i tuoi clienti, con una rete di fiducia.",
+    "subheadline": "Globalle ti connette con agenti, partner e developer in mercati immobiliari di tutto il mondo, con la conoscenza di ogni mercato e il supporto per rappresentare il tuo cliente dal primo contatto alla chiusura."
   },
   "approach": {
     "label": "Cosa facciamo",
     "headline": "Il tuo ponte verso il mercato immobiliare globale.",
     "items": [
-      { "title": "Rete Internazionale", "body": "Ti connettiamo con agenti, agenzie e partner in mercati immobiliari di tutto il mondo." },
+      { "title": "Rete Internazionale", "body": "Ti connettiamo con agenti, agenzie e prodotti in mercati immobiliari di tutto il mondo." },
       { "title": "Vendere all'Estero", "body": "Supporto per strutturare e condurre trattative internazionali con il tuo cliente, dal primo contatto alla chiusura." },
       { "title": "Mercati Esteri", "body": "Contenuti e intelligence su come operano i migliori mercati del mondo — da applicare nel tuo." }
     ]
@@ -42,10 +42,10 @@
     "label": "Come",
     "headline": "Tre modi per farne parte.",
     "partnership_title": "Collabora con Noi per Vendere all'Estero",
-    "partnership_body": "Aiutiamo agenti e agenzie a rappresentare i propri clienti in acquisti internazionali — con consulenza, una rete di partner locali e il processo già strutturato di Globalle in ogni mercato.",
+    "partnership_body": "Aiutiamo agenti e agenzie a rappresentare i propri clienti in acquisti internazionali. Sia con la nostra consulenza, la rete di partner locali o il processo già strutturato di Globalle in ogni mercato.",
     "partnership_cta": "Scopri il programma",
     "newsletter_title": "Newsletter Settimanale",
-    "newsletter_body": "Una lettura settimanale su come operano i migliori mercati del mondo — per restare aggiornato ancora prima di entrare nella rete.",
+    "newsletter_body": "Una lettura settimanale su come operano i migliori mercati del mondo. Resta aggiornato ancora prima di entrare nella rete.",
     "newsletter_cta": "Iscriviti gratis",
     "community_title": "Community Globalle",
     "community_lead": "Per chi vuole andare oltre il contenuto.",
@@ -233,20 +233,20 @@
   },
   "corretores": {
     "label": "Per agenti",
-    "headline": "Porta il tuo cliente oltre confine — senza perdere l'affare.",
+    "headline": "Le frontiere del mercato immobiliare sono aperte!",
     "subheadline": "Un programma per agenti e agenzie che vogliono offrire immobili all'estero ai propri clienti, con il supporto, la rete e il processo per farlo in sicurezza.",
     "features_title": "A cosa hai accesso",
     "features": [
       { "icon": "newsletter", "title": "Newsletter Globalle", "body": "Intelligence immobiliare globale, ogni settimana — le pratiche dei migliori mercati, tradotte in azione." },
       { "icon": "advisory", "title": "Consulenza per vendere all'estero", "body": "Supporto per strutturare e gestire trattative internazionali con il tuo cliente, dal primo contatto al rogito." },
       { "icon": "share", "title": "Accesso a processi e partner", "body": "Accesso alla rete di partner e al processo già strutturato di Globalle in ogni mercato." },
+      { "icon": "experience", "title": "Playbook e Materiali", "body": "Guide pratiche, modelli e materiali pronti per ogni fase della vendita internazionale con il tuo cliente." },
       { "icon": "globe", "title": "Rete internazionale", "body": "Connessione con agenti, agenzie e professionisti di altri mercati immobiliari." },
       { "icon": "calendar", "title": "Incontri mensili", "body": "Incontri per discutere casi reali, tendenze e opportunità tra gli agenti della rete." }
     ],
     "price_label": "Investimento",
-    "price": "€350",
-    "price_period": "/mese",
-    "price_note": "Posti limitati per mercato.",
+    "price_headline": "Richiedi il valore di Globalle Full Service",
+    "price_note": "Posti limitati per mercato — contattaci per conoscere le condizioni.",
     "form_label": "Inizia qui",
     "form_headline": "Entra nella rete Globalle",
     "form_subheadline": "Lascia il tuo contatto — il nostro team ti spiega i prossimi passi.",

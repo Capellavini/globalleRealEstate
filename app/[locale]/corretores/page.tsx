@@ -79,10 +79,9 @@ export default function CorretoresPage() {
         <Reveal>
           <div style={{ position: 'relative', zIndex: 1, maxWidth: 480, margin: '0 auto', textAlign: 'center' }}>
             <span className="kicker" style={{ color: 'var(--color-ink-faint)', display: 'block', marginBottom: 14 }}>{t('price_label')}</span>
-            <div style={{ marginBottom: 6 }}>
-              <span className="serif" style={{ fontSize: 52, fontWeight: 600, color: 'var(--color-ink)', letterSpacing: '-0.02em' }}>{t('price')}</span>
-              <span style={{ color: 'var(--color-ink-dim)', fontSize: 17, fontFamily: 'var(--font-mono)' }}> {t('price_period')}</span>
-            </div>
+            <p className="serif-i" style={{ fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 600, color: 'var(--color-ink)', letterSpacing: '-0.01em', lineHeight: 1.3, marginBottom: 6 }}>
+              {t('price_headline')}
+            </p>
             <p style={{ color: 'var(--color-ink-faint)', fontSize: 13.5, marginBottom: 48 }}>{t('price_note')}</p>
 
             <div style={{ height: 1, background: 'var(--color-line)', marginBottom: 44 }} />

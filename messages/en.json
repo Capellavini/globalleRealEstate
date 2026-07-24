@@ -26,14 +26,14 @@
   },
   "hero": {
     "label": "For professionals",
-    "headline": "Sell real estate abroad, with a network to do it safely.",
-    "subheadline": "Globalle connects you with brokers and partners in real estate markets around the world — with knowledge of each foreign market and the support to represent your client from first contact to closing."
+    "headline": "Open the real estate market's borders for your clients, with a network you can trust.",
+    "subheadline": "Globalle connects you with brokers, partners and developers in real estate markets around the world, with knowledge of each market and the support to represent your client from first contact to closing."
   },
   "approach": {
     "label": "What we do",
     "headline": "Your bridge to the global real estate market.",
     "items": [
-      { "title": "International Network", "body": "We connect you with brokers, agencies and partners in real estate markets around the world." },
+      { "title": "International Network", "body": "We connect you with brokers, agencies and products in real estate markets around the world." },
       { "title": "Sell Abroad", "body": "Support to structure and run international deals with your client, from first contact to closing." },
       { "title": "Foreign Markets", "body": "Content and intelligence on how the world's best markets operate — for you to apply in yours." }
     ]
@@ -42,10 +42,10 @@
     "label": "How",
     "headline": "Three ways to get involved.",
     "partnership_title": "Partner With Us to Sell Abroad",
-    "partnership_body": "We help brokers and agencies represent their clients in cross-border purchases — with advisory, a network of local partners and Globalle's structured process in each market.",
+    "partnership_body": "We help brokers and agencies represent their clients in cross-border purchases. Whether through our advisory, network of local partners, or Globalle's structured process in each market.",
     "partnership_cta": "See the program",
     "newsletter_title": "Weekly Newsletter",
-    "newsletter_body": "A weekly read on how the world's best markets operate — to keep you in the loop even before you join the network.",
+    "newsletter_body": "A weekly read on how the world's best markets operate. Stay in the loop even before you join the network.",
     "newsletter_cta": "Subscribe for free",
     "community_title": "Globalle Community",
     "community_lead": "For those who want to go beyond the content.",
@@ -233,20 +233,20 @@
   },
   "corretores": {
     "label": "For agents",
-    "headline": "Take your client across borders — without losing the deal.",
+    "headline": "The real estate market's borders are open!",
     "subheadline": "A program for agents and agencies who want to offer property abroad to their clients, with the support, network and process to do it safely.",
     "features_title": "What you get access to",
     "features": [
       { "icon": "newsletter", "title": "Globalle Newsletter", "body": "Global real estate intelligence, every week — practices from the world's best markets, translated into action." },
       { "icon": "advisory", "title": "Advisory for selling abroad", "body": "Support to structure and run cross-border deals with your client, from first contact to closing." },
       { "icon": "share", "title": "Access to process and partners", "body": "Access to Globalle's partner network and the process already structured for each market." },
+      { "icon": "experience", "title": "Playbooks and Materials", "body": "Practical guides, templates and ready-to-use materials for every step of selling internationally with your client." },
       { "icon": "globe", "title": "International network", "body": "Connection with agents, agencies and professionals from other real estate markets." },
       { "icon": "calendar", "title": "Monthly meetings", "body": "Meetings to discuss real cases, trends and opportunities among agents in the network." }
     ],
     "price_label": "Investment",
-    "price": "€350",
-    "price_period": "/month",
-    "price_note": "Limited spots per market.",
+    "price_headline": "Ask about the Globalle Full Service rate",
+    "price_note": "Limited spots per market — talk to us for details.",
     "form_label": "Start here",
     "form_headline": "Join the Globalle network",
     "form_subheadline": "Leave your contact — our team will explain the next steps.",

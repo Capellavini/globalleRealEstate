@@ -26,14 +26,14 @@
   },
   "hero": {
     "label": "Para profissionais",
-    "headline": "Venda imóveis fora do seu país, com uma rede para fazer isso com segurança.",
-    "subheadline": "A Globalle conecta você a corretores e parceiros em mercados imobiliários ao redor do mundo — com o conhecimento de cada mercado estrangeiro e o suporte para representar seu cliente do primeiro contato ao fechamento."
+    "headline": "Abra as fronteiras do mercado imobiliário para seus clientes, com uma rede de confiança.",
+    "subheadline": "A Globalle conecta você a corretores, parceiros e developers em mercados imobiliários ao redor do mundo, com o conhecimento de cada mercado e o suporte para representar seu cliente do primeiro contato ao fechamento."
   },
   "approach": {
     "label": "O que fazemos",
     "headline": "Sua ponte para o mercado imobiliário global.",
     "items": [
-      { "title": "Rede Internacional", "body": "Conectamos você a corretores, agências e parceiros em mercados imobiliários ao redor do mundo." },
+      { "title": "Rede Internacional", "body": "Conectamos você a corretores, agências e produtos em mercados imobiliários ao redor do mundo." },
       { "title": "Vender Fora do País", "body": "Suporte para estruturar e conduzir negócios internacionais com o seu cliente, do primeiro contato ao fechamento." },
       { "title": "Mercados Estrangeiros", "body": "Conteúdo e inteligência sobre como os melhores mercados do mundo operam — pra você aplicar no seu." }
     ]
@@ -42,10 +42,10 @@
     "label": "Como",
     "headline": "Três formas de fazer parte.",
     "partnership_title": "Parceria para Vender Fora do País",
-    "partnership_body": "Ajudamos corretores e imobiliárias a representar seus clientes em compras internacionais — com consultoria, rede de parceiros locais e o processo já estruturado da Globalle em cada mercado.",
+    "partnership_body": "Ajudamos corretores e imobiliárias a representar seus clientes em compras internacionais. Seja pela nossa consultoria, rede de parceiros locais ou processo já estruturado da Globalle em cada mercado.",
     "partnership_cta": "Conheça o programa",
     "newsletter_title": "Newsletter Semanal",
-    "newsletter_body": "Uma leitura semanal sobre como os melhores mercados do mundo operam — pra ficar por dentro mesmo antes de entrar pra rede.",
+    "newsletter_body": "Uma leitura semanal sobre como os melhores mercados do mundo operam. Fique por dentro mesmo antes de entrar pra rede.",
     "newsletter_cta": "Assinar gratuitamente",
     "community_title": "Comunidade Globalle",
     "community_lead": "Para quem quer ir além do conteúdo.",
@@ -233,20 +233,20 @@
   },
   "corretores": {
     "label": "Para corretores",
-    "headline": "Leve o seu cliente além das fronteiras — sem perder o negócio.",
+    "headline": "As fronteiras do Mercado Imobiliário estão abertas!",
     "subheadline": "Um programa para corretores e imobiliárias que querem oferecer imóveis fora do país aos seus clientes, com o suporte, a rede e o processo para fazer isso com segurança.",
     "features_title": "O que você tem acesso",
     "features": [
       { "icon": "newsletter", "title": "Newsletter Globalle", "body": "Inteligência imobiliária global, toda semana — as práticas dos melhores mercados, traduzidas em ação." },
       { "icon": "advisory", "title": "Consultoria para vender fora do país", "body": "Suporte para estruturar e conduzir negócios internacionais com o seu cliente, do primeiro contato ao fechamento." },
       { "icon": "share", "title": "Conexão com processos e parceiros", "body": "Acesso à rede de parceiros e ao processo já estruturado da Globalle em cada mercado." },
+      { "icon": "experience", "title": "Playbooks e Materiais", "body": "Guias práticos, modelos e materiais prontos para aplicar em cada etapa da venda internacional com o seu cliente." },
       { "icon": "globe", "title": "Rede internacional", "body": "Conexão com corretores, agências e profissionais de outros mercados imobiliários." },
       { "icon": "calendar", "title": "Encontros mensais", "body": "Encontros para discutir casos reais, tendências e oportunidades entre corretores da rede." }
     ],
     "price_label": "Investimento",
-    "price": "€350",
-    "price_period": "/mês",
-    "price_note": "Vagas limitadas por mercado.",
+    "price_headline": "Consulte o valor da Globalle Full Service",
+    "price_note": "Vagas limitadas por mercado — fale com a gente para conhecer as condições.",
     "form_label": "Comece por aqui",
     "form_headline": "Entre para a rede Globalle",
     "form_subheadline": "Deixe seu contato — nossa equipe explica os próximos passos.",
