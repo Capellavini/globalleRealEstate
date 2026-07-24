@@ -84,9 +84,9 @@
   },
   "consultoria": {
     "label": "Consultoría",
-    "headline": "Elige cómo quieres crecer con Globalle",
-    "subheadline": "De la comunidad a los proyectos estratégicos, ayudamos a profesionales y empresas del sector inmobiliario a transformar referencias globales en acciones prácticas para ventas, gestión, marketing y crecimiento.",
-    "positioning": "La newsletter muestra lo que está pasando en el mundo. La Comunidad y los planes de Globalle te ayudan a aplicarlo en la práctica.",
+    "headline": "Acompañamiento cercano para vender más fuera del país.",
+    "subheadline": "Para agentes e inmobiliarias que ya forman parte de la red Globalle y quieren un acompañamiento más cercano — diagnóstico, plan de acción y apoyo directo en cada negociación internacional.",
+    "positioning": "La red te conecta con el mercado global. La consultoría te ayuda a cerrar más negocios en él.",
     "popular": "Más popular",
     "plans": [
       {
@@ -94,13 +94,13 @@
         "name": "Consultoría Inicial",
         "price": { "eur": "€300", "brl": "R$1.500" },
         "period": "/mes",
-        "description": "Para profesionales e inmobiliarias que quieren empezar a aplicar nuevas prácticas con dirección.",
+        "custom": false,
+        "description": "Para quienes ya forman parte de la red Globalle y quieren empezar a aplicar las prácticas del mercado internacional con más dirección.",
         "features": [
-          "Acceso a la Comunidad Globalle",
           "1 llamada individual mensual",
-          "Playbooks y plantillas prácticas",
+          "Playbooks y plantillas prácticas para negociaciones internacionales",
           "Plan de acción mensual simplificado",
-          "Diagnóstico y mapeo de procesos"
+          "Diagnóstico y mapeo de los procesos actuales"
         ],
         "cta": "Empezar ahora",
         "popular": false
@@ -110,13 +110,14 @@
         "name": "Consultoría de Crecimiento",
         "price": { "eur": "€550", "brl": "R$3.500" },
         "period": "/mes",
-        "description": "Para profesionales, líderes e inmobiliarias que quieren un acompañamiento más cercano.",
+        "custom": false,
+        "description": "Para quienes ya venden fuera del país y quieren un acompañamiento más cercano para acelerar resultados.",
         "features": [
           "Todo lo de la Consultoría Inicial",
-          "Diagnóstico inicial de la operación",
+          "Diagnóstico completo de la operación comercial",
           "2 llamadas individuales al mes",
           "Plan de acción personalizado y capacitación comercial del equipo",
-          "Revisión de materiales y del enfoque comercial"
+          "Revisión de materiales y del enfoque comercial en negociaciones internacionales"
         ],
         "cta": "Hablar con Globalle",
         "popular": true
@@ -126,18 +127,22 @@
         "name": "Proyecto a Medida",
         "price": { "eur": "A consultar", "brl": "A consultar" },
         "period": "",
-        "description": "Para empresas que necesitan un proyecto específico, profundo o de mayor complejidad.",
+        "custom": true,
+        "description": "Para inmobiliarias que necesitan un proyecto específico y más profundo para estructurar la operación internacional.",
         "features": [
           "Diagnóstico completo de la operación",
           "Proyecto personalizado según el objetivo",
           "Capacitaciones para el equipo",
-          "Estructuración de procesos comerciales",
+          "Estructuración de procesos comerciales internacionales",
           "Workshops, charlas o proyectos especiales"
         ],
         "cta": "Solicitar propuesta",
         "popular": false
       }
-    ]
+    ],
+    "final_headline": "¿Listo para vender más fuera del país?",
+    "final_subheadline": "Hable con nosotros y encontremos el plan adecuado para su momento.",
+    "final_cta": "Hablar con Globalle"
   },
   "comunidade": {
     "label": "Comunidad",

@@ -3,7 +3,6 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import NewsletterForm from '@/components/NewsletterForm'
 import Reveal from '@/components/Reveal'
 import Icon from '@/components/Icon'
 import { detectCurrency, type Currency } from '@/lib/currency'
@@ -12,13 +11,14 @@ import { detectCurrency, type Currency } from '@/lib/currency'
 export const metadata: Metadata = { robots: { index: false, follow: false } }
 
 type Plan = {
-  id: string; name: string; price: Record<Currency, string>; period: string;
+  id: string; name: string; price: Record<Currency, string>; period: string; custom: boolean;
   description: string; features: string[]; cta: string; popular: boolean;
 }
 
+// Upsell além do /corretores (rede a €350/mês): consultoria 1:1 mais
+// profunda para quem já está na rede e quer acompanhamento próximo.
 export default function ConsultoriaPage() {
   const t = useTranslations('consultoria')
-  const finalCta = useTranslations('final_cta')
   const plans = t.raw('plans') as Plan[]
   const currency = detectCurrency()
 
@@ -58,7 +58,7 @@ export default function ConsultoriaPage() {
           <div className="plans-grid">
             {plans.map((plan, i) => {
               const priceStr = plan.price[currency]
-              const isCustom = priceStr === 'Sob consulta'
+              const isCustom = plan.custom
               return (
                 <Reveal key={plan.id} delay={i * 80}>
                   <div style={{
@@ -114,10 +114,20 @@ export default function ConsultoriaPage() {
         <Reveal>
           <div style={{ maxWidth: 560, margin: '0 auto' }}>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px, 3.6vw, 44px)', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.02em', marginBottom: 16 }}>
-              {finalCta('headline')}
+              {t('final_headline')}
             </h2>
-            <p style={{ color: 'var(--color-ink-dim)', fontSize: 16.5, lineHeight: 1.6, marginBottom: 36 }}>{finalCta('subheadline')}</p>
-            <NewsletterForm placeholder={finalCta('placeholder')} cta={finalCta('cta')} />
+            <p style={{ color: 'var(--color-ink-dim)', fontSize: 16.5, lineHeight: 1.6, marginBottom: 36 }}>{t('final_subheadline')}</p>
+            <a
+              href="mailto:hello@globalleinsights.com"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 9,
+                background: 'var(--color-blue)', color: '#04121f', textDecoration: 'none',
+                padding: '15px 28px', borderRadius: 12, fontSize: 15.5, fontWeight: 700,
+                fontFamily: 'var(--font-display)', boxShadow: '0 10px 30px -10px rgba(30,167,232,0.65)',
+              }}
+            >
+              {t('final_cta')} <Icon name="arrow" size={16} strokeWidth={2} />
+            </a>
           </div>
         </Reveal>
       </section>

@@ -84,9 +84,9 @@
   },
   "consultoria": {
     "label": "Advisory",
-    "headline": "Choose how you want to grow with Globalle",
-    "subheadline": "From community to strategic projects, we help real estate professionals and companies turn global references into practical action for sales, management, marketing and growth.",
-    "positioning": "The newsletter shows you what's happening in the world. The Community and Globalle's plans help you put it into practice.",
+    "headline": "Close support to sell more abroad.",
+    "subheadline": "For brokers and agencies already in the Globalle network who want closer, hands-on support — diagnosis, action plan and direct guidance in every cross-border deal.",
+    "positioning": "The network connects you to the global market. The advisory helps you close more deals in it.",
     "popular": "Most popular",
     "plans": [
       {
@@ -94,13 +94,13 @@
         "name": "Starter Advisory",
         "price": { "eur": "€300", "brl": "R$1,500" },
         "period": "/month",
-        "description": "For professionals and agencies who want to start applying new practices with direction.",
+        "custom": false,
+        "description": "For those already in the Globalle network who want to start applying international market practices with more direction.",
         "features": [
-          "Access to the Globalle Community",
           "1 monthly individual call",
-          "Practical playbooks and templates",
+          "Practical playbooks and templates for cross-border deals",
           "Simplified monthly action plan",
-          "Diagnosis and process mapping"
+          "Diagnosis and mapping of current processes"
         ],
         "cta": "Get started",
         "popular": false
@@ -110,13 +110,14 @@
         "name": "Growth Advisory",
         "price": { "eur": "€550", "brl": "R$3,500" },
         "period": "/month",
-        "description": "For professionals, leaders and agencies who want closer, hands-on support.",
+        "custom": false,
+        "description": "For those already selling abroad who want closer support to accelerate results.",
         "features": [
           "Everything in Starter Advisory",
-          "Initial operational diagnosis",
+          "Full commercial operation diagnosis",
           "2 individual calls per month",
           "Personalized action plan and team sales training",
-          "Review of materials and sales approach"
+          "Review of materials and sales approach in cross-border deals"
         ],
         "cta": "Talk to Globalle",
         "popular": true
@@ -126,18 +127,22 @@
         "name": "Custom Project",
         "price": { "eur": "By request", "brl": "By request" },
         "period": "",
-        "description": "For companies that need a specific, in-depth or more complex project.",
+        "custom": true,
+        "description": "For agencies that need a specific, in-depth project to structure their international operation.",
         "features": [
           "Full operational diagnosis",
           "Project tailored to your goal",
           "Team training",
-          "Sales process design",
+          "Cross-border sales process design",
           "Workshops, talks or special projects"
         ],
         "cta": "Request a proposal",
         "popular": false
       }
-    ]
+    ],
+    "final_headline": "Ready to sell more abroad?",
+    "final_subheadline": "Talk to us and let's find the right plan for you.",
+    "final_cta": "Talk to Globalle"
   },
   "comunidade": {
     "label": "Community",

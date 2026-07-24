@@ -84,9 +84,9 @@
   },
   "consultoria": {
     "label": "Consulenza",
-    "headline": "Scegli come crescere con Globalle",
-    "subheadline": "Dalla community ai progetti strategici, aiutiamo professionisti e aziende del mercato immobiliare a trasformare riferimenti globali in azioni pratiche per vendite, gestione, marketing e crescita.",
-    "positioning": "La newsletter mostra cosa succede nel mondo. La Community e i piani Globalle ti aiutano a metterlo in pratica.",
+    "headline": "Supporto ravvicinato per vendere di più all'estero.",
+    "subheadline": "Per agenti e agenzie già nella rete Globalle che vogliono un accompagnamento più ravvicinato — diagnosi, piano d'azione e supporto diretto in ogni trattativa internazionale.",
+    "positioning": "La rete ti connette al mercato globale. La consulenza ti aiuta a chiudere più affari al suo interno.",
     "popular": "Più scelto",
     "plans": [
       {
@@ -94,13 +94,13 @@
         "name": "Consulenza Iniziale",
         "price": { "eur": "€300", "brl": "R$1.500" },
         "period": "/mese",
-        "description": "Per professionisti e agenzie che vogliono iniziare ad applicare nuove pratiche con una direzione chiara.",
+        "custom": false,
+        "description": "Per chi è già nella rete Globalle e vuole iniziare ad applicare le pratiche del mercato internazionale con più direzione.",
         "features": [
-          "Accesso alla Community Globalle",
           "1 call individuale mensile",
-          "Playbook e template pratici",
+          "Playbook e template pratici per trattative internazionali",
           "Piano d'azione mensile semplificato",
-          "Diagnosi e mappatura dei processi"
+          "Diagnosi e mappatura dei processi attuali"
         ],
         "cta": "Inizia ora",
         "popular": false
@@ -110,13 +110,14 @@
         "name": "Consulenza di Crescita",
         "price": { "eur": "€550", "brl": "R$3.500" },
         "period": "/mese",
-        "description": "Per professionisti, leader e agenzie che vogliono un accompagnamento più ravvicinato.",
+        "custom": false,
+        "description": "Per chi vende già all'estero e vuole un accompagnamento più ravvicinato per accelerare i risultati.",
         "features": [
           "Tutto della Consulenza Iniziale",
-          "Diagnosi iniziale dell'operatività",
+          "Diagnosi completa dell'operatività commerciale",
           "2 call individuali al mese",
           "Piano d'azione personalizzato e training commerciale del team",
-          "Revisione dei materiali e dell'approccio commerciale"
+          "Revisione dei materiali e dell'approccio commerciale nelle trattative internazionali"
         ],
         "cta": "Parla con Globalle",
         "popular": true
@@ -126,18 +127,22 @@
         "name": "Progetto Su Misura",
         "price": { "eur": "Su richiesta", "brl": "Su richiesta" },
         "period": "",
-        "description": "Per aziende che necessitano di un progetto specifico, approfondito o di maggiore complessità.",
+        "custom": true,
+        "description": "Per agenzie che necessitano di un progetto specifico e approfondito per strutturare l'operatività internazionale.",
         "features": [
           "Diagnosi completa dell'operatività",
           "Progetto personalizzato per obiettivo",
           "Formazione per il team",
-          "Strutturazione dei processi commerciali",
+          "Strutturazione dei processi commerciali internazionali",
           "Workshop, conferenze o progetti speciali"
         ],
         "cta": "Richiedi una proposta",
         "popular": false
       }
-    ]
+    ],
+    "final_headline": "Pronto a vendere di più all'estero?",
+    "final_subheadline": "Parla con noi e troviamo il piano giusto per il tuo momento.",
+    "final_cta": "Parla con Globalle"
   },
   "comunidade": {
     "label": "Community",
